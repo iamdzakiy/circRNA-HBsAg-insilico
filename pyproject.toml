@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "circhbsag"
+version = "0.1.0"
+description = "Pipeline in silico Tahap 0/1 untuk konstruk circRNA-HBsAg berbasis permuted intron-exon (PIE)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+keywords = ["circRNA", "HBsAg", "IRES", "permuted intron-exon", "vaksin", "ViennaRNA"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+  "ViennaRNA>=2.6",
+  "primer3-py>=2.0",
+  "biopython>=1.83",
+  "numpy>=1.26",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+optimize = ["optuna>=3.6"]
+web = ["streamlit>=1.36", "matplotlib>=3.8"]
+dev = ["pytest>=8.0", "ruff>=0.6", "pandas>=2.0"]
+
+[project.scripts]
+circhbsag = "circhbsag.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# Notebook harus menyisipkan src/ ke sys.path sebelum mengimpor paket, sehingga
+# impor tingkat modul memang tidak di awal sel.
+"notebooks/*.ipynb" = ["E402", "I001"]
+"app/streamlit_app.py" = ["E402"]

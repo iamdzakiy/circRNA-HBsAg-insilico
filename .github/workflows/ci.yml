@@ -1,0 +1,146 @@
+name: CI
+
+# Menjalankan tes dan alur kerja lengkap pada data CONTOH SINTETIS.
+# CI sengaja TIDAK memakai config/parts.yaml (konfigurasi sungguhan), karena
+# sekuens referensi tidak diikutkan ke repositori; lihat data/reference/README.md.
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tes (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Siapkan Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Pasang dependensi
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Catat versi dan lisensi alat
+        run: python -m circhbsag.cli licenses
+
+      - name: Lint (ruff)
+        run: |
+          pip install ruff
+          ruff check src tests
+
+      - name: Jalankan tes
+        run: pytest -q
+
+      - name: Pastikan data contoh dapat dibangkitkan ulang secara deterministik
+        run: |
+          mkdir -p /tmp/example-before
+          cp data/example/*.fa /tmp/example-before/
+          python data/example/make_example.py
+          diff -r /tmp/example-before data/example --exclude='*.py' \
+            && echo "Data contoh reprodusibel dengan seed tetap."
+
+  workflow:
+    name: Alur Snakemake ujung-ke-ujung (data sintetis)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Siapkan Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Pasang dependensi
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e . snakemake
+
+      - name: Jalankan alur kerja pada data contoh
+        run: |
+          snakemake --cores 2 \
+            --config parts=config/parts.example.yaml outdir=results/ci \
+                     sensitivity_draws=25 codon_iterations=2000 \
+            --printshellcmds
+
+      - name: Periksa keluaran wajib ada dan berlabel benar
+        run: |
+          set -e
+          for f in tahap0.json tahap0.md tahap0.html primers.json \
+                   bsj_simulation.json offtarget_report.json SUMMARY.md \
+                   orf_optimized.fa licenses.json; do
+            test -s "results/ci/$f" || { echo "HILANG: $f"; exit 1; }
+          done
+          python - <<'PY'
+          import json, sys
+          d = json.load(open("results/ci/tahap0.json"))
+          assert "[UJI PERANGKAT LUNAK]" in d["data_label"], d["data_label"]
+          dec = d["results"]["decision"]
+          assert dec["verdict"] in {"GO", "GO-BERSYARAT", "NO-GO"}
+          assert abs(sum(c["weight"] for c in dec["criteria"]) - 1.0) < 1e-9
+          print("Keputusan:", dec["verdict"], dec["composite_score"])
+          PY
+
+      - name: Unggah hasil sebagai artefak
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hasil-ci-sintetis
+          path: results/ci/
+          retention-days: 14
+
+  provenance-guard:
+    name: Pengaman provenans
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Siapkan Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Pasang dependensi
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt && pip install -e .
+
+      - name: Konfigurasi sungguhan harus menolak berkas referensi yang belum ada
+        run: |
+          if python -m circhbsag.cli tahap0 --parts config/parts.yaml --out /tmp/strict; then
+            echo "GAGAL: parts.yaml seharusnya berhenti karena data/reference/ kosong."
+            exit 1
+          else
+            echo "Benar: konfigurasi strict menolak berjalan tanpa sekuens terverifikasi."
+          fi
+
+      - name: Tidak boleh ada sekuens referensi yang ter-commit tanpa provenans
+        run: |
+          if ls data/reference/*.fa 2>/dev/null; then
+            echo "Ada FASTA di data/reference/. Pastikan provenansnya tercatat di parts.yaml."
+            grep -q "ISI_SENDIRI" config/parts.yaml && {
+              echo "GAGAL: FASTA ada tetapi parts.yaml masih memuat placeholder ISI_SENDIRI."
+              exit 1; }
+          else
+            echo "data/reference/ tidak memuat FASTA (sesuai rancangan)."
+          fi

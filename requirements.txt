@@ -1,0 +1,12 @@
+# Alternatif pip-only (dipakai oleh GitHub Actions agar CI cepat).
+# ViennaRNA tersedia di PyPI sebagai wheel; bila gagal, pakai environment.yml.
+ViennaRNA>=2.6
+primer3-py>=2.0
+biopython>=1.83
+numpy>=1.26
+pandas>=2.0
+PyYAML>=6.0
+optuna>=3.6
+streamlit>=1.36
+matplotlib>=3.8
+pytest>=8.0

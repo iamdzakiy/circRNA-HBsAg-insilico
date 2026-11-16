@@ -1,0 +1,39 @@
+# Konfigurasi alur kerja Snakemake.
+# Timpa dari baris perintah, mis.:
+#   snakemake --cores 4 --config parts=config/parts.example.yaml outdir=results/example
+
+# Berkas bagian konstruk. Default = konfigurasi sungguhan (provenance_policy: strict).
+parts: config/parts.yaml
+
+# Direktori keluaran.
+outdir: results
+
+# Seed tetap untuk seluruh langkah stokastik (optimasi kodon, Optuna, simulasi bacaan).
+seed: 20260101
+
+# Suhu lipatan (C). 37 = fisiologis; 55 = kondisi splicing PIE in vitro.
+temperatures: "37,55"
+
+# Jumlah set bobot pada uji sensitivitas keputusan GO/NO-GO.
+sensitivity_draws: 200
+
+# Iterasi hill-climbing optimasi kodon.
+codon_iterations: 20000
+
+# Optimasi multi-objektif (tidak termasuk `rule all`).
+optuna_trials: 40
+optuna_codon_iterations: 2000
+
+# Simulasi bacaan untuk filter statistik BSJ.
+bsj_simulation:
+  n_circular: 1500
+  n_linear: 1500
+  read_len: 150
+  anchor: 20
+
+# Homologi off-target. Isi salah satu; bila keduanya kosong, langkah ini
+# menulis status SKIPPED yang eksplisit alih-alih mengarang hasil.
+#   blast_db: nama basis data BLAST (butuh blastn di PATH), mis. "refseq_rna"
+#   offtarget_reference_fasta: FASTA lokal (mis. CDS manusia) untuk filter k-mer
+blast_db: ""
+offtarget_reference_fasta: ""

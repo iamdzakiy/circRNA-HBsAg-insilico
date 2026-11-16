@@ -1,0 +1,8 @@
+# Konfigurasi GitHub Pages. Situs ini statis murni (satu berkas HTML + DESIGN.md),
+# jadi Jekyll hanya perlu menyajikan berkasnya apa adanya.
+theme: null
+plugins: []
+include:
+  - index.html
+exclude:
+  - "*.py"

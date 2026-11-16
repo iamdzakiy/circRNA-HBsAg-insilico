@@ -1,0 +1,36 @@
+# Lingkungan conda untuk pipeline circRNA-HBsAg in silico.
+#
+#   mamba env create -f environment.yml     # atau: conda env create -f environment.yml
+#   conda activate circhbsag
+#   pip install -e .
+#   pytest -q
+#   snakemake --cores 4 --config parts=config/parts.example.yaml outdir=results/example
+#
+# Semua paket di bawah berlisensi gratis; rinciannya ada di LICENSE dan di
+# keluaran `python -m circhbsag.cli licenses`.
+name: circhbsag
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.12
+  # --- inti analisis
+  - viennarna=2.6.4        # ViennaRNA License (gratis akademik/non-komersial)
+  - primer3-py=2.0.3       # GPLv2
+  - biopython=1.84         # Biopython License
+  - numpy=1.26
+  - pandas=2.2
+  - pyyaml=6.0
+  # --- optimasi dan alur kerja
+  - optuna=4.0             # MIT
+  - snakemake-minimal=8.20 # MIT
+  # --- opsional: validasi off-target dan BSJ (lewati bila tidak dipakai)
+  - blast=2.16.0           # NCBI BLAST+, domain publik
+  - star=2.7.11b           # MIT
+  # --- notebook dan antarmuka web
+  - jupyterlab=4.2
+  - streamlit=1.38         # Apache-2.0
+  - matplotlib=3.9         # PSF-like (Matplotlib License)
+  # --- pengembangan
+  - pytest=8.3
+  - ruff=0.6

@@ -1,0 +1,92 @@
+# ============================================================================
+# KONFIGURASI CONTOH — DATA SINTETIS UNTUK UJI PERANGKAT LUNAK
+# ============================================================================
+# Berkas ini memakai sekuens yang DIBANGKITKAN ACAK (data/example/), bukan
+# sekuens biologis. Tujuannya hanya agar pipeline, tes, CI, dan antarmuka web
+# dapat dijalankan tanpa akses jaringan.
+#
+# Setiap bagian ditandai `synthetic: true`, sehingga modul report melabeli
+# seluruh keluaran sebagai [UJI PERANGKAT LUNAK]. Angka dari konfigurasi ini
+# TIDAK BOLEH dipakai sebagai hasil ilmiah.
+#
+# Untuk analisis sungguhan: pakai config/parts.yaml (provenance_policy: strict).
+# ============================================================================
+
+provenance_policy: allow_synthetic
+
+protein:
+  file: data/example/demo_antigen_protein.fa
+  synthetic: true
+  note: "Protein acak 150 aa. BUKAN HBsAg."
+
+design:
+  ires_choice: DEMO
+  note: "Konfigurasi uji; pilihan IRES sebenarnya (CVB3) ada di parts.yaml."
+
+parts:
+  T7_promoter:
+    inline: "TAATACGACTCACTATA"
+    source: "Promotor T7 kanonik (untai atas)"
+    note: "[LITERATUR] sekuens konsensus promotor T7, bukan data percobaan."
+
+  gg_leader:
+    inline: "GGG"
+    note: "[LITERATUR] T7 memulai transkripsi paling efisien pada runtun G."
+
+  HA5:
+    file: data/example/HA5.fa
+    synthetic: true
+
+  intron_3half:
+    file: data/example/intron_3half.fa
+    synthetic: true
+    role: "separuh intron grup I sisi 3' (berisi IGS untuk P10)"
+    features:
+      IGS: [174, 180]
+
+  E2:
+    file: data/example/E2.fa
+    synthetic: true
+    role: "eksón 2 — sisi 3' sambungan balik"
+
+  spacer5:
+    inline: "ACTAACTACAATCAACTACAATCAACTAACAATC"
+    note: "[PERKIRAAN] spacer tak-berstruktur bawaan; dioptimasi pada tahap optimize."
+
+  IRES:
+    file: data/example/ires_demo.fa
+    synthetic: true
+    role: "pengganti sintetis untuk IRES"
+
+  ORF:
+    inline: "ATGTAA"
+    synthetic: true
+    note: "Placeholder; diganti oleh hasil optimasi kodon pada runtime."
+
+  spacer3:
+    inline: "AAACAAAGAAACAAAGAAACAAAGAAACAAAG"
+    note: "[PERKIRAAN] spacer kaya A bawaan."
+
+  E1:
+    file: data/example/E1.fa
+    synthetic: true
+    role: "eksón 1 — sisi 5' sambungan balik"
+
+  intron_5half:
+    file: data/example/intron_5half.fa
+    synthetic: true
+    role: "separuh intron grup I sisi 5' (berisi IGS untuk P1)"
+    features:
+      IGS: [0, 6]
+
+  HA3:
+    file: data/example/HA3.fa
+    synthetic: true
+
+  T7_terminator:
+    optional: true
+    note: >
+      Dibiarkan kosong pada konfigurasi contoh. Pada templat sungguhan,
+      terminator T7 diletakkan DI LUAR wilayah yang ditranskripsi menjadi
+      prekursor, atau templat dilinearisasi dengan enzim restriksi; terminator
+      di dalam prekursor akan terdeteksi sebagai pelanggaran gerbang keras.

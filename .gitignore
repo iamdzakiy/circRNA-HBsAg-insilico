@@ -1,0 +1,32 @@
+# hasil jalankan
+results/
+.snakemake/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# notebook
+.ipynb_checkpoints/
+*.executed.ipynb
+
+# optuna
+*.db
+*.sqlite3
+
+# sekuens referensi: JANGAN di-commit tanpa provenans yang tercatat di
+# config/parts.yaml. Hapus baris ini bila Anda memang ingin menyertakannya
+# dan sudah mengisi nomor aksesinya.
+data/reference/*.fa
+data/reference/*.fasta
+
+# OS
+.DS_Store

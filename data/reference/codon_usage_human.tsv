@@ -1,0 +1,80 @@
+# Tabel penggunaan kodon Homo sapiens (frekuensi per seribu kodon).
+# STATUS PROVENANS: [PERKIRAAN] — nilai ini disalin dari tabel Kazusa
+# (Codon Usage Database, Homo sapiens [gbpri]) yang lazim direproduksi di
+# pustaka, TETAPI BELUM diunduh ulang dan diverifikasi oleh pipeline ini karena
+# kontainer eksekusi tidak punya akses jaringan ke basis data sekuens.
+#
+# WAJIB SEBELUM PELAPORAN AKHIR:
+#   1. Unduh tabel resmi: https://www.kazusa.or.jp/codon/  (Homo sapiens)
+#      atau hitung sendiri dari kumpulan gen inang dengan skrip
+#      `python -m circhbsag.cli codon-table --fasta <cds.fa>`.
+#   2. Ganti berkas ini, lalu jalankan ulang `snakemake --forcerun all`.
+#   3. Catat tanggal unduh dan versi pada notebooks/01_tahap0_go_nogo.ipynb.
+# Nilai CAI akan berubah bila tabel diganti; CAI relatif antar-varian desain
+# jauh lebih stabil daripada nilai absolutnya.
+#
+codon	aa	frequency_per_thousand
+TTT	F	17.6
+TTC	F	20.3
+TTA	L	7.7
+TTG	L	12.9
+CTT	L	13.2
+CTC	L	19.6
+CTA	L	7.2
+CTG	L	39.6
+ATT	I	16.0
+ATC	I	20.8
+ATA	I	7.5
+ATG	M	22.0
+GTT	V	11.0
+GTC	V	14.5
+GTA	V	7.1
+GTG	V	28.1
+TCT	S	15.2
+TCC	S	17.7
+TCA	S	12.2
+TCG	S	4.4
+CCT	P	17.5
+CCC	P	19.8
+CCA	P	16.9
+CCG	P	6.9
+ACT	T	13.1
+ACC	T	18.9
+ACA	T	15.1
+ACG	T	6.1
+GCT	A	18.4
+GCC	A	27.7
+GCA	A	15.8
+GCG	A	7.4
+TAT	Y	12.2
+TAC	Y	15.3
+TAA	*	1.0
+TAG	*	0.8
+CAT	H	10.9
+CAC	H	15.1
+CAA	Q	12.3
+CAG	Q	34.2
+AAT	N	17.0
+AAC	N	19.1
+AAA	K	24.4
+AAG	K	31.9
+GAT	D	21.8
+GAC	D	25.1
+GAA	E	29.0
+GAG	E	39.6
+TGT	C	10.6
+TGC	C	12.6
+TGA	*	1.6
+TGG	W	13.2
+CGT	R	4.5
+CGC	R	10.4
+CGA	R	6.2
+CGG	R	11.4
+AGT	S	12.1
+AGC	S	19.5
+AGA	R	12.2
+AGG	R	12.0
+GGT	G	10.8
+GGC	G	22.2
+GGA	G	16.5
+GGG	G	16.5

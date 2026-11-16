@@ -1,0 +1,52 @@
+MIT License
+
+Copyright (c) 2026 Program Studi Mikrobiologi, Sekolah Ilmu dan Teknologi
+Hayati, Institut Teknologi Bandung
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+CATATAN LISENSI DEPENDENSI
+
+Lisensi MIT di atas berlaku untuk KODE DI REPOSITORI INI saja. Perangkat lunak
+pihak ketiga yang dipanggil pipeline ini memiliki lisensinya sendiri, yang
+tetap berlaku bagi pengguna:
+
+  ViennaRNA (RNAfold, RNAplfold)  ViennaRNA License — gratis untuk pemakaian
+                                  akademik dan non-komersial
+  primer3 / primer3-py            GPLv2
+  Biopython                       Biopython License (mirip MIT)
+  Optuna                          MIT
+  Snakemake                       MIT
+  NumPy, pandas                   BSD-3-Clause
+  NCBI BLAST+ (opsional)          Domain publik (karya pemerintah AS)
+  STAR (opsional)                 MIT
+  CIRI2 (opsional)                GPL
+
+Perangkat lunak yang SENGAJA TIDAK dipakai karena pembatasan lisensi:
+
+  LinearDesign                    lisensi membatasi pemakaian komersial dan
+                                  redistribusi; pipeline ini memakai optimizer
+                                  kodon sendiri (MIT) sebagai gantinya
+  NUPACK                          gratis hanya untuk akademik dengan pendaftaran
+                                  dan tidak boleh diredistribusi; tidak
+                                  dijadikan dependensi wajib
+
+Jalankan `python -m circhbsag.cli licenses` untuk melihat versi dan lisensi
+yang benar-benar terpasang pada mesin Anda.
