@@ -193,3 +193,33 @@ def test_uji2_fail_is_not_patchable():
     assert t["verdict"] == gate0.FAIL
     assert g["decision"] == "FAIL-PINDAH-JALUR"
     assert "cadangan" in g["statement"]
+
+
+# ------------------------------------------------------- redesign + constants
+
+
+def test_trim_arms_keeps_the_ends_that_face_the_splice_junction():
+    a5, a3 = construct.trim_arms("A" * 10 + "CCCCC", "GGGGG" + "T" * 10, 5)
+    assert a5 == "CCCCC" and a3 == "GGGGG"
+    assert construct.trim_arms("ACGT", "ACGT", 0) == ("", "")
+
+
+def test_codon_and_gate_share_hygiene_thresholds():
+    from circhbsag import codon, motifs
+
+    assert codon.CodonObjective().gc_window_lo == motifs.GC_WINDOW_LO
+    assert codon.CodonObjective().gc_window_hi == motifs.GC_WINDOW_HI
+    assert "T" * (motifs.POLYU_MAX + 1) in motifs.AVOID_MOTIFS.values()
+
+
+def test_redesign_changes_one_parameter_per_iteration():
+    from circhbsag import redesign
+
+    parts, _ = parts_mod.load_parts(EXAMPLE_CFG)
+    its, _, _ = redesign.run_loop(
+        parts, [redesign.trim_arms_step(20)], cm_path=NO_CM, arm_lengths=(20,)
+    )
+    assert [r["iteration"] for r in its] == [0, 1]
+    assert its[1]["parameter"] == "homology_arm_nt"
+    assert its[1]["verdicts"]["uji3_homology_arm_duplex"] == gate0.PASS
+    assert "| Iter |" in redesign.markdown(its)

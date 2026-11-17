@@ -25,10 +25,15 @@ from typing import Any
 
 import RNA
 
-from . import fold
+from . import fold, motifs
+from .construct import trim_arms
 from .seqio import clean, gc, gc_windows, longest_homopolymer, translate
 
 PASS, REVISE, FAIL, UNAVAILABLE = "PASS", "REVISE", "FAIL", "UNAVAILABLE"
+
+#: Construct regions whose sequence a redesign can change. Everything else
+#: (IRES, intron halves, exons) is taken from the literature as given.
+DESIGNABLE_REGIONS = ("ORF", "spacer5", "spacer3", "HA5", "HA3")
 
 #: Tests whose failure forbids patching the construct: the spec requires moving
 #: to the backup circularisation route instead (BLOK 3, decision rule).
@@ -127,7 +132,7 @@ def arm_length_scan(
         if len(arm5) < n or len(arm3) < n:
             out.append({"length_nt": n, "available": False})
             continue
-        a, b = arm5[-n:], arm3[:n]
+        a, b = trim_arms(arm5, arm3, n)
         out.append(
             {
                 "length_nt": n,
@@ -587,26 +592,61 @@ def run(
     )
 
     # ---------------------------------------------------------------- Test 9
-    insert = circle
+    # T7 transcribes from the +1 G (the gg_leader), so hygiene is judged on the
+    # transcribed precursor, not on the circle alone: poly-U in an intron half
+    # stalls the polymerase just as much as poly-U in the ORF.
     typeIIS = measurements.get("motifs", {}).get("precursor", {}).get("restriction", {})
     t7term = measurements.get("motifs", {}).get("precursor", {}).get("t7_terminator", [])
-    # gc_windows yields (start, gc) tuples; keep the ones outside the band.
-    windows = gc_windows(insert, window=50)
+    offset = asm.precursor_coords.get("gg_leader", (1, 1))[0] - 1
+    transcribed = precursor[offset:]
+
+    def attribute(start0: int, length: int) -> dict:
+        """Name the construct regions a 0-based window of ``transcribed`` overlaps."""
+        a, b = offset + start0 + 1, offset + start0 + length  # 1-based, inclusive
+        hit = [
+            n for n, (s, e) in asm.precursor_coords.items()
+            if ":" not in n and s <= b and a <= e
+        ]
+        designable = [n for n in hit if n in DESIGNABLE_REGIONS]
+        return {
+            "precursor_span": [a, b],
+            "regions": hit,
+            "designable": bool(designable),
+            "designable_regions": designable,
+        }
+
     bad_windows = [
-        {"start": int(start), "gc": round(float(value), 4)}
-        for start, value in windows
-        if value < 0.35 or value > 0.70
+        {"start": int(s0), "gc": round(float(v), 4), **attribute(int(s0), 50)}
+        for s0, v in gc_windows(transcribed, window=50)
+        if v < motifs.GC_WINDOW_LO or v > motifs.GC_WINDOW_HI
     ]
-    gc_all = gc(insert)
-    pu = polyu_runs(insert, min_run=5)
-    cryptic = cryptic_splice_sites(insert)
-    hp = longest_homopolymer(insert)
+    pu = [
+        {**r, **attribute(r["start"] - 1, r["length"])}
+        for r in polyu_runs(transcribed, min_run=motifs.POLYU_MAX + 1)
+    ]
+    # The back-splice junction exists only in the circle: check the 50 nt that
+    # straddle it, which no scan of the linear precursor can see.
+    junction_window = circle[-25:] + circle[:25]
+    jgc = gc(junction_window)
+    junction = {
+        "window_nt": len(junction_window),
+        "gc": round(jgc, 4),
+        "gc_in_range": motifs.GC_WINDOW_LO <= jgc <= motifs.GC_WINDOW_HI,
+        "polyu_runs": polyu_runs(junction_window, min_run=motifs.POLYU_MAX + 1),
+    }
+    gc_all = gc(circle)
+    cryptic = cryptic_splice_sites(circle)
+    hp = longest_homopolymer(circle)
+
+    fixed_findings = [f for f in bad_windows + pu if not f["designable"]]
+    designable_findings = [f for f in bad_windows + pu if f["designable"]]
+    junction_bad = (not junction["gc_in_range"]) or bool(junction["polyu_runs"])
+    gc_global_bad = not (0.45 <= gc_all <= 0.60)
+
     hygiene_fail = bool(
         any(typeIIS.values() if isinstance(typeIIS, dict) else []) or t7term
     )
-    hygiene_revise = bool(
-        bad_windows or pu or not (0.45 <= gc_all <= 0.60) or (hp or {}).get("length", 0) >= 7
-    )
+    hygiene_revise = bool(designable_findings or junction_bad or gc_global_bad)
     v9 = FAIL if hygiene_fail else (REVISE if hygiene_revise else PASS)
     tests.append(
         Test(
@@ -617,18 +657,24 @@ def run(
             metrics={
                 "type_IIS_sites": typeIIS,
                 "t7_terminator_motifs": t7term,
-                "gc_global": round(gc_all, 4),
-                "gc_window_50nt_out_of_range": bad_windows[:20],
-                "n_gc_windows_out_of_range": len(bad_windows),
-                "polyu_runs_ge5": pu,
-                "longest_homopolymer": hp,
+                "gc_global_circle": round(gc_all, 4),
+                "gc_window_band": [motifs.GC_WINDOW_LO, motifs.GC_WINDOW_HI],
+                "polyu_limit_nt": motifs.POLYU_MAX,
+                "n_designable_findings": len(designable_findings),
+                "n_fixed_region_findings": len(fixed_findings),
+                "designable_findings": designable_findings[:30],
+                "fixed_region_findings": fixed_findings[:30],
+                "junction": junction,
+                "longest_homopolymer_circle": hp,
                 "cryptic_gt_ag_pairs": cryptic[:20],
                 "n_cryptic_gt_ag_pairs": len(cryptic),
+                "scanned": f"precursor tertranskripsi (posisi {offset + 1}–{len(precursor)}) dan sambungan balik",
             },
             threshold=(
-                "FAIL bila ada situs Tipe IIS internal atau motif terminator T7; "
-                "REVISE bila GC global di luar 45–60%, ada jendela 50 nt di luar 35–70%, "
-                "poly-U >= 5, atau homopolimer >= 7"
+                "FAIL bila ada situs Tipe IIS internal atau motif terminator T7; REVISE bila "
+                f"GC global lingkaran di luar 45–60%, ada jendela 50 nt di luar "
+                f"{motifs.GC_WINDOW_LO:.0%}–{motifs.GC_WINDOW_HI:.0%}, poly-U >= {motifs.POLYU_MAX + 1}, "
+                "atau jendela sambungan balik di luar batas itu — pada bagian yang dapat didesain ulang"
             ),
             threshold_label="PERKIRAAN",
             threshold_rationale=(
@@ -637,6 +683,14 @@ def run(
                 "jadi [PERLU VERIFIKASI]. Pasangan GT–AG dilaporkan sebagai kandidat untuk "
                 "diperiksa manusia, BUKAN sebagai prediksi splicing: tanpa prediktor splice "
                 "site sungguhan, keberadaan motif saja tidak cukup untuk menyimpulkan apa pun."
+            ),
+            note=(
+                "Setiap temuan dipetakan ke bagian konstruk yang ditumpanginya. Hanya temuan "
+                f"pada bagian yang dapat didesain ulang ({', '.join(DESIGNABLE_REGIONS)}) yang "
+                "memicu REVISE; temuan yang seluruhnya jatuh di bagian tetap (IRES, intron, "
+                "ekson) tidak mengubah verdict karena tidak ada yang bisa direvisi — tetapi "
+                "tetap dilaporkan di fixed_region_findings dan harus dibaca, sebab poly-U di "
+                "dalam intron tetap bisa menghentikan polimerase T7."
             ),
         )
     )

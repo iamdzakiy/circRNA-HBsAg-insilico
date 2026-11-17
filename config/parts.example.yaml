@@ -22,6 +22,7 @@ protein:
 design:
   ires_choice: DEMO
   note: "Konfigurasi uji; pilihan IRES sebenarnya (CVB3) ada di parts.yaml."
+  arm_nt: 20   # iterasi redesain 1 Gate 0: lengan homologi dipangkas ke 20 nt (Uji 3)
 
 parts:
   T7_promoter:
@@ -50,8 +51,8 @@ parts:
     role: "eksón 2 — sisi 3' sambungan balik"
 
   spacer5:
-    inline: "ACTAACTACAATCAACTACAATCAACTAACAATC"
-    note: "[PERKIRAAN] spacer tak-berstruktur bawaan; dioptimasi pada tahap optimize."
+    inline: "ACCAACCACCATCGACTAGAACCACCTCACCACC"
+    note: "[PERKIRAAN] iterasi redesain 3 Gate 0 (GC spacer 0.55, make_spacer seed 0); lihat results/demo/gate0_iterations.md."
 
   IRES:
     file: data/example/ires_demo.fa
@@ -64,8 +65,8 @@ parts:
     note: "Placeholder; diganti oleh hasil optimasi kodon pada runtime."
 
   spacer3:
-    inline: "AAACAAAGAAACAAAGAAACAAAGAAACAAAG"
-    note: "[PERKIRAAN] spacer kaya A bawaan."
+    inline: "CCTAACCAGAATCGACGGCAATCACCTAACCG"
+    note: "[PERKIRAAN] iterasi redesain 3 Gate 0 (GC spacer 0.55, make_spacer seed 1)."
 
   E1:
     file: data/example/E1.fa

@@ -91,8 +91,8 @@ class CodonObjective:
     w_avoid: float = 1.0
     w_m6a: float = 0.5
     gc_target: float = 0.55
-    gc_window_lo: float = 0.30
-    gc_window_hi: float = 0.70
+    gc_window_lo: float = motifs.GC_WINDOW_LO
+    gc_window_hi: float = motifs.GC_WINDOW_HI
     m6a_mode: str = "minimize"  # "minimize" | "ignore"
     forbidden_sites: tuple[str, ...] = ("GGTCTC", "CGTCTC")
 

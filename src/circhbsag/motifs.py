@@ -32,10 +32,23 @@ T7_PROMOTER = "TAATACGACTCACTATA"
 # [LITERATUR] Konsensus situs metilasi m6A: RRACH (R=A/G, H=A/C/U).
 RRACH = re.compile(r"(?=([AG][AG]AC[ACT]))")
 
+# [PERKIRAAN] Satu-satunya definisi batas GC jendela 50 nt. Optimasi kodon dan
+# Uji 9 Gate 0 sama-sama membaca konstanta ini, supaya sebuah ORF yang lolos
+# optimasi tidak bisa gagal di gerbang hanya karena kedua tempat memakai angka
+# yang berbeda (sebelumnya 0,30 di optimasi kodon dan 0,35 di Gate 0).
+GC_WINDOW_LO = 0.35
+GC_WINDOW_HI = 0.70
+
+# [PERKIRAAN] Batas homopolimer dari spesifikasi proyek (BLOK 4.2): poly-U >= 5
+# dan poly-A >= 7 dihindari. Sumber primernya belum diverifikasi.
+POLYU_MAX = 4
+POLYA_MAX = 6
+
 # [PERKIRAAN] motif imunostimulan/destabilisasi yang lazim dihindari pada desain mRNA.
 AVOID_MOTIFS: dict[str, str] = {
     "ARE_AUUUA": "ATTTA",          # elemen kaya AU, destabilisasi mRNA
-    "polyU_6": "TTTTTT",           # runtun U, terminasi/pause T7
+    "polyU_5": "T" * (POLYU_MAX + 1),   # runtun U, terminasi/pause T7
+    "polyA_7": "A" * (POLYA_MAX + 1),   # runtun A panjang
     "CpG_island_seed": "CGCGCGCG",  # runtun CpG, pemicu TLR9
     "SpliceDonor_GTAAGT": "GTAAGT",  # donor splice kriptik
     "SpliceAcceptor_AGGTRAGT": "AGGTAAGT",
@@ -116,7 +129,11 @@ def scan_avoid_motifs(seq: str) -> dict[str, list[dict]]:
 
 
 def gc_window_violations(
-    seq: str, window: int = 50, step: int = 10, lo: float = 0.30, hi: float = 0.70
+    seq: str,
+    window: int = 50,
+    step: int = 10,
+    lo: float = GC_WINDOW_LO,
+    hi: float = GC_WINDOW_HI,
 ) -> list[dict]:
     """[PERKIRAAN] Jendela dengan GC di luar rentang yang dapat disintesis."""
     return [

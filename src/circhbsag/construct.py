@@ -218,3 +218,20 @@ def guide_sequence_pairs(asm: Assembly) -> dict:
                 "igs_revcomp": revcomp(asm.precursor[a - 1 : b]),
             }
     return out
+
+
+def trim_arms(ha5: str, ha3: str, length: int) -> tuple[str, str]:
+    """Shorten the two homology arms to ``length`` nt, keeping the ends that face the intron.
+
+    HA5 keeps its 3' end (adjacent to the 3' intron half) and HA3 keeps its 5' end
+    (adjacent to the 5' intron half). Every place that shortens an arm — the
+    Gate 0 length scan, the redesign loop and the Optuna study — calls this, so
+    a length that passes Gate 0 is the same sequence that gets optimised.
+    ``length == 0`` removes the arms.
+
+    [PERKIRAAN] Which end to keep has no literature support; for perfectly
+    complementary demo arms it does not matter, for real arms it can.
+    """
+    if length <= 0:
+        return "", ""
+    return ha5[-length:], ha3[:length]

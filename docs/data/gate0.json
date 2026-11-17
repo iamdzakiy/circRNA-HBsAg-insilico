@@ -3,8 +3,8 @@
   "decision": "FAIL-PINDAH-JALUR",
   "statement": "Gate 0 TIDAK lulus pada uji yang tidak boleh ditambal (uji2_ribozyme_integrity); desain harus berpindah ke jalur sirkularisasi cadangan dan Gate 0 dijalankan ulang dari awal untuk arsitektur itu.",
   "counts": {
-    "PASS": 6,
-    "REVISE": 2,
+    "PASS": 8,
+    "REVISE": 0,
     "FAIL": 1,
     "UNAVAILABLE": 0
   },
@@ -15,10 +15,10 @@
       "question": "Apakah panjang prekursor dan lingkaran berada pada rentang yang terbukti bisa disirkularisasi?",
       "verdict": "PASS",
       "metrics": {
-        "precursor_nt": 1867,
+        "precursor_nt": 1827,
         "circle_nt": 1407,
         "bsj_position": 1407,
-        "circle_fraction_of_precursor": 0.7536
+        "circle_fraction_of_precursor": 0.7701
       },
       "threshold": "lingkaran 300–5000 nt",
       "threshold_label": "LITERATUR",
@@ -49,18 +49,18 @@
       "id": "uji3_homology_arm_duplex",
       "name": "Pasangan lengan homologi",
       "question": "Apakah kedua lengan homologi berpasangan cukup kuat pada suhu splicing, tanpa menjebak RNA?",
-      "verdict": "REVISE",
+      "verdict": "PASS",
       "metrics": {
-        "arm5_nt": 40,
-        "arm3_nt": 40,
+        "arm5_nt": 20,
+        "arm3_nt": 20,
         "temperature_c": 55.0,
         "full_arms": {
-          "dimer_kcal": -50.93,
-          "monomer_a_kcal": -5.3,
-          "monomer_b_kcal": -0.55,
-          "binding_kcal": -45.08
+          "dimer_kcal": -21.24,
+          "monomer_a_kcal": 0.0,
+          "monomer_b_kcal": 0.0,
+          "binding_kcal": -21.24
         },
-        "duplex_kcal_full": -50.93,
+        "duplex_kcal_full": -21.24,
         "length_scan": [
           {
             "length_nt": 20,
@@ -74,43 +74,19 @@
           },
           {
             "length_nt": 25,
-            "available": true,
-            "duplex_kcal": -29.72,
-            "duplex_kcal_per_nt": -1.1888,
-            "dimer_kcal": -29.72,
-            "monomer_a_kcal": 0.0,
-            "monomer_b_kcal": 0.0,
-            "binding_kcal": -29.72
+            "available": false
           },
           {
             "length_nt": 30,
-            "available": true,
-            "duplex_kcal": -38.34,
-            "duplex_kcal_per_nt": -1.278,
-            "dimer_kcal": -38.34,
-            "monomer_a_kcal": 0.0,
-            "monomer_b_kcal": 0.0,
-            "binding_kcal": -38.34
+            "available": false
           },
           {
             "length_nt": 35,
-            "available": true,
-            "duplex_kcal": -45.63,
-            "duplex_kcal_per_nt": -1.3037,
-            "dimer_kcal": -45.63,
-            "monomer_a_kcal": -4.89,
-            "monomer_b_kcal": -0.55,
-            "binding_kcal": -40.19
+            "available": false
           },
           {
             "length_nt": 40,
-            "available": true,
-            "duplex_kcal": -50.93,
-            "duplex_kcal_per_nt": -1.2732,
-            "dimer_kcal": -50.93,
-            "monomer_a_kcal": -5.3,
-            "monomer_b_kcal": -0.55,
-            "binding_kcal": -45.08
+            "available": false
           }
         ]
       },
@@ -128,24 +104,24 @@
       "question": "Apakah lipatan global prekursor mendekatkan kedua ujung, atau justru mengubur lengan homologi?",
       "verdict": "PASS",
       "metrics": {
-        "mfe_kcal": -824.6,
-        "mfe_per_nt": -0.44167,
+        "mfe_kcal": -801.4,
+        "mfe_per_nt": -0.43864,
         "ensemble_free_energy_kcal": null,
-        "ensemble_diversity": 321.3546,
+        "ensemble_diversity": 260.6199,
         "mfe_structure_frequency": null,
         "temperature_c": 37.0,
         "region_pairing": {
           "HA5": {
-            "mean_unpaired": 0.0047,
-            "mean_paired": 0.9953
+            "mean_unpaired": 0.0141,
+            "mean_paired": 0.9859
           },
           "HA3": {
-            "mean_unpaired": 0.0057,
-            "mean_paired": 0.9943
+            "mean_unpaired": 0.0179,
+            "mean_paired": 0.9821
           },
           "intron_5half_IGS": {
-            "mean_unpaired": 0.0406,
-            "mean_paired": 0.9594
+            "mean_unpaired": 0.0124,
+            "mean_paired": 0.9876
           }
         }
       },
@@ -161,11 +137,11 @@
       "question": "Apakah penutupan lingkaran menimbulkan tegangan struktural yang tidak masuk akal?",
       "verdict": "PASS",
       "metrics": {
-        "circle_mfe_kcal": -559.3,
-        "circle_mfe_per_nt": -0.39751,
-        "precursor_mfe_per_nt": -0.44167,
-        "relative_strain": 0.1,
-        "circle_ensemble_diversity": 273.1593,
+        "circle_mfe_kcal": -575.4,
+        "circle_mfe_per_nt": -0.40896,
+        "precursor_mfe_per_nt": -0.43864,
+        "relative_strain": 0.0677,
+        "circle_ensemble_diversity": 230.3648,
         "temperature_c": 37.0
       },
       "threshold": "|MFE/nt lingkaran − MFE/nt prekursor| / |MFE/nt prekursor| <= 0.25",
@@ -180,18 +156,18 @@
       "question": "Apakah domain IRES tetap terlipat seperti saat terisolasi, setelah berada di dalam lingkaran?",
       "verdict": "PASS",
       "metrics": {
-        "structure_identity": 0.9267,
+        "structure_identity": 0.9617,
         "ires_length_nt": 600,
         "ires_alone_mfe_kcal": -295.7,
         "all_temperatures": {
           "37C": {
-            "identity": 0.9267,
+            "identity": 0.9617,
             "ires_alone_mfe_kcal": -295.7,
             "ires_alone_mfe_per_nt": -0.49283,
             "ires_length": 600
           },
           "55C": {
-            "identity": 0.9717,
+            "identity": 0.955,
             "ires_alone_mfe_kcal": -200.46,
             "ires_alone_mfe_per_nt": -0.3341,
             "ires_length": 600
@@ -222,7 +198,7 @@
             "j3": 484,
             "length": 18
           },
-          "n_helices": 85,
+          "n_helices": 94,
           "top_helices": [
             {
               "i5": 441,
@@ -265,13 +241,13 @@
               "length": 10
             },
             {
-              "i5": 142,
-              "j3": 163,
+              "i5": 26,
+              "j3": 917,
               "length": 9
             },
             {
-              "i5": 312,
-              "j3": 332,
+              "i5": 142,
+              "j3": 163,
               "length": 9
             }
           ]
@@ -313,7 +289,7 @@
       "id": "uji9_sequence_hygiene",
       "name": "Higienitas sekuens",
       "question": "Apakah sekuens bebas situs kloning internal, motif terminasi T7, poly-U, dan GC ekstrem?",
-      "verdict": "REVISE",
+      "verdict": "PASS",
       "metrics": {
         "type_IIS_sites": {
           "BsaI": 0,
@@ -323,51 +299,50 @@
           "AarI": 0
         },
         "t7_terminator_motifs": [],
-        "gc_global": 0.4954,
-        "gc_window_50nt_out_of_range": [
-          {
-            "start": 0,
-            "gc": 0.32
-          },
-          {
-            "start": 10,
-            "gc": 0.28
-          },
-          {
-            "start": 350,
-            "gc": 0.34
-          },
+        "gc_global_circle": 0.5082,
+        "gc_window_band": [
+          0.35,
+          0.7
+        ],
+        "polyu_limit_nt": 4,
+        "n_designable_findings": 0,
+        "n_fixed_region_findings": 2,
+        "designable_findings": [],
+        "fixed_region_findings": [
           {
             "start": 360,
-            "gc": 0.3
+            "gc": 0.34,
+            "precursor_span": [
+              378,
+              427
+            ],
+            "regions": [
+              "IRES"
+            ],
+            "designable": false,
+            "designable_regions": []
           },
           {
-            "start": 1330,
-            "gc": 0.34
-          },
-          {
-            "start": 1340,
-            "gc": 0.32
-          },
-          {
-            "start": 1350,
-            "gc": 0.34
+            "start": 560,
+            "gc": 0.32,
+            "precursor_span": [
+              578,
+              627
+            ],
+            "regions": [
+              "IRES"
+            ],
+            "designable": false,
+            "designable_regions": []
           }
         ],
-        "n_gc_windows_out_of_range": 7,
-        "polyu_runs_ge5": [
-          {
-            "start": 1210,
-            "end": 1214,
-            "length": 5
-          },
-          {
-            "start": 1235,
-            "end": 1239,
-            "length": 5
-          }
-        ],
-        "longest_homopolymer": [
+        "junction": {
+          "window_nt": 50,
+          "gc": 0.42,
+          "gc_in_range": true,
+          "polyu_runs": []
+        },
+        "longest_homopolymer_circle": [
           "A",
           6
         ],
@@ -473,17 +448,18 @@
             "span_nt": 81
           }
         ],
-        "n_cryptic_gt_ag_pairs": 73
+        "n_cryptic_gt_ag_pairs": 72,
+        "scanned": "precursor tertranskripsi (posisi 18–1827) dan sambungan balik"
       },
-      "threshold": "FAIL bila ada situs Tipe IIS internal atau motif terminator T7; REVISE bila GC global di luar 45–60%, ada jendela 50 nt di luar 35–70%, poly-U >= 5, atau homopolimer >= 7",
+      "threshold": "FAIL bila ada situs Tipe IIS internal atau motif terminator T7; REVISE bila GC global lingkaran di luar 45–60%, ada jendela 50 nt di luar 35%–70%, poly-U >= 5, atau jendela sambungan balik di luar batas itu — pada bagian yang dapat didesain ulang",
       "threshold_label": "PERKIRAAN",
       "threshold_rationale": "Rentang GC 45–60% dan larangan poly-U >= 5 serta poly-A >= 7 diambil dari spesifikasi proyek ini sendiri (BLOK 4.2), bukan dari satu sumber primer, jadi [PERLU VERIFIKASI]. Pasangan GT–AG dilaporkan sebagai kandidat untuk diperiksa manusia, BUKAN sebagai prediksi splicing: tanpa prediktor splice site sungguhan, keberadaan motif saja tidak cukup untuk menyimpulkan apa pun.",
       "refs": [],
-      "note": ""
+      "note": "Setiap temuan dipetakan ke bagian konstruk yang ditumpanginya. Hanya temuan pada bagian yang dapat didesain ulang (ORF, spacer5, spacer3, HA5, HA3) yang memicu REVISE; temuan yang seluruhnya jatuh di bagian tetap (IRES, intron, ekson) tidak mengubah verdict karena tidak ada yang bisa direvisi — tetapi tetap dilaporkan di fixed_region_findings dan harus dibaca, sebab poly-U di dalam intron tetap bisa menghentikan polimerase T7."
     }
   ],
   "construct": {
-    "precursor_nt": 1867,
+    "precursor_nt": 1827,
     "circle_nt": 1407,
     "bsj_position": 1407,
     "precursor_coords": {
@@ -497,51 +473,51 @@
       ],
       "HA5": [
         21,
-        60
+        40
       ],
       "intron_3half": [
-        61,
-        240
+        41,
+        220
       ],
       "intron_3half:IGS": [
-        235,
-        240
+        215,
+        220
       ],
       "E2": [
-        241,
-        270
+        221,
+        250
       ],
       "spacer5": [
-        271,
-        304
+        251,
+        284
       ],
       "IRES": [
-        305,
-        904
+        285,
+        884
       ],
       "ORF": [
-        905,
-        1585
+        885,
+        1565
       ],
       "spacer3": [
-        1586,
-        1617
+        1566,
+        1597
       ],
       "E1": [
-        1618,
-        1647
+        1598,
+        1627
       ],
       "intron_5half": [
-        1648,
-        1827
+        1628,
+        1807
       ],
       "intron_5half:IGS": [
-        1648,
-        1653
+        1628,
+        1633
       ],
       "HA3": [
-        1828,
-        1867
+        1808,
+        1827
       ]
     },
     "circle_coords": {

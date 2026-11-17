@@ -130,10 +130,10 @@ def build_variant(
     parts = dict(base_parts)
     parts["spacer5"] = make_spacer(spacer5_len, library=spacer_library, gc_target=spacer_gc, seed=codon_seed)
     parts["spacer3"] = make_spacer(spacer3_len, library=spacer_library, gc_target=spacer_gc, seed=codon_seed + 1)
-    for ha in ("HA5", "HA3"):
-        if ha in parts and parts[ha]:
-            seq = parts[ha].seq if hasattr(parts[ha], "seq") else parts[ha]
-            parts[ha] = seq[:ha_len] if ha == "HA5" else seq[len(seq) - ha_len :] if ha_len else ""
+    if "HA5" in parts and "HA3" in parts:
+        seq5 = parts["HA5"].seq if hasattr(parts["HA5"], "seq") else parts["HA5"]
+        seq3 = parts["HA3"].seq if hasattr(parts["HA3"], "seq") else parts["HA3"]
+        parts["HA5"], parts["HA3"] = construct.trim_arms(seq5, seq3, ha_len)
     obj = codon.CodonObjective(w_gc=codon_w_gc, w_m6a=codon_w_m6a)
     opt = codon.optimize(
         protein, usage=usage, objective=obj, iterations=codon_iterations, seed=codon_seed

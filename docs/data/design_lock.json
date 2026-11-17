@@ -9,17 +9,17 @@
   },
   "circularisation_method": "PIE (permuted intron–exon), intron grup I Anabaena pre-tRNA-Leu",
   "lengths_nt": {
-    "precursor": 1867,
+    "precursor": 1827,
     "circle": 1407,
     "bsj_position": 1407,
     "orf": 681,
     "protein_aa": 226
   },
   "homology_arms": {
-    "arm5_nt": 40,
-    "arm3_nt": 40,
-    "binding_dg_kcal": -45.08,
-    "duplex_dg_kcal": -50.93,
+    "arm5_nt": 20,
+    "arm3_nt": 20,
+    "binding_dg_kcal": -21.24,
+    "duplex_dg_kcal": -21.24,
     "temperature_c": 55.0,
     "length_scan": [
       {
@@ -34,76 +34,52 @@
       },
       {
         "length_nt": 25,
-        "available": true,
-        "duplex_kcal": -29.72,
-        "duplex_kcal_per_nt": -1.1888,
-        "dimer_kcal": -29.72,
-        "monomer_a_kcal": 0.0,
-        "monomer_b_kcal": 0.0,
-        "binding_kcal": -29.72
+        "available": false
       },
       {
         "length_nt": 30,
-        "available": true,
-        "duplex_kcal": -38.34,
-        "duplex_kcal_per_nt": -1.278,
-        "dimer_kcal": -38.34,
-        "monomer_a_kcal": 0.0,
-        "monomer_b_kcal": 0.0,
-        "binding_kcal": -38.34
+        "available": false
       },
       {
         "length_nt": 35,
-        "available": true,
-        "duplex_kcal": -45.63,
-        "duplex_kcal_per_nt": -1.3037,
-        "dimer_kcal": -45.63,
-        "monomer_a_kcal": -4.89,
-        "monomer_b_kcal": -0.55,
-        "binding_kcal": -40.19
+        "available": false
       },
       {
         "length_nt": 40,
-        "available": true,
-        "duplex_kcal": -50.93,
-        "duplex_kcal_per_nt": -1.2732,
-        "dimer_kcal": -50.93,
-        "monomer_a_kcal": -5.3,
-        "monomer_b_kcal": -0.55,
-        "binding_kcal": -45.08
+        "available": false
       }
     ]
   },
   "folding": {
     "temperature_c": 37.0,
-    "circle_mfe_kcal": -559.3,
-    "circle_mfe_per_nt": -0.39751,
-    "circle_ensemble_diversity": 273.1593,
-    "precursor_mfe_kcal": -824.6,
-    "precursor_ensemble_diversity": 321.3546
+    "circle_mfe_kcal": -575.4,
+    "circle_mfe_per_nt": -0.40896,
+    "circle_ensemble_diversity": 230.3648,
+    "precursor_mfe_kcal": -801.4,
+    "precursor_ensemble_diversity": 260.6199
   },
   "gate0": {
     "decision": "FAIL-PINDAH-JALUR",
     "statement": "Gate 0 TIDAK lulus pada uji yang tidak boleh ditambal (uji2_ribozyme_integrity); desain harus berpindah ke jalur sirkularisasi cadangan dan Gate 0 dijalankan ulang dari awal untuk arsitektur itu.",
     "counts": {
-      "PASS": 6,
-      "REVISE": 2,
+      "PASS": 8,
+      "REVISE": 0,
       "FAIL": 1,
       "UNAVAILABLE": 0
     },
     "verdicts": {
       "uji1_size": "PASS",
       "uji2_ribozyme_integrity": "FAIL",
-      "uji3_homology_arm_duplex": "REVISE",
+      "uji3_homology_arm_duplex": "PASS",
       "uji4_precursor_fold": "PASS",
       "uji5_circle_fold": "PASS",
       "uji6_ires_integrity": "PASS",
       "uji7_dsrna_risk": "PASS",
       "uji8_orf_integrity": "PASS",
-      "uji9_sequence_hygiene": "REVISE"
+      "uji9_sequence_hygiene": "PASS"
     }
   },
-  "composite_score": 0.62,
+  "composite_score": 0.6922,
   "composite_verdict": "GO-BERSYARAT",
   "sequence_provenance": {
     "synthetic_parts": [
@@ -134,7 +110,7 @@
   "ribozyme_check": "OK",
   "report_seed": 20260101,
   "circhbsag_version": "0.1.0",
-  "generated_utc": "2026-11-17T05:50:38+00:00",
+  "generated_utc": "2026-11-17T11:45:01+00:00",
   "_generated_by": "tools/build.py",
-  "_generated_utc": "2026-11-17T05:50:38+00:00"
+  "_generated_utc": "2026-11-17T11:46:20+00:00"
 }

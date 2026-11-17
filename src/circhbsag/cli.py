@@ -31,6 +31,13 @@ def _load(cfg_path: str, orf_fasta: str | None = None):
     from .seqio import read_fasta
 
     parts, meta = parts_mod.load_parts(cfg_path)
+    arm_nt = (meta.get("design") or {}).get("arm_nt")
+    if arm_nt and "HA5" in parts and "HA3" in parts:
+        from . import construct
+
+        a5, a3 = construct.trim_arms(parts["HA5"].seq, parts["HA3"].seq, int(arm_nt))
+        parts["HA5"] = Part(name="HA5", seq=a5, role=parts["HA5"].role)
+        parts["HA3"] = Part(name="HA3", seq=a3, role=parts["HA3"].role)
     if orf_fasta:
         rec = read_fasta(orf_fasta)[0]
         parts["ORF"] = Part(name="ORF", seq=rec.seq, role="ORF teroptimasi kodon")
@@ -116,6 +123,24 @@ def cmd_gate0(args) -> int:
         print(f"  {t_['id']:32s} {t_['verdict']}")
     print(f"  design_lock: {out / 'design_lock.json'}")
     return 0 if gate["decision"] in ("PASS", "REVISE", "BELUM-LENGKAP") else 2
+
+
+def cmd_redesign(args) -> int:
+    """Loop redesain Gate 0: satu parameter per iterasi, dicatat dalam tabel versi."""
+    from . import redesign
+
+    parts, meta = _load(args.parts, getattr(args, "orf_fasta", None))
+    steps = [redesign.trim_arms_step(int(x)) for x in args.arm_nt.split(",") if x]
+    steps += [redesign.spacer_gc_step(float(x)) for x in args.spacer_gc.split(",") if x]
+    its, _, final = redesign.run_loop(
+        parts, steps, temperatures=(37.0,), cm_path=args.cm, arm_lengths=(20, 25, 30, 35, 40)
+    )
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "gate0_iterations.json").write_text(json.dumps(its, indent=2, ensure_ascii=False))
+    (out / "gate0_iterations.md").write_text(redesign.markdown(its))
+    print(redesign.markdown(its))
+    return 0
 
 
 def cmd_codon(args) -> int:
@@ -278,6 +303,12 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--cm", default=None,
                    help="berkas model kovarians Rfam RF00028 (.cm) untuk cmsearch")
     s.set_defaults(func=cmd_gate0)
+
+    s = common(sub.add_parser("redesign", help="loop redesain Gate 0 (satu parameter per iterasi)"))
+    s.add_argument("--arm-nt", dest="arm_nt", default="20", help="panjang lengan, dipisah koma")
+    s.add_argument("--spacer-gc", dest="spacer_gc", default="0.45,0.55")
+    s.add_argument("--cm", default=None)
+    s.set_defaults(func=cmd_redesign)
 
     s = common(sub.add_parser("codon", help="optimasi kodon ORF"), orf=False)
     s.add_argument("--iterations", type=int, default=20000)
