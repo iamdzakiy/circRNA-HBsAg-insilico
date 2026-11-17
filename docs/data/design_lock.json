@@ -1,0 +1,140 @@
+{
+  "schema": "circhbsag/design-lock/1",
+  "data_status": "DEMO-PLACEHOLDER",
+  "data_label": "[DEMO — SEKUENS PLACEHOLDER] angka di bawah mengilustrasikan alur kerja, bukan sifat konstruk sebenarnya, dan tidak boleh dikutip sebagai hasil",
+  "projection_label": "Proyeksi berbasis literatur — bukan data eksperimen",
+  "ires": {
+    "name": "CVB3",
+    "length_nt": 600
+  },
+  "circularisation_method": "PIE (permuted intron–exon), intron grup I Anabaena pre-tRNA-Leu",
+  "lengths_nt": {
+    "precursor": 1867,
+    "circle": 1407,
+    "bsj_position": 1407,
+    "orf": 681,
+    "protein_aa": 226
+  },
+  "homology_arms": {
+    "arm5_nt": 40,
+    "arm3_nt": 40,
+    "binding_dg_kcal": -45.08,
+    "duplex_dg_kcal": -50.93,
+    "temperature_c": 55.0,
+    "length_scan": [
+      {
+        "length_nt": 20,
+        "available": true,
+        "duplex_kcal": -21.24,
+        "duplex_kcal_per_nt": -1.062,
+        "dimer_kcal": -21.24,
+        "monomer_a_kcal": 0.0,
+        "monomer_b_kcal": 0.0,
+        "binding_kcal": -21.24
+      },
+      {
+        "length_nt": 25,
+        "available": true,
+        "duplex_kcal": -29.72,
+        "duplex_kcal_per_nt": -1.1888,
+        "dimer_kcal": -29.72,
+        "monomer_a_kcal": 0.0,
+        "monomer_b_kcal": 0.0,
+        "binding_kcal": -29.72
+      },
+      {
+        "length_nt": 30,
+        "available": true,
+        "duplex_kcal": -38.34,
+        "duplex_kcal_per_nt": -1.278,
+        "dimer_kcal": -38.34,
+        "monomer_a_kcal": 0.0,
+        "monomer_b_kcal": 0.0,
+        "binding_kcal": -38.34
+      },
+      {
+        "length_nt": 35,
+        "available": true,
+        "duplex_kcal": -45.63,
+        "duplex_kcal_per_nt": -1.3037,
+        "dimer_kcal": -45.63,
+        "monomer_a_kcal": -4.89,
+        "monomer_b_kcal": -0.55,
+        "binding_kcal": -40.19
+      },
+      {
+        "length_nt": 40,
+        "available": true,
+        "duplex_kcal": -50.93,
+        "duplex_kcal_per_nt": -1.2732,
+        "dimer_kcal": -50.93,
+        "monomer_a_kcal": -5.3,
+        "monomer_b_kcal": -0.55,
+        "binding_kcal": -45.08
+      }
+    ]
+  },
+  "folding": {
+    "temperature_c": 37.0,
+    "circle_mfe_kcal": -559.3,
+    "circle_mfe_per_nt": -0.39751,
+    "circle_ensemble_diversity": 273.1593,
+    "precursor_mfe_kcal": -824.6,
+    "precursor_ensemble_diversity": 321.3546
+  },
+  "gate0": {
+    "decision": "BELUM-LENGKAP",
+    "statement": "Gate 0 belum bisa dinyatakan lulus: 1 uji belum bisa dijalankan di lingkungan ini dan harus dijalankan di macOS terlebih dahulu.",
+    "counts": {
+      "PASS": 6,
+      "REVISE": 2,
+      "FAIL": 0,
+      "UNAVAILABLE": 1
+    },
+    "verdicts": {
+      "uji1_size": "PASS",
+      "uji2_ribozyme_integrity": "UNAVAILABLE",
+      "uji3_homology_arm_duplex": "REVISE",
+      "uji4_precursor_fold": "PASS",
+      "uji5_circle_fold": "PASS",
+      "uji6_ires_integrity": "PASS",
+      "uji7_dsrna_risk": "PASS",
+      "uji8_orf_integrity": "PASS",
+      "uji9_sequence_hygiene": "REVISE"
+    }
+  },
+  "composite_score": 0.62,
+  "composite_verdict": "GO-BERSYARAT",
+  "sequence_provenance": {
+    "synthetic_parts": [
+      "HA5",
+      "intron_3half",
+      "E2",
+      "IRES",
+      "ORF",
+      "E1",
+      "intron_5half",
+      "HA3"
+    ],
+    "accessions": {
+      "T7_promoter": null,
+      "gg_leader": null,
+      "HA5": null,
+      "intron_3half": null,
+      "E2": null,
+      "spacer5": null,
+      "IRES": null,
+      "ORF": null,
+      "spacer3": null,
+      "E1": null,
+      "intron_5half": null,
+      "HA3": null
+    }
+  },
+  "ribozyme_check": "UNAVAILABLE",
+  "report_seed": 20260101,
+  "circhbsag_version": "0.1.0",
+  "generated_utc": "2026-11-17T01:48:55+00:00",
+  "_generated_by": "tools/build.py",
+  "_generated_utc": "2026-11-17T05:40:05+00:00"
+}

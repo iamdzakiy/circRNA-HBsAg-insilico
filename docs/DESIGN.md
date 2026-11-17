@@ -3,9 +3,9 @@
 Dokumen ini mencatat **mengapa** konstruk dirancang seperti ini, dengan
 penandaan sumber yang konsisten:
 
-- **[LITERATUR]** — dinyatakan pustaka yang dapat diperiksa (sitasi diberikan)
-- **[PERKIRAAN]** — ditetapkan pipeline ini sebagai nilai kerja; dapat diubah
-- **[HASIL IN SILICO]** — dihitung oleh pipeline ini saat dijalankan
+- **[LITERATUR]**: dinyatakan pustaka yang dapat diperiksa (sitasi diberikan)
+- **[PERKIRAAN]**: ditetapkan pipeline ini sebagai nilai kerja; dapat diubah
+- **[HASIL IN SILICO]**: dihitung oleh pipeline ini saat dijalankan
 
 ---
 
@@ -23,14 +23,14 @@ Communications 9:2629:
   sel HEK293.
 - Ketika diuji pada konteks ORF yang berbeda (Firefly luciferase), CVB3 **tetap
   superior terhadap semua IRES lain yang diuji**, sementara efikasi beberapa
-  IRES lain — terutama poliovirus — **berubah drastis**.
+  IRES lain, terutama poliovirus, **berubah drastis**.
 - Pada beberapa jenis sel (HeLa, A549, Min6), efikasi IRES berbeda-beda, tetapi
   CVB3 tetap yang terbaik.
 
 Poin kedua adalah alasan metodologis terkuat: efikasi IRES selain CVB3
 **bergantung pada ORF yang mengikutinya**. Pada penelitian ini payload-nya baru
 (ORF HBsAg), sehingga membandingkan lima IRES berarti membandingkan lima sistem
-yang masing-masing butuh optimasi spacer sendiri agar adil — pekerjaan yang jauh
+yang masing-masing butuh optimasi spacer sendiri agar adil, pekerjaan yang jauh
 melampaui lingkup satu tugas akhir S1. Dengan memilih IRES yang paling kokoh
 lintas konteks, variabel IRES dikeluarkan dari percobaan dan sumber daya
 dialihkan ke pertanyaan yang benar-benar baru, yaitu apakah payload HBsAg
@@ -71,7 +71,7 @@ Alasan memilih S kecil:
    pembanding semacam itu.
 2. **Protein S berukuran kecil mampu merakit diri menjadi partikel subviral**
    tanpa protein M/L, sehingga satu ORF saja sudah cukup untuk antigen
-   berbentuk partikel — bentuk yang lebih imunogenik daripada protein terlarut.
+   berbentuk partikel, bentuk yang lebih imunogenik daripada protein terlarut.
 3. **Anggaran panjang konstruk.** Draf TA membatasi konstruk ≤ 3,0 kb. Dengan
    IRES CVB3 (~0,6 kb), dua separuh intron + eksón (~0,5 kb), spacer dan lengan
    homologi (~0,1 kb), ORF 0,68 kb menyisakan margin; ORF L/M/S akan menghabiskan
@@ -132,7 +132,7 @@ Dua hal yang dibaca dari tabel ini:
    panjang spacer.
 2. **Hipotesis mekanistik yang dipakai:** situs splice PIE 3' berdekatan dengan
    IRES, dan karena keduanya sangat berstruktur, sekuens IRES dapat mengganggu
-   pelipatan ribozim splicing — baik secara proksimal di situs splice 3' maupun
+   pelipatan ribozim splicing, baik secara proksimal di situs splice 3' maupun
    secara jauh di situs splice 5' lewat kontak jarak-jauh. Karena itu kriteria
    `ires_integrity` dan `junction_accessibility` diukur pada **konstruk penuh**,
    bukan pada bagian-bagian terpisah.
@@ -181,7 +181,7 @@ mencari struktur mRNA yang paling stabil. Optimizer di sini **tidak** mengoptima
 MFE ORF secara langsung; struktur ORF ditangani di tingkat konstruk melalui
 kriteria `start_codon_accessibility` dan `dsrna_burden` pada Tahap 0. Bila MFE
 ORF ingin dioptimasi langsung, tambahkan objektif tersebut pada
-`CodonObjective` — perhitungan ViennaRNA-nya sudah tersedia.
+`CodonObjective`, perhitungan ViennaRNA-nya sudah tersedia.
 
 Hal serupa berlaku untuk **NUPACK** (gratis hanya untuk akademik dengan
 pendaftaran, tidak boleh diredistribusi): tidak dijadikan dependensi wajib.
@@ -206,7 +206,7 @@ kegagalan sulit ditafsirkan. Karena itu desain utama memakai
 terpisah**, bukan bagian desain dasar.
 
 Bila Anda memutuskan sebaliknya, ubah `--m6a-mode ignore` dan **bobot ulang**
-kriteria `motif_burden` — jangan biarkan pipeline meminimalkan sesuatu yang
+kriteria `motif_burden`, jangan biarkan pipeline meminimalkan sesuatu yang
 sengaja Anda inginkan. Catatan ini juga tercetak pada penalaran kriteria di
 setiap laporan.
 
@@ -216,7 +216,7 @@ setiap laporan.
 
 Prediksi epitop dan struktur tidak diintegrasikan karena alat-alatnya berjalan
 sebagai layanan daring atau butuh unduhan model besar dengan pendaftaran
-akademik — keduanya tidak dapat dijalankan reprodusibel di dalam CI. Jalankan
+akademik, keduanya tidak dapat dijalankan reprodusibel di dalam CI. Jalankan
 manual, dan catat versi serta tanggal akses pada notebook:
 
 | Alat | Fungsi | Lisensi | Cara pakai |
@@ -258,7 +258,7 @@ manual, dan catat versi serta tanggal akses pada notebook:
 | circhbsag (repositori ini) | perakitan konstruk, skor GO/NO-GO, optimasi kodon, probe RNase H, filter Bayes BSJ, laporan | MIT |
 
 Jalankan `circhbsag licenses` untuk melihat versi yang benar-benar terpasang di
-mesin Anda — tabel ini menyebut lisensi, sedangkan versinya diambil saat runtime.
+mesin Anda, tabel ini menyebut lisensi, sedangkan versinya diambil saat runtime.
 
 ---
 
@@ -281,5 +281,5 @@ Dujsikova, Mueller & Chen (2026) tentang pembuatan circRNA dengan ligasi
 enzimatik (*Nucleic Acids Research* 54:gkag405); Hwang & Kim (2024) dan
 Margvelani dkk. (2025) sebagai tinjauan mekanisme translasi circRNA; serta
 Zhang dkk. (2025) tentang pengurangan kontaminan pada circRNA sintetis.
-Periksa sendiri sebelum menyitasi — pipeline ini tidak memverifikasi klaim
+Periksa sendiri sebelum menyitasi, pipeline ini tidak memverifikasi klaim
 isi pustaka selain yang dikutip eksplisit di atas.

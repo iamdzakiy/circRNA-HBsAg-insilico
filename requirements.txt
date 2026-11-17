@@ -10,3 +10,7 @@ optuna>=3.6
 streamlit>=1.36
 matplotlib>=3.8
 pytest>=8.0
+Markdown>=3.6
+python-docx>=1.1
+python-pptx>=0.6
+nbclient>=0.10

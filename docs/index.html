@@ -5,297 +5,366 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pipeline circRNA-HBsAg</title>
 <meta name="description" content="Keputusan GO/NO-GO in silico untuk konstruk circRNA-HBsAg berbasis permuted intron-exon, dengan pemindai sekuens yang berjalan di peramban.">
-<style>
-  :root{
-    --bg:#fbfcfb; --fg:#16201a; --mut:#5a6b60; --line:#dde5df; --card:#f3f6f3;
-    --accent:#1f6f5f; --accent-soft:#e3efea;
-    --go:#1b6e3c; --cond:#8a6400; --no:#9b2226;
-    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  }
-  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
-    --bg:#0f130f; --fg:#e7ede8; --mut:#9db0a3; --line:#28302a; --card:#161c17;
-    --accent:#6ed3bb; --accent-soft:#16271f;
-    --go:#6fd49a; --cond:#e5bd5a; --no:#f08a84;
-  }}
-  :root[data-theme="dark"]{
-    --bg:#0f130f; --fg:#e7ede8; --mut:#9db0a3; --line:#28302a; --card:#161c17;
-    --accent:#6ed3bb; --accent-soft:#16271f;
-    --go:#6fd49a; --cond:#e5bd5a; --no:#f08a84;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--fg);
-       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-       -webkit-text-size-adjust:100%}
-  .wrap{max-width:62rem;margin:0 auto;padding:0 1rem}
-  header{border-bottom:1px solid var(--line);padding:3rem 0 2rem;margin-bottom:2rem}
-  h1{font-size:clamp(1.6rem,4.5vw,2.3rem);line-height:1.15;margin:0 0 .6rem;letter-spacing:-.01em}
-  .sub{color:var(--mut);font-size:1.05rem;max-width:44rem;margin:0}
-  h2{font-size:1.3rem;margin:3rem 0 .8rem;padding-bottom:.35rem;border-bottom:1px solid var(--line)}
-  h3{font-size:1.02rem;margin:1.8rem 0 .4rem}
-  p{margin:.7rem 0}
-  a{color:var(--accent)}
-  code,kbd{font-family:var(--mono);font-size:.88em;background:var(--card);
-    padding:.1rem .32rem;border-radius:.25rem}
-  pre{background:var(--card);border:1px solid var(--line);border-radius:.5rem;
-    padding:.9rem 1rem;overflow-x:auto;font-family:var(--mono);font-size:.82rem;line-height:1.5}
-  pre code{background:none;padding:0}
-  table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}
-  th,td{text-align:left;padding:.5rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--mut);font-size:.76rem;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
-  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-  .tag{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.04em;
-    padding:.12rem .4rem;border-radius:.3rem;background:var(--accent-soft);color:var(--accent);
-    border:1px solid var(--line);white-space:nowrap}
-  .note{background:var(--card);border-left:3px solid var(--accent);border-radius:.3rem;
-    padding:.8rem 1rem;margin:1.2rem 0;font-size:.93rem}
-  .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:1rem}
-  .card h3{margin:0 0 .3rem;font-size:.95rem}
-  .card p{margin:0;font-size:.88rem;color:var(--mut)}
-  svg{max-width:100%;height:auto;display:block}
-  .tool{display:flex;gap:.6rem;flex-wrap:wrap;align-items:flex-end;margin:.8rem 0}
-  .tool>div{flex:1 1 12rem}
-  label{display:block;font-size:.8rem;color:var(--mut);margin-bottom:.25rem}
-  textarea,select,input{width:100%;font-family:var(--mono);font-size:.82rem;
-    background:var(--bg);color:var(--fg);border:1px solid var(--line);
-    border-radius:.4rem;padding:.5rem}
-  textarea{min-height:7rem;resize:vertical}
-  button{font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;
-    background:var(--accent);color:var(--bg);border:0;border-radius:.4rem;
-    padding:.55rem 1.1rem}
-  button.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
-  button:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .verdict{font-size:1.5rem;font-weight:700;margin:.4rem 0}
-  .ok{color:var(--go)} .warn{color:var(--cond)} .bad{color:var(--no)}
-  .hits{font-family:var(--mono);font-size:.78rem;color:var(--mut);word-break:break-all}
-  footer{margin:4rem 0 3rem;padding-top:1.5rem;border-top:1px solid var(--line);
-    color:var(--mut);font-size:.85rem}
-  @media (max-width:40rem){
-    header{padding:2rem 0 1.5rem}
-    table{font-size:.82rem} th,td{padding:.4rem .35rem}
-  }
-</style>
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Pipeline in silico circRNA-HBsAg">
+<meta property="og:description" content="Keputusan GO/NO-GO untuk konstruk RNA sirkular penyandi HBsAg: lima gerbang keras, tujuh kriteria berbobot, uji sensitivitas bobot.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%2315705e' stroke-width='4'/%3E%3C/svg%3E">
+<script>
+  /* Terapkan tema tersimpan sebelum render supaya tidak ada kedipan. */
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) { /* penyimpanan diblokir: pakai preferensi sistem */ }
+  })();
+</script>
 </head>
 <body>
 
-<header><div class="wrap">
-  <h1>Pipeline in silico circRNA&#8209;HBsAg</h1>
-  <p class="sub">Keputusan <strong>GO / NO&#8209;GO</strong> untuk konstruk RNA sirkular
-  berbasis <em>permuted intron&ndash;exon</em> (PIE) yang menyandi HBsAg &mdash;
-  dijalankan sebelum sintesis gen, bukan sesudahnya.</p>
-</div></header>
+<a class="skip" href="#isi">Lewati ke isi</a>
 
-<div class="wrap">
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#atas">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="3.5"/>
+        <path d="M16 6 L16 2" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      circRNA&#8209;HBsAg <span class="thin">in silico</span>
+    </a>
 
-<p>Pipeline ini menjawab satu pertanyaan praktis: <strong>apakah konstruk ini
-layak disintesis, atau sebaiknya didesain ulang dulu?</strong> Jawabannya berupa
-keputusan dengan lima gerbang keras dan tujuh kriteria berbobot yang seluruhnya
-dapat diaudit, ditambah uji sensitivitas terhadap pilihan bobot.</p>
+    <nav class="navlinks" aria-label="Bagian halaman">
+      <a href="#konstruk">Konstruk</a>
+      <a href="#keputusan">Keputusan</a>
+      <a href="#ukur">Pengukuran</a>
+      <a href="#scan">Pemindai</a>
+      <a href="#pakai">Cara pakai</a>
+      <a href="#batas">Keterbatasan</a>
+    </nav>
 
-<div class="note">
-<strong>Tiga aturan yang dipegang pipeline ini.</strong>
-<strong>(1)</strong> Tidak ada sekuens yang dikarang &mdash; sekuens referensi
-tidak diikutkan ke repositori, Anda menyediakannya sendiri dengan nomor aksesi
-tercatat, dan pipeline berhenti dengan galat bila berkasnya belum ada.
-<strong>(2)</strong> Tidak ada angka hasil yang dihardcode &mdash; setiap nilai
-dihitung saat dijalankan, dan versi tiap alat dicatat di laporan.
-<strong>(3)</strong> Setiap laporan membawa label provenans &mdash; bila satu
-saja masukan bertanda sintetis, seluruh laporan dilabeli
-<span class="tag">UJI PERANGKAT LUNAK</span> dan menyatakan angkanya tidak boleh
-dikutip sebagai hasil ilmiah.
-</div>
-
-<h2 id="konstruk">Konstruk</h2>
-
-<svg viewBox="0 0 880 290" role="img" aria-labelledby="diagTitle diagDesc">
-  <title id="diagTitle">Tata letak prekursor PIE dan lingkaran hasil splicing</title>
-  <desc id="diagDesc">Prekursor linear terdiri dari promotor T7, GGG, lengan
-  homologi 5 prima, separuh intron 3 prima, eksón E2, spacer, IRES, ORF HBsAg,
-  spacer, eksón E1, separuh intron 5 prima, dan lengan homologi 3 prima. Setelah
-  dua transesterifikasi, E1 dan E2 bersambung membentuk lingkaran berisi E2,
-  spacer, IRES, ORF, spacer, dan E1, dengan dua fragmen intron dilepaskan.</desc>
-  <style>
-    .lbl{font:11px ui-sans-serif,system-ui,sans-serif;fill:var(--fg)}
-    .lblm{font:10px ui-sans-serif,system-ui,sans-serif;fill:var(--mut)}
-    .ttl{font:600 12px ui-sans-serif,system-ui,sans-serif;fill:var(--mut);
-         text-transform:uppercase;letter-spacing:.06em}
-    .box{stroke:var(--line);stroke-width:1}
-    .intron{fill:var(--card)}
-    .exon{fill:var(--accent-soft)}
-    .payload{fill:none;stroke:var(--accent);stroke-width:1.5}
-    .arm{fill:none;stroke:var(--mut);stroke-width:1;stroke-dasharray:3 2}
-    .arrow{stroke:var(--mut);stroke-width:1.2;fill:none}
-  </style>
-  <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3"
-    orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="var(--mut)"/></marker></defs>
-
-  <text x="0" y="14" class="ttl">Prekursor (transkrip T7, linear)</text>
-  <rect x="0"   y="26" width="46"  height="30" class="box arm"/>
-  <text x="23"  y="45" class="lblm" text-anchor="middle">T7·GGG</text>
-  <rect x="46"  y="26" width="40"  height="30" class="box arm"/>
-  <text x="66"  y="45" class="lblm" text-anchor="middle">HA5</text>
-  <rect x="86"  y="26" width="110" height="30" class="box intron"/>
-  <text x="141" y="45" class="lbl"  text-anchor="middle">intron 3′</text>
-  <rect x="196" y="26" width="52"  height="30" class="box exon"/>
-  <text x="222" y="45" class="lbl"  text-anchor="middle">E2</text>
-  <rect x="248" y="26" width="44"  height="30" class="box arm"/>
-  <text x="270" y="45" class="lblm" text-anchor="middle">spacer</text>
-  <rect x="292" y="26" width="104" height="30" class="box payload"/>
-  <text x="344" y="45" class="lbl"  text-anchor="middle">IRES CVB3</text>
-  <rect x="396" y="26" width="124" height="30" class="box payload"/>
-  <text x="458" y="45" class="lbl"  text-anchor="middle">ORF HBsAg</text>
-  <rect x="520" y="26" width="44"  height="30" class="box arm"/>
-  <text x="542" y="45" class="lblm" text-anchor="middle">spacer</text>
-  <rect x="564" y="26" width="52"  height="30" class="box exon"/>
-  <text x="590" y="45" class="lbl"  text-anchor="middle">E1</text>
-  <rect x="616" y="26" width="110" height="30" class="box intron"/>
-  <text x="671" y="45" class="lbl"  text-anchor="middle">intron 5′</text>
-  <rect x="726" y="26" width="40"  height="30" class="box arm"/>
-  <text x="746" y="45" class="lblm" text-anchor="middle">HA3</text>
-
-  <path class="arrow" d="M66,60 C66,90 746,90 746,60" marker-end="url(#ah)"/>
-  <text x="406" y="104" class="lblm" text-anchor="middle">lengan homologi mendekatkan kedua situs splice</text>
-
-  <path class="arrow" d="M406,112 L406,136" marker-end="url(#ah)"/>
-  <text x="418" y="128" class="lblm">2 × transesterifikasi · GTP + Mg²⁺ · ~55 °C</text>
-
-  <text x="0" y="162" class="ttl">Produk</text>
-  <rect x="150" y="174" width="52"  height="30" class="box exon"/>
-  <text x="176" y="193" class="lbl"  text-anchor="middle">E1</text>
-  <rect x="202" y="174" width="52"  height="30" class="box exon"/>
-  <text x="228" y="193" class="lbl"  text-anchor="middle">E2</text>
-  <rect x="254" y="174" width="44"  height="30" class="box arm"/>
-  <text x="276" y="193" class="lblm" text-anchor="middle">spacer</text>
-  <rect x="298" y="174" width="104" height="30" class="box payload"/>
-  <text x="350" y="193" class="lbl"  text-anchor="middle">IRES CVB3</text>
-  <rect x="402" y="174" width="124" height="30" class="box payload"/>
-  <text x="464" y="193" class="lbl"  text-anchor="middle">ORF HBsAg</text>
-  <rect x="526" y="174" width="44"  height="30" class="box arm"/>
-  <text x="548" y="193" class="lblm" text-anchor="middle">spacer</text>
-
-  <path class="arrow" d="M150,189 C120,189 120,222 160,222 L560,222 C600,222 600,189 570,189"/>
-  <text x="360" y="238" class="lblm" text-anchor="middle">lingkaran tertutup kovalen &mdash; tanpa ujung 5′/3′ bebas</text>
-  <line x1="202" y1="168" x2="202" y2="210" stroke="var(--no)" stroke-width="2"/>
-  <text x="202" y="162" class="lblm" text-anchor="middle" fill="var(--no)">BSJ</text>
-
-  <rect x="620" y="174" width="110" height="14" class="box intron"/>
-  <rect x="620" y="192" width="110" height="14" class="box intron"/>
-  <text x="675" y="220" class="lblm" text-anchor="middle">2 fragmen intron (dibuang)</text>
-</svg>
-
-<p>Sambungan balik (<em>back-splice junction</em>, BSJ) adalah batas E1&ndash;E2
-pada lingkaran. BSJ inilah yang menjadi sasaran primer divergen dan sekuensing
-Sanger sebagai bukti sirkularisasi, dan yang aksesibilitas strukturnya diberi
-bobot terbesar pada skor.</p>
-
-<h2 id="keputusan">Struktur keputusan</h2>
-
-<h3>Lapis 1 &mdash; lima gerbang keras</h3>
-<p>Satu pelanggaran memaksa <span class="bad">NO&#8209;GO</span> tanpa memandang
-skor, karena kegagalannya tidak bisa dikompensasi kriteria lain.</p>
-<table>
-<thead><tr><th>Gerbang</th><th>Batas</th><th>Alasan</th></tr></thead>
-<tbody>
-<tr><td><code>no_internal_typeIIS</code></td><td>0 situs</td>
-    <td>situs BsaI/BsmBI internal akan dipotong saat perakitan Golden Gate</td></tr>
-<tr><td><code>no_premature_T7_terminator</code></td><td>0 situs</td>
-    <td>transkrip prekursor terpotong sebelum separuh intron 5′ tersalin</td></tr>
-<tr><td><code>orf_intact_and_unique_start</code></td><td>60 nt hulu bersih</td>
-    <td>ATG sekerangka tepat di hulu memperpanjang ujung&#8209;N produk</td></tr>
-<tr><td><code>dsrna_below_hard_limit</code></td><td>&lt; 45 bp</td>
-    <td>dsRNA panjang memicu PKR/RIG&#8209;I dan menekan translasi</td></tr>
-<tr><td><code>circle_length_within_limit</code></td><td>&le; 3,0 kb</td>
-    <td>batas praktis sintesis gen dan efisiensi sirkularisasi</td></tr>
-</tbody></table>
-
-<h3>Lapis 2 &mdash; tujuh kriteria berbobot</h3>
-<table>
-<thead><tr><th>Kriteria</th><th class="num">Bobot</th><th>Mengapa sebesar itu</th></tr></thead>
-<tbody>
-<tr><td><code>junction_accessibility</code></td><td class="num">0,25</td>
-    <td>penentu paling langsung sirkularisasi: situs sambungan dan P1/P10 harus dapat dicapai</td></tr>
-<tr><td><code>ires_integrity</code></td><td class="num">0,20</td>
-    <td>IRES yang lipatannya rusak membuat lingkaran terbentuk tetapi tidak tertranslasi</td></tr>
-<tr><td><code>dsrna_burden</code></td><td class="num">0,15</td>
-    <td>imunogenisitas intrinsik menentukan kegunaan sebagai vaksin, bukan hanya hasil sintesis</td></tr>
-<tr><td><code>start_codon_accessibility</code></td><td class="num">0,15</td>
-    <td>start codon yang tertutup struktur menekan inisiasi</td></tr>
-<tr><td><code>circle_stability</code></td><td class="num">0,10</td>
-    <td>lipatan harus kompak dan kokoh, tetapi tidak rapat berlebihan</td></tr>
-<tr><td><code>sequence_cleanliness</code></td><td class="num">0,10</td>
-    <td>sebagian besar isinya sudah ditangani gerbang keras</td></tr>
-<tr><td><code>motif_burden</code></td><td class="num">0,05</td>
-    <td>m6A dan motif imunostimulan paling mudah diperbaiki lewat optimasi kodon</td></tr>
-</tbody></table>
-
-<p><strong>Ambang:</strong> skor &ge; 0,70 tanpa gerbang keras gagal &rarr;
-<span class="ok">GO</span>; 0,55&ndash;0,70 &rarr;
-<span class="warn">GO&#8209;BERSYARAT</span> (jalankan siklus optimasi dulu);
-selain itu <span class="bad">NO&#8209;GO</span>.</p>
-
-<div class="note">Semua bobot dan ambang ditandai <span class="tag">PERKIRAAN</span>
-&mdash; ditetapkan pipeline ini, belum dikalibrasi terhadap efisiensi
-sirkularisasi hasil laboratorium. Karena itu setiap laporan menyertakan
-<strong>uji sensitivitas</strong>: 200 set bobot dengan jitter &plusmn;50%
-dijalankan ulang, dan distribusi keputusannya dilaporkan. Bila distribusi
-terbelah, keputusan bergantung pada pilihan bobot dan harus dinyatakan demikian.
-</div>
-
-<h2 id="ukur">Yang diukur</h2>
-<div class="grid">
-  <div class="card"><h3>Lipatan sirkular, dua suhu</h3>
-    <p>ViennaRNA <code>RNAfold --circ</code> pada 37 dan 55 °C: MFE, MFE/nt,
-    energi bebas ensemble, keragaman ensemble, probabilitas pasangan basa di BSJ
-    dengan jendela yang melingkar melewati batas sekuens.</p></div>
-  <div class="card"><h3>Aksesibilitas lokal</h3>
-    <p><code>RNAplfold</code> pada situs splice 5′/3′ dan pada IGS yang membentuk
-    heliks P1 dan P10, juga pada jendela start codon.</p></div>
-  <div class="card"><h3>Integritas IRES</h3>
-    <p>Lipatan IRES sendiri dibandingkan dengan lipatannya di dalam konstruk
-    penuh. Proksi struktural, bukan prediksi fungsi translasi.</p></div>
-  <div class="card"><h3>Beban dsRNA</h3>
-    <p>Struktur diuraikan menjadi heliks beruntun; bulge memotong heliks. Yang
-    dilaporkan panjang heliks terpanjang dan daftar pelanggaran.</p></div>
-  <div class="card"><h3>Motif sekuens</h3>
-    <p>Situs Tipe IIS dua untai, terminator T7 (inti Tphi dan pola intrinsik),
-    m6A RRACH beserta posisi adenosin sasaran, jendela GC, homopolimer.</p></div>
-  <div class="card"><h3>Oligo</h3>
-    <p>Primer divergen pada titik antipodal BSJ, primer menumpang sambungan,
-    probe RNase H terpilih berdasarkan aksesibilitas, primer reverse IVT
-    2′&#8209;O&#8209;metil.</p></div>
-  <div class="card"><h3>Filter Bayes BSJ</h3>
-    <p>Simulasi bacaan &rarr; jangkar dua sisi &rarr; uji keunikan (bacaan yang
-    dapat dijelaskan referensi linear dikeluarkan) &rarr; posterior per bacaan
-    dari overlap, mismatch, dan keunikan.</p></div>
-  <div class="card"><h3>Optimasi multi-objektif</h3>
-    <p>Optuna NSGA&#8209;II atas panjang/komposisi spacer, panjang lengan
-    homologi, dan seed/bobot optimasi kodon. Hasilnya front Pareto, lalu
-    diperingkat dengan skor Tahap 0.</p></div>
-</div>
-
-<h2 id="scan">Pemindai sekuens cepat</h2>
-<p>Pemeriksaan di bawah berjalan sepenuhnya <strong>di peramban Anda</strong>:
-tidak ada sekuens yang dikirim ke mana pun. Yang dapat dihitung di sini hanyalah
-pemeriksaan sekuens yang deterministik. <strong>Lipatan termodinamika
-(MFE, aksesibilitas, skor GO/NO&#8209;GO penuh) butuh ViennaRNA</strong>, jadi
-jalankan aplikasi Streamlit atau CLI di repositori untuk itu.</p>
-
-<div class="tool">
-  <div style="flex:1 1 100%">
-    <label for="seq">Sekuens DNA/RNA (FASTA atau mentah; U dibaca sebagai T)</label>
-    <textarea id="seq" spellcheck="false" placeholder="&gt;konstruk&#10;ATGGCC..."></textarea>
+    <div class="topbar-actions">
+      <a class="btn-link" href="DESIGN.html">Justifikasi desain</a>
+      <button class="icon-btn" id="theme" type="button" aria-label="Ganti tema terang atau gelap" title="Ganti tema">
+        <svg class="ico-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </svg>
+        <svg class="ico-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
-<div class="tool">
-  <div style="flex:0 0 auto"><button id="run">Periksa</button></div>
-  <div style="flex:0 0 auto"><button class="ghost" id="demo">Muat contoh</button></div>
-  <div style="flex:0 0 auto"><button class="ghost" id="clear">Kosongkan</button></div>
-</div>
-<div id="out" hidden></div>
 
-<h2 id="pakai">Cara memakai pipeline lengkap</h2>
-<pre><code>git clone &lt;URL repositori&gt; &amp;&amp; cd circrna-hbsag-insilico
+<header class="hero" id="atas">
+  <div class="wrap">
+    <span class="eyebrow">Tahap 0 &middot; sebelum sintesis gen</span>
+    <h1>Pipeline in silico circRNA&#8209;HBsAg</h1>
+    <p class="sub">Keputusan <strong>GO / NO&#8209;GO</strong> untuk konstruk RNA sirkular
+    berbasis <em>permuted intron&ndash;exon</em> (PIE) yang menyandi HBsAg, dijalankan
+    sebelum berkas desain dikirim ke vendor sintesis.</p>
+
+    <div class="hero-cta">
+      <a class="btn" href="#scan">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7V5a1 1 0 0 1 1-1h2M20 7V5a1 1 0 0 0-1-1h-2M4 17v2a1 1 0 0 0 1 1h2M20 17v2a1 1 0 0 1-1 1h-2M3 12h18"/>
+        </svg>
+        Pindai sekuens sekarang
+      </a>
+      <a class="btn ghost" href="#keputusan">Lihat struktur keputusan</a>
+      <a class="btn quiet" href="DESIGN.html">Justifikasi desain &rarr;</a>
+    </div>
+
+    <dl class="facts">
+      <div class="fact"><dt>Gerbang keras</dt><dd>5 <small>satu gagal, NO-GO</small></dd></div>
+      <div class="fact"><dt>Kriteria berbobot</dt><dd>7 <small>total bobot 1,00</small></dd></div>
+      <div class="fact"><dt>Ambang GO</dt><dd>&ge; 0,70 <small>0,55&ndash;0,70 bersyarat</small></dd></div>
+      <div class="fact"><dt>Uji sensitivitas</dt><dd>200 <small>set bobot, jitter &plusmn;50%</small></dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap layout" id="isi">
+
+<nav class="toc" aria-label="Daftar isi">
+  <p class="toc-title">Di halaman ini</p>
+  <ol>
+    <li><a href="#ringkas">Ringkasan</a></li>
+    <li><a href="#konstruk">Konstruk</a></li>
+    <li><a href="#keputusan">Struktur keputusan</a></li>
+    <li><a href="#ukur">Yang diukur</a></li>
+    <li><a href="#scan">Pemindai sekuens</a></li>
+    <li><a href="#pakai">Cara pakai</a></li>
+    <li><a href="#lisensi">Perangkat lunak</a></li>
+    <li><a href="#batas">Keterbatasan</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="ringkas">
+  <h2>Ringkasan</h2>
+  <p class="lede">Pertanyaannya cuma satu: konstruk ini layak disintesis, atau perlu
+  didesain ulang dulu? Jawabannya dihitung dari lima gerbang keras dan tujuh
+  kriteria berbobot yang semuanya dapat diaudit, ditambah uji sensitivitas
+  terhadap pilihan bobot.</p>
+
+  <div class="note">
+    <p>Pipeline ini memegang tiga aturan. Sekuens referensi tidak disertakan ke
+    repositori: Anda menyediakannya sendiri dengan nomor aksesi tercatat, dan
+    pipeline berhenti dengan galat kalau berkasnya belum ada. Angka hasil tidak
+    pernah dihardcode, setiap nilai dihitung saat dijalankan, dan versi tiap alat
+    ikut dicatat di laporan. Tiap laporan juga membawa label provenans: kalau satu
+    saja masukannya bertanda sintetis, seluruh laporan dilabeli
+    <span class="tag">UJI PERANGKAT LUNAK</span> dan menyatakan angkanya tidak
+    boleh dikutip sebagai hasil ilmiah.</p>
+  </div>
+</section>
+
+<section id="konstruk">
+  <h2>Konstruk</h2>
+  <p>Prekursor linear ditranskripsi T7, lalu dua transesterifikasi menyambungkan
+  E1 dan E2 menjadi lingkaran tertutup kovalen.</p>
+
+  <figure class="figure">
+    <div class="figure-body">
+      <svg viewBox="0 0 880 290" role="img" aria-labelledby="diagTitle diagDesc">
+        <title id="diagTitle">Tata letak prekursor PIE dan lingkaran hasil splicing</title>
+        <desc id="diagDesc">Prekursor linear terdiri dari promotor T7, GGG, lengan
+        homologi 5 prima, separuh intron 3 prima, ekson E2, spacer, IRES, ORF HBsAg,
+        spacer, ekson E1, separuh intron 5 prima, dan lengan homologi 3 prima. Setelah
+        dua transesterifikasi, E1 dan E2 bersambung membentuk lingkaran berisi E2,
+        spacer, IRES, ORF, spacer, dan E1, dengan dua fragmen intron dilepaskan.</desc>
+        <style>
+          .lbl{font:11px ui-sans-serif,system-ui,sans-serif;fill:var(--fg)}
+          .lblm{font:10px ui-sans-serif,system-ui,sans-serif;fill:var(--mut)}
+          .ttl{font:650 11px ui-sans-serif,system-ui,sans-serif;fill:var(--mut);
+               text-transform:uppercase;letter-spacing:.07em}
+          .box{stroke:var(--line);stroke-width:1}
+          .intron{fill:var(--card)}
+          .exon{fill:var(--accent-soft)}
+          .payload{fill:none;stroke:var(--accent);stroke-width:1.5}
+          .arm{fill:none;stroke:var(--mut);stroke-width:1;stroke-dasharray:3 2}
+          .arrow{stroke:var(--mut);stroke-width:1.2;fill:none}
+        </style>
+        <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3"
+          orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="var(--mut)"/></marker></defs>
+
+        <text x="0" y="14" class="ttl">Prekursor (transkrip T7, linear)</text>
+        <rect x="0"   y="26" width="46"  height="30" rx="3" class="box arm"/>
+        <text x="23"  y="45" class="lblm" text-anchor="middle">T7·GGG</text>
+        <rect x="46"  y="26" width="40"  height="30" rx="3" class="box arm"/>
+        <text x="66"  y="45" class="lblm" text-anchor="middle">HA5</text>
+        <rect x="86"  y="26" width="110" height="30" rx="3" class="box intron"/>
+        <text x="141" y="45" class="lbl"  text-anchor="middle">intron 3′</text>
+        <rect x="196" y="26" width="52"  height="30" rx="3" class="box exon"/>
+        <text x="222" y="45" class="lbl"  text-anchor="middle">E2</text>
+        <rect x="248" y="26" width="44"  height="30" rx="3" class="box arm"/>
+        <text x="270" y="45" class="lblm" text-anchor="middle">spacer</text>
+        <rect x="292" y="26" width="104" height="30" rx="3" class="box payload"/>
+        <text x="344" y="45" class="lbl"  text-anchor="middle">IRES CVB3</text>
+        <rect x="396" y="26" width="124" height="30" rx="3" class="box payload"/>
+        <text x="458" y="45" class="lbl"  text-anchor="middle">ORF HBsAg</text>
+        <rect x="520" y="26" width="44"  height="30" rx="3" class="box arm"/>
+        <text x="542" y="45" class="lblm" text-anchor="middle">spacer</text>
+        <rect x="564" y="26" width="52"  height="30" rx="3" class="box exon"/>
+        <text x="590" y="45" class="lbl"  text-anchor="middle">E1</text>
+        <rect x="616" y="26" width="110" height="30" rx="3" class="box intron"/>
+        <text x="671" y="45" class="lbl"  text-anchor="middle">intron 5′</text>
+        <rect x="726" y="26" width="40"  height="30" rx="3" class="box arm"/>
+        <text x="746" y="45" class="lblm" text-anchor="middle">HA3</text>
+
+        <path class="arrow" d="M66,60 C66,90 746,90 746,60" marker-end="url(#ah)"/>
+        <text x="406" y="104" class="lblm" text-anchor="middle">lengan homologi mendekatkan kedua situs splice</text>
+
+        <path class="arrow" d="M406,112 L406,136" marker-end="url(#ah)"/>
+        <text x="418" y="128" class="lblm">2 × transesterifikasi · GTP + Mg²⁺ · ~55 °C</text>
+
+        <text x="0" y="162" class="ttl">Produk</text>
+        <rect x="150" y="174" width="52"  height="30" rx="3" class="box exon"/>
+        <text x="176" y="193" class="lbl"  text-anchor="middle">E1</text>
+        <rect x="202" y="174" width="52"  height="30" rx="3" class="box exon"/>
+        <text x="228" y="193" class="lbl"  text-anchor="middle">E2</text>
+        <rect x="254" y="174" width="44"  height="30" rx="3" class="box arm"/>
+        <text x="276" y="193" class="lblm" text-anchor="middle">spacer</text>
+        <rect x="298" y="174" width="104" height="30" rx="3" class="box payload"/>
+        <text x="350" y="193" class="lbl"  text-anchor="middle">IRES CVB3</text>
+        <rect x="402" y="174" width="124" height="30" rx="3" class="box payload"/>
+        <text x="464" y="193" class="lbl"  text-anchor="middle">ORF HBsAg</text>
+        <rect x="526" y="174" width="44"  height="30" rx="3" class="box arm"/>
+        <text x="548" y="193" class="lblm" text-anchor="middle">spacer</text>
+
+        <path class="arrow" d="M150,189 C120,189 120,222 160,222 L560,222 C600,222 600,189 570,189"/>
+        <text x="360" y="238" class="lblm" text-anchor="middle">lingkaran tertutup kovalen, tanpa ujung 5′/3′ bebas</text>
+        <line x1="202" y1="168" x2="202" y2="210" stroke="var(--no)" stroke-width="2"/>
+        <text x="202" y="162" class="lblm" text-anchor="middle" fill="var(--no)">BSJ</text>
+
+        <rect x="620" y="174" width="110" height="14" rx="2" class="box intron"/>
+        <rect x="620" y="192" width="110" height="14" rx="2" class="box intron"/>
+        <text x="675" y="220" class="lblm" text-anchor="middle">2 fragmen intron (dibuang)</text>
+      </svg>
+    </div>
+    <figcaption>Prekursor linear di atas, lingkaran hasil splicing di bawah.
+    Kotak bergaris putus-putus adalah bagian yang tidak masuk ke lingkaran.</figcaption>
+  </figure>
+
+  <p>Sambungan balik (<em>back-splice junction</em>, BSJ) adalah batas E1&ndash;E2
+  pada lingkaran. Primer divergen dan sekuensing Sanger menyasar BSJ sebagai bukti
+  sirkularisasi, dan aksesibilitas strukturnya memegang bobot terbesar di skor.</p>
+</section>
+
+<section id="keputusan">
+  <h2>Struktur keputusan</h2>
+
+  <h3>Lapis 1: lima gerbang keras</h3>
+  <p>Satu pelanggaran memaksa <span class="pill bad">NO&#8209;GO</span> tanpa
+  memandang skor, karena kriteria lain tidak bisa mengompensasinya.</p>
+
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Gerbang</th><th scope="col">Batas</th><th scope="col">Alasan</th></tr></thead>
+      <tbody>
+        <tr><td class="lead"><code>no_internal_typeIIS</code></td><td>0 situs</td>
+            <td>situs BsaI/BsmBI internal akan terpotong saat perakitan Golden Gate</td></tr>
+        <tr><td class="lead"><code>no_premature_T7_terminator</code></td><td>0 situs</td>
+            <td>transkrip prekursor terpotong sebelum separuh intron 5′ tersalin</td></tr>
+        <tr><td class="lead"><code>orf_intact_and_unique_start</code></td><td>60 nt hulu bersih</td>
+            <td>ATG sekerangka tepat di hulu memperpanjang ujung&#8209;N produk</td></tr>
+        <tr><td class="lead"><code>dsrna_below_hard_limit</code></td><td>&lt; 45 bp</td>
+            <td>dsRNA panjang memicu PKR/RIG&#8209;I dan menekan translasi</td></tr>
+        <tr><td class="lead"><code>circle_length_within_limit</code></td><td>&le; 3,0 kb</td>
+            <td>batas praktis sintesis gen dan efisiensi sirkularisasi</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Lapis 2: tujuh kriteria berbobot</h3>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Kriteria</th><th scope="col" class="num">Bobot</th><th scope="col">Mengapa sebesar itu</th></tr></thead>
+      <tbody>
+        <tr><td class="lead"><code>junction_accessibility</code></td>
+            <td class="num"><span class="weight"><b>0,25</b><span class="weight-track"><i style="width:100%"></i></span></span></td>
+            <td>penentu paling langsung sirkularisasi: situs sambungan dan P1/P10 harus dapat dicapai</td></tr>
+        <tr><td class="lead"><code>ires_integrity</code></td>
+            <td class="num"><span class="weight"><b>0,20</b><span class="weight-track"><i style="width:80%"></i></span></span></td>
+            <td>IRES yang lipatannya rusak membuat lingkaran tetap terbentuk tetapi tidak tertranslasi</td></tr>
+        <tr><td class="lead"><code>dsrna_burden</code></td>
+            <td class="num"><span class="weight"><b>0,15</b><span class="weight-track"><i style="width:60%"></i></span></span></td>
+            <td>imunogenisitas intrinsik menentukan kegunaannya sebagai vaksin, di luar soal hasil sintesis</td></tr>
+        <tr><td class="lead"><code>start_codon_accessibility</code></td>
+            <td class="num"><span class="weight"><b>0,15</b><span class="weight-track"><i style="width:60%"></i></span></span></td>
+            <td>start codon yang tertutup struktur menekan inisiasi</td></tr>
+        <tr><td class="lead"><code>circle_stability</code></td>
+            <td class="num"><span class="weight"><b>0,10</b><span class="weight-track"><i style="width:40%"></i></span></span></td>
+            <td>lipatan harus kompak dan kokoh, dengan batas atas supaya tidak rapat berlebihan</td></tr>
+        <tr><td class="lead"><code>sequence_cleanliness</code></td>
+            <td class="num"><span class="weight"><b>0,10</b><span class="weight-track"><i style="width:40%"></i></span></span></td>
+            <td>sebagian besar isinya sudah ditangani gerbang keras</td></tr>
+        <tr><td class="lead"><code>motif_burden</code></td>
+            <td class="num"><span class="weight"><b>0,05</b><span class="weight-track"><i style="width:20%"></i></span></span></td>
+            <td>m6A dan motif imunostimulan paling mudah diperbaiki lewat optimasi kodon</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Ambang:</strong> skor &ge; 0,70 tanpa gerbang keras yang gagal
+  &rarr; <span class="pill ok">GO</span>; 0,55&ndash;0,70 &rarr;
+  <span class="pill warn">GO&#8209;BERSYARAT</span>, jalankan siklus optimasi dulu;
+  di bawah itu <span class="pill bad">NO&#8209;GO</span>.</p>
+
+  <div class="note warn">
+    <p>Semua bobot dan ambang ditandai <span class="tag est">PERKIRAAN</span>:
+    ditetapkan pipeline ini, belum dikalibrasi terhadap efisiensi sirkularisasi
+    hasil laboratorium. Karena itu tiap laporan menyertakan <strong>uji
+    sensitivitas</strong>, yaitu 200 set bobot dengan jitter &plusmn;50% yang
+    dijalankan ulang, dan distribusi keputusannya dilaporkan. Kalau distribusinya
+    terbelah, keputusan bergantung pada pilihan bobot dan laporan harus
+    menyatakannya begitu.</p>
+  </div>
+</section>
+
+<section id="ukur">
+  <h2>Yang diukur</h2>
+  <p>Delapan kelompok perhitungan menyuplai angka ke gerbang dan kriteria di atas.</p>
+
+  <div class="grid">
+    <div class="card"><h3>Lipatan sirkular, dua suhu</h3>
+      <p>ViennaRNA <code>RNAfold --circ</code> pada 37 dan 55 °C: MFE, MFE/nt,
+      energi bebas ensemble, keragaman ensemble, probabilitas pasangan basa di BSJ
+      dengan jendela yang melingkar melewati batas sekuens.</p></div>
+    <div class="card"><h3>Aksesibilitas lokal</h3>
+      <p><code>RNAplfold</code> pada situs splice 5′/3′, pada IGS yang membentuk
+      heliks P1 dan P10, dan pada jendela start codon.</p></div>
+    <div class="card"><h3>Integritas IRES</h3>
+      <p>Lipatan IRES sendiri dibandingkan dengan lipatannya di dalam konstruk
+      penuh. Ini proksi struktural, bukan prediksi fungsi translasi.</p></div>
+    <div class="card"><h3>Beban dsRNA</h3>
+      <p>Struktur diuraikan menjadi heliks beruntun, dengan bulge memotong heliks.
+      Laporannya memuat heliks terpanjang beserta daftar pelanggaran.</p></div>
+    <div class="card"><h3>Motif sekuens</h3>
+      <p>Situs Tipe IIS dua untai, terminator T7 (inti Tphi dan pola intrinsik),
+      m6A RRACH beserta posisi adenosin sasaran, jendela GC, homopolimer.</p></div>
+    <div class="card"><h3>Oligo</h3>
+      <p>Primer divergen pada titik antipodal BSJ, primer menumpang sambungan,
+      probe RNase H terpilih berdasarkan aksesibilitas, primer reverse IVT
+      2′&#8209;O&#8209;metil.</p></div>
+    <div class="card"><h3>Filter Bayes BSJ</h3>
+      <p>Simulasi bacaan, jangkar dua sisi, uji keunikan yang mengeluarkan bacaan
+      yang dapat dijelaskan referensi linear, lalu posterior per bacaan dari
+      overlap, mismatch, dan keunikan.</p></div>
+    <div class="card"><h3>Optimasi multi-objektif</h3>
+      <p>Optuna NSGA&#8209;II atas panjang/komposisi spacer, panjang lengan
+      homologi, dan seed/bobot optimasi kodon. Keluarannya front Pareto, lalu
+      diperingkat dengan skor Tahap 0.</p></div>
+  </div>
+</section>
+
+<section id="scan">
+  <h2>Pemindai sekuens cepat</h2>
+  <p>Pemeriksaan di bawah berjalan sepenuhnya di peramban Anda, jadi sekuensnya
+  tidak dikirim ke mana pun. Yang bisa dihitung di sini hanya pemeriksaan sekuens
+  yang deterministik. Lipatan termodinamika (MFE, aksesibilitas, skor GO/NO&#8209;GO
+  penuh) butuh ViennaRNA, jadi untuk itu jalankan aplikasi Streamlit atau CLI di
+  repositori.</p>
+
+  <div class="scanner">
+    <div class="scanner-head">
+      <h3>Pemeriksaan sekuens lokal</h3>
+      <span class="meta" id="counter">0 nt &middot; GC 0,0%</span>
+    </div>
+
+    <div class="scanner-body">
+      <label class="field" for="seq">Sekuens DNA/RNA
+        <span class="hint">FASTA atau mentah. U dibaca sebagai T. Berkas <code>.fa</code> bisa diseret ke kotak ini.</span>
+      </label>
+      <textarea id="seq" spellcheck="false" autocapitalize="off" autocomplete="off"
+        placeholder="&gt;konstruk&#10;ATGGCC..."></textarea>
+
+      <div class="controls">
+        <button class="btn" id="run" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+          Periksa
+        </button>
+        <button class="btn ghost" id="demo" type="button">Muat contoh</button>
+        <button class="btn quiet" id="clear" type="button">Kosongkan</button>
+        <span class="spacer"></span>
+        <button class="btn quiet" id="copy" type="button" hidden>Salin hasil</button>
+        <span class="kbd-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> untuk memeriksa</span>
+      </div>
+    </div>
+
+    <div class="result" id="out" hidden aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="pakai">
+  <h2>Cara pakai pipeline lengkap</h2>
+  <pre><code>git clone &lt;URL repositori&gt; &amp;&amp; cd circrna-hbsag-insilico
 mamba env create -f environment.yml &amp;&amp; conda activate circhbsag
 pip install -e .
 
@@ -308,58 +377,126 @@ streamlit run app/streamlit_app.py
 
 # analisis sungguhan: isi data/reference/ lalu
 snakemake --cores 4</code></pre>
+</section>
 
-<h2 id="lisensi">Perangkat lunak dan lisensinya</h2>
-<p>Semuanya gratis. Jalankan <code>circhbsag licenses</code> untuk versi yang
-benar-benar terpasang di mesin Anda.</p>
-<table>
-<thead><tr><th>Perangkat lunak</th><th>Fungsi</th><th>Lisensi</th></tr></thead>
-<tbody>
-<tr><td>ViennaRNA 2.x</td><td><code>RNAfold --circ</code>, <code>RNAplfold</code>, partition function</td><td>ViennaRNA License (gratis akademik/non&#8209;komersial)</td></tr>
-<tr><td>primer3 / primer3&#8209;py</td><td>primer divergen dan BSJ, Tm, hairpin</td><td>GPLv2</td></tr>
-<tr><td>Biopython</td><td>utilitas sekuens</td><td>Biopython License</td></tr>
-<tr><td>Optuna</td><td>optimasi multi&#8209;objektif NSGA&#8209;II</td><td>MIT</td></tr>
-<tr><td>Snakemake</td><td>alur kerja reprodusibel</td><td>MIT</td></tr>
-<tr><td>NumPy, pandas</td><td>numerik dan tabel</td><td>BSD&#8209;3&#8209;Clause</td></tr>
-<tr><td>Streamlit</td><td>antarmuka web</td><td>Apache&#8209;2.0</td></tr>
-<tr><td>NCBI BLAST+ <em>(opsional)</em></td><td>homologi off&#8209;target</td><td>domain publik</td></tr>
-<tr><td>STAR <em>(opsional)</em></td><td>validasi silang BSJ</td><td>MIT</td></tr>
-<tr><td><code>circhbsag</code></td><td>perakitan konstruk, skor GO/NO&#8209;GO, optimasi kodon, probe RNase H, filter Bayes BSJ, laporan</td><td>MIT</td></tr>
-</tbody></table>
+<section id="lisensi">
+  <h2>Perangkat lunak dan lisensinya</h2>
+  <p>Semua alat di bawah gratis dipakai. Jalankan <code>circhbsag licenses</code>
+  untuk melihat versi yang benar-benar terpasang di mesin Anda.</p>
 
-<p><strong>Sengaja tidak dipakai:</strong> <em>LinearDesign</em> (lisensi
-membatasi pemakaian komersial dan redistribusi) dan <em>NUPACK</em> (gratis
-hanya untuk akademik dengan pendaftaran, tidak boleh diredistribusi). Keduanya
-diganti optimizer kodon sendiri berlisensi MIT. Rinciannya di
-<a href="DESIGN.md">DESIGN.md</a>.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Perangkat lunak</th><th scope="col">Fungsi</th><th scope="col">Lisensi</th></tr></thead>
+      <tbody>
+        <tr><td class="lead">ViennaRNA 2.x</td><td><code>RNAfold --circ</code>, <code>RNAplfold</code>, partition function</td><td>ViennaRNA License (gratis akademik/non&#8209;komersial)</td></tr>
+        <tr><td class="lead">primer3 / primer3&#8209;py</td><td>primer divergen dan BSJ, Tm, hairpin</td><td>GPLv2</td></tr>
+        <tr><td class="lead">Biopython</td><td>utilitas sekuens</td><td>Biopython License</td></tr>
+        <tr><td class="lead">Optuna</td><td>optimasi multi&#8209;objektif NSGA&#8209;II</td><td>MIT</td></tr>
+        <tr><td class="lead">Snakemake</td><td>alur kerja reprodusibel</td><td>MIT</td></tr>
+        <tr><td class="lead">NumPy, pandas</td><td>numerik dan tabel</td><td>BSD&#8209;3&#8209;Clause</td></tr>
+        <tr><td class="lead">Streamlit</td><td>antarmuka web</td><td>Apache&#8209;2.0</td></tr>
+        <tr><td class="lead">NCBI BLAST+ <em>(opsional)</em></td><td>homologi off&#8209;target</td><td>domain publik</td></tr>
+        <tr><td class="lead">STAR <em>(opsional)</em></td><td>validasi silang BSJ</td><td>MIT</td></tr>
+        <tr><td class="lead"><code>circhbsag</code></td><td>perakitan konstruk, skor GO/NO&#8209;GO, optimasi kodon, probe RNase H, filter Bayes BSJ, laporan</td><td>MIT</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-<h2 id="batas">Keterbatasan</h2>
-<ul>
-<li>Semua keluaran adalah <strong>prediksi</strong> termodinamika dan heuristik
-sekuens, bukan pengukuran. Tidak satu pun menggantikan uji RNase R, RT&#8209;PCR
-divergen dengan sekuensing Sanger, atau uji RNase H.</li>
-<li>Model energi ViennaRNA <strong>tidak memodelkan pseudoknot</strong>,
-sedangkan IRES pikornaviral dan struktur tersier intron grup I bergantung
-padanya. Metrik integritas IRES adalah proksi struktural, bukan prediksi fungsi.</li>
-<li>Skor komposit adalah alat <strong>triase</strong> untuk mengurutkan kandidat
-sebelum sintesis, belum dikalibrasi terhadap hasil laboratorium.</li>
-<li>Prediksi epitop B/T dan struktur protein tidak diintegrasikan karena
-alatnya berjalan sebagai layanan daring atau butuh pendaftaran akademik;
-prosedur manual beserta status lisensinya ada di
-<a href="DESIGN.md">DESIGN.md</a>.</li>
-</ul>
+  <p><strong>Sengaja tidak dipakai:</strong> <em>LinearDesign</em>, karena
+  lisensinya membatasi pemakaian komersial dan redistribusi, dan <em>NUPACK</em>,
+  yang gratis hanya untuk akademik dengan pendaftaran dan tidak boleh
+  diredistribusi. Keduanya diganti optimizer kodon sendiri berlisensi MIT.
+  Rinciannya ada di <a href="DESIGN.html">justifikasi desain</a>.</p>
+</section>
 
-<footer><div>
-Kode di bawah lisensi MIT. Dokumen ini bagian dari repositori pipeline;
-justifikasi desain lengkap ada di <a href="DESIGN.md">DESIGN.md</a>.
-</div></footer>
+<section id="batas">
+  <h2>Keterbatasan</h2>
+  <ul>
+    <li>Semua keluaran adalah prediksi termodinamika dan heuristik sekuens, bukan
+    pengukuran. Tidak satu pun menggantikan uji RNase R, RT&#8209;PCR divergen
+    dengan sekuensing Sanger, atau uji RNase H.</li>
+    <li>Model energi ViennaRNA tidak memodelkan pseudoknot, sedangkan IRES
+    pikornaviral dan struktur tersier intron grup I bergantung padanya. Metrik
+    integritas IRES karenanya proksi struktural saja.</li>
+    <li>Skor komposit adalah alat triase untuk mengurutkan kandidat sebelum
+    sintesis, dan belum dikalibrasi terhadap hasil laboratorium.</li>
+    <li>Prediksi epitop B/T dan struktur protein tidak diintegrasikan karena
+    alatnya berjalan sebagai layanan daring atau butuh pendaftaran akademik.
+    Prosedur manual beserta status lisensinya ada di
+    <a href="DESIGN.html">justifikasi desain</a>.</li>
+  </ul>
+</section>
 
+</main>
 </div>
+
+<footer class="site">
+  <div class="wrap cols">
+    <div>
+      <h4>Pipeline circRNA-HBsAg</h4>
+      <p>Alur keputusan GO/NO-GO in silico untuk konstruk RNA sirkular penyandi
+      HBsAg berbasis permuted intron&ndash;exon. Kode berlisensi MIT.</p>
+    </div>
+    <div>
+      <h4>Halaman</h4>
+      <ul>
+        <li><a href="#keputusan">Struktur keputusan</a></li>
+        <li><a href="#scan">Pemindai sekuens</a></li>
+        <li><a href="#batas">Keterbatasan</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Dokumen</h4>
+      <ul>
+        <li><a href="DESIGN.html">Justifikasi desain</a></li>
+        <li><a href="index.html#lisensi">Lisensi perangkat lunak</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
 
 <script>
 (function () {
   "use strict";
 
+  /* ---------- tema ---------- */
+  var root = document.documentElement;
+  function current() {
+    var set = root.getAttribute("data-theme");
+    if (set) return set;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  document.getElementById("theme").addEventListener("click", function () {
+    var next = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) { /* diabaikan */ }
+  });
+
+  /* ---------- penanda bagian aktif ---------- */
+  var links = Array.prototype.slice.call(
+    document.querySelectorAll('.toc a[href^="#"], .navlinks a[href^="#"]')
+  );
+  var sections = links
+    .map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); })
+    .filter(Boolean);
+
+  if ("IntersectionObserver" in window && sections.length) {
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      var best = null, bestV = 0;
+      Object.keys(seen).forEach(function (id) {
+        if (seen[id] > bestV) { bestV = seen[id]; best = id; }
+      });
+      links.forEach(function (a) {
+        var on = best && a.getAttribute("href") === "#" + best;
+        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
+    }, { rootMargin: "-20% 0px -65% 0px", threshold: [0, .25, .5, 1] });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- pemindai sekuens ---------- */
   var RS = {
     BsaI: "GGTCTC", "BsmBI/Esp3I": "CGTCTC", SapI: "GCTCTTC",
     BbsI: "GAAGAC", AarI: "CACCTGC"
@@ -435,13 +572,16 @@ justifikasi desain lengkap ada di <a href="DESIGN.md">DESIGN.md</a>.
     });
   }
   function posList(arr, cap) {
-    if (!arr.length) return "&mdash;";
-    var shown = arr.slice(0, cap || 12).join(", ");
-    return shown + (arr.length > (cap || 12) ? " … (" + arr.length + " total)" : "");
+    if (!arr.length) return "tidak ada";
+    var lim = cap || 12;
+    var shown = arr.slice(0, lim).join(", ");
+    return shown + (arr.length > lim ? " … (" + arr.length + " total)" : "");
   }
 
-  function render(s) {
-    var rows = [], gates = [], L = s.length;
+  var lastText = "";
+
+  function analyse(s) {
+    var gates = [], rows = [], L = s.length;
 
     var nIIS = 0, iisDetail = [];
     Object.keys(RS).forEach(function (name) {
@@ -476,10 +616,9 @@ justifikasi desain lengkap ada di <a href="DESIGN.md">DESIGN.md</a>.
 
     var o = orfs(s, 50);
     var m6 = rrach(s);
-    var nAvoid = 0, avoidDetail = [];
+    var avoidDetail = [];
     Object.keys(AVOID).forEach(function (k) {
       var h = findAll(s, AVOID[k]);
-      nAvoid += h.length;
       if (h.length) avoidDetail.push(k + ": " + h.length);
     });
 
@@ -489,9 +628,8 @@ justifikasi desain lengkap ada di <a href="DESIGN.md">DESIGN.md</a>.
       ? "ada (posisi " + posList(findAll(s, T7_PROM)) + ")" : "tidak ada"]);
     rows.push(["Situs Tipe IIS", iisDetail.length ? iisDetail.join("<br>") : "tidak ada"]);
     rows.push(["Situs m6A RRACH", m6.length + " (" + (100 * m6.length / L).toFixed(2)
-      + " per 100 nt)<br><span class='hits'>posisi A: " + posList(m6, 15) + "</span>"]);
-    rows.push(["Motif yang dihindari", avoidDetail.length
-      ? avoidDetail.join(", ") : "tidak ada"]);
+      + " per 100 nt)<span class='hits'>posisi A: " + posList(m6, 15) + "</span>"]);
+    rows.push(["Motif yang dihindari", avoidDetail.length ? avoidDetail.join(", ") : "tidak ada"]);
     rows.push(["Homopolimer terpanjang", hp.len + "× " + (hp.base || "-")]);
     rows.push(["ORF ≥ 50 aa (untai maju)", o.length
       ? o.slice(0, 3).map(function (x) {
@@ -499,65 +637,139 @@ justifikasi desain lengkap ada di <a href="DESIGN.md">DESIGN.md</a>.
         }).join("; ") + (o.length > 3 ? " …" : "")
       : "tidak ada"]);
 
-    var failed = gates.filter(function (g) { return !g.ok; });
+    return { gates: gates, rows: rows };
+  }
+
+  function render(s) {
+    var a = analyse(s);
+    var failed = a.gates.filter(function (g) { return !g.ok; });
     var cls = failed.length ? (failed.length > 1 ? "bad" : "warn") : "ok";
     var head = failed.length
-      ? failed.length + " pemeriksaan sekuens GAGAL"
+      ? failed.length + " dari " + a.gates.length + " pemeriksaan gagal"
       : "Semua pemeriksaan sekuens lolos";
 
-    var html = '<div class="verdict ' + cls + '">' + head + "</div>" +
-      '<p class="hits">Ini BUKAN keputusan GO/NO-GO. Keputusan penuh butuh lipatan ' +
-      'termodinamika (ViennaRNA): aksesibilitas BSJ dan P1/P10, integritas IRES, ' +
-      'beban dsRNA, dan keterbukaan start codon tidak dapat dihitung di peramban.</p>' +
-      "<table><thead><tr><th>Pemeriksaan</th><th>Hasil</th><th>Rincian</th></tr></thead><tbody>";
-    gates.forEach(function (g) {
-      html += "<tr><td>" + esc(g.name) + "</td><td class='" + (g.ok ? "ok" : "bad") +
-        "'>" + (g.ok ? "lolos" : "GAGAL") + "</td><td>" + g.detail + "</td></tr>";
+    var html = '<p class="verdict ' + cls + '"><span class="dot"></span>' + head + "</p>" +
+      '<p class="verdict-note">Ini belum keputusan GO/NO-GO. Keputusan penuh butuh ' +
+      'lipatan termodinamika dari ViennaRNA: aksesibilitas BSJ dan P1/P10, integritas ' +
+      'IRES, beban dsRNA, dan keterbukaan start codon tidak dapat dihitung di peramban.</p>' +
+      '<ul class="checks">';
+
+    a.gates.forEach(function (g) {
+      html += '<li><span class="mark ' + (g.ok ? "pass" : "fail") + '" aria-hidden="true">' +
+        (g.ok ? "✓" : "!") + '</span>' +
+        '<span class="name">' + esc(g.name) +
+        ' <span class="sr">' + (g.ok ? "(lolos)" : "(gagal)") + '</span></span>' +
+        '<span class="detail">' + g.detail + "</span></li>";
     });
-    html += "</tbody></table><table><thead><tr><th>Metrik</th><th>Nilai</th></tr></thead><tbody>";
-    rows.forEach(function (r) {
-      html += "<tr><td>" + esc(r[0]) + "</td><td>" + r[1] + "</td></tr>";
+    html += "</ul><dl class='metrics'>";
+    a.rows.forEach(function (r) {
+      html += "<div><dt>" + esc(r[0]) + "</dt><dd>" + r[1] + "</dd></div>";
     });
-    html += "</tbody></table>";
+    html += "</dl>";
+
+    /* versi teks untuk tombol salin */
+    lastText = head + "\n\n" +
+      a.gates.map(function (g) {
+        return (g.ok ? "[lolos] " : "[GAGAL] ") + g.name + " - " + g.detail.replace(/<[^>]+>/g, " ");
+      }).join("\n") + "\n\n" +
+      a.rows.map(function (r) {
+        return r[0] + ": " + String(r[1]).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+      }).join("\n");
+
     return html;
   }
 
   var seqEl = document.getElementById("seq");
   var outEl = document.getElementById("out");
+  var copyEl = document.getElementById("copy");
+  var counterEl = document.getElementById("counter");
 
-  document.getElementById("run").addEventListener("click", function () {
+  function updateCounter() {
+    var p = parse(seqEl.value);
+    counterEl.textContent = p.seq.length.toLocaleString("id-ID") + " nt · GC " +
+      (gc(p.seq) * 100).toFixed(1).replace(".", ",") + "%" +
+      (p.bad ? " · " + p.bad.length + " karakter asing" : "");
+  }
+
+  function run() {
     var p = parse(seqEl.value);
     outEl.hidden = false;
+    copyEl.hidden = true;
     if (!p.seq) {
-      outEl.innerHTML = '<p class="bad">Belum ada sekuens.</p>';
+      outEl.innerHTML = '<p class="verdict bad"><span class="dot"></span>Kotaknya masih kosong</p>' +
+        '<p class="verdict-note">Tempel sekuens, seret berkas FASTA ke kotak, atau klik Muat contoh.</p>';
       return;
     }
     if (p.bad) {
-      outEl.innerHTML = '<p class="bad">Karakter non-DNA ditemukan: <code>' +
-        esc(p.bad) + "</code>. Perbaiki lalu periksa lagi.</p>";
+      outEl.innerHTML = '<p class="verdict bad"><span class="dot"></span>Ada karakter non-DNA</p>' +
+        '<p class="verdict-note">Karakter yang ditemukan: <code>' + esc(p.bad) +
+        '</code>. Hapus atau perbaiki dulu, lalu periksa lagi.</p>';
       return;
     }
     outEl.innerHTML = render(p.seq);
+    copyEl.hidden = false;
+  }
+
+  seqEl.addEventListener("input", updateCounter);
+  seqEl.addEventListener("keydown", function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); run(); }
   });
+
+  document.getElementById("run").addEventListener("click", run);
 
   document.getElementById("clear").addEventListener("click", function () {
     seqEl.value = "";
     outEl.hidden = true;
+    copyEl.hidden = true;
+    updateCounter();
+    seqEl.focus();
   });
 
   document.getElementById("demo").addEventListener("click", function () {
-    // Sekuens contoh: sengaja memuat satu situs BsaI dan satu runtun polyT
-    // agar pemindai menunjukkan kegagalan, bukan hanya kelulusan.
+    /* Contoh sengaja memuat satu situs BsaI dan satu runtun polyT,
+       supaya pemindai memperlihatkan kegagalan, bukan hanya kelulusan. */
     var demo = "TAATACGACTCACTATAGGGACAACAAACAACAAACAACAAACCCGG" +
       "ATGGAAAATATTACAAGCGGCTTTCTGGGCCCCCTGCTGGTGCTGCAGGCCGGATTCTTT" +
       "GGTCTCAAACTGACCCGCATTCTGACCATTCCCCAGAGCCTGGATAGC" +
       "TGGTGGACCAGCCTGAACTTTCTGGGCGGCTTTTTTTACCCCGGCGGCAGCTAA" +
       "ACAACTACAATCAACTACAATCAACTACAATC";
     seqEl.value = ">contoh_konstruk_sebagian\n" + demo;
-    outEl.hidden = false;
-    outEl.innerHTML = render(parse(demo).seq);
+    updateCounter();
+    run();
   });
+
+  copyEl.addEventListener("click", function () {
+    var done = function () {
+      copyEl.textContent = "Tersalin";
+      setTimeout(function () { copyEl.textContent = "Salin hasil"; }, 1400);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastText).then(done, function () { /* diabaikan */ });
+    }
+  });
+
+  /* seret berkas FASTA ke textarea */
+  ["dragenter", "dragover"].forEach(function (ev) {
+    seqEl.addEventListener(ev, function (e) { e.preventDefault(); seqEl.classList.add("drop"); });
+  });
+  ["dragleave", "drop"].forEach(function (ev) {
+    seqEl.addEventListener(ev, function () { seqEl.classList.remove("drop"); });
+  });
+  seqEl.addEventListener("drop", function (e) {
+    e.preventDefault();
+    var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (!f) return;
+    var fr = new FileReader();
+    fr.onload = function () { seqEl.value = String(fr.result).slice(0, 2e6); updateCounter(); run(); };
+    fr.readAsText(f);
+  });
+
+  updateCounter();
 })();
 </script>
+
+<style>
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
 </body>
 </html>

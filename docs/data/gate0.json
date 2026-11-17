@@ -1,0 +1,580 @@
+{
+  "gate": "Gate 0",
+  "decision": "BELUM-LENGKAP",
+  "statement": "Gate 0 belum bisa dinyatakan lulus: 1 uji belum bisa dijalankan di lingkungan ini dan harus dijalankan di macOS terlebih dahulu.",
+  "counts": {
+    "PASS": 6,
+    "REVISE": 2,
+    "FAIL": 0,
+    "UNAVAILABLE": 1
+  },
+  "tests": [
+    {
+      "id": "uji1_size",
+      "name": "Kelayakan ukuran",
+      "question": "Apakah panjang prekursor dan lingkaran berada pada rentang yang terbukti bisa disirkularisasi?",
+      "verdict": "PASS",
+      "metrics": {
+        "precursor_nt": 1867,
+        "circle_nt": 1407,
+        "bsj_position": 1407,
+        "circle_fraction_of_precursor": 0.7536
+      },
+      "threshold": "lingkaran 300–5000 nt",
+      "threshold_label": "LITERATUR",
+      "threshold_rationale": "Wesselhoeft et al. (2018) menunjukkan intron PIE yang direkayasa mensirkularisasi RNA hingga 5 kb secara efisien in vitro, sehingga 5 kb dipakai sebagai batas atas yang terbukti. Batas bawah 300 nt adalah [PERKIRAAN]: lingkaran yang jauh lebih pendek dari itu tidak cukup memuat IRES bersama ORF.",
+      "refs": [
+        "wesselhoeft2018"
+      ],
+      "note": ""
+    },
+    {
+      "id": "uji2_ribozyme_integrity",
+      "name": "Integritas ribozim intron grup I",
+      "question": "Apakah permutasi intron masih dikenali sebagai ribozim grup I yang utuh?",
+      "verdict": "UNAVAILABLE",
+      "metrics": {
+        "status": "UNAVAILABLE",
+        "cmsearch_found": false,
+        "covariance_model_found": false,
+        "covariance_model_path": "data/reference/RF00028.cm",
+        "command": "# once, on macOS:\nmamba install -c bioconda infernal\ncurl -sS https://rfam.org/family/RF00028/cm -o data/reference/RF00028.cm\ncmpress data/reference/RF00028.cm\n# then:\ncmsearch --cut_ga --notrunc --tblout results/gate0/rf00028.tbl data/reference/RF00028.cm precursor.fa",
+        "why": "Infernal belum terpasang"
+      },
+      "threshold": "E-value cmsearch <= 1e-5 terhadap Rfam RF00028, dengan P1–P10 lengkap",
+      "threshold_label": "PERKIRAAN",
+      "threshold_rationale": "Ambang E-value ini ketat tetapi tidak distandarkan oleh Rfam untuk kasus intron ter-permutasi; nilainya [PERLU VERIFIKASI] terhadap panduan Infernal/Rfam. Yang tidak perlu diverifikasi adalah arahnya: intron yang tidak dikenali modelnya tidak boleh dilanjutkan.",
+      "refs": [],
+      "note": "Sesi cloud ini tidak bisa menjangkau Rfam (EBI ditolak proxy) dan Infernal belum terpasang, jadi uji ini WAJIB dijalankan di macOS sebelum Gate 0 dinyatakan lulus. Perintahnya ada di metrics.command."
+    },
+    {
+      "id": "uji3_homology_arm_duplex",
+      "name": "Pasangan lengan homologi",
+      "question": "Apakah kedua lengan homologi berpasangan cukup kuat pada suhu splicing, tanpa menjebak RNA?",
+      "verdict": "REVISE",
+      "metrics": {
+        "arm5_nt": 40,
+        "arm3_nt": 40,
+        "temperature_c": 55.0,
+        "full_arms": {
+          "dimer_kcal": -50.93,
+          "monomer_a_kcal": -5.3,
+          "monomer_b_kcal": -0.55,
+          "binding_kcal": -45.08
+        },
+        "duplex_kcal_full": -50.93,
+        "length_scan": [
+          {
+            "length_nt": 20,
+            "available": true,
+            "duplex_kcal": -21.24,
+            "duplex_kcal_per_nt": -1.062,
+            "dimer_kcal": -21.24,
+            "monomer_a_kcal": 0.0,
+            "monomer_b_kcal": 0.0,
+            "binding_kcal": -21.24
+          },
+          {
+            "length_nt": 25,
+            "available": true,
+            "duplex_kcal": -29.72,
+            "duplex_kcal_per_nt": -1.1888,
+            "dimer_kcal": -29.72,
+            "monomer_a_kcal": 0.0,
+            "monomer_b_kcal": 0.0,
+            "binding_kcal": -29.72
+          },
+          {
+            "length_nt": 30,
+            "available": true,
+            "duplex_kcal": -38.34,
+            "duplex_kcal_per_nt": -1.278,
+            "dimer_kcal": -38.34,
+            "monomer_a_kcal": 0.0,
+            "monomer_b_kcal": 0.0,
+            "binding_kcal": -38.34
+          },
+          {
+            "length_nt": 35,
+            "available": true,
+            "duplex_kcal": -45.63,
+            "duplex_kcal_per_nt": -1.3037,
+            "dimer_kcal": -45.63,
+            "monomer_a_kcal": -4.89,
+            "monomer_b_kcal": -0.55,
+            "binding_kcal": -40.19
+          },
+          {
+            "length_nt": 40,
+            "available": true,
+            "duplex_kcal": -50.93,
+            "duplex_kcal_per_nt": -1.2732,
+            "dimer_kcal": -50.93,
+            "monomer_a_kcal": -5.3,
+            "monomer_b_kcal": -0.55,
+            "binding_kcal": -45.08
+          }
+        ]
+      },
+      "threshold": "ΔG pengikatan −8 sampai −25 kcal/mol pada 55 °C",
+      "threshold_label": "PERKIRAAN",
+      "threshold_rationale": "Rentang ini penalaran sendiri, bukan nilai dari literatur: di atas −8 kcal/mol pasangan tidak bertahan pada suhu reaksi, dan jauh di bawah −25 kcal/mol pasangan berisiko mengunci konformasi. Yang berdasar literatur adalah bahwa panjang lengan menentukan hasil: efisiensi sirkularisasi 0% tanpa lengan, 16% dengan 9 nt, 48% dengan 19 nt (Wesselhoeft et al. 2018). Nilai ambang ΔG-nya [PERLU VERIFIKASI].",
+      "refs": [
+        "wesselhoeft2018"
+      ],
+      "note": ""
+    },
+    {
+      "id": "uji4_precursor_fold",
+      "name": "Lipatan prekursor linier",
+      "question": "Apakah lipatan global prekursor mendekatkan kedua ujung, atau justru mengubur lengan homologi?",
+      "verdict": "PASS",
+      "metrics": {
+        "mfe_kcal": -824.6,
+        "mfe_per_nt": -0.44167,
+        "ensemble_free_energy_kcal": null,
+        "ensemble_diversity": 321.3546,
+        "mfe_structure_frequency": null,
+        "temperature_c": 37.0,
+        "region_pairing": {
+          "HA5": {
+            "mean_unpaired": 0.0047,
+            "mean_paired": 0.9953
+          },
+          "HA3": {
+            "mean_unpaired": 0.0057,
+            "mean_paired": 0.9943
+          },
+          "intron_5half_IGS": {
+            "mean_unpaired": 0.0406,
+            "mean_paired": 0.9594
+          }
+        }
+      },
+      "threshold": "rata-rata probabilitas berpasangan di HA5 dan HA3 >= 0.30",
+      "threshold_label": "PERKIRAAN",
+      "threshold_rationale": "Lengan yang hampir tidak pernah berpasangan tidak bisa mendekatkan situs splice. Angka 0,30 adalah pilihan sendiri sebagai batas minimal yang masih bermakna, dan [PERLU VERIFIKASI] terhadap data sirkularisasi.",
+      "refs": [],
+      "note": ""
+    },
+    {
+      "id": "uji5_circle_fold",
+      "name": "Lipatan produk sirkular",
+      "question": "Apakah penutupan lingkaran menimbulkan tegangan struktural yang tidak masuk akal?",
+      "verdict": "PASS",
+      "metrics": {
+        "circle_mfe_kcal": -559.3,
+        "circle_mfe_per_nt": -0.39751,
+        "precursor_mfe_per_nt": -0.44167,
+        "relative_strain": 0.1,
+        "circle_ensemble_diversity": 273.1593,
+        "temperature_c": 37.0
+      },
+      "threshold": "|MFE/nt lingkaran − MFE/nt prekursor| / |MFE/nt prekursor| <= 0.25",
+      "threshold_label": "PERKIRAAN",
+      "threshold_rationale": "Perbandingan per-nukleotida dipakai karena kedua molekul berbeda panjang. Catatan penting: model sirkular ViennaRNA membebankan energi loop eksterior pada lingkaran tak berstruktur, sehingga MFE sirkular dapat lebih TINGGI daripada linear tanpa berarti konstruknya buruk. Ambang 0,25 adalah [PERKIRAAN] untuk menandai perbedaan yang perlu dilihat manusia.",
+      "refs": [],
+      "note": ""
+    },
+    {
+      "id": "uji6_ires_integrity",
+      "name": "Integritas struktur IRES dalam konteks sirkular",
+      "question": "Apakah domain IRES tetap terlipat seperti saat terisolasi, setelah berada di dalam lingkaran?",
+      "verdict": "PASS",
+      "metrics": {
+        "structure_identity": 0.9267,
+        "ires_length_nt": 600,
+        "ires_alone_mfe_kcal": -295.7,
+        "all_temperatures": {
+          "37C": {
+            "identity": 0.9267,
+            "ires_alone_mfe_kcal": -295.7,
+            "ires_alone_mfe_per_nt": -0.49283,
+            "ires_length": 600
+          },
+          "55C": {
+            "identity": 0.9717,
+            "ires_alone_mfe_kcal": -200.46,
+            "ires_alone_mfe_per_nt": -0.3341,
+            "ires_length": 600
+          }
+        },
+        "temperature_c": 37.0
+      },
+      "threshold": "fraksi posisi struktur IRES yang terpelihara >= 0.80 (REVISE 0.60–0.80, FAIL < 0.60)",
+      "threshold_label": "PERKIRAAN",
+      "threshold_rationale": "Ambang 0,80 adalah pilihan sendiri dan [PERLU VERIFIKASI]. Dasar kepentingannya dari literatur: efikasi IRES selain CVB3 berubah drastis ketika ORF di hilirnya diganti (Wesselhoeft et al. 2018), yang berarti konteks struktural memang menentukan. Perbandingan dilakukan pada struktur MFE, bukan matriks probabilitas penuh — keterbatasan yang dicatat.",
+      "refs": [
+        "wesselhoeft2018"
+      ],
+      "note": ""
+    },
+    {
+      "id": "uji7_dsrna_risk",
+      "name": "Pemindaian risiko dsRNA",
+      "question": "Apakah ada heliks berpasangan panjang yang bisa dikenali sensor imun bawaan?",
+      "verdict": "PASS",
+      "metrics": {
+        "longest_contiguous_bp": 18,
+        "violations": [],
+        "detail": {
+          "longest_bp": 18,
+          "longest_helix": {
+            "i5": 441,
+            "j3": 484,
+            "length": 18
+          },
+          "n_helices": 85,
+          "top_helices": [
+            {
+              "i5": 441,
+              "j3": 484,
+              "length": 18
+            },
+            {
+              "i5": 101,
+              "j3": 135,
+              "length": 13
+            },
+            {
+              "i5": 338,
+              "j3": 368,
+              "length": 13
+            },
+            {
+              "i5": 207,
+              "j3": 236,
+              "length": 12
+            },
+            {
+              "i5": 277,
+              "j3": 303,
+              "length": 12
+            },
+            {
+              "i5": 379,
+              "j3": 407,
+              "length": 11
+            },
+            {
+              "i5": 576,
+              "j3": 599,
+              "length": 10
+            },
+            {
+              "i5": 637,
+              "j3": 665,
+              "length": 10
+            },
+            {
+              "i5": 142,
+              "j3": 163,
+              "length": 9
+            },
+            {
+              "i5": 312,
+              "j3": 332,
+              "length": 9
+            }
+          ]
+        },
+        "temperature_c": 37.0
+      },
+      "threshold": "heliks menerus terpanjang <= 30 bp (REVISE 31–45 bp, FAIL > 45 bp)",
+      "threshold_label": "PERKIRAAN",
+      "threshold_rationale": "Angka ~30 bp dipakai luas sebagai panjang duplex minimal yang mengaktivasi PKR, tetapi saya belum memverifikasi sumber primernya di sesi ini, jadi ambang ini [PERLU VERIFIKASI] — cari: 'minimal dsRNA length PKR activation'. Yang terverifikasi adalah relevansi kemurnian: sedikit RNA linear sudah memicu respons imun seluler yang kuat (Wesselhoeft et al. 2019).",
+      "refs": [
+        "wesselhoeft2019"
+      ],
+      "note": ""
+    },
+    {
+      "id": "uji8_orf_integrity",
+      "name": "Integritas ORF melewati sambungan balik",
+      "question": "Apakah ORF utuh, satu kerangka, berhenti sebelum sambungan, dan tanpa stop prematur?",
+      "verdict": "PASS",
+      "metrics": {
+        "orf_length_nt": 681,
+        "protein_length_aa": 226,
+        "starts_with_atg": true,
+        "length_multiple_of_three": true,
+        "ends_with_stop_codon": true,
+        "has_internal_stop": false,
+        "upstream_in_frame_atg_near_start": [],
+        "upstream_out_of_frame_atg_near_start": [],
+        "longest_orf_on_doubled_circle_aa": 226,
+        "design": "ORF tunggal yang berakhir sebelum sambungan balik (bukan rolling/infinite ORF)"
+      },
+      "threshold": "semua pemeriksaan boolean benar; tanpa stop internal",
+      "threshold_label": "PERKIRAAN",
+      "threshold_rationale": "Ini bukan ambang numerik melainkan syarat biner yang diverifikasi dengan kode, bukan dengan membaca sekuens. Desainnya sengaja ORF tunggal: produk proteinnya satu spesies dengan panjang tertentu, sedangkan rolling ORF menghasilkan konkatamer yang tidak diinginkan untuk antigen vaksin.",
+      "refs": [],
+      "note": ""
+    },
+    {
+      "id": "uji9_sequence_hygiene",
+      "name": "Higienitas sekuens",
+      "question": "Apakah sekuens bebas situs kloning internal, motif terminasi T7, poly-U, dan GC ekstrem?",
+      "verdict": "REVISE",
+      "metrics": {
+        "type_IIS_sites": {
+          "BsaI": 0,
+          "BsmBI_Esp3I": 0,
+          "SapI": 0,
+          "BbsI": 0,
+          "AarI": 0
+        },
+        "t7_terminator_motifs": [],
+        "gc_global": 0.4954,
+        "gc_window_50nt_out_of_range": [
+          {
+            "start": 0,
+            "gc": 0.32
+          },
+          {
+            "start": 10,
+            "gc": 0.28
+          },
+          {
+            "start": 350,
+            "gc": 0.34
+          },
+          {
+            "start": 360,
+            "gc": 0.3
+          },
+          {
+            "start": 1330,
+            "gc": 0.34
+          },
+          {
+            "start": 1340,
+            "gc": 0.32
+          },
+          {
+            "start": 1350,
+            "gc": 0.34
+          }
+        ],
+        "n_gc_windows_out_of_range": 7,
+        "polyu_runs_ge5": [
+          {
+            "start": 1210,
+            "end": 1214,
+            "length": 5
+          },
+          {
+            "start": 1235,
+            "end": 1239,
+            "length": 5
+          }
+        ],
+        "longest_homopolymer": [
+          "A",
+          6
+        ],
+        "cryptic_gt_ag_pairs": [
+          {
+            "donor_pos": 8,
+            "acceptor_pos": 114,
+            "span_nt": 108
+          },
+          {
+            "donor_pos": 73,
+            "acceptor_pos": 151,
+            "span_nt": 80
+          },
+          {
+            "donor_pos": 81,
+            "acceptor_pos": 151,
+            "span_nt": 72
+          },
+          {
+            "donor_pos": 123,
+            "acceptor_pos": 229,
+            "span_nt": 108
+          },
+          {
+            "donor_pos": 128,
+            "acceptor_pos": 229,
+            "span_nt": 103
+          },
+          {
+            "donor_pos": 133,
+            "acceptor_pos": 229,
+            "span_nt": 98
+          },
+          {
+            "donor_pos": 142,
+            "acceptor_pos": 229,
+            "span_nt": 89
+          },
+          {
+            "donor_pos": 166,
+            "acceptor_pos": 246,
+            "span_nt": 82
+          },
+          {
+            "donor_pos": 173,
+            "acceptor_pos": 246,
+            "span_nt": 75
+          },
+          {
+            "donor_pos": 183,
+            "acceptor_pos": 282,
+            "span_nt": 101
+          },
+          {
+            "donor_pos": 218,
+            "acceptor_pos": 320,
+            "span_nt": 104
+          },
+          {
+            "donor_pos": 241,
+            "acceptor_pos": 320,
+            "span_nt": 81
+          },
+          {
+            "donor_pos": 247,
+            "acceptor_pos": 320,
+            "span_nt": 75
+          },
+          {
+            "donor_pos": 263,
+            "acceptor_pos": 340,
+            "span_nt": 79
+          },
+          {
+            "donor_pos": 274,
+            "acceptor_pos": 353,
+            "span_nt": 81
+          },
+          {
+            "donor_pos": 283,
+            "acceptor_pos": 353,
+            "span_nt": 72
+          },
+          {
+            "donor_pos": 292,
+            "acceptor_pos": 370,
+            "span_nt": 80
+          },
+          {
+            "donor_pos": 299,
+            "acceptor_pos": 370,
+            "span_nt": 73
+          },
+          {
+            "donor_pos": 304,
+            "acceptor_pos": 402,
+            "span_nt": 100
+          },
+          {
+            "donor_pos": 323,
+            "acceptor_pos": 402,
+            "span_nt": 81
+          }
+        ],
+        "n_cryptic_gt_ag_pairs": 73
+      },
+      "threshold": "FAIL bila ada situs Tipe IIS internal atau motif terminator T7; REVISE bila GC global di luar 45–60%, ada jendela 50 nt di luar 35–70%, poly-U >= 5, atau homopolimer >= 7",
+      "threshold_label": "PERKIRAAN",
+      "threshold_rationale": "Rentang GC 45–60% dan larangan poly-U >= 5 serta poly-A >= 7 diambil dari spesifikasi proyek ini sendiri (BLOK 4.2), bukan dari satu sumber primer, jadi [PERLU VERIFIKASI]. Pasangan GT–AG dilaporkan sebagai kandidat untuk diperiksa manusia, BUKAN sebagai prediksi splicing: tanpa prediktor splice site sungguhan, keberadaan motif saja tidak cukup untuk menyimpulkan apa pun.",
+      "refs": [],
+      "note": ""
+    }
+  ],
+  "construct": {
+    "precursor_nt": 1867,
+    "circle_nt": 1407,
+    "bsj_position": 1407,
+    "precursor_coords": {
+      "T7_promoter": [
+        1,
+        17
+      ],
+      "gg_leader": [
+        18,
+        20
+      ],
+      "HA5": [
+        21,
+        60
+      ],
+      "intron_3half": [
+        61,
+        240
+      ],
+      "intron_3half:IGS": [
+        235,
+        240
+      ],
+      "E2": [
+        241,
+        270
+      ],
+      "spacer5": [
+        271,
+        304
+      ],
+      "IRES": [
+        305,
+        904
+      ],
+      "ORF": [
+        905,
+        1585
+      ],
+      "spacer3": [
+        1586,
+        1617
+      ],
+      "E1": [
+        1618,
+        1647
+      ],
+      "intron_5half": [
+        1648,
+        1827
+      ],
+      "intron_5half:IGS": [
+        1648,
+        1653
+      ],
+      "HA3": [
+        1828,
+        1867
+      ]
+    },
+    "circle_coords": {
+      "E2": [
+        1,
+        30
+      ],
+      "spacer5": [
+        31,
+        64
+      ],
+      "IRES": [
+        65,
+        664
+      ],
+      "ORF": [
+        665,
+        1345
+      ],
+      "spacer3": [
+        1346,
+        1377
+      ],
+      "E1": [
+        1378,
+        1407
+      ]
+    }
+  },
+  "temperatures_c": [
+    37.0,
+    55.0
+  ]
+}

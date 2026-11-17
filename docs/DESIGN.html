@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keputusan desain dan justifikasinya &middot; circRNA-HBsAg</title>
+<meta name="description" content="Alasan di balik setiap pilihan desain konstruk circRNA-HBsAg, dengan penandaan sumber per pernyataan.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%2315705e' stroke-width='4'/%3E%3C/svg%3E">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) { /* penyimpanan diblokir: pakai preferensi sistem */ }
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip" href="#isi">Lewati ke isi</a>
+
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="3.5"/>
+        <path d="M16 6 L16 2" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      circRNA&#8209;HBsAg <span class="thin">in silico</span>
+    </a>
+    <div class="topbar-actions">
+      <a class="btn-link" href="index.html">&larr; Kembali ke pipeline</a>
+      <button class="icon-btn" id="theme" type="button" aria-label="Ganti tema terang atau gelap" title="Ganti tema">
+        <svg class="ico-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </svg>
+        <svg class="ico-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<header class="wrap doc-head">
+  <span class="eyebrow">Dokumen desain</span>
+  <h1>Keputusan desain dan justifikasinya</h1>
+</header>
+
+<div class="wrap layout doc" id="isi">
+  <nav class="toc" aria-label="Daftar isi">
+    <p class="toc-title">Di halaman ini</p>
+    <ol>
+      <li><a href="#1-mengapa-satu-ires-dan-mengapa-cvb3">1. Mengapa satu IRES, dan mengapa CVB3</a></li>
+      <li><a href="#2-mengapa-orf-s-hbsag-kecil-bukan-lms-atau-antigen-multi-epitop">2. Mengapa ORF S-HBsAg kecil, bukan L/M/S atau antigen multi-epitop</a></li>
+      <li><a href="#3-mengapa-intron-grup-i-anabaena">3. Mengapa intron grup I Anabaena</a></li>
+      <li><a href="#4-mengapa-spacer-dan-lengan-homologi-dioptimasi-bukan-ditetapkan">4. Mengapa spacer dan lengan homologi dioptimasi, bukan ditetapkan</a></li>
+      <li><a href="#5-mengapa-dua-suhu-37-dan-55-c">5. Mengapa dua suhu: 37 dan 55 °C</a></li>
+      <li><a href="#6-mengapa-lineardesign-tidak-dipakai">6. Mengapa LinearDesign tidak dipakai</a></li>
+      <li><a href="#7-keputusan-tentang-m6a">7. Keputusan tentang m6A</a></li>
+      <li><a href="#8-yang-tidak-dikerjakan-pipeline-ini-dan-cara-mengerjakannya">8. Yang TIDAK dikerjakan pipeline ini, dan cara mengerjakannya</a></li>
+      <li><a href="#9-daftar-perangkat-lunak-gratis-yang-benar-benar-dipakai">9. Daftar perangkat lunak gratis yang benar-benar dipakai</a></li>
+      <li><a href="#sumber-yang-disitasi-di-dokumen-ini">Sumber yang disitasi di dokumen ini</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+<p>Dokumen ini mencatat <strong>mengapa</strong> konstruk dirancang seperti ini, dengan
+penandaan sumber yang konsisten:</p>
+<ul>
+<li><strong>[LITERATUR]</strong>: dinyatakan pustaka yang dapat diperiksa (sitasi diberikan)</li>
+<li><strong>[PERKIRAAN]</strong>: ditetapkan pipeline ini sebagai nilai kerja; dapat diubah</li>
+<li><strong>[HASIL IN SILICO]</strong>: dihitung oleh pipeline ini saat dijalankan</li>
+</ul>
+<hr />
+<h2 id="1-mengapa-satu-ires-dan-mengapa-cvb3">1. Mengapa satu IRES, dan mengapa CVB3</h2>
+<p>Draf tugas akhir semula membandingkan lima varian IRES (CVB3, EMCV, poliovirus,
+HCV, dan satu kandidat hasil prioritisasi model). Pekerjaan ini mempersempit ke
+<strong>satu IRES, yaitu CVB3</strong>, dengan alasan berikut.</p>
+<p><strong>[LITERATUR]</strong> Wesselhoeft, Kowalski &amp; Anderson (2018), <em>Engineering circular
+RNA for potent and stable translation in eukaryotic cells</em>, Nature
+Communications 9:2629:</p>
+<ul>
+<li>IRES CVB3 <strong>1,5 kali lebih efektif</strong> daripada IRES EMCV yang lazim dipakai, di
+  sel HEK293.</li>
+<li>Ketika diuji pada konteks ORF yang berbeda (Firefly luciferase), CVB3 <strong>tetap
+  superior terhadap semua IRES lain yang diuji</strong>, sementara efikasi beberapa
+  IRES lain, terutama poliovirus, <strong>berubah drastis</strong>.</li>
+<li>Pada beberapa jenis sel (HeLa, A549, Min6), efikasi IRES berbeda-beda, tetapi
+  CVB3 tetap yang terbaik.</li>
+</ul>
+<p>Poin kedua adalah alasan metodologis terkuat: efikasi IRES selain CVB3
+<strong>bergantung pada ORF yang mengikutinya</strong>. Pada penelitian ini payload-nya baru
+(ORF HBsAg), sehingga membandingkan lima IRES berarti membandingkan lima sistem
+yang masing-masing butuh optimasi spacer sendiri agar adil, pekerjaan yang jauh
+melampaui lingkup satu tugas akhir S1. Dengan memilih IRES yang paling kokoh
+lintas konteks, variabel IRES dikeluarkan dari percobaan dan sumber daya
+dialihkan ke pertanyaan yang benar-benar baru, yaitu apakah payload HBsAg
+mempertahankan sirkularisasi dan translasi.</p>
+<p><strong>Konsekuensi yang harus dinyatakan di dokumen TA:</strong> penelitian ini tidak lagi
+dapat mengklaim kebaruan berupa "perbandingan sistematis varian IRES". Kebaruan
+berpindah ke payload dan ke alur keputusan GO/NO-GO in silico. Perbandingan IRES
+sebaiknya dipindahkan ke bagian Saran/penelitian lanjutan.</p>
+<h3 id="catatan-penting-tentang-konteks-prokariot">Catatan penting tentang konteks prokariot</h3>
+<p><strong>[LITERATUR]</strong> IRES tidak berfungsi sebagai pemicu translasi pada ribosom
+prokariot. Bila validasi awal dilakukan di <em>E. coli</em> (seperti pada draf TA),
+IRES harus diperlakukan sebagai <strong>konteks sekuens yang memengaruhi splicing dan
+stabilitas</strong>, bukan sebagai elemen yang fungsi translasinya diukur. Pipeline ini
+konsisten dengan itu: metrik <code>ires_integrity</code> adalah <strong>proksi struktural</strong>
+(apakah lipatan IRES terjaga), bukan prediksi aktivitas translasi.</p>
+<hr />
+<h2 id="2-mengapa-orf-s-hbsag-kecil-bukan-lms-atau-antigen-multi-epitop">2. Mengapa ORF S-HBsAg kecil, bukan L/M/S atau antigen multi-epitop</h2>
+<p>Tiga pilihan payload dipertimbangkan.</p>
+<table>
+<thead>
+<tr>
+<th>Pilihan</th>
+<th>Panjang ORF</th>
+<th>Pertimbangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S kecil (SHBs, ~226 aa)</strong></td>
+<td>~681 nt</td>
+<td><strong>dipilih</strong></td>
+</tr>
+<tr>
+<td>M dan L (pre-S2/pre-S1)</td>
+<td>~846 / ~1.200 nt</td>
+<td>menambah 0,2–0,5 kb; epitop pre-S bernilai, tetapi menyulitkan perakitan partikel</td>
+</tr>
+<tr>
+<td>MEV multi-epitop (≤ 200 aa)</td>
+<td>~600 nt</td>
+<td>bergantung penuh pada prediksi epitop in silico yang belum tervalidasi</td>
+</tr>
+</tbody>
+</table>
+<p>Alasan memilih S kecil:</p>
+<ol>
+<li><strong>Antigen yang sama dengan vaksin hepatitis B berlisensi.</strong> HBsAg adalah
+   antigen pada vaksin HB rekombinan yang dipakai sejak 1980-an, sehingga
+   korelasi antara antibodi anti-HBs dan perlindungan sudah mapan dan hasil uji
+   dapat dibandingkan dengan standar yang ada. MEV multi-epitop tidak punya
+   pembanding semacam itu.</li>
+<li><strong>Protein S berukuran kecil mampu merakit diri menjadi partikel subviral</strong>
+   tanpa protein M/L, sehingga satu ORF saja sudah cukup untuk antigen
+   berbentuk partikel, bentuk yang lebih imunogenik daripada protein terlarut.</li>
+<li><strong>Anggaran panjang konstruk.</strong> Draf TA membatasi konstruk ≤ 3,0 kb. Dengan
+   IRES CVB3 (~0,6 kb), dua separuh intron + eksón (~0,5 kb), spacer dan lengan
+   homologi (~0,1 kb), ORF 0,68 kb menyisakan margin; ORF L/M/S akan menghabiskan
+   margin itu. Pipeline menegakkan batas ini sebagai gerbang keras
+   <code>circle_length_within_limit</code>.</li>
+<li><strong>Satu variabel baru saja.</strong> Payload sudah merupakan variabel baru; menambah
+   ketidakpastian prediksi epitop akan membuat kegagalan sulit ditafsirkan.</li>
+</ol>
+<p><strong>Genotipe: B</strong> (dengan C sebagai alternatif yang didokumentasikan).
+<strong>[LITERATUR]</strong> Draf TA menyatakan genotipe B dan C dominan di Indonesia, dan
+mengarahkan pengambilan sekuens HBsAg dari genotipe dominan tersebut. Genotipe B
+dipilih sebagai desain utama. <strong>Yang wajib Anda lakukan:</strong> konfirmasi klaim
+dominansi genotipe ini dengan sitasi epidemiologi Indonesia yang dapat
+diperiksa, dan catat nomor aksesi sekuens yang dipakai di <code>config/parts.yaml</code>.
+Pipeline tidak memverifikasi klaim epidemiologi.</p>
+<p><strong>Catatan antigenik:</strong> determinan "a" HBsAg (sekitar residu 124–147) adalah
+epitop penetral utama dan terkonservasi antar-genotipe, sehingga pilihan
+genotipe lebih memengaruhi kecocokan epitop sekunder daripada perlindungan
+dasar. Nyatakan ini sebagai pertimbangan, bukan sebagai hasil.</p>
+<hr />
+<h2 id="3-mengapa-intron-grup-i-anabaena">3. Mengapa intron grup I Anabaena</h2>
+<p><strong>[LITERATUR]</strong> Wesselhoeft dkk. (2018) menguji intron grup I alternatif dari
+pre-tRNA <em>Anabaena</em> dan menyimpulkan intron tersebut <strong>superior untuk
+sirkularisasi</strong> dibandingkan intron fag T4 yang dipermutasi: separuh intron
+Anabaena panjangnya hampir sama dan <strong>lebih kecil kemungkinannya tetap
+berasosiasi setelah splicing</strong> meski lengan homologinya lebih kuat. Pemisahan
+intron setelah splicing penting karena intron yang masih menempel menjadi
+kontaminan yang harus disingkirkan pada pemurnian dan menaikkan imunogenisitas
+intrinsik.</p>
+<hr />
+<h2 id="4-mengapa-spacer-dan-lengan-homologi-dioptimasi-bukan-ditetapkan">4. Mengapa spacer dan lengan homologi dioptimasi, bukan ditetapkan</h2>
+<p>Angka-angka berikut adalah dasar mengapa dua elemen ini jadi variabel utama
+pada optimasi multi-objektif.</p>
+<p><strong>[LITERATUR]</strong> Wesselhoeft dkk. (2018):</p>
+<table>
+<thead>
+<tr>
+<th>Intervensi</th>
+<th>Efisiensi splicing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tanpa lengan homologi</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>lengan homologi 9 nt ("weak")</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>lengan homologi 19 nt ("strong")</td>
+<td>48%</td>
+</tr>
+<tr>
+<td>+ spacer permisif (P1, P2)</td>
+<td>46% → <strong>87%</strong></td>
+</tr>
+<tr>
+<td>+ spacer yang merusak struktur intron</td>
+<td><strong>splicing hilang sama sekali</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Dua hal yang dibaca dari tabel ini:</p>
+<ol>
+<li><strong>Spacer bukan pengisi netral.</strong> Spacer yang sama panjangnya bisa menaikkan
+   splicing ke 87% atau menghilangkannya, tergantung apakah ia membiarkan
+   struktur kedua separuh intron melipat independen. Inilah sebabnya pipeline
+   menilai <strong>aksesibilitas situs splice dan IGS (P1/P10)</strong> dan bukan hanya
+   panjang spacer.</li>
+<li><strong>Hipotesis mekanistik yang dipakai:</strong> situs splice PIE 3' berdekatan dengan
+   IRES, dan karena keduanya sangat berstruktur, sekuens IRES dapat mengganggu
+   pelipatan ribozim splicing, baik secara proksimal di situs splice 3' maupun
+   secara jauh di situs splice 5' lewat kontak jarak-jauh. Karena itu kriteria
+   <code>ires_integrity</code> dan <code>junction_accessibility</code> diukur pada <strong>konstruk penuh</strong>,
+   bukan pada bagian-bagian terpisah.</li>
+</ol>
+<p><strong>[LITERATUR]</strong> Studi yang sama menemukan spacer <strong>polyA</strong> maupun <strong>polyAC</strong>
+tak-berstruktur sama-sama menaikkan ekspresi protein pada semua konstruk, diduga
+karena memberi pemisahan tak-berstruktur yang lebih lega di sekitar IRES; pada
+IRES EMCV dan poliovirus, polyA memberi perbaikan melebihi polyAC, yang mungkin
+menandakan peran pengikatan protein pengikat poliadenilat. Karena itu
+<code>SPACER_LIBRARIES</code> pada pipeline berisi tiga varian tak-berstruktur
+(<code>unstructured</code>, <code>polyA</code>, <code>polyAC</code>) dan <code>HOMOLOGY_ARM_LENGTHS</code> memuat 9 dan 19
+nt dari studi tersebut, ditambah 0 (kontrol), 30, dan 40 nt sebagai ekstrapolasi
+<strong>[PERKIRAAN]</strong>.</p>
+<hr />
+<h2 id="5-mengapa-dua-suhu-37-dan-55-c">5. Mengapa dua suhu: 37 dan 55 °C</h2>
+<p><strong>[LITERATUR]</strong> Reaksi splicing PIE in vitro lazim dijalankan pada sekitar
+55 °C dengan GTP berlebih dan Mg²⁺, sedangkan circRNA hasilnya harus berfungsi
+pada 37 °C di dalam sel. Keduanya menuntut sifat lipatan yang berbeda:</p>
+<ul>
+<li>pada <strong>55 °C</strong> yang penting adalah situs splice dan P1/P10 <strong>terbuka</strong> agar
+  ribozim dapat bekerja;</li>
+<li>pada <strong>37 °C</strong> yang penting adalah IRES <strong>terlipat benar</strong> dan start codon
+  tetap dapat dicapai, sementara dsRNA panjang tidak terbentuk.</li>
+</ul>
+<p>Pipeline mengambil <strong>nilai terburuk dari kedua suhu</strong> untuk setiap kriteria,
+sehingga konstruk yang hanya baik pada salah satu suhu tidak lolos.</p>
+<hr />
+<h2 id="6-mengapa-lineardesign-tidak-dipakai">6. Mengapa LinearDesign tidak dipakai</h2>
+<p>Prompt proyek menyebut "algoritma ala LinearDesign bila lisensi mengizinkan".
+Lisensi LinearDesign membatasi pemakaian komersial dan redistribusi serta
+memerlukan persetujuan terpisah, sehingga ia <strong>tidak dijadikan dependensi</strong>
+agar repositori ini tetap dapat dirilis seluruhnya di bawah MIT. Penggantinya
+adalah optimizer kodon sendiri di <code>src/circhbsag/codon.py</code>: hill-climbing
+stokastik dengan seed tetap atas objektif gabungan CAI, GC total, GC jendela,
+situs Tipe IIS, motif yang dihindari, dan kerapatan m6A RRACH.</p>
+<p>Perbedaan yang perlu dinyatakan: LinearDesign mengoptimasi <strong>MFE mRNA dan CAI
+secara bersama lewat pemrograman dinamis pada kisi lipatan</strong>, sehingga ia dapat
+mencari struktur mRNA yang paling stabil. Optimizer di sini <strong>tidak</strong> mengoptimasi
+MFE ORF secara langsung; struktur ORF ditangani di tingkat konstruk melalui
+kriteria <code>start_codon_accessibility</code> dan <code>dsrna_burden</code> pada Tahap 0. Bila MFE
+ORF ingin dioptimasi langsung, tambahkan objektif tersebut pada
+<code>CodonObjective</code>, perhitungan ViennaRNA-nya sudah tersedia.</p>
+<p>Hal serupa berlaku untuk <strong>NUPACK</strong> (gratis hanya untuk akademik dengan
+pendaftaran, tidak boleh diredistribusi): tidak dijadikan dependensi wajib.
+Pembanding lipatan alternatif yang lisensinya aman untuk dijadikan dependensi
+opsional adalah <strong>LinearFold</strong> (MIT) dan <strong>MXfold2</strong> (MIT); keduanya belum
+diintegrasikan dan ditandai sebagai pekerjaan terbuka di bawah.</p>
+<hr />
+<h2 id="7-keputusan-tentang-m6a">7. Keputusan tentang m6A</h2>
+<p>Prompt meminta "keputusan penyisipan 1% m6A". Pipeline <strong>memindai</strong> semua situs
+RRACH (konsensus m6A) dan melaporkan kerapatannya, lalu secara bawaan
+<strong>menurunkan</strong> jumlahnya lewat optimasi kodon.</p>
+<p><strong>Dasar keputusan bawaan "jangan sisipkan m6A":</strong> penyisipan m6A pada circRNA
+sintetis adalah intervensi yang efeknya bergantung konteks dan belum ada
+konsensus bahwa ia menguntungkan untuk vaksin circRNA; menambah satu variabel
+kimia yang tidak terkendali ke konstruk yang payload-nya sudah baru akan membuat
+kegagalan sulit ditafsirkan. Karena itu desain utama memakai
+<code>m6a_mode: minimize</code>, dan penyisipan m6A diletakkan sebagai <strong>lengan percobaan
+terpisah</strong>, bukan bagian desain dasar.</p>
+<p>Bila Anda memutuskan sebaliknya, ubah <code>--m6a-mode ignore</code> dan <strong>bobot ulang</strong>
+kriteria <code>motif_burden</code>, jangan biarkan pipeline meminimalkan sesuatu yang
+sengaja Anda inginkan. Catatan ini juga tercetak pada penalaran kriteria di
+setiap laporan.</p>
+<hr />
+<h2 id="8-yang-tidak-dikerjakan-pipeline-ini-dan-cara-mengerjakannya">8. Yang TIDAK dikerjakan pipeline ini, dan cara mengerjakannya</h2>
+<p>Prediksi epitop dan struktur tidak diintegrasikan karena alat-alatnya berjalan
+sebagai layanan daring atau butuh unduhan model besar dengan pendaftaran
+akademik, keduanya tidak dapat dijalankan reprodusibel di dalam CI. Jalankan
+manual, dan catat versi serta tanggal akses pada notebook:</p>
+<table>
+<thead>
+<tr>
+<th>Alat</th>
+<th>Fungsi</th>
+<th>Lisensi</th>
+<th>Cara pakai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IEDB Analysis Resource</td>
+<td>prediksi dan cakupan populasi epitop</td>
+<td>gratis, non-komersial</td>
+<td>layanan web</td>
+</tr>
+<tr>
+<td>BepiPred-3.0</td>
+<td>epitop sel B linear</td>
+<td>gratis akademik (DTU)</td>
+<td>layanan web / unduhan akademik</td>
+</tr>
+<tr>
+<td>NetMHCpan-4.1</td>
+<td>epitop CTL (MHC kelas I)</td>
+<td>gratis akademik (DTU)</td>
+<td>layanan web / unduhan akademik</td>
+</tr>
+<tr>
+<td>NetMHCIIpan-4.0</td>
+<td>epitop HTL (MHC kelas II)</td>
+<td>gratis akademik (DTU)</td>
+<td>layanan web / unduhan akademik</td>
+</tr>
+<tr>
+<td>VaxiJen 2.0</td>
+<td>antigenisitas (ambang ≥ 0,4)</td>
+<td>gratis</td>
+<td>layanan web</td>
+</tr>
+<tr>
+<td>ColabFold / AlphaFold2</td>
+<td>struktur protein</td>
+<td>MIT (ColabFold), model DeepMind CC BY 4.0</td>
+<td>Google Colab gratis</td>
+</tr>
+<tr>
+<td>SRAMP</td>
+<td>prediksi m6A berbasis model</td>
+<td>gratis</td>
+<td>layanan web; pipeline ini memakai regex RRACH sebagai pengganti yang dapat diaudit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pekerjaan terbuka</strong> yang paling bernilai bila ada waktu tambahan:</p>
+<ol>
+<li>Integrasi <strong>LinearFold</strong> dan <strong>MXfold2</strong> (keduanya MIT) sebagai pembanding
+   lipatan terhadap ViennaRNA, dilaporkan berdampingan bukan dirata-ratakan.</li>
+<li>Kalibrasi skor komposit terhadap efisiensi sirkularisasi hasil laboratorium
+   begitu data pilot tersedia; sampai itu terjadi, bobotnya tetap <code>[PERKIRAAN]</code>.</li>
+<li>Fitur <strong>model bahasa RNA</strong> (mis. RNA-FM) sebagai prediktor tambahan, wajib
+   dilabeli eksperimental dan <strong>dibandingkan</strong> dengan baseline termodinamika,
+   bukan menggantikannya.</li>
+</ol>
+<hr />
+<h2 id="9-daftar-perangkat-lunak-gratis-yang-benar-benar-dipakai">9. Daftar perangkat lunak gratis yang benar-benar dipakai</h2>
+<table>
+<thead>
+<tr>
+<th>Perangkat lunak</th>
+<th>Fungsi di pipeline ini</th>
+<th>Lisensi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ViennaRNA 2.x</td>
+<td><code>RNAfold --circ</code>, <code>RNAplfold</code>, partition function, probabilitas pasangan basa</td>
+<td>ViennaRNA License (gratis akademik/non-komersial)</td>
+</tr>
+<tr>
+<td>primer3 / primer3-py</td>
+<td>primer divergen dan BSJ, Tm, hairpin, homodimer</td>
+<td>GPLv2</td>
+</tr>
+<tr>
+<td>Biopython</td>
+<td>utilitas sekuens</td>
+<td>Biopython License (mirip MIT)</td>
+</tr>
+<tr>
+<td>Optuna</td>
+<td>optimasi multi-objektif NSGA-II</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>Snakemake</td>
+<td>alur kerja reprodusibel</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>NumPy, pandas</td>
+<td>numerik dan tabel</td>
+<td>BSD-3-Clause</td>
+</tr>
+<tr>
+<td>NCBI BLAST+ (opsional)</td>
+<td>homologi off-target</td>
+<td>domain publik</td>
+</tr>
+<tr>
+<td>STAR (opsional)</td>
+<td>validasi silang BSJ</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>CIRI2 (opsional)</td>
+<td>pemanggil circRNA pembanding</td>
+<td>GPL</td>
+</tr>
+<tr>
+<td>Streamlit</td>
+<td>antarmuka web</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>circhbsag (repositori ini)</td>
+<td>perakitan konstruk, skor GO/NO-GO, optimasi kodon, probe RNase H, filter Bayes BSJ, laporan</td>
+<td>MIT</td>
+</tr>
+</tbody>
+</table>
+<p>Jalankan <code>circhbsag licenses</code> untuk melihat versi yang benar-benar terpasang di
+mesin Anda, tabel ini menyebut lisensi, sedangkan versinya diambil saat runtime.</p>
+<hr />
+<h2 id="sumber-yang-disitasi-di-dokumen-ini">Sumber yang disitasi di dokumen ini</h2>
+<p>Semua sitasi di atas berasal dari berkas PDF yang ada di berkas proyek dan telah
+diperiksa langsung isinya:</p>
+<ul>
+<li>Wesselhoeft RA, Kowalski PS, Anderson DG (2018). Engineering circular RNA for
+  potent and stable translation in eukaryotic cells. <em>Nature Communications</em>
+  9:2629. doi:10.1038/s41467-018-05096-6</li>
+</ul>
+<p>Pustaka lain yang tersedia di berkas proyek dan relevan untuk Bab II, tetapi
+tidak dipakai sebagai dasar keputusan desain di atas, antara lain: Chen dkk.
+(2025) tentang sistem sirkularisasi tanpa scar (<em>Molecular Therapy Nucleic
+Acids</em>); Wang dkk. (2024) tentang sistem PIE kimerik yang ditingkatkan
+(<em>Theranostics</em> 14:5869); Meganck dkk. (2021) tentang rekayasa backsplicing
+sintetis; Lee dkk. (2023) tentang ribozim intron grup I <em>Tetrahymena</em>; Singh,
+Dujsikova, Mueller &amp; Chen (2026) tentang pembuatan circRNA dengan ligasi
+enzimatik (<em>Nucleic Acids Research</em> 54:gkag405); Hwang &amp; Kim (2024) dan
+Margvelani dkk. (2025) sebagai tinjauan mekanisme translasi circRNA; serta
+Zhang dkk. (2025) tentang pengurangan kontaminan pada circRNA sintetis.
+Periksa sendiri sebelum menyitasi, pipeline ini tidak memverifikasi klaim
+isi pustaka selain yang dikutip eksplisit di atas.</p>
+  </main>
+</div>
+
+<footer class="site">
+  <div class="wrap cols">
+    <div>
+      <h4>Pipeline circRNA-HBsAg</h4>
+      <p>Alur keputusan GO/NO-GO in silico untuk konstruk RNA sirkular penyandi
+      HBsAg berbasis permuted intron&ndash;exon. Kode berlisensi MIT.</p>
+    </div>
+    <div>
+      <h4>Halaman</h4>
+      <ul>
+        <li><a href="index.html">Pipeline</a></li>
+        <li><a href="index.html#scan">Pemindai sekuens</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Dokumen</h4>
+      <ul>
+        <li><a href="index.html#keputusan">Struktur keputusan</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  function current() {
+    var set = root.getAttribute("data-theme");
+    if (set) return set;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  document.getElementById("theme").addEventListener("click", function () {
+    var next = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) { /* diabaikan */ }
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var sections = links
+    .map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); })
+    .filter(Boolean);
+  if ("IntersectionObserver" in window && sections.length) {
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      var best = null, bestV = 0;
+      Object.keys(seen).forEach(function (id) {
+        if (seen[id] > bestV) { bestV = seen[id]; best = id; }
+      });
+      links.forEach(function (a) {
+        if (best && a.getAttribute("href") === "#" + best) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+    }, { rootMargin: "-15% 0px -70% 0px", threshold: [0, .25, .5, 1] });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

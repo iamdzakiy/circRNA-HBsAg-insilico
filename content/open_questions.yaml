@@ -1,0 +1,35 @@
+# SUMBER TUNGGAL — Open Questions (tabel wajib BLOK 12).
+# Pertanyaan yang belum terjawab, dan apa yang bisa menjawabnya.
+open_questions:
+  - id: Q01
+    question: "Berapa bit score dan E-value cmsearch konstruk ini terhadap Rfam RF00028, dan apakah P1–P10 lengkap?"
+    answered_by: "Pasang Infernal di macOS, unduh RF00028, jalankan cmsearch (perintahnya ada di laporan Gate 0 Uji 2)"
+    blocking: "Gate 0 tidak boleh dinyatakan lulus sebelum ini terjawab"
+  - id: Q02
+    question: "Accession, versi, dan tanggal akses sekuens HBsAg, IRES CVB3, dan intron Anabaena yang dipakai?"
+    answered_by: "Unduh dari NCBI/ENA di macOS; sesi cloud ini ditolak proxy"
+    blocking: "Semua angka tetap berlabel DEMO sampai ini terisi"
+  - id: Q03
+    question: "Apakah determinan 'a' tetap utuh setelah optimasi kodon pada sekuens asli?"
+    answered_by: "Jalankan `circhbsag codon` lalu bandingkan terjemahan terhadap konsensus subgenotipe"
+    blocking: "tidak memblokir Gate 0, memblokir klaim imunogenisitas"
+  - id: Q04
+    question: "Berapa cakupan populasi epitop kelas I dan II pada panel alel HLA Indonesia?"
+    answered_by: "NetMHCpan-4.1 dan NetMHCIIpan-4.0 lokal, dengan frekuensi alel dari AFND"
+    blocking: "memblokir daftar peptida untuk ELISpot di protokol in vivo"
+  - id: Q05
+    question: "Apakah ambang ΔG lengan homologi dan ambang dsRNA 30 bp punya dukungan sumber primer?"
+    answered_by: "Pencarian literatur terarah; lihat Assumption Register A04 dan A05"
+    blocking: "tidak memblokir, tetapi harus ditulis sebagai keterbatasan"
+  - id: Q06
+    question: "Apakah peringkat varian dari prediktor pembelajaran mesin (DeepCIP, LinearFold, MXfold2) sejalan dengan peringkat termodinamika?"
+    answered_by: "Pasang ketiganya di macOS dan jalankan pada varian yang sama"
+    blocking: "tidak memblokir; menambah bukti keyakinan"
+  - id: Q07
+    question: "Kapan docstring modul lama dikonversi ke bahasa Inggris sesuai aturan bahasa BLOK 1?"
+    answered_by: "Konversi bertahap; modul baru (gate0.py) sudah berbahasa Inggris"
+    blocking: "tidak memblokir fungsi apa pun"
+  - id: Q08
+    question: "Apakah konstruk reporter paralel (GLuc atau EGFP) perlu melewati Gate 0 sendiri?"
+    answered_by: "Jalankan pipeline yang sama dengan ORF reporter; arsitekturnya identik sehingga hanya ORF yang berubah"
+    blocking: "memblokir perbandingan kinetika translasi di tahap in vitro"

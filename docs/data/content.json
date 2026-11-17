@@ -1,0 +1,508 @@
+{
+  "_generated_by": "tools/build.py",
+  "project": {
+    "title": "Desain dan optimasi in silico vaksin RNA sirkular pembawa HBsAg",
+    "short_title": "circRNA-HBsAg",
+    "subtitle": "Kandidat vaksin hepatitis B berbasis RNA sirkular yang diproduksi in vitro",
+    "institution": "Institut Teknologi Bandung"
+  },
+  "projection_label": "Proyeksi berbasis literatur — bukan data eksperimen",
+  "data_label": "[DEMO — SEKUENS PLACEHOLDER] angka di bawah mengilustrasikan alur kerja, bukan sifat konstruk sebenarnya, dan tidak boleh dikutip sebagai hasil",
+  "data_status": "DEMO-PLACEHOLDER",
+  "decisions": [
+    {
+      "id": "ires-tunggal",
+      "question": "Berapa IRES yang dipakai, dan yang mana?",
+      "choice": "Satu IRES: 5'UTR Coxsackievirus B3 (CVB3)",
+      "label": "LITERATUR",
+      "rationale": "Wesselhoeft et al. (2018) menemukan IRES CVB3 memberi ekspresi sekitar 1,5 kali IRES EMCV pada konstruk circRNA PIE, dan menunjukkan efikasi IRES selain CVB3 berubah drastis ketika ORF-nya diganti. Konsekuensinya, membandingkan lima IRES tanpa data ekspresi untuk ORF HBsAg spesifik ini tidak akan menjawab apa pun; satu IRES dengan dasar literatur lebih kuat daripada lima IRES tanpa dasar.\n",
+      "consequence": "Klaim kebaruan yang semula bersandar pada perbandingan IRES harus pindah ke bab Saran sebagai pekerjaan lanjutan, bukan dipertahankan di bab Hasil.\n",
+      "refs": [
+        "wesselhoeft2018"
+      ]
+    },
+    {
+      "id": "genotipe",
+      "question": "Genotipe HBV mana yang menjadi sasaran?",
+      "choice": "Subgenotipe B3 sebagai sasaran utama, dengan cakupan dinyatakan terbatas",
+      "label": "LITERATUR",
+      "rationale": "Thedja et al. (2011) memetakan 419 individu dari 40 populasi Indonesia dan menemukan HBV/B dominan pada populasi penutur Austronesia, dengan subgenotipe B3 dominan di paruh barat kepulauan, sementara HBV/C dominan di Papua dan populasi Maluku yang terpengaruh Papua; B7, B8, dan B9 spesifik Nusa Tenggara. Thedja et al. (2015) menambahkan bahwa HBV/C di kepulauan ini terpecah menjadi tipe Asia dan Papua-Pasifik yang berbeda pada beberapa substitusi asam amino di epitop imun protein core dan surface.\n",
+      "consequence": "Satu konstruk tunggal tidak menutup seluruh kepulauan. Tiga pilihan yang jujur: B3 saja dengan cakupan dinyatakan terbatas; konsensus B3+C dengan kecocokan lebih rendah pada keduanya; atau dua konstruk paralel yang menggandakan beban in vitro. Ini keputusan penulis, bukan keputusan pipeline.\n",
+      "refs": [
+        "thedja2011",
+        "thedja2015"
+      ]
+    },
+    {
+      "id": "bentuk-hbsag",
+      "question": "S saja, atau L/M/S?",
+      "choice": "S-HBsAg (SHBs, 226 aa)",
+      "label": "PERKIRAAN",
+      "rationale": "SHBs adalah komponen utama partikel subviral dan memuat determinan \"a\" yang menjadi sasaran antibodi penetralisir, sehingga konstruknya paling pendek dengan kandungan epitop penetralisir paling padat. Menambah preS1 dan preS2 memperpanjang ORF tanpa hipotesis yang diuji di tahap ini.\n",
+      "consequence": "Epitop pada preS1/preS2 tidak diwakili. Bila kelak itu menjadi tujuan, konstruk L/M/S perlu dinilai ulang dari Tahap 0.\n",
+      "refs": []
+    },
+    {
+      "id": "m6a",
+      "question": "Apakah situs m6A disisipkan secara sengaja?",
+      "choice": "Tidak disisipkan secara baku; hanya dipindai dan dilaporkan",
+      "label": "PERKIRAAN",
+      "rationale": "Translasi circRNA dapat berjalan lewat mekanisme bergantung m6A maupun lewat IRES (Zhu et al. 2025). Karena konstruk ini sudah memakai IRES, menambah m6A berarti menambah satu variabel tanpa hipotesis yang jelas, sementara motif RRACH yang tidak disengaja tetap perlu dihitung sebagai beban.\n",
+      "consequence": "Situs RRACH masuk sebagai beban motif pada skor, bukan sebagai target.",
+      "refs": [
+        "zhu2025"
+      ]
+    },
+    {
+      "id": "lisensi-lineardesign",
+      "question": "Apakah LinearDesign dipakai untuk optimasi kodon?",
+      "choice": "Tidak dipakai",
+      "label": "LITERATUR",
+      "rationale": "Lisensinya membatasi penggunaan komersial, sementara syarat proyek ini adalah perangkat lunak gratis yang boleh dipakai dan diredistribusi. Penolakan ini ada harganya: Zhang et al. (2023) melaporkan kenaikan titer antibodi hingga 128 kali dibanding pembanding optimasi kodon pada vaksin mRNA, jadi ini pengorbanan nyata dan harus ditulis sebagai keterbatasan.\n",
+      "consequence": "Optimasi kodon memakai implementasi sendiri (pendakian bukit berseed tetap) yang mengoptimasi CAI bersama GC, motif, dan struktur lokal.\n",
+      "refs": [
+        "zhang2023"
+      ]
+    },
+    {
+      "id": "lisensi-nupack",
+      "question": "Apakah NUPACK dipakai sebagai pembanding lipatan?",
+      "choice": "Tidak dipakai",
+      "label": "PERKIRAAN",
+      "rationale": "Lisensi akademiknya melarang redistribusi, sehingga tidak bisa dipasang oleh CI publik maupun disertakan dalam lingkungan yang dibagikan.\n",
+      "consequence": "Pembanding lipatan memakai LinearFold dan MXfold2.",
+      "refs": []
+    },
+    {
+      "id": "kemurnian",
+      "question": "Mengapa kontaminasi RNA linear diperlakukan sebagai kriteria, bukan detail teknis?",
+      "choice": "Kemurnian masuk sebagai kriteria desain sejak Tahap 0",
+      "label": "LITERATUR",
+      "rationale": "Wesselhoeft et al. (2019) menemukan imunogenisitas dan stabilitas ekspresi circRNA bergantung pada kemurnian: sedikit saja RNA linear yang mengontaminasi sudah memicu respons imun seluler yang kuat.\n",
+      "consequence": "Filter statistik BSJ mendiskualifikasi bacaan yang dapat dijelaskan referensi linear, dan jumlah bacaan terdiskualifikasi dilaporkan sebagai peringatan bahwa konstruk terlalu repetitif.\n",
+      "refs": [
+        "wesselhoeft2019"
+      ]
+    },
+    {
+      "id": "ml-pembanding",
+      "question": "Bagaimana prediktor berbasis pembelajaran mesin diperlakukan?",
+      "choice": "Sebagai pembanding berlabel eksperimental, bukan pengganti termodinamika",
+      "label": "LITERATUR",
+      "rationale": "DeepCIP (Zhou et al. 2023) dilatih khusus untuk IRES circRNA, dan LAMAR (Zhou et al. 2025), model bahasa RNA yang dilatih pada sekitar 15 juta sekuens dari 225 mamalia dan 1569 virus, melaporkan penyaringan in silico yang menemukan IRES aktif tinggi pendorong translasi circRNA. Keduanya menjanjikan, tetapi belum divalidasi pada konstruk PIE-HBsAg.\n",
+      "consequence": "Bila peringkat model bertentangan dengan peringkat termodinamika, yang dilaporkan adalah pertentangannya, bukan yang hasilnya lebih enak dibaca.\n",
+      "refs": [
+        "zhou2023",
+        "zhou2025"
+      ]
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "A01",
+      "assumption": "Antigen yang dipakai adalah S-HBsAg 226 aa, bukan M atau L",
+      "why": "Paling ringkas, membentuk partikel subviral sendiri, memuat determinan 'a' yang menjadi sasaran antibodi penetral, dan punya pembanding klinis pada vaksin rekombinan terlisensi",
+      "impact_if_wrong": "Epitop pada preS1/preS2 tidak terwakili, sehingga cakupan respons imun lebih sempit daripada yang diperkirakan",
+      "verify": "Bandingkan cakupan epitop prediksi S vs L/M/S setelah sekuens asli tersedia"
+    },
+    {
+      "id": "A02",
+      "assumption": "Subgenotipe sasaran adalah B3",
+      "why": "Thedja 2011 menemukan B3 dominan di paruh barat kepulauan Indonesia yang berpenduduk paling banyak",
+      "impact_if_wrong": "Kecocokan epitop menurun pada populasi Papua dan Maluku yang didominasi genotipe C",
+      "verify": "Hitung identitas determinan 'a' konstruk terhadap konsensus C; bila selisihnya besar, pertimbangkan konstruk kedua"
+    },
+    {
+      "id": "A03",
+      "assumption": "Satu IRES, yaitu CVB3",
+      "why": "CVB3 memberi ekspresi ~1,5x EMCV pada konstruk PIE dan efikasi IRES lain berubah drastis dengan ORF berbeda (Wesselhoeft 2018)",
+      "impact_if_wrong": "Ekspresi lebih rendah daripada yang bisa dicapai IRES lain untuk ORF HBsAg spesifik ini",
+      "verify": "Uji reporter paralel dengan dua IRES pada arsitektur identik di tahap in vitro"
+    },
+    {
+      "id": "A04",
+      "assumption": "Ambang ΔG pasangan lengan homologi −8 sampai −25 kcal/mol pada 55 °C",
+      "why": "Di atas −8 pasangan tidak bertahan pada suhu reaksi; jauh di bawah −25 berisiko mengunci konformasi",
+      "impact_if_wrong": "Uji 3 Gate 0 memberi REVISE pada konstruk yang sebenarnya baik, atau meloloskan yang buruk",
+      "verify": "[PERLU VERIFIKASI] cari data efisiensi sirkularisasi PIE terhadap kekuatan pasangan lengan"
+    },
+    {
+      "id": "A05",
+      "assumption": "Ambang panjang dsRNA menerus 30 bp sebagai batas risiko sensor imun",
+      "why": "Angka ~30 bp dipakai luas sebagai panjang duplex minimal pengaktif PKR",
+      "impact_if_wrong": "Konstruk dinilai aman padahal memicu respons bawaan, atau sebaliknya ditolak tanpa perlu",
+      "verify": "[PERLU VERIFIKASI] cari 'minimal dsRNA length PKR activation' pada sumber primer"
+    },
+    {
+      "id": "A06",
+      "assumption": "Ambang integritas struktur IRES 0,80",
+      "why": "Perlu satu angka agar uji bisa memberi verdict; 0,80 menyisakan toleransi untuk perbedaan tepi domain",
+      "impact_if_wrong": "IRES yang terganggu diloloskan, dan konstruk menjadi lingkaran yang diam secara translasi",
+      "verify": "[PERLU VERIFIKASI] bandingkan dengan data aktivitas IRES terhadap gangguan struktur terukur"
+    },
+    {
+      "id": "A07",
+      "assumption": "Tabel penggunaan kodon manusia yang disertakan cukup untuk peringkat antar-varian",
+      "why": "Nilai CAI relatif antar-varian stabil terhadap pilihan tabel, meskipun CAI absolut tidak",
+      "impact_if_wrong": "Nilai CAI absolut yang dilaporkan menyesatkan",
+      "verify": "Hitung ulang tabel dari korpus CDS inang dengan `circhbsag codon-table` dan bandingkan peringkatnya"
+    },
+    {
+      "id": "A08",
+      "assumption": "Prediksi termodinamika cukup sebagai dasar keputusan Gate 0",
+      "why": "Tidak ada data eksperimen pada tahap ini, dan model termodinamika adalah satu-satunya alat yang bisa dijalankan ulang oleh penguji",
+      "impact_if_wrong": "Konstruk yang lulus Gate 0 tetap gagal di laboratorium, khususnya karena model ini tidak menangani pseudoknot dan struktur tersier IRES",
+      "verify": "Uji sirkularisasi in vitro; bandingkan peringkat varian prediksi dengan efisiensi terukur"
+    },
+    {
+      "id": "A09",
+      "assumption": "Repositori dibuat publik",
+      "why": "GitHub Pages dan Actions gratis tanpa batas menit hanya untuk repositori publik, dan BLOK 8 meminta repo publik",
+      "impact_if_wrong": "Situs progres tidak bisa diakses publik tanpa paket berbayar",
+      "verify": "Cek halaman penagihan GitHub dan status Pages setelah repo dibuat"
+    },
+    {
+      "id": "A10",
+      "assumption": "Kode, nama berkas, dan README ditulis dalam bahasa Inggris; dokumen TA dan laporan dalam bahasa Indonesia",
+      "why": "Aturan bahasa BLOK 1",
+      "impact_if_wrong": "Repositori terbaca campur; penguji bisa menganggapnya tidak konsisten",
+      "verify": "Modul lama masih memuat docstring bahasa Indonesia; lihat Open Questions Q07"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "Q01",
+      "question": "Berapa bit score dan E-value cmsearch konstruk ini terhadap Rfam RF00028, dan apakah P1–P10 lengkap?",
+      "answered_by": "Pasang Infernal di macOS, unduh RF00028, jalankan cmsearch (perintahnya ada di laporan Gate 0 Uji 2)",
+      "blocking": "Gate 0 tidak boleh dinyatakan lulus sebelum ini terjawab"
+    },
+    {
+      "id": "Q02",
+      "question": "Accession, versi, dan tanggal akses sekuens HBsAg, IRES CVB3, dan intron Anabaena yang dipakai?",
+      "answered_by": "Unduh dari NCBI/ENA di macOS; sesi cloud ini ditolak proxy",
+      "blocking": "Semua angka tetap berlabel DEMO sampai ini terisi"
+    },
+    {
+      "id": "Q03",
+      "question": "Apakah determinan 'a' tetap utuh setelah optimasi kodon pada sekuens asli?",
+      "answered_by": "Jalankan `circhbsag codon` lalu bandingkan terjemahan terhadap konsensus subgenotipe",
+      "blocking": "tidak memblokir Gate 0, memblokir klaim imunogenisitas"
+    },
+    {
+      "id": "Q04",
+      "question": "Berapa cakupan populasi epitop kelas I dan II pada panel alel HLA Indonesia?",
+      "answered_by": "NetMHCpan-4.1 dan NetMHCIIpan-4.0 lokal, dengan frekuensi alel dari AFND",
+      "blocking": "memblokir daftar peptida untuk ELISpot di protokol in vivo"
+    },
+    {
+      "id": "Q05",
+      "question": "Apakah ambang ΔG lengan homologi dan ambang dsRNA 30 bp punya dukungan sumber primer?",
+      "answered_by": "Pencarian literatur terarah; lihat Assumption Register A04 dan A05",
+      "blocking": "tidak memblokir, tetapi harus ditulis sebagai keterbatasan"
+    },
+    {
+      "id": "Q06",
+      "question": "Apakah peringkat varian dari prediktor pembelajaran mesin (DeepCIP, LinearFold, MXfold2) sejalan dengan peringkat termodinamika?",
+      "answered_by": "Pasang ketiganya di macOS dan jalankan pada varian yang sama",
+      "blocking": "tidak memblokir; menambah bukti keyakinan"
+    },
+    {
+      "id": "Q07",
+      "question": "Kapan docstring modul lama dikonversi ke bahasa Inggris sesuai aturan bahasa BLOK 1?",
+      "answered_by": "Konversi bertahap; modul baru (gate0.py) sudah berbahasa Inggris",
+      "blocking": "tidak memblokir fungsi apa pun"
+    },
+    {
+      "id": "Q08",
+      "question": "Apakah konstruk reporter paralel (GLuc atau EGFP) perlu melewati Gate 0 sendiri?",
+      "answered_by": "Jalankan pipeline yang sama dengan ORF reporter; arsitekturnya identik sehingga hanya ORF yang berubah",
+      "blocking": "memblokir perbandingan kinetika translasi di tahap in vitro"
+    }
+  ],
+  "software": [
+    {
+      "name": "ViennaRNA",
+      "role": "Termodinamika acuan: RNAfold, RNAplfold, RNAduplex, RNAcofold",
+      "version": "2.8.0",
+      "license": "ViennaRNA License (gratis untuk akademik dan non-komersial)",
+      "url": "https://www.tbi.univie.ac.at/RNA/",
+      "macos": "osx-arm64 dan osx-64 (conda-forge / bioconda)",
+      "used": true
+    },
+    {
+      "name": "primer3 / primer3-py",
+      "role": "Desain primer divergen, konvergen, dan BSJ",
+      "version": "2.4.0",
+      "license": "GPLv2",
+      "url": "https://primer3.org/",
+      "macos": "osx-arm64",
+      "used": true
+    },
+    {
+      "name": "Biopython",
+      "role": "I/O sekuens, verifikasi ORF, terjemahan",
+      "version": "1.88",
+      "license": "Biopython License (mirip MIT)",
+      "url": "https://biopython.org/",
+      "macos": "osx-arm64",
+      "used": true
+    },
+    {
+      "name": "Optuna",
+      "role": "Optimasi multi-objektif NSGA-II",
+      "version": "5.1.0",
+      "license": "MIT",
+      "url": "https://optuna.org/",
+      "macos": "osx-arm64",
+      "used": true
+    },
+    {
+      "name": "Snakemake",
+      "role": "Orkestrasi alur, satu aturan satu tanggung jawab",
+      "version": "9.27.2",
+      "license": "MIT",
+      "url": "https://snakemake.github.io/",
+      "macos": "osx-arm64",
+      "used": true
+    },
+    {
+      "name": "NumPy / pandas / SciPy",
+      "role": "Numerik dan tabel",
+      "version": "2.5.3",
+      "license": "BSD-3-Clause",
+      "url": "https://numpy.org/",
+      "macos": "osx-arm64",
+      "used": true
+    },
+    {
+      "name": "Streamlit",
+      "role": "Antarmuka web interaktif Tahap 0",
+      "version": "1.67.0",
+      "license": "Apache-2.0",
+      "url": "https://streamlit.io/",
+      "macos": "osx-arm64",
+      "used": true
+    },
+    {
+      "name": "python-docx",
+      "role": "Pembuatan dokumen TA .docx dari sumber tunggal",
+      "version": "1.2.0",
+      "license": "MIT",
+      "url": "https://python-docx.readthedocs.io/",
+      "macos": "osx-arm64",
+      "used": true
+    },
+    {
+      "name": "python-pptx",
+      "role": "Pembuatan naskah dek .pptx untuk diimpor ke Canva",
+      "version": "1.0.2",
+      "license": "MIT",
+      "url": "https://python-pptx.readthedocs.io/",
+      "macos": "osx-arm64",
+      "used": true
+    },
+    {
+      "name": "Infernal (cmsearch)",
+      "role": "Uji 2 Gate 0: integritas ribozim intron grup I terhadap Rfam RF00028",
+      "version": "[PERLU VERIFIKASI] belum terpasang di sesi ini",
+      "license": "BSD-3-Clause",
+      "url": "http://eddylab.org/infernal/",
+      "macos": "osx-64 dan osx-arm64 (bioconda)",
+      "used": false,
+      "note": "Wajib untuk Uji 2. Sesi ini tidak bisa menjangkau Rfam (EBI diblokir proxy), jadi Uji 2 harus dijalankan di macOS."
+    },
+    {
+      "name": "Rfam RF00028 (covariance model)",
+      "role": "Model kovarians intron katalitik grup I",
+      "version": "[PERLU VERIFIKASI] unduh dari Rfam dan catat versinya",
+      "license": "CC0 (data Rfam)",
+      "url": "https://rfam.org/family/RF00028",
+      "macos": "berkas data",
+      "used": false
+    },
+    {
+      "name": "MAFFT",
+      "role": "Penyejajaran berganda genotipe HBV",
+      "version": "[PERLU VERIFIKASI]",
+      "license": "BSD",
+      "url": "https://mafft.cbrc.jp/alignment/software/",
+      "macos": "osx-arm64 (bioconda)",
+      "used": false
+    },
+    {
+      "name": "DNA Chisel",
+      "role": "Optimasi kodon berbasis constraint (mesin utama menurut BLOK 4.2)",
+      "version": "[PERLU VERIFIKASI]",
+      "license": "MIT",
+      "url": "https://github.com/Edinburgh-Genome-Foundry/DnaChisel",
+      "macos": "pip, osx-arm64",
+      "used": false,
+      "note": "Belum diintegrasikan; optimasi kodon saat ini memakai pendakian bukit internal."
+    },
+    {
+      "name": "BLAST+",
+      "role": "Homologi off-target terhadap genom manusia",
+      "version": "terdeteksi-saat-jalan",
+      "license": "Public domain (karya pemerintah AS)",
+      "url": "https://blast.ncbi.nlm.nih.gov/",
+      "macos": "osx-64 (Rosetta 2)",
+      "used": true
+    },
+    {
+      "name": "BepiPred-3.0 / NetMHCpan-4.1 / NetMHCIIpan-4.0 (IEDB)",
+      "role": "Prediksi epitop sel B dan sel T",
+      "version": "[PERLU VERIFIKASI]",
+      "license": "Gratis untuk akademik; redistribusi dilarang",
+      "url": "https://services.healthtech.dtu.dk/",
+      "macos": "unduh dengan akun akademik",
+      "used": false,
+      "note": "Tidak bisa dipasang oleh CI publik karena larangan redistribusi; jalankan lokal dan simpan hanya hasilnya."
+    },
+    {
+      "name": "Allele Frequency Net Database (AFND)",
+      "role": "Frekuensi alel HLA populasi Indonesia untuk cakupan populasi",
+      "version": "[PERLU VERIFIKASI]",
+      "license": "Gratis, perlu pendaftaran",
+      "url": "http://www.allelefrequencies.net/",
+      "macos": "data web",
+      "used": false
+    },
+    {
+      "name": "LinearFold",
+      "role": "Pembanding lipatan berbasis pembelajaran mesin",
+      "version": "[PERLU VERIFIKASI]",
+      "license": "Gratis untuk akademik; komersial perlu izin",
+      "url": "https://github.com/LinearFold/LinearFold",
+      "macos": "kompilasi dari sumber",
+      "used": false
+    },
+    {
+      "name": "MXfold2",
+      "role": "Pembanding lipatan berbasis pembelajaran mesin",
+      "version": "[PERLU VERIFIKASI]",
+      "license": "MIT",
+      "url": "https://github.com/mxfold/mxfold2",
+      "macos": "pip, osx-arm64",
+      "used": false
+    },
+    {
+      "name": "DeepCIP",
+      "role": "Prediksi IRES khusus circRNA sebagai pembanding",
+      "version": "[PERLU VERIFIKASI]",
+      "license": "[PERLU VERIFIKASI] periksa berkas lisensi di repositori sebelum dipakai",
+      "url": "https://github.com/zjupgx/DeepCIP",
+      "macos": "PyTorch, osx-arm64",
+      "used": false
+    }
+  ],
+  "software_not_used": [
+    {
+      "name": "LinearDesign",
+      "reason": "Lisensinya membatasi penggunaan komersial",
+      "cost": "Zhang et al. 2023 melaporkan kenaikan titer antibodi hingga 128x dibanding pembanding optimasi kodon; penolakan ini pengorbanan nyata"
+    },
+    {
+      "name": "NUPACK",
+      "reason": "Lisensi akademik melarang redistribusi, sehingga tidak bisa dipakai CI publik",
+      "cost": "Pemeriksaan heterodimer/hairpin oligo memakai ViennaRNA RNAduplex/RNAcofold sebagai padanan gratis"
+    },
+    {
+      "name": "Geneious / CLC Workbench / SnapGene berbayar / DNASTAR",
+      "reason": "Berbayar",
+      "cost": "Padanan gratis: ApE (A plasmid Editor), SnapGene Viewer, atau Benchling free tier untuk peta plasmid"
+    }
+  ],
+  "references": {
+    "wesselhoeft2018": {
+      "authors": "Wesselhoeft RA, Kowalski PS, Anderson DG",
+      "title": "Engineering circular RNA for potent and stable translation in eukaryotic cells",
+      "journal": "Nature Communications",
+      "year": 2018,
+      "citation": "9(1):2629",
+      "pmid": "29980667",
+      "doi": "10.1038/s41467-018-05096-6"
+    },
+    "wesselhoeft2019": {
+      "authors": "Wesselhoeft RA, Kowalski PS, Parker-Hale FC, Huang Y, Bisaria N, Anderson DG",
+      "title": "RNA circularization diminishes immunogenicity and can extend translation duration in vivo",
+      "journal": "Molecular Cell",
+      "year": 2019,
+      "citation": "74(3):508-520.e4",
+      "pmid": "30902547",
+      "doi": "10.1016/j.molcel.2019.02.015"
+    },
+    "zhang2023": {
+      "authors": "Zhang H, Zhang L, Lin A, et al.",
+      "title": "Algorithm for optimized mRNA design improves stability and immunogenicity",
+      "journal": "Nature",
+      "year": 2023,
+      "citation": "621(7978):396-403",
+      "pmid": "37130545",
+      "doi": "10.1038/s41586-023-06127-z"
+    },
+    "thedja2011": {
+      "authors": "Thedja MD, Muljono DH, Nurainy N, Sukowati CHC, Verhoef J, Marzuki S",
+      "title": "Ethnogeographical structure of hepatitis B virus genotype distribution in Indonesia and discovery of a new subgenotype, B9",
+      "journal": "Archives of Virology",
+      "year": 2011,
+      "citation": "156(5):855-868",
+      "pmid": "21318309",
+      "doi": "10.1007/s00705-011-0926-y"
+    },
+    "thedja2015": {
+      "authors": "Thedja MD, Muljono DH, Ie SI, Sidarta E, Turyadi, Verhoef J, Marzuki S",
+      "title": "Genogeography and immune epitope characteristics of hepatitis B virus genotype C reveals two distinct types: Asian and Papua-Pacific",
+      "journal": "PLoS ONE",
+      "year": 2015,
+      "citation": "10(7):e0132533",
+      "pmid": "26162099",
+      "doi": "10.1371/journal.pone.0132533"
+    },
+    "reynisson2020": {
+      "authors": "Reynisson B, Alvarez B, Paul S, Peters B, Nielsen M",
+      "title": "NetMHCpan-4.1 and NetMHCIIpan-4.0: improved predictions of MHC antigen presentation by concurrent motif deconvolution and integration of MS MHC eluted ligand data",
+      "journal": "Nucleic Acids Research",
+      "year": 2020,
+      "citation": "48(W1):W449-W454",
+      "pmid": "32406916",
+      "doi": "10.1093/nar/gkaa379"
+    },
+    "zhou2023": {
+      "authors": "Zhou Y, Wu J, Yao S, Xu Y, Zhao W, Tong Y, Zhou Z",
+      "title": "DeepCIP: a multimodal deep learning method for the prediction of internal ribosome entry sites of circRNAs",
+      "journal": "Computers in Biology and Medicine",
+      "year": 2023,
+      "citation": "164:107288",
+      "pmid": "37542919",
+      "doi": "10.1016/j.compbiomed.2023.107288"
+    },
+    "zhou2025": {
+      "authors": "Zhou H, Hu Y, Zheng Y, et al.",
+      "title": "A foundation language model to decipher diverse regulation of RNAs",
+      "journal": "Genome Biology",
+      "year": 2025,
+      "citation": "26(1):301",
+      "pmid": "40993693",
+      "doi": "10.1186/s13059-025-03752-x"
+    },
+    "zhu2025": {
+      "authors": "Zhu Z, Liang X, Ma R, Yin S, Xu M, Li G",
+      "title": "CircCode3: integrating deep learning to mine and evaluate translatable circular RNAs from ribosome profiling sequencing and mass spectrometry data",
+      "journal": "Briefings in Bioinformatics",
+      "year": 2025,
+      "citation": "26(5):bbaf458",
+      "pmid": "40966647",
+      "doi": "10.1093/bib/bbaf458"
+    },
+    "meierstephenson2018": {
+      "authors": "Meier-Stephenson V, Bremner WTR, Dalton CS, van Marle G, Coffin CS, Patel TR",
+      "title": "Comprehensive analysis of hepatitis B virus promoter region mutations",
+      "journal": "Viruses",
+      "year": 2018,
+      "citation": "10(11):603",
+      "pmid": "30388827",
+      "doi": "10.3390/v10110603"
+    }
+  },
+  "references_retrieved": "2026-11-17"
+}

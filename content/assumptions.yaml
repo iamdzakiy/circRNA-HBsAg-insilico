@@ -1,0 +1,54 @@
+# SUMBER TUNGGAL — Assumption Register (tabel wajib BLOK 12).
+# Setiap asumsi: alasan diambil, dampak bila salah, dan cara memverifikasinya.
+# Semua keluaran menyalin tabel ini apa adanya; jangan menulis ulang per dokumen.
+assumptions:
+  - id: A01
+    assumption: "Antigen yang dipakai adalah S-HBsAg 226 aa, bukan M atau L"
+    why: "Paling ringkas, membentuk partikel subviral sendiri, memuat determinan 'a' yang menjadi sasaran antibodi penetral, dan punya pembanding klinis pada vaksin rekombinan terlisensi"
+    impact_if_wrong: "Epitop pada preS1/preS2 tidak terwakili, sehingga cakupan respons imun lebih sempit daripada yang diperkirakan"
+    verify: "Bandingkan cakupan epitop prediksi S vs L/M/S setelah sekuens asli tersedia"
+  - id: A02
+    assumption: "Subgenotipe sasaran adalah B3"
+    why: "Thedja 2011 menemukan B3 dominan di paruh barat kepulauan Indonesia yang berpenduduk paling banyak"
+    impact_if_wrong: "Kecocokan epitop menurun pada populasi Papua dan Maluku yang didominasi genotipe C"
+    verify: "Hitung identitas determinan 'a' konstruk terhadap konsensus C; bila selisihnya besar, pertimbangkan konstruk kedua"
+  - id: A03
+    assumption: "Satu IRES, yaitu CVB3"
+    why: "CVB3 memberi ekspresi ~1,5x EMCV pada konstruk PIE dan efikasi IRES lain berubah drastis dengan ORF berbeda (Wesselhoeft 2018)"
+    impact_if_wrong: "Ekspresi lebih rendah daripada yang bisa dicapai IRES lain untuk ORF HBsAg spesifik ini"
+    verify: "Uji reporter paralel dengan dua IRES pada arsitektur identik di tahap in vitro"
+  - id: A04
+    assumption: "Ambang ΔG pasangan lengan homologi −8 sampai −25 kcal/mol pada 55 °C"
+    why: "Di atas −8 pasangan tidak bertahan pada suhu reaksi; jauh di bawah −25 berisiko mengunci konformasi"
+    impact_if_wrong: "Uji 3 Gate 0 memberi REVISE pada konstruk yang sebenarnya baik, atau meloloskan yang buruk"
+    verify: "[PERLU VERIFIKASI] cari data efisiensi sirkularisasi PIE terhadap kekuatan pasangan lengan"
+  - id: A05
+    assumption: "Ambang panjang dsRNA menerus 30 bp sebagai batas risiko sensor imun"
+    why: "Angka ~30 bp dipakai luas sebagai panjang duplex minimal pengaktif PKR"
+    impact_if_wrong: "Konstruk dinilai aman padahal memicu respons bawaan, atau sebaliknya ditolak tanpa perlu"
+    verify: "[PERLU VERIFIKASI] cari 'minimal dsRNA length PKR activation' pada sumber primer"
+  - id: A06
+    assumption: "Ambang integritas struktur IRES 0,80"
+    why: "Perlu satu angka agar uji bisa memberi verdict; 0,80 menyisakan toleransi untuk perbedaan tepi domain"
+    impact_if_wrong: "IRES yang terganggu diloloskan, dan konstruk menjadi lingkaran yang diam secara translasi"
+    verify: "[PERLU VERIFIKASI] bandingkan dengan data aktivitas IRES terhadap gangguan struktur terukur"
+  - id: A07
+    assumption: "Tabel penggunaan kodon manusia yang disertakan cukup untuk peringkat antar-varian"
+    why: "Nilai CAI relatif antar-varian stabil terhadap pilihan tabel, meskipun CAI absolut tidak"
+    impact_if_wrong: "Nilai CAI absolut yang dilaporkan menyesatkan"
+    verify: "Hitung ulang tabel dari korpus CDS inang dengan `circhbsag codon-table` dan bandingkan peringkatnya"
+  - id: A08
+    assumption: "Prediksi termodinamika cukup sebagai dasar keputusan Gate 0"
+    why: "Tidak ada data eksperimen pada tahap ini, dan model termodinamika adalah satu-satunya alat yang bisa dijalankan ulang oleh penguji"
+    impact_if_wrong: "Konstruk yang lulus Gate 0 tetap gagal di laboratorium, khususnya karena model ini tidak menangani pseudoknot dan struktur tersier IRES"
+    verify: "Uji sirkularisasi in vitro; bandingkan peringkat varian prediksi dengan efisiensi terukur"
+  - id: A09
+    assumption: "Repositori dibuat publik"
+    why: "GitHub Pages dan Actions gratis tanpa batas menit hanya untuk repositori publik, dan BLOK 8 meminta repo publik"
+    impact_if_wrong: "Situs progres tidak bisa diakses publik tanpa paket berbayar"
+    verify: "Cek halaman penagihan GitHub dan status Pages setelah repo dibuat"
+  - id: A10
+    assumption: "Kode, nama berkas, dan README ditulis dalam bahasa Inggris; dokumen TA dan laporan dalam bahasa Indonesia"
+    why: "Aturan bahasa BLOK 1"
+    impact_if_wrong: "Repositori terbaca campur; penguji bisa menganggapnya tidak konsisten"
+    verify: "Modul lama masih memuat docstring bahasa Indonesia; lihat Open Questions Q07"
