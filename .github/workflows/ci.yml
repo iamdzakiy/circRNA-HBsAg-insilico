@@ -93,7 +93,7 @@ jobs:
           python - <<'PY'
           import json, sys
           d = json.load(open("results/ci/tahap0.json"))
-          assert "[UJI PERANGKAT LUNAK]" in d["data_label"], d["data_label"]
+          assert "[DEMO — SEKUENS PLACEHOLDER]" in d["data_label"], d["data_label"]
           dec = d["results"]["decision"]
           assert dec["verdict"] in {"GO", "GO-BERSYARAT", "NO-GO"}
           assert abs(sum(c["weight"] for c in dec["criteria"]) - 1.0) < 1e-9

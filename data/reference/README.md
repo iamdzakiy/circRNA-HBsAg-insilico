@@ -75,4 +75,4 @@ circhbsag tahap0 --parts config/parts.yaml --out results   # harus jalan tanpa g
 snakemake --cores 4                                        # alur lengkap
 ```
 
-Laporan akan berlabel `[HASIL IN SILICO]`, bukan `[UJI PERANGKAT LUNAK]`.
+Laporan akan berlabel `[HASIL IN SILICO]`, bukan `[DEMO — SEKUENS PLACEHOLDER]`.

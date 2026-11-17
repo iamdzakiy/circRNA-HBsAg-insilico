@@ -76,7 +76,7 @@ def test_inline_parts_have_provenance_status():
 def test_load_protein_from_example():
     protein, pmeta = parts_mod.load_protein(EXAMPLE_CFG)
     assert protein.startswith("M")
-    assert pmeta["length_aa"] == 150
+    assert pmeta["length_aa"] == 226  # panjang disamakan dengan SHBs
     assert pmeta["synthetic"] is True
 
 
@@ -110,8 +110,8 @@ def test_envelope_metadata(built_report):
 
 
 def test_synthetic_input_is_labelled_as_software_test(built_report):
-    assert "[UJI PERANGKAT LUNAK]" in built_report["data_label"]
-    assert "TIDAK boleh dikutip" in built_report["data_label"]
+    assert "[DEMO — SEKUENS PLACEHOLDER]" in built_report["data_label"]
+    assert "tidak boleh dikutip" in built_report["data_label"]
 
 
 def test_user_supplied_input_is_labelled_in_silico_result():
@@ -180,7 +180,7 @@ def test_cli_tahap0_writes_reports(tmp_path):
         assert (out / name).exists()
     data = json.loads((out / "tahap0.json").read_text())
     assert data["results"]["decision"]["verdict"] in {"GO", "GO-BERSYARAT", "NO-GO"}
-    assert "[UJI PERANGKAT LUNAK]" in data["data_label"]
+    assert "[DEMO — SEKUENS PLACEHOLDER]" in data["data_label"]
 
 
 def test_cli_codon_writes_fasta(tmp_path):

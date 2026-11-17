@@ -37,8 +37,11 @@ def envelope(payload: dict, *, provenance: dict | None = None, seed: int | None 
         "data_label": (
             "[HASIL IN SILICO] — sekuens masukan disediakan pengguna"
             if not synthetic
-            else "[UJI PERANGKAT LUNAK] — memuat sekuens SINTETIS; "
-            "angka di bawah TIDAK boleh dikutip sebagai hasil ilmiah"
+            else "[DEMO — SEKUENS PLACEHOLDER] — konstruk ini memakai sekuens "
+            "yang dibangkitkan acak, BUKAN sekuens GenBank. Angka di bawah "
+            "mengilustrasikan ALUR KERJA pipeline, bukan sifat konstruk "
+            "circRNA-HBsAg yang sebenarnya, dan tidak boleh dikutip sebagai "
+            "hasil ilmiah maupun dimasukkan ke dokumen tugas akhir sebagai temuan."
         ),
         "tool_licenses": licenses(),
         "results": payload,

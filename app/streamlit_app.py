@@ -7,7 +7,7 @@ Lisensi Streamlit: Apache-2.0.
 
 Catatan provenans: apa pun yang Anda tempel di sini diperlakukan sebagai
 masukan yang Anda sediakan sendiri. Bila Anda memakai tombol "Muat data contoh",
-seluruh keluaran dilabeli [UJI PERANGKAT LUNAK] karena data contoh adalah
+seluruh keluaran dilabeli [DEMO — SEKUENS PLACEHOLDER] karena data contoh adalah
 sekuens acak, bukan sekuens biologis.
 """
 from __future__ import annotations
@@ -153,7 +153,8 @@ if st.session_state["synthetic"]:
         "**Sesi ini memakai data contoh SINTETIS.** Sekuens contoh dibangkitkan "
         "acak dengan seed tetap dan bukan sekuens biologis: tidak ada nukleotida "
         "dari CVB3, dari intron Anabaena, maupun dari HBV. Seluruh keluaran "
-        "dilabeli [UJI PERANGKAT LUNAK] dan tidak boleh dikutip sebagai hasil ilmiah.",
+        "dilabeli [DEMO — SEKUENS PLACEHOLDER], mengilustrasikan alur kerja dan bukan "
+        "sifat konstruk circRNA-HBsAg yang sebenarnya.",
         icon="⚠️",
     )
 

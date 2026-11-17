@@ -30,7 +30,7 @@ jalankan `circhbsag licenses`.
    dihitung saat dijalankan oleh ViennaRNA, primer3, atau kode di repositori
    ini. Versi tiap alat dicatat di setiap berkas JSON.
 3. **Setiap laporan membawa label provenans.** Bila satu saja bagian masukan
-   bertanda sintetis, seluruh laporan dilabeli `[UJI PERANGKAT LUNAK]` dan
+   bertanda sintetis, seluruh laporan dilabeli `[DEMO — SEKUENS PLACEHOLDER]` dan
    menyatakan bahwa angkanya tidak boleh dikutip sebagai hasil ilmiah. Dengan
    masukan Anda sendiri, labelnya `[HASIL IN SILICO]`.
 
@@ -44,15 +44,15 @@ mamba env create -f environment.yml && conda activate circhbsag
 #   atau: python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 pip install -e .
 
-# 2. Jalankan pada DATA CONTOH SINTETIS (tanpa unduhan, untuk menguji pemasangan)
-snakemake --cores 4 --config parts=config/parts.example.yaml outdir=results/example
+# 2. Jalankan DEMO dengan sekuens placeholder (tanpa unduhan apa pun)
+snakemake --cores 4 --config parts=config/parts.example.yaml outdir=results/demo
 
 # 3. Lihat hasilnya
-cat results/example/SUMMARY.md
-open results/example/tahap0.html      # laporan lengkap, HTML mandiri
+cat results/demo/SUMMARY.md
+open results/demo/tahap0.html         # laporan lengkap, HTML mandiri
 
 # 4. Tes
-pytest -q                              # 102 tes
+pytest -q                              # 109 tes
 ```
 
 Untuk **analisis sungguhan**: isi `data/reference/` (lihat
@@ -62,6 +62,30 @@ Untuk **analisis sungguhan**: isi `data/reference/` (lihat
 ```bash
 snakemake --cores 4                    # memakai config/parts.yaml (provenance_policy: strict)
 ```
+
+### Apa arti angka pada jalankan DEMO
+
+Jalankan demo di atas memakai `config/parts.example.yaml`, yang seluruh
+bagiannya ditandai `synthetic: true` dan dibangkitkan secara deterministik oleh
+`data/example/make_example.py`. **Tidak satu nukleotida pun berasal dari CVB3,
+dari intron grup I Anabaena, maupun dari genom HBV.** Panjang tiap bagian
+disamakan dengan konstruk sungguhan (protein demo 226 aa, sepanjang SHBs;
+lingkaran 1407 nt) semata agar dimensi alurnya sebanding.
+
+Karena itu angka yang keluar — skor komposit, MFE, aksesibilitas, CAI, jumlah
+situs m6A, presisi filter BSJ — **mengilustrasikan bahwa alur kerjanya berjalan,
+bukan sifat konstruk circRNA-HBsAg yang sebenarnya.** Angka itu tidak boleh
+dikutip di dokumen tugas akhir sebagai temuan. Setiap laporan yang dihasilkan
+dari konfigurasi ini membawa label `[DEMO — SEKUENS PLACEHOLDER]` di kepala
+berkas, dan langkah `workflow` pada CI memastikan label itu benar-benar muncul.
+
+Untuk rujukan, jalankan demo pada commit ini menghasilkan keputusan
+**GO-BERSYARAT dengan skor komposit 0.6200** (tidak ada gerbang keras yang
+gagal); subskor terendah adalah `dsrna_burden` 0.185 dan
+`start_codon_accessibility` 0.336. Pola itu wajar untuk sekuens acak, yang tidak
+punya alasan apa pun untuk menjaga kodon awal tetap terbuka — dan justru itulah
+yang ditunjukkan: mekanisme penilaiannya bekerja dan menghukum konstruk yang
+belum dioptimasi. Angka pada sekuens Anda sendiri akan berbeda.
 
 ### Antarmuka web
 

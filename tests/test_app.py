@@ -41,7 +41,7 @@ def test_load_example_warns_about_synthetic_data():
     assert at.session_state["synthetic"] is True
     joined = " ".join(w.value for w in at.warning)
     assert "SINTETIS" in joined
-    assert "UJI PERANGKAT LUNAK" in joined
+    assert "SEKUENS PLACEHOLDER" in joined
     # Semua bagian wajib terisi.
     for key in ("intron_3half", "E2", "IRES", "ORF", "E1", "intron_5half"):
         assert at.session_state[f"seq_{key}"].strip()
@@ -64,7 +64,7 @@ def test_run_produces_verdict_and_labels_results_as_software_test():
     res = at.session_state["results"]
     assert res is not None
     rep = res["report"]
-    assert "[UJI PERANGKAT LUNAK]" in rep["data_label"]
+    assert "[DEMO — SEKUENS PLACEHOLDER]" in rep["data_label"]
     dec = rep["results"]["decision"]
     assert dec["verdict"] in {"GO", "GO-BERSYARAT", "NO-GO"}
     assert 0.0 <= dec["composite_score"] <= 1.0

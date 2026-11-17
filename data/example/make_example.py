@@ -11,7 +11,7 @@ PENTING — baca sebelum memakai:
   pipeline, tes, CI, dan antarmuka web dapat dijalankan tanpa jaringan.
 
   Angka apa pun yang dihasilkan dari data ini HANYA sah sebagai uji perangkat
-  lunak, dan dilabeli [UJI PERANGKAT LUNAK] oleh modul report. Angka tersebut
+  lunak, dan dilabeli [DEMO — SEKUENS PLACEHOLDER] oleh modul report. Angka tersebut
   TIDAK BOLEH masuk ke dokumen tugas akhir sebagai hasil ilmiah.
 
   Untuk hasil sungguhan, ganti berkas di data/reference/ dengan sekuens
@@ -99,10 +99,18 @@ def main() -> None:
     write_fa(HERE / "ires_demo.fa", "DEMO_IRES", f"{tag} blok berstruktur 600 nt", structured_block(600, rng))
 
     # Protein demo: BUKAN HBsAg. Dibangkitkan acak dari asam amino umum.
+    #
+    # Panjangnya ditetapkan 226 residu, yaitu panjang protein S-HBsAg kecil
+    # (SHBs), SEMATA agar dimensi konstruk demo (panjang ORF ~681 nt dan
+    # panjang lingkaran total) sebanding dengan konstruk sungguhan, sehingga
+    # angka MFE/nt, beban dsRNA, dan ukuran amplikon yang dihasilkan demo
+    # berada pada orde yang sama. Komposisi residunya tetap acak: tidak satu
+    # pun berasal dari HBsAg, dan determinan "a" tidak terwakili.
     aa_pool = "ACDEFGHIKLMNPQRSTVWY"
-    protein = "M" + "".join(rng.choice(aa_pool) for _ in range(149))
+    protein = "M" + "".join(rng.choice(aa_pool) for _ in range(225))
     (HERE / "demo_antigen_protein.fa").write_text(
-        f">DEMO_ANTIGEN {tag} protein acak 150 aa — BUKAN HBsAg\n"
+        f">DEMO_ANTIGEN {tag} protein acak 226 aa — BUKAN HBsAg, "
+        f"panjang disamakan dengan SHBs hanya agar dimensi konstruk sebanding\n"
         + "\n".join(protein[i : i + 60] for i in range(0, len(protein), 60))
         + "\n"
     )

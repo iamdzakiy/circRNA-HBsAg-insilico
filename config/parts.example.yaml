@@ -1,12 +1,12 @@
 # ============================================================================
-# KONFIGURASI CONTOH — DATA SINTETIS UNTUK UJI PERANGKAT LUNAK
+# KONFIGURASI DEMO — SEKUENS PLACEHOLDER, BUKAN SEKUENS GENBANK
 # ============================================================================
 # Berkas ini memakai sekuens yang DIBANGKITKAN ACAK (data/example/), bukan
 # sekuens biologis. Tujuannya hanya agar pipeline, tes, CI, dan antarmuka web
 # dapat dijalankan tanpa akses jaringan.
 #
 # Setiap bagian ditandai `synthetic: true`, sehingga modul report melabeli
-# seluruh keluaran sebagai [UJI PERANGKAT LUNAK]. Angka dari konfigurasi ini
+# seluruh keluaran sebagai [DEMO — SEKUENS PLACEHOLDER]. Angka dari konfigurasi ini
 # TIDAK BOLEH dipakai sebagai hasil ilmiah.
 #
 # Untuk analisis sungguhan: pakai config/parts.yaml (provenance_policy: strict).
