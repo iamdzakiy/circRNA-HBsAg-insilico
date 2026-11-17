@@ -1,0 +1,151 @@
+# SUMBER TUNGGAL — tabel "Software & Versions" yang diwajibkan BLOK 12.
+# Kolom `version` diisi "terdeteksi-saat-jalan" bila pipeline membacanya sendiri
+# dari paket terpasang; jangan menulis versi dari ingatan.
+accessed: "2026-11-17"
+software:
+  - name: ViennaRNA
+    role: "Termodinamika acuan: RNAfold, RNAplfold, RNAduplex, RNAcofold"
+    version: terdeteksi-saat-jalan
+    license: "ViennaRNA License (gratis untuk akademik dan non-komersial)"
+    url: "https://www.tbi.univie.ac.at/RNA/"
+    macos: "osx-arm64 dan osx-64 (conda-forge / bioconda)"
+    used: true
+  - name: primer3 / primer3-py
+    role: "Desain primer divergen, konvergen, dan BSJ"
+    version: terdeteksi-saat-jalan
+    license: "GPLv2"
+    url: "https://primer3.org/"
+    macos: "osx-arm64"
+    used: true
+  - name: Biopython
+    role: "I/O sekuens, verifikasi ORF, terjemahan"
+    version: terdeteksi-saat-jalan
+    license: "Biopython License (mirip MIT)"
+    url: "https://biopython.org/"
+    macos: "osx-arm64"
+    used: true
+  - name: Optuna
+    role: "Optimasi multi-objektif NSGA-II"
+    version: terdeteksi-saat-jalan
+    license: "MIT"
+    url: "https://optuna.org/"
+    macos: "osx-arm64"
+    used: true
+  - name: Snakemake
+    role: "Orkestrasi alur, satu aturan satu tanggung jawab"
+    version: terdeteksi-saat-jalan
+    license: "MIT"
+    url: "https://snakemake.github.io/"
+    macos: "osx-arm64"
+    used: true
+  - name: NumPy / pandas / SciPy
+    role: "Numerik dan tabel"
+    version: terdeteksi-saat-jalan
+    license: "BSD-3-Clause"
+    url: "https://numpy.org/"
+    macos: "osx-arm64"
+    used: true
+  - name: Streamlit
+    role: "Antarmuka web interaktif Tahap 0"
+    version: terdeteksi-saat-jalan
+    license: "Apache-2.0"
+    url: "https://streamlit.io/"
+    macos: "osx-arm64"
+    used: true
+  - name: python-docx
+    role: "Pembuatan dokumen TA .docx dari sumber tunggal"
+    version: terdeteksi-saat-jalan
+    license: "MIT"
+    url: "https://python-docx.readthedocs.io/"
+    macos: "osx-arm64"
+    used: true
+  - name: python-pptx
+    role: "Pembuatan naskah dek .pptx untuk diimpor ke Canva"
+    version: terdeteksi-saat-jalan
+    license: "MIT"
+    url: "https://python-pptx.readthedocs.io/"
+    macos: "osx-arm64"
+    used: true
+  - name: Infernal (cmsearch)
+    role: "Uji 2 Gate 0: integritas ribozim intron grup I terhadap Rfam RF00028"
+    version: "[PERLU VERIFIKASI] belum terpasang di sesi ini"
+    license: "BSD-3-Clause"
+    url: "http://eddylab.org/infernal/"
+    macos: "osx-64 dan osx-arm64 (bioconda)"
+    used: false
+    note: "Wajib untuk Uji 2. Sesi ini tidak bisa menjangkau Rfam (EBI diblokir proxy), jadi Uji 2 harus dijalankan di macOS."
+  - name: Rfam RF00028 (covariance model)
+    role: "Model kovarians intron katalitik grup I"
+    version: "[PERLU VERIFIKASI] unduh dari Rfam dan catat versinya"
+    license: "CC0 (data Rfam)"
+    url: "https://rfam.org/family/RF00028"
+    macos: "berkas data"
+    used: false
+  - name: MAFFT
+    role: "Penyejajaran berganda genotipe HBV"
+    version: "[PERLU VERIFIKASI]"
+    license: "BSD"
+    url: "https://mafft.cbrc.jp/alignment/software/"
+    macos: "osx-arm64 (bioconda)"
+    used: false
+  - name: DNA Chisel
+    role: "Optimasi kodon berbasis constraint (mesin utama menurut BLOK 4.2)"
+    version: "[PERLU VERIFIKASI]"
+    license: "MIT"
+    url: "https://github.com/Edinburgh-Genome-Foundry/DnaChisel"
+    macos: "pip, osx-arm64"
+    used: false
+    note: "Belum diintegrasikan; optimasi kodon saat ini memakai pendakian bukit internal."
+  - name: BLAST+
+    role: "Homologi off-target terhadap genom manusia"
+    version: terdeteksi-saat-jalan
+    license: "Public domain (karya pemerintah AS)"
+    url: "https://blast.ncbi.nlm.nih.gov/"
+    macos: "osx-64 (Rosetta 2)"
+    used: true
+  - name: "BepiPred-3.0 / NetMHCpan-4.1 / NetMHCIIpan-4.0 (IEDB)"
+    role: "Prediksi epitop sel B dan sel T"
+    version: "[PERLU VERIFIKASI]"
+    license: "Gratis untuk akademik; redistribusi dilarang"
+    url: "https://services.healthtech.dtu.dk/"
+    macos: "unduh dengan akun akademik"
+    used: false
+    note: "Tidak bisa dipasang oleh CI publik karena larangan redistribusi; jalankan lokal dan simpan hanya hasilnya."
+  - name: "Allele Frequency Net Database (AFND)"
+    role: "Frekuensi alel HLA populasi Indonesia untuk cakupan populasi"
+    version: "[PERLU VERIFIKASI]"
+    license: "Gratis, perlu pendaftaran"
+    url: "http://www.allelefrequencies.net/"
+    macos: "data web"
+    used: false
+  - name: LinearFold
+    role: "Pembanding lipatan berbasis pembelajaran mesin"
+    version: "[PERLU VERIFIKASI]"
+    license: "Gratis untuk akademik; komersial perlu izin"
+    url: "https://github.com/LinearFold/LinearFold"
+    macos: "kompilasi dari sumber"
+    used: false
+  - name: MXfold2
+    role: "Pembanding lipatan berbasis pembelajaran mesin"
+    version: "[PERLU VERIFIKASI]"
+    license: "MIT"
+    url: "https://github.com/mxfold/mxfold2"
+    macos: "pip, osx-arm64"
+    used: false
+  - name: DeepCIP
+    role: "Prediksi IRES khusus circRNA sebagai pembanding"
+    version: "[PERLU VERIFIKASI]"
+    license: "[PERLU VERIFIKASI] periksa berkas lisensi di repositori sebelum dipakai"
+    url: "https://github.com/zjupgx/DeepCIP"
+    macos: "PyTorch, osx-arm64"
+    used: false
+not_used_on_purpose:
+  - name: LinearDesign
+    reason: "Lisensinya membatasi penggunaan komersial"
+    cost: "Zhang et al. 2023 melaporkan kenaikan titer antibodi hingga 128x dibanding pembanding optimasi kodon; penolakan ini pengorbanan nyata"
+  - name: NUPACK
+    reason: "Lisensi akademik melarang redistribusi, sehingga tidak bisa dipakai CI publik"
+    cost: "Pemeriksaan heterodimer/hairpin oligo memakai ViennaRNA RNAduplex/RNAcofold sebagai padanan gratis"
+  - name: "Geneious / CLC Workbench / SnapGene berbayar / DNASTAR"
+    reason: "Berbayar"
+    cost: "Padanan gratis: ApE (A plasmid Editor), SnapGene Viewer, atau Benchling free tier untuk peta plasmid"

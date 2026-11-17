@@ -1,0 +1,47 @@
+# SUMBER TUNGGAL — identitas proyek.
+# Semua keluaran (situs, DOCX, dek, README) membaca berkas ini.
+# Ubah di sini, jalankan `python -m tools.build all`, dan semuanya ikut berubah.
+title: "Desain dan optimasi in silico vaksin RNA sirkular pembawa HBsAg"
+short_title: "circRNA-HBsAg"
+subtitle: "Kandidat vaksin hepatitis B berbasis RNA sirkular yang diproduksi in vitro"
+author: "jek"
+institution: "Institut Teknologi Bandung"
+program: "Tugas Akhir"
+language: "id"
+repo:
+  owner: "iamdzakiy"
+  name: "circrna-hbsag-insilico"
+  visibility: "private"
+  pages_url: "https://iamdzakiy.github.io/circrna-hbsag-insilico/"
+code_license: "MIT"
+
+# Peta konstruk. Urutannya adalah urutan nyata pada prekursor DNA.
+construct:
+  precursor:
+    - {id: T7, label: "Promotor T7", role: "transkripsi in vitro"}
+    - {id: GGG, label: "GGG", role: "inisiasi T7 yang efisien"}
+    - {id: HA5, label: "Lengan homologi 5'", role: "mendekatkan ujung untuk splicing"}
+    - {id: intron_3half, label: "Intron 3' PIE", role: "separuh intron grup I, memuat IGS untuk P10"}
+    - {id: E2, label: "Ekson 2", role: "separuh hilir sambungan balik"}
+    - {id: spacer5, label: "Spacer 5'", role: "menjaga aksesibilitas sambungan"}
+    - {id: IRES, label: "IRES CVB3", role: "inisiasi translasi tanpa tudung"}
+    - {id: ORF, label: "ORF HBsAg", role: "antigen"}
+    - {id: spacer3, label: "Spacer 3'", role: "menjaga aksesibilitas sambungan"}
+    - {id: E1, label: "Ekson 1", role: "separuh hulu sambungan balik"}
+    - {id: intron_5half, label: "Intron 5' PIE", role: "separuh intron grup I, memuat IGS untuk P1"}
+    - {id: HA3, label: "Lengan homologi 3'", role: "mendekatkan ujung untuk splicing"}
+  circle:
+    - E2
+    - spacer5
+    - IRES
+    - ORF
+    - spacer3
+    - E1
+
+# Label provenans yang sah. Validator menolak label di luar daftar ini.
+labels:
+  LITERATUR: "diambil dari publikasi yang sitasinya ada di daftar pustaka"
+  PERKIRAAN: "penalaran atau asumsi penulis; belum diverifikasi"
+  HASIL IN SILICO: "dihitung pipeline ini pada sekuens sungguhan"
+  DEMO: "dihitung pipeline ini pada sekuens placeholder; ilustrasi alur saja"
+  RENCANA: "belum dikerjakan"

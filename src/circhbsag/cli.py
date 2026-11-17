@@ -4,6 +4,7 @@ Subcommand
 ----------
   licenses       cetak daftar alat dan lisensinya
   tahap0         jalankan pengukuran Tahap 0 + skor GO/NO-GO + laporan
+  gate0          sembilan uji Gate 0 + design_lock.json (satu sumber angka)
   codon          optimasi kodon ORF dari FASTA protein
   primers        desain primer divergen/BSJ, probe RNase H, primer IVT
   bsj-sim        simulasi bacaan + filter statistik BSJ (posterior Bayes)
@@ -73,6 +74,48 @@ def cmd_tahap0(args) -> int:
     for k, v in paths.items():
         print(f"  {k}: {v}")
     return 0 if dec.verdict != "NO-GO" else 2
+
+
+def cmd_gate0(args) -> int:
+    """Sembilan uji Gate 0, laporan, dan design_lock.json.
+
+    design_lock.json sengaja menjadi satu-satunya tempat angka konstruk
+    diterbitkan: dokumen TA, dek, dan situs membacanya, tidak menyalinnya.
+    """
+    from . import construct, report, score
+    from . import gate0 as g0
+
+    parts, meta = _load(args.parts, getattr(args, "orf_fasta", None))
+    asm = construct.build(parts)
+    temps = tuple(float(t) for t in args.temperatures.split(","))
+    m = score.measure(asm, temperatures=temps)
+    dec = score.score(m)
+    gate = g0.run(
+        asm,
+        m,
+        cm_path=args.cm,
+        arm_lengths=tuple(int(x) for x in args.arm_lengths.split(",")),
+        splice_temperature_c=float(args.splice_temperature),
+    )
+    lock = g0.design_lock(gate, m, dec.to_dict(), provenance=meta)
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    rep = report.envelope({"gate0": gate, "decision": dec.to_dict()}, provenance=meta, seed=args.seed)
+    (out / "gate0.json").write_text(json.dumps(rep, indent=2, ensure_ascii=False))
+    (out / "gate0.md").write_text(
+        f"> {rep['data_label']}\n\n" + g0.markdown(gate)
+    )
+    lock["report_seed"] = args.seed
+    lock["circhbsag_version"] = rep.get("circhbsag_version")
+    lock["generated_utc"] = rep.get("generated_utc")
+    (out / "design_lock.json").write_text(json.dumps(lock, indent=2, ensure_ascii=False))
+
+    print(f"Gate 0: {gate['decision']} — {gate['statement']}")
+    for t_ in gate["tests"]:
+        print(f"  {t_['id']:32s} {t_['verdict']}")
+    print(f"  design_lock: {out / 'design_lock.json'}")
+    return 0 if gate["decision"] in ("PASS", "REVISE", "BELUM-LENGKAP") else 2
 
 
 def cmd_codon(args) -> int:
@@ -225,6 +268,16 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--sensitivity", type=int, default=200,
                    help="jumlah set bobot untuk uji sensitivitas (0 = lewati)")
     s.set_defaults(func=cmd_tahap0)
+
+    s = common(sub.add_parser("gate0", help="sembilan uji Gate 0 + design_lock.json"))
+    s.add_argument("--temperatures", default="37,55")
+    s.add_argument("--arm-lengths", dest="arm_lengths", default="20,25,30,35,40",
+                   help="panjang lengan homologi yang dipindai untuk kurva dG")
+    s.add_argument("--splice-temperature", dest="splice_temperature", default="55",
+                   help="suhu reaksi splicing untuk uji pasangan lengan homologi")
+    s.add_argument("--cm", default=None,
+                   help="berkas model kovarians Rfam RF00028 (.cm) untuk cmsearch")
+    s.set_defaults(func=cmd_gate0)
 
     s = common(sub.add_parser("codon", help="optimasi kodon ORF"), orf=False)
     s.add_argument("--iterations", type=int, default=20000)

@@ -1,0 +1,114 @@
+# SUMBER TUNGGAL — keputusan desain.
+# Satu entri per keputusan. `refs` harus menunjuk kunci di references.yaml;
+# validator menolak kunci yang tidak ada. `label` harus ada di project.yaml.
+decisions:
+  - id: ires-tunggal
+    question: "Berapa IRES yang dipakai, dan yang mana?"
+    choice: "Satu IRES: 5'UTR Coxsackievirus B3 (CVB3)"
+    label: LITERATUR
+    rationale: >
+      Wesselhoeft et al. (2018) menemukan IRES CVB3 memberi ekspresi sekitar
+      1,5 kali IRES EMCV pada konstruk circRNA PIE, dan menunjukkan efikasi IRES
+      selain CVB3 berubah drastis ketika ORF-nya diganti. Konsekuensinya,
+      membandingkan lima IRES tanpa data ekspresi untuk ORF HBsAg spesifik ini
+      tidak akan menjawab apa pun; satu IRES dengan dasar literatur lebih kuat
+      daripada lima IRES tanpa dasar.
+    consequence: >
+      Klaim kebaruan yang semula bersandar pada perbandingan IRES harus pindah
+      ke bab Saran sebagai pekerjaan lanjutan, bukan dipertahankan di bab Hasil.
+    refs: [wesselhoeft2018]
+  - id: genotipe
+    question: "Genotipe HBV mana yang menjadi sasaran?"
+    choice: "Subgenotipe B3 sebagai sasaran utama, dengan cakupan dinyatakan terbatas"
+    label: LITERATUR
+    rationale: >
+      Thedja et al. (2011) memetakan 419 individu dari 40 populasi Indonesia dan
+      menemukan HBV/B dominan pada populasi penutur Austronesia, dengan
+      subgenotipe B3 dominan di paruh barat kepulauan, sementara HBV/C dominan
+      di Papua dan populasi Maluku yang terpengaruh Papua; B7, B8, dan B9
+      spesifik Nusa Tenggara. Thedja et al. (2015) menambahkan bahwa HBV/C di
+      kepulauan ini terpecah menjadi tipe Asia dan Papua-Pasifik yang berbeda
+      pada beberapa substitusi asam amino di epitop imun protein core dan
+      surface.
+    consequence: >
+      Satu konstruk tunggal tidak menutup seluruh kepulauan. Tiga pilihan yang
+      jujur: B3 saja dengan cakupan dinyatakan terbatas; konsensus B3+C dengan
+      kecocokan lebih rendah pada keduanya; atau dua konstruk paralel yang
+      menggandakan beban in vitro. Ini keputusan penulis, bukan keputusan
+      pipeline.
+    refs: [thedja2011, thedja2015]
+  - id: bentuk-hbsag
+    question: "S saja, atau L/M/S?"
+    choice: "S-HBsAg (SHBs, 226 aa)"
+    label: PERKIRAAN
+    rationale: >
+      SHBs adalah komponen utama partikel subviral dan memuat determinan "a"
+      yang menjadi sasaran antibodi penetralisir, sehingga konstruknya paling
+      pendek dengan kandungan epitop penetralisir paling padat. Menambah preS1
+      dan preS2 memperpanjang ORF tanpa hipotesis yang diuji di tahap ini.
+    consequence: >
+      Epitop pada preS1/preS2 tidak diwakili. Bila kelak itu menjadi tujuan,
+      konstruk L/M/S perlu dinilai ulang dari Tahap 0.
+    refs: []
+  - id: m6a
+    question: "Apakah situs m6A disisipkan secara sengaja?"
+    choice: "Tidak disisipkan secara baku; hanya dipindai dan dilaporkan"
+    label: PERKIRAAN
+    rationale: >
+      Translasi circRNA dapat berjalan lewat mekanisme bergantung m6A maupun
+      lewat IRES (Zhu et al. 2025). Karena konstruk ini sudah memakai IRES,
+      menambah m6A berarti menambah satu variabel tanpa hipotesis yang jelas,
+      sementara motif RRACH yang tidak disengaja tetap perlu dihitung sebagai
+      beban.
+    consequence: "Situs RRACH masuk sebagai beban motif pada skor, bukan sebagai target."
+    refs: [zhu2025]
+  - id: lisensi-lineardesign
+    question: "Apakah LinearDesign dipakai untuk optimasi kodon?"
+    choice: "Tidak dipakai"
+    label: LITERATUR
+    rationale: >
+      Lisensinya membatasi penggunaan komersial, sementara syarat proyek ini
+      adalah perangkat lunak gratis yang boleh dipakai dan diredistribusi.
+      Penolakan ini ada harganya: Zhang et al. (2023) melaporkan kenaikan titer
+      antibodi hingga 128 kali dibanding pembanding optimasi kodon pada vaksin
+      mRNA, jadi ini pengorbanan nyata dan harus ditulis sebagai keterbatasan.
+    consequence: >
+      Optimasi kodon memakai implementasi sendiri (pendakian bukit berseed
+      tetap) yang mengoptimasi CAI bersama GC, motif, dan struktur lokal.
+    refs: [zhang2023]
+  - id: lisensi-nupack
+    question: "Apakah NUPACK dipakai sebagai pembanding lipatan?"
+    choice: "Tidak dipakai"
+    label: PERKIRAAN
+    rationale: >
+      Lisensi akademiknya melarang redistribusi, sehingga tidak bisa dipasang
+      oleh CI publik maupun disertakan dalam lingkungan yang dibagikan.
+    consequence: "Pembanding lipatan memakai LinearFold dan MXfold2."
+    refs: []
+  - id: kemurnian
+    question: "Mengapa kontaminasi RNA linear diperlakukan sebagai kriteria, bukan detail teknis?"
+    choice: "Kemurnian masuk sebagai kriteria desain sejak Tahap 0"
+    label: LITERATUR
+    rationale: >
+      Wesselhoeft et al. (2019) menemukan imunogenisitas dan stabilitas ekspresi
+      circRNA bergantung pada kemurnian: sedikit saja RNA linear yang
+      mengontaminasi sudah memicu respons imun seluler yang kuat.
+    consequence: >
+      Filter statistik BSJ mendiskualifikasi bacaan yang dapat dijelaskan
+      referensi linear, dan jumlah bacaan terdiskualifikasi dilaporkan sebagai
+      peringatan bahwa konstruk terlalu repetitif.
+    refs: [wesselhoeft2019]
+  - id: ml-pembanding
+    question: "Bagaimana prediktor berbasis pembelajaran mesin diperlakukan?"
+    choice: "Sebagai pembanding berlabel eksperimental, bukan pengganti termodinamika"
+    label: LITERATUR
+    rationale: >
+      DeepCIP (Zhou et al. 2023) dilatih khusus untuk IRES circRNA, dan LAMAR
+      (Zhou et al. 2025), model bahasa RNA yang dilatih pada sekitar 15 juta
+      sekuens dari 225 mamalia dan 1569 virus, melaporkan penyaringan in silico
+      yang menemukan IRES aktif tinggi pendorong translasi circRNA. Keduanya
+      menjanjikan, tetapi belum divalidasi pada konstruk PIE-HBsAg.
+    consequence: >
+      Bila peringkat model bertentangan dengan peringkat termodinamika, yang
+      dilaporkan adalah pertentangannya, bukan yang hasilnya lebih enak dibaca.
+    refs: [zhou2023, zhou2025]

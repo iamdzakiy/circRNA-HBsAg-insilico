@@ -1,0 +1,86 @@
+# SUMBER TUNGGAL — daftar pustaka.
+# Metadata diambil dari PubMed (NCBI) pada 2026-11-17 dan DOI-nya berasal dari
+# metadata itu, bukan dari ingatan. Jangan menambah entri tanpa PMID/DOI nyata.
+retrieved: "2026-11-17"
+source: "PubMed (NCBI)"
+references:
+  wesselhoeft2018:
+    authors: "Wesselhoeft RA, Kowalski PS, Anderson DG"
+    title: "Engineering circular RNA for potent and stable translation in eukaryotic cells"
+    journal: "Nature Communications"
+    year: 2018
+    citation: "9(1):2629"
+    pmid: "29980667"
+    doi: "10.1038/s41467-018-05096-6"
+  wesselhoeft2019:
+    authors: "Wesselhoeft RA, Kowalski PS, Parker-Hale FC, Huang Y, Bisaria N, Anderson DG"
+    title: "RNA circularization diminishes immunogenicity and can extend translation duration in vivo"
+    journal: "Molecular Cell"
+    year: 2019
+    citation: "74(3):508-520.e4"
+    pmid: "30902547"
+    doi: "10.1016/j.molcel.2019.02.015"
+  zhang2023:
+    authors: "Zhang H, Zhang L, Lin A, et al."
+    title: "Algorithm for optimized mRNA design improves stability and immunogenicity"
+    journal: "Nature"
+    year: 2023
+    citation: "621(7978):396-403"
+    pmid: "37130545"
+    doi: "10.1038/s41586-023-06127-z"
+  thedja2011:
+    authors: "Thedja MD, Muljono DH, Nurainy N, Sukowati CHC, Verhoef J, Marzuki S"
+    title: "Ethnogeographical structure of hepatitis B virus genotype distribution in Indonesia and discovery of a new subgenotype, B9"
+    journal: "Archives of Virology"
+    year: 2011
+    citation: "156(5):855-868"
+    pmid: "21318309"
+    doi: "10.1007/s00705-011-0926-y"
+  thedja2015:
+    authors: "Thedja MD, Muljono DH, Ie SI, Sidarta E, Turyadi, Verhoef J, Marzuki S"
+    title: "Genogeography and immune epitope characteristics of hepatitis B virus genotype C reveals two distinct types: Asian and Papua-Pacific"
+    journal: "PLoS ONE"
+    year: 2015
+    citation: "10(7):e0132533"
+    pmid: "26162099"
+    doi: "10.1371/journal.pone.0132533"
+  reynisson2020:
+    authors: "Reynisson B, Alvarez B, Paul S, Peters B, Nielsen M"
+    title: "NetMHCpan-4.1 and NetMHCIIpan-4.0: improved predictions of MHC antigen presentation by concurrent motif deconvolution and integration of MS MHC eluted ligand data"
+    journal: "Nucleic Acids Research"
+    year: 2020
+    citation: "48(W1):W449-W454"
+    pmid: "32406916"
+    doi: "10.1093/nar/gkaa379"
+  zhou2023:
+    authors: "Zhou Y, Wu J, Yao S, Xu Y, Zhao W, Tong Y, Zhou Z"
+    title: "DeepCIP: a multimodal deep learning method for the prediction of internal ribosome entry sites of circRNAs"
+    journal: "Computers in Biology and Medicine"
+    year: 2023
+    citation: "164:107288"
+    pmid: "37542919"
+    doi: "10.1016/j.compbiomed.2023.107288"
+  zhou2025:
+    authors: "Zhou H, Hu Y, Zheng Y, et al."
+    title: "A foundation language model to decipher diverse regulation of RNAs"
+    journal: "Genome Biology"
+    year: 2025
+    citation: "26(1):301"
+    pmid: "40993693"
+    doi: "10.1186/s13059-025-03752-x"
+  zhu2025:
+    authors: "Zhu Z, Liang X, Ma R, Yin S, Xu M, Li G"
+    title: "CircCode3: integrating deep learning to mine and evaluate translatable circular RNAs from ribosome profiling sequencing and mass spectrometry data"
+    journal: "Briefings in Bioinformatics"
+    year: 2025
+    citation: "26(5):bbaf458"
+    pmid: "40966647"
+    doi: "10.1093/bib/bbaf458"
+  meierstephenson2018:
+    authors: "Meier-Stephenson V, Bremner WTR, Dalton CS, van Marle G, Coffin CS, Patel TR"
+    title: "Comprehensive analysis of hepatitis B virus promoter region mutations"
+    journal: "Viruses"
+    year: 2018
+    citation: "10(11):603"
+    pmid: "30388827"
+    doi: "10.3390/v10110603"
