@@ -17,13 +17,19 @@ REPO = Path(__file__).resolve().parents[1]
 EXAMPLE_CFG = REPO / "config" / "parts.example.yaml"
 
 
+#: A path that cannot exist, so the "tool or model missing" branch is exercised
+#: deterministically whether or not Infernal happens to be installed here.
+NO_CM = "/nonexistent/RF00028.cm"
+
+
 @pytest.fixture(scope="module")
 def gate():
+    """Gate 0 run with no covariance model available."""
     parts, meta = parts_mod.load_parts(EXAMPLE_CFG)
     asm = construct.build(parts)
     m = score.measure(asm, temperatures=(37.0,))
     dec = score.score(m)
-    g = gate0.run(asm, m, arm_lengths=(20, 30, 40))
+    g = gate0.run(asm, m, cm_path=NO_CM, arm_lengths=(20, 30, 40))
     return g, asm, m, dec, meta
 
 
@@ -52,8 +58,8 @@ def test_verdicts_are_from_the_closed_set(gate):
     assert {t["verdict"] for t in g["tests"]} <= allowed
 
 
-def test_missing_infernal_is_reported_not_guessed(gate):
-    """Uji 2 must say the tool is missing and hand back the command to run."""
+def test_missing_model_is_reported_not_guessed(gate):
+    """Uji 2 must say what is missing and hand back the command to run."""
     g, *_ = gate
     t = next(x for x in g["tests"] if x["id"] == "uji2_ribozyme_integrity")
     assert t["verdict"] == gate0.UNAVAILABLE
@@ -64,6 +70,7 @@ def test_missing_infernal_is_reported_not_guessed(gate):
 
 
 def test_unavailable_is_not_counted_as_pass(gate):
+    """A test that could not run must never be rounded up to a pass."""
     g, *_ = gate
     assert g["counts"][gate0.UNAVAILABLE] >= 1
     assert g["decision"] != "PASS"
@@ -136,3 +143,53 @@ def test_markdown_report_states_the_decision_and_every_threshold(gate):
         assert t["name"] in md
         assert t["threshold"][:30] in md
     assert "BELUM BISA DIJALANKAN" in md
+
+
+# ------------------------------------------------- Uji 2 with Infernal present
+
+CM = REPO / "data" / "reference" / "RF00028.cm"
+POSITIVE = REPO / "tests" / "data" / "RF00028_positive_control.fa"
+HAVE_INFERNAL = __import__("shutil").which("cmsearch") is not None
+
+
+@pytest.mark.skipif(not (HAVE_INFERNAL and CM.exists()), reason="butuh Infernal dan RF00028.cm")
+def test_uji2_detects_a_real_group_I_intron():
+    """The positive control: a gate that always fails would be worthless.
+
+    This is the test that gives Uji 2 its meaning. Without it, a FAIL on the
+    synthetic construct could just as easily mean the covariance model is
+    broken, the sequence was passed in the wrong alphabet, or the threshold is
+    unreachable. With it, a FAIL means what it claims to mean.
+    """
+    seq = "".join(
+        line.strip() for line in POSITIVE.read_text().splitlines() if not line.startswith(">")
+    )
+    out = gate0.cmsearch(seq, str(CM), e_value=10)
+    assert out["status"] == "OK"
+    assert out["n_hits"] >= 1, "model gagal mengenali intron grup I sungguhan"
+    best = out["hits"][0]
+    assert best["e_value"] < 1e-5
+    assert best["bit_score"] > 50
+
+
+@pytest.mark.skipif(not (HAVE_INFERNAL and CM.exists()), reason="butuh Infernal dan RF00028.cm")
+def test_uji2_rejects_a_sequence_that_only_bears_the_name():
+    """The synthetic 'intron' in the demo data must not be recognised."""
+    parts, _ = parts_mod.load_parts(EXAMPLE_CFG)
+    fake_intron = parts["intron_5half"].seq + parts["intron_3half"].seq
+    out = gate0.cmsearch(fake_intron, str(CM), e_value=10)
+    assert out["status"] == "OK"
+    assert out["n_hits"] == 0
+
+
+@pytest.mark.skipif(not (HAVE_INFERNAL and CM.exists()), reason="butuh Infernal dan RF00028.cm")
+def test_uji2_fail_is_not_patchable():
+    """A FAIL on Uji 2 must route to the backup circularisation path."""
+    parts, meta = parts_mod.load_parts(EXAMPLE_CFG)
+    asm = construct.build(parts)
+    m = score.measure(asm, temperatures=(37.0,))
+    g = gate0.run(asm, m, cm_path=str(CM), arm_lengths=(20, 40))
+    t = next(x for x in g["tests"] if x["id"] == "uji2_ribozyme_integrity")
+    assert t["verdict"] == gate0.FAIL
+    assert g["decision"] == "FAIL-PINDAH-JALUR"
+    assert "cadangan" in g["statement"]

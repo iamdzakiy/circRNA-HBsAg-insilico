@@ -83,17 +83,17 @@
     "precursor_ensemble_diversity": 321.3546
   },
   "gate0": {
-    "decision": "BELUM-LENGKAP",
-    "statement": "Gate 0 belum bisa dinyatakan lulus: 1 uji belum bisa dijalankan di lingkungan ini dan harus dijalankan di macOS terlebih dahulu.",
+    "decision": "FAIL-PINDAH-JALUR",
+    "statement": "Gate 0 TIDAK lulus pada uji yang tidak boleh ditambal (uji2_ribozyme_integrity); desain harus berpindah ke jalur sirkularisasi cadangan dan Gate 0 dijalankan ulang dari awal untuk arsitektur itu.",
     "counts": {
       "PASS": 6,
       "REVISE": 2,
-      "FAIL": 0,
-      "UNAVAILABLE": 1
+      "FAIL": 1,
+      "UNAVAILABLE": 0
     },
     "verdicts": {
       "uji1_size": "PASS",
-      "uji2_ribozyme_integrity": "UNAVAILABLE",
+      "uji2_ribozyme_integrity": "FAIL",
       "uji3_homology_arm_duplex": "REVISE",
       "uji4_precursor_fold": "PASS",
       "uji5_circle_fold": "PASS",
@@ -131,10 +131,10 @@
       "HA3": null
     }
   },
-  "ribozyme_check": "UNAVAILABLE",
+  "ribozyme_check": "OK",
   "report_seed": 20260101,
   "circhbsag_version": "0.1.0",
-  "generated_utc": "2026-11-17T01:48:55+00:00",
+  "generated_utc": "2026-11-17T05:50:38+00:00",
   "_generated_by": "tools/build.py",
-  "_generated_utc": "2026-11-17T05:40:05+00:00"
+  "_generated_utc": "2026-11-17T05:50:38+00:00"
 }

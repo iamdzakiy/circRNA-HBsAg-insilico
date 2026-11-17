@@ -336,9 +336,15 @@ def run(
                 "tidak dikenali modelnya tidak boleh dilanjutkan."
             ),
             note=(
-                "Sesi cloud ini tidak bisa menjangkau Rfam (EBI ditolak proxy) dan Infernal "
-                "belum terpasang, jadi uji ini WAJIB dijalankan di macOS sebelum Gate 0 "
-                "dinyatakan lulus. Perintahnya ada di metrics.command."
+                "Bila statusnya BELUM BISA DIJALANKAN, Infernal atau model kovariansnya "
+                "tidak ada di lingkungan ini; perintah untuk menjalankannya ada di "
+                "metrics.command, dan Gate 0 tidak boleh dinyatakan lulus sampai uji ini "
+                "berjalan. Bila statusnya FAIL, ada DUA kemungkinan yang harus dibedakan "
+                "lebih dahulu dengan melihat data_status pada design_lock.json: (a) "
+                "permutasi intron pada desain memang rusak, atau (b) sekuens masukannya "
+                "placeholder yang sejak awal bukan intron grup I, sehingga tidak ada model "
+                "ribozim yang bisa mengenalinya. Pada data demo, (b) yang berlaku, dan "
+                "FAIL itu justru menunjukkan ujinya bekerja."
             ),
         )
     )
