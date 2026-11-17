@@ -94,6 +94,26 @@ rule tahap0:
         "--temperatures {TEMPS} --sensitivity {params.sens} --seed {SEED}"
 
 
+rule gate0:
+    """Gate 0: sembilan uji + design_lock.json + Gate 0 Report.
+
+    Bukan bagian dari `rule all`: CLI keluar dengan kode 2 pada FAIL-PINDAH-JALUR,
+    dan keputusan itu harus menghentikan alur, bukan ditelan. Jalankan eksplisit:
+        snakemake --cores 2 gate0
+    Prasyarat `cmsearch` (Infernal) dan data/reference/RF00028.cm untuk Uji 2;
+    tanpanya Uji 2 dilaporkan UNAVAILABLE, bukan lulus.
+    """
+    input:
+        parts=PARTS,
+        orf=OUT / "orf_optimized.fa",
+    output:
+        gate=OUT / "reports" / "gate0.json",
+        lock=OUT / "reports" / "design_lock.json",
+    shell:
+        "{PY} gate0 --parts {input.parts} --orf-fasta {input.orf} --out {OUT}/reports "
+        "--seed {SEED} --cm data/reference/RF00028.cm --temperatures {TEMPS}"
+
+
 rule primers:
     """Tahap 1: primer divergen, primer BSJ, probe RNase H, primer reverse IVT."""
     input:

@@ -1,0 +1,5 @@
+part	accession	db	note
+HBV_genome_B3		nuccore	isi accession genom HBV genotipe B3 (verifikasi di NCBI)
+HBsAg_S_protein		protein	isi accession protein S (HBsAg)
+CVB3_IRES		nuccore	isi accession genom CVB3 (5UTR)
+Anabaena_PIE_intron		nuccore	isi accession lokus tRNA-Leu Anabaena sp. PCC 7120 (intron grup I)

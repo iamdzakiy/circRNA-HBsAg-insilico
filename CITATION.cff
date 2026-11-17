@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this pipeline, please cite it. Results on placeholder sequences are not scientific results."
+title: "circRNA-HBsAg in silico pipeline"
+type: software
+license: MIT
+repository-code: "https://github.com/iamdzakiy/circRNA-HBsAg-insilico"
+authors:
+  - name: "circRNA-HBsAg project team"
