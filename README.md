@@ -87,6 +87,24 @@ punya alasan apa pun untuk menjaga kodon awal tetap terbuka — dan justru itula
 yang ditunjukkan: mekanisme penilaiannya bekerja dan menghukum konstruk yang
 belum dioptimasi. Angka pada sekuens Anda sendiri akan berbeda.
 
+Verdikt GO-BERSYARAT itu sendiri memerintahkan siklus optimasi, dan siklus itu
+dijalankan pada konstruk demo yang sama:
+
+```bash
+circhbsag optimize --parts config/parts.example.yaml --out results/demo \
+                   --n-trials 24 --codon-iterations 3000 --top 24
+```
+
+24 trial Optuna (NSGA-II, 6 objektif) menghasilkan 16 titik di front Pareto.
+Setelah front itu diperingkat ulang dengan skor komposit Tahap 0, konstruk
+terbaik mencapai **0.7228 (GO)** — naik dari 0.6200 pada varian awal — dengan
+spacer 25/50 nt dari pustaka `polyAC` dan tanpa lengan homologi. Jadi loop
+NO-GO/GO-BERSYARAT → optimasi → penilaian ulang memang tertutup dan terbukti
+mampu memindahkan konstruk melewati ambang GO. Arah parameternya (spacer tak
+berstruktur memperbaiki aksesibilitas sambungan) wajar secara termodinamika,
+tetapi nilai optimumnya **tetap khusus untuk sekuens placeholder ini** dan harus
+dihitung ulang pada sekuens sungguhan.
+
 ### Antarmuka web
 
 ```bash
