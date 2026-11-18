@@ -95,10 +95,10 @@ circhbsag optimize --parts config/parts.example.yaml --out results/demo \
                    --n-trials 24 --codon-iterations 3000 --top 24
 ```
 
-24 trial Optuna (NSGA-II, 6 objektif) menghasilkan 16 titik di front Pareto.
+40 trial Optuna (NSGA-II, 6 objektif) menghasilkan 24 titik di front Pareto.
 Setelah front itu diperingkat ulang dengan skor komposit Tahap 0, konstruk
-terbaik mencapai **0.7228 (GO)** — naik dari 0.6200 pada varian awal — dengan
-spacer 25/50 nt dari pustaka `polyAC` dan tanpa lengan homologi. Jadi loop
+terbaik mencapai **0.7437 (GO)** — naik dari 0.6922 pada konstruk hasil redesain
+Gate 0 — dengan spacer 50/30 nt dari pustaka `polyAC` dan lengan homologi 9 nt. Jadi loop
 NO-GO/GO-BERSYARAT → optimasi → penilaian ulang memang tertutup dan terbukti
 mampu memindahkan konstruk melewati ambang GO. Arah parameternya (spacer tak
 berstruktur memperbaiki aksesibilitas sambungan) wajar secara termodinamika,

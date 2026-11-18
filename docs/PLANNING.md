@@ -225,8 +225,8 @@ bukan hiasan: efisiensi sirkularisasi naik dari 0% tanpa lengan menjadi 16%
 dengan lengan 9 nt dan 48% dengan 19 nt, spacer permisif menaikkan 46% → 87%,
 dan satu spacer yang mengganggu menghapus splicing sama sekali; intron Anabaena
 unggul dibanding alternatif yang diuji. `[DEMO]` Pada konstruk placeholder,
-siklus optimasi memindahkan skor dari 0.6200 (GO-BERSYARAT) ke 0.7228 (GO)
-dengan spacer 25/50 nt pustaka polyAC tanpa lengan homologi — angka ini khusus
+siklus optimasi memindahkan skor dari 0.6922 (GO-BERSYARAT) ke 0.7437 (GO)
+dengan spacer 50/30 nt pustaka polyAC dan lengan homologi 9 nt — angka ini khusus
 untuk sekuens placeholder dan tidak boleh digeneralkan.
 
 ### 3.5 Intron PIE dan IGS

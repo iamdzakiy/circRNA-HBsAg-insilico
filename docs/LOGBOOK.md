@@ -117,3 +117,15 @@ label provenans yang tidak dideklarasikan, atau mencantumkan alat tanpa lisensi.
 gagal bila yang di repositori berbeda, sehingga ketidakcocokan antar-deliverable
 menjadi berkas kedaluwarsa yang terdeteksi CI, bukan angka yang tidak bisa
 dilacak.
+
+## 2026-11-18 — Optimasi diulang setelah Gate 0 diperbaiki
+
+Angka 0,7228 pada entri 2026-11-17 dihitung sebelum batas GC/poly-U Gate 0
+disatukan dengan optimasi kodon dan sebelum arah pemangkasan lengan diperbaiki,
+jadi tidak lagi berlaku. Setelah dua perbaikan itu dan loop redesain (lengan 20 nt,
+GC spacer 0,55; `results/demo/gate0_iterations.md`), skor komposit konstruk dasar
+0,6922 (GO-BERSYARAT). `circhbsag optimize` diulang: 40 trial, 24 titik front
+Pareto; setelah peringkat ulang konstruk terbaik 0,7437 (GO), spacer 50/30 nt
+polyAC, lengan homologi 9 nt. Angka ini khusus sekuens placeholder (`[HASIL IN
+SILICO]`, bukan data eksperimen). Gate 0 pada data demo tetap FAIL-PINDAH-JALUR
+karena Uji 2 (intron placeholder), terlepas dari skor komposit.
