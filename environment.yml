@@ -20,6 +20,7 @@ dependencies:
   - biopython=1.84         # Biopython License
   - numpy=1.26
   - pandas=2.2
+  - openpyxl=3.1          # MIT (penulis xlsx)
   - pyyaml=6.0
   # --- optimasi dan alur kerja
   - optuna=4.0             # MIT
