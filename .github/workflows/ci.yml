@@ -172,6 +172,7 @@ jobs:
             --out results/demo --temperatures 37
           python -m tools.build all
           python -m tools.build check
+          python -m tools.logbook --check
       - name: Angka pada situs harus sama dengan design_lock.json
         run: |
           python - <<'PY'

@@ -1,0 +1,378 @@
+# Logbook proyek — SUMBER TUNGGAL untuk docs/logbook.html dan docs/data/timeline.json.
+# Aturan: hanya peristiwa yang punya sumber yang bisa ditunjuk (pesan thread, berkas
+# dengan tanggal ubah, atau commit git). Tidak ada tanggal yang dikarang.
+# `when` = waktu UTC dari sumber; halaman menampilkannya dalam WIB (UTC+7).
+# `precision: date` = hanya tanggal yang diketahui (mis. tanggal commit).
+# Tambah entri: salin satu blok, isi, lalu jalankan `python -m tools.logbook`.
+
+phases:
+  - id: p0
+    name: Persiapan
+    span: "Juli – 25 Okt 2026"
+    note: "Belum ada catatan di sumber yang bisa dibaca. Diisi jek."
+  - id: p1
+    name: Perencanaan dan deck awal
+    span: "26 Okt – 15 Nov 2026"
+  - id: p2
+    name: Pipeline in silico dan repo
+    span: "16 – 18 Nov 2026"
+  - id: p3
+    name: Dokumen TA, SOP, protokol
+    span: "16 – 18 Nov 2026"
+  - id: p4
+    name: Sekuens nyata dan optimasi
+    span: "19 – 20 Nov 2026"
+
+sources_kinds:
+  thread: "pesan di thread proyek"
+  file: "tanggal ubah berkas di project files"
+  commit: "riwayat git repositori"
+  vercel: "catatan proyek Vercel"
+
+entries:
+  # ------------------------------------------------------------------ P0
+  - id: e-p0-jul
+    phase: p0
+    when: "2026-07-01T00:00:00Z"
+    precision: month
+    status: PERLU-DIISI
+    title: "Juli 2026 — [PERLU DIISI JEK]"
+    summary: "Belum ada sumber untuk bulan ini di project files, thread, maupun git. Isi: kegiatan, hasil, bukti (foto/berkas)."
+    template: true
+  - id: e-p0-aug
+    phase: p0
+    when: "2026-08-01T00:00:00Z"
+    precision: month
+    status: PERLU-DIISI
+    title: "Agustus 2026 — [PERLU DIISI JEK]"
+    summary: "Belum ada sumber. Isi: kegiatan, hasil, bukti."
+    template: true
+  - id: e-p0-sep
+    phase: p0
+    when: "2026-09-01T00:00:00Z"
+    precision: month
+    status: PERLU-DIISI
+    title: "September 2026 — [PERLU DIISI JEK]"
+    summary: "Belum ada sumber. Isi: kegiatan, hasil, bukti."
+    template: true
+  - id: e-p0-okt
+    phase: p0
+    when: "2026-10-01T00:00:00Z"
+    precision: month
+    status: PERLU-DIISI
+    title: "1 – 25 Oktober 2026 — [PERLU DIISI JEK]"
+    summary: "Belum ada sumber. Draf skripsi awal dan kumpulan PDF jurnal baru muncul di project files pada 26 Okt, tanggal itu hanya tanggal unggah, bukan tanggal penulisan."
+    template: true
+
+  # ------------------------------------------------------------------ P1
+  - id: e-1026-a
+    phase: p1
+    when: "2026-10-26T14:33:00Z"
+    title: "Proyek dibuat; draf skripsi dan 11 PDF jurnal diunggah"
+    summary: "Project files berisi draf TA awal dan kumpulan PDF literatur yang dipakai sebagai rujukan (tanggal ubah berkas 26 Okt 14:33–14:36 UTC, OMNIA.pdf 15:02)."
+    kind: file
+  - id: e-1026-b
+    phase: p1
+    when: "2026-10-26T14:37:00Z"
+    title: "Permintaan pertama: rencana teknis circRNA vaksin HBsAg"
+    summary: "Dari draf skripsi, jek meminta rencana langkah demi langkah: in silico, perakitan (Golden Gate atau Gibson), optimasi IRES, dan optimasi teknis lain."
+    outputs: ["Artifact: Rencana Teknis circRNA-HBsAg: In Silico sampai Perakitan dan QC", "Artifact: Pitch Deck TA circRNA-HBsAg"]
+    kind: thread
+  - id: e-1026-c
+    phase: p1
+    when: "2026-10-26T15:03:00Z"
+    title: "Pitch deck gaya jurnal, flowchart metode, parameter checkpoint"
+    summary: "Meminta deck dari awal sampai akhir seperti OMNIA.pdf, flowchart metode dengan parameter checkpoint, standar kerja di Benchling/SnapGene, dan penjelasan apakah model AI perlu dilatih dulu."
+    kind: thread
+  - id: e-1026-d
+    phase: p1
+    when: "2026-10-26T15:32:00Z"
+    title: "Umpan balik: deck diulang, diagram bergaya BioRender"
+    summary: "Hasil pertama ditolak ('jelek sekali'). Arahannya: jangan meniru persis, hindari gaya generik AI, utamakan gambar dan diagram bergaya BioRender."
+    decisions: ["Deck dibuat ulang dengan diagram sebagai isi utama tiap slide."]
+    kind: thread
+  - id: e-1107
+    phase: p1
+    when: "2026-11-07T16:46:00Z"
+    title: "Thread perencanaan pertama ditutup"
+    summary: "Thread 'Rancang circRNA vaccine HBsAg' ditandai selesai (resolved_at 7 Nov 16:46 UTC). Tidak ada catatan lain antara 27 Okt dan 15 Nov di sumber yang bisa dibaca."
+    status: PERLU-DIISI
+    note: "[PERLU DIISI JEK] kegiatan 27 Okt – 15 Nov bila ada."
+    kind: thread
+
+  # ------------------------------------------------------------------ P2/P3
+  - id: e-1116-a
+    phase: p2
+    when: "2026-11-16T15:54:00Z"
+    title: "Ringkasan seminar menjadi prompt untuk tiga pekerjaan"
+    summary: "jek menempelkan ringkasan sumber seminar (Chen/Yale, Arraystar, Szabo/Stanford, Giem). Tiga thread dimulai: deck Canva, draf TA sampai sebelum Bab Hasil, panduan produksi. Empat menit kemudian jek menjelaskan bahwa maksudnya hanya prompt, dan ketiga thread dihentikan."
+    kind: thread
+  - id: e-1116-b
+    phase: p2
+    when: "2026-11-16T16:01:00Z"
+    title: "Syarat proyek dikunci"
+    summary: "Software wajib gratis, optimasi dibantu AI, website dan repo GitHub untuk proyek in silico, hanya satu IRES, dan kelayakan sirkularisasi HBsAg diprediksi in silico lebih dulu."
+    decisions: ["Satu IRES saja", "Semua software gratis dengan lisensi tercatat", "Tahap 0 (GO/NO-GO) sebelum tahap lain"]
+    kind: thread
+  - id: e-1116-c
+    phase: p2
+    when: "2026-11-16T16:06:00Z"
+    title: "Prompt lengkap dijalankan; pipeline dimulai setelah satu kali dialihkan oleh pengaman sistem"
+    summary: "Beberapa balasan antara 16:02 dan 16:09 UTC dialihkan otomatis ke model lain oleh pengaman sistem, dan thread pipeline sempat ditolak. Prompt lengkap dikirim ulang pada 16:06 dan thread pipeline, deck, dan TA berjalan."
+    kind: thread
+  - id: e-1116-d
+    phase: p2
+    when: "2026-11-16T16:16:00Z"
+    title: "Keputusan desain awal dan kebutuhan tiga FASTA"
+    summary: "Sandbox tidak bisa mengunduh dari GenBank/Addgene (proxy hanya meloloskan GitHub dan PyPI). Thread meminta tiga sekuens dan mengambil keputusan sementara."
+    decisions: ["IRES = CVB3", "ORF = S-HBsAg kecil 226 aa genotipe B"]
+    kind: thread
+  - id: e-1116-e
+    phase: p2
+    when: "2026-11-16T23:50:00Z"
+    title: "'fake dulu aja': pipeline dijalankan dengan sekuens placeholder"
+    summary: "Modul inti (ViennaRNA, RNAplfold, optimizer kodon, skor GO/NO-GO) dijalankan ujung ke ujung dengan sekuens acak berlabel DEMO."
+    kind: thread
+  - id: e-1116-f
+    phase: p2
+    when: "2026-11-16"
+    precision: date
+    title: "Commit pertama repositori"
+    summary: "Pipeline in silico Tahap 0/1 untuk konstruk circRNA-HBsAg (PIE, IRES CVB3)."
+    commit: b8ba286
+    kind: commit
+  - id: e-1116-g
+    phase: p3
+    when: "2026-11-16T19:35:00Z"
+    title: "Draf TA (abstrak, Bab I–III) dan tutorial produksi"
+    summary: "Dua docx baru di project files; draf asli tidak disentuh."
+    outputs: ["[TA] Skripsi_circRNA-HBsAg_ITB_v2_BabI-III.docx", "Tutorial_Produksi_circRNA-HBsAg_in-silico_in-vitro_in-vivo.docx"]
+    kind: file
+  - id: e-1117-a
+    phase: p2
+    when: "2026-11-17T00:02:00Z"
+    title: "Demo ujung ke ujung: GO-BERSYARAT 0,62"
+    summary: "Sekuens placeholder, tanpa gerbang keras gagal. Angkanya tidak dipakai di dokumen TA karena tidak ada nukleotida asli."
+    result: {"skor komposit demo": "0,62 (GO-BERSYARAT)"}
+    kind: thread
+  - id: e-1117-b
+    phase: p2
+    when: "2026-11-17T00:51:00Z"
+    title: "Optuna pertama: skor demo naik ke 0,7228"
+    summary: "24 trial NSGA-II, 16 titik Pareto; spacer 25/50 nt, tanpa lengan homologi. Khusus sekuens placeholder."
+    note: "Angka ini kemudian digantikan (lihat 18 Nov): dihitung sebelum batas GC/poly-U disatukan dengan Gate 0."
+    result: {"skor terbaik": "0,7228 (GO)", "trial": "24", "titik Pareto": "16"}
+    kind: thread
+  - id: e-1117-c
+    phase: p2
+    when: "2026-11-17T01:33:00Z"
+    title: "Perencanaan macOS, gratis, otomatis; logbook dan notebook ke GitHub"
+    summary: "jek meminta rencana optimasi in silico yang komprehensif (macOS, anggaran terbatas, gratis, otomatis, skala big data) dan semua logbook dan notebook masuk GitHub dengan website yang bisa diakses. Persetujuan membuat repo diberikan 01:37."
+    kind: thread
+  - id: e-1117-d
+    phase: p2
+    when: "2026-11-17T01:39:00Z"
+    title: "Spesifikasi induk BLOK 1–12 dibagi ke tiga thread"
+    summary: "Pipeline, repo, website: BLOK 2, 3 (Gate 0), 4, 8, 9, 12. TA, expected results, protokol: BLOK 5, 6, 7, 10. Deck: BLOK 11. Design lock dijaga konsisten lintas ketiganya."
+    kind: thread
+  - id: e-1117-e
+    phase: p2
+    when: "2026-11-17T01:46:00Z"
+    title: "Website dengan bahasa humanis dan UI/UX rapi; deploy ke Vercel"
+    summary: "Permintaan membangun ulang situs dengan toggle tema, daftar isi, dan pemindai sekuens yang berjalan di peramban."
+    kind: thread
+  - id: e-1117-f
+    phase: p2
+    when: "2026-11-17T05:37:00Z"
+    title: "Repo GitHub diberikan; push dimulai"
+    summary: "URL repositori dikonfirmasi jek dan pipeline di-push."
+    kind: thread
+  - id: e-1117-g
+    phase: p2
+    when: "2026-11-17T05:50:00Z"
+    title: "Website live di Vercel"
+    summary: "Situs terbuka tanpa login di circrna-hbsag-insilico.vercel.app dengan halaman justifikasi desain. Deploy dikirim sebagai berkas, bukan lewat Git, sehingga push berikutnya belum otomatis ikut terdeploy."
+    link: "https://circrna-hbsag-insilico.vercel.app"
+    kind: thread
+    image: ss_situs_beranda.png
+    caption: "Beranda situs (tangkapan layar lokal dari docs/index.html, 20 Nov 2026)."
+  - id: e-1117-h
+    phase: p3
+    when: "2026-11-17T05:50:00Z"
+    title: "SOP in vitro, protokol in vivo, troubleshooting, TA BLOK 10 selesai"
+    summary: "Empat dokumen BLOK 5, 6, 7, dan 10 masuk project files (SOP 14 tabel)."
+    outputs: ["SOP_in-vitro_circRNA-HBsAg_BLOK5.docx", "Protokol_in-vivo_circRNA-HBsAg_BLOK6.docx", "Hasil-Diharapkan_Troubleshooting_Interpretasi_BLOK7.docx", "[TA] Skripsi_circRNA-HBsAg_ITB_BLOK10_BabI-III.docx"]
+    kind: thread
+  - id: e-1117-i
+    phase: p2
+    when: "2026-11-17"
+    precision: date
+    title: "Gate 0 sembilan uji, sumber tunggal content/, dan Uji 2 sungguhan"
+    summary: "Sembilan uji Gate 0 dan design_lock.json (9f92380); content/ menjadi sumber tunggal untuk situs, docx, dan naskah dek (4d423fd); Uji 2 memakai Infernal 1.1.5 dan model Rfam RF00028 dengan kontrol positif (1884cb4); label DEMO untuk keluaran placeholder (b14be9f)."
+    result: {"Uji 2 pada data demo": "FAIL (intron placeholder bukan intron grup I)"}
+    commit: "9f92380, 4d423fd, 1884cb4, b14be9f"
+    kind: commit
+    image: ss_gate0.png
+    caption: "Halaman Gate 0 yang dihasilkan dari design_lock.json (tangkapan layar lokal, 20 Nov 2026)."
+  - id: e-1117-j
+    phase: p2
+    when: "2026-11-17"
+    precision: date
+    title: "Loop redesain Gate 0 dan skrip 01–12"
+    summary: "Satu parameter per iterasi: lengan homologi 40→20 nt meloloskan Uji 3; GC spacer 0,55 meloloskan Uji 9. Uji 2 tetap FAIL pada data demo sehingga keputusan FAIL-PINDAH-JALUR. Skrip 01–12, aturan Snakemake gate0, laporan Gate 0, CITATION, CHANGELOG."
+    result: {"lengan homologi": "20 nt", "GC spacer": "0,55", "prekursor": "1827 nt", "sirkel": "1407 nt", "skor komposit": "0,6922 (GO-BERSYARAT)"}
+    commit: "5800f65, 8ac61eb"
+    kind: commit
+    image: dG_vs_arm_length.png
+    caption: "ΔG dupleks lengan homologi terhadap panjang lengan, 55 °C; pita hijau = rentang target. Data demo (placeholder)."
+  - id: e-1117-k
+    phase: p2
+    when: "2026-11-17T11:34:00Z"
+    title: "Deck 22 slide diperbarui; dibangun ulang mengikuti gaya contoh"
+    summary: "Dua ilustrasi baru, penanda bagian, nomor halaman. Pada 23:58 UTC deck dibangun ulang penuh mengikuti gaya deck contoh jek (latar putih, aksen merah)."
+    link: "https://www.canva.com/design/DAHbGz4z2_4/edit"
+    kind: thread
+  - id: e-1118-a
+    phase: p2
+    when: "2026-11-18T12:17:00Z"
+    title: "Optuna diulang: 0,7437 (GO) pada data demo"
+    summary: "40 trial, 24 titik Pareto; spacer 50/30 nt polyAC, lengan 9 nt. Menggantikan 0,7228. README, PLANNING, dan LOGBOOK repo diperbarui."
+    result: {"skor terbaik": "0,7437 (GO)", "trial": "40", "titik Pareto": "24"}
+    commit: "3d987b6"
+    kind: commit
+  - id: e-1118-b
+    phase: p3
+    when: "2026-11-18T11:44:00Z"
+    title: "Protokol in vitro lengkap, 64 halaman"
+    summary: "Bahan, alat, resep bufer dan medium, langkah per tahap sampai QC, kontrol, troubleshooting, keselamatan. Nomor katalog bertanda perlu verifikasi karena tidak berasal dari sumber proyek."
+    outputs: ["Protokol_Lengkap_in-vitro_circRNA-HBsAg_v1.docx"]
+    kind: thread
+  - id: e-1118-c
+    phase: p3
+    when: "2026-11-18T12:21:00Z"
+    title: "Semua dokumen disinkronkan ke angka design lock terbaru"
+    summary: "SOP, protokol in vivo, troubleshooting, TA Bab I–III, protokol in vitro, dan slide 9–10 deck memakai prekursor 1827 nt, lengan 20 nt, skor 0,6922 dan 0,7437."
+    kind: thread
+  - id: e-1118-d
+    phase: p3
+    when: "2026-11-18T23:59:00Z"
+    title: "Deck: 8 slide lampiran A1–A8 (flowchart in vitro dan konsep optimasi)"
+    summary: "Atas permintaan jek (20:04 UTC): garis besar alur in vitro 10 tahap, rincian per tahap, konsep optimasi, bobot dan ambang kriteria, lima gerbang keras. Halaman 23–30; slide utama tetap 22."
+    kind: thread
+
+  # ------------------------------------------------------------------ P4
+  - id: e-1119-a
+    phase: p4
+    when: "2026-11-19T13:36:00Z"
+    title: "TA lengkap sesuai format contoh, gambar dari jurnal, in silico yang sesuai"
+    summary: "jek meminta skripsi docx komprehensif yang merujuk jurnal (gambar open access), dan analisis in silico yang menghubungkan HBsAg dengan IRES."
+    kind: thread
+  - id: e-1119-b
+    phase: p4
+    when: "2026-11-19T13:52:00Z"
+    title: "TA v1, 96 halaman; analisis parsial dengan AF081 dan IRES AF169665.1"
+    summary: "AF081 hanya fragmen 276 nt (92 aa, tanpa ATG). Lima pertanyaan terbuka: pakai fragmen atau ORF S penuh, intron/spacer/lengan belum ada, batas IRES, bagian kuning untuk jek, dan bobot skor yang beda dari kode repo."
+    outputs: ["[TA] Skripsi_circRNA-HBsAg_ITB_Lengkap_v1.docx"]
+    kind: file
+  - id: e-1119-c
+    phase: p4
+    when: "2026-11-19T14:01:00Z"
+    title: "Keputusan: ORF S penuh, istilah gerbang dibuang, tabel disederhanakan"
+    decisions: ["ORF S penuh 226 aa", "Istilah 'gate/gerbang' diganti tahap", "Tabel tidak berbau AI"]
+    summary: "Keputusan jek atas pertanyaan terbuka v1."
+    kind: thread
+  - id: e-1119-d
+    phase: p4
+    when: "2026-11-19T14:49:00Z"
+    title: "TA v2, 83 halaman: kontrol negatif mengungkap rubrik tidak valid"
+    summary: "Skor konstruk dasar 0,599 dengan IRES utuh 94,7%, tetapi kontrol negatif 0,619, lebih tinggi daripada dasar. Ditulis sebagai temuan, bukan disembunyikan."
+    result: {"skor dasar": "0,599", "kontrol negatif": "0,619", "IRES utuh": "94,7%"}
+    outputs: ["[TA] Skripsi_circRNA-HBsAg_ITB_Lengkap_v2.docx"]
+    kind: file
+  - id: e-1120-a
+    phase: p4
+    when: "2026-11-20T02:02:00Z"
+    title: "Sekuens nyata masuk: HBV D00329.1 (subtipe adw) dan paper Shen 2025"
+    summary: "ORF S 226 aa diekstrak dari D00329.1. Paper memakai desain CIRC (intron utuh tanpa lengan homologi), sehingga rancangan mungkin berpindah dari PIE ke CIRC. File suplemen sekuens plasmid dikirim jek pukul 02:07."
+    decisions: ["Genotipe kerja B (sementara), subgenotipe menunggu verifikasi"]
+    kind: thread
+  - id: e-1120-b
+    phase: p4
+    when: "2026-11-20T02:09:00Z"
+    title: "Panduan konsep TA di Google Docs"
+    summary: "Garis besar, pipeline beserta alasan, kontrol positif dan negatif, urgensi, next steps, 16 pertanyaan penguji. Semua skor di dalamnya berasal dari sekuens simulasi dan bagian yang menunggu data ditandai [MENUNGGU]."
+    link: "https://docs.google.com/document/d/1M5HdAo04KA283aI4nGFNmsWSeXc5qewB296SNXegb20/edit"
+    kind: thread
+  - id: e-1120-c
+    phase: p4
+    when: "2026-11-20T02:35:00Z"
+    title: "TA v3, 91 halaman: sekuens nyata, 13 kandidat, tak satu pun lolos 0,70"
+    summary: "Intron, ekson, dan lengan dari Shen 2025; IRES AF169665.1; ORF S dari D00329.1. V11 terbaik di 0,544, V1 gagal pada situs BsmBI, dan kontrol negatif V10 (0,568) malah tertinggi sehingga rubrik dinyatakan belum valid."
+    result: {"kandidat": "13 (V1–V13)", "terbaik": "V11, 0,544", "lolos 0,70": "0"}
+    outputs: ["[TA] Skripsi_circRNA-HBsAg_ITB_Lengkap_v3.docx"]
+    kind: file
+    image: insilico_konstruk.png
+    caption: "Peta prekursor dan lingkaran V11 (1644 nt / 1376 nt). Hasil in silico dari sekuens nyata, bukan eksperimen."
+  - id: e-1120-d
+    phase: p4
+    when: "2026-11-20T04:56:00Z"
+    title: "File GenBank untuk SnapGene dan Benchling"
+    summary: "Per kandidat dua versi: produk circRNA bertopologi circular (peta lingkaran tersedia) dan templat T7 linear. Masalah 'Circular Map tidak ada' diselesaikan dengan topologi di LOCUS."
+    outputs: ["genbank_SnapGene_Benchling.zip", "circHBsAg_V*_circRNA_CIRCULAR.gb", "circHBsAg_V*_templat_T7_LINEAR.gb"]
+    kind: file
+  - id: e-1120-e
+    phase: p4
+    when: "2026-11-20T05:40:00Z"
+    title: "TA v4: optimasi menghasilkan lima kandidat lolos ambang (V14–V18)"
+    summary: "Memindai 45 desain (35 GO, 10 GO-BERSYARAT, 0 NO-GO), desain IRES terbelah tanpa bekas, mutagenesis kodon sinonim dengan CAI minimal 0,85. Ambang 0,70 tidak diturunkan. Rubrik lama diperbaiki setelah melihat hasil, dan itu ditulis terbuka di skripsi. Skor adalah prediksi yang dioptimasi terhadap rubrik yang sama dengan penilainya, bukan bukti sirkularisasi di lab."
+    decisions: ["Usulan lab: V14 utama, V18 versi tanpa bekas, V1 pembanding positif", "Genotipe D00329.1 = B (bootstrap 100%), B1/Bj [PERLU VERIFIKASI] karena BLAST NCBI dan HBVdb daring tidak terjangkau"]
+    result: {"V14": "0,8694", "V15": "0,8476", "V16": "0,8374", "V17": "0,8031", "V18": "0,8196"}
+    outputs: ["[TA] Skripsi_circRNA-HBsAg_ITB_Lengkap_v4.docx"]
+    kind: file
+    image: opt_final.png
+    caption: "Kontribusi tiap kriteria pada skor kandidat; garis putus-putus = ambang 0,70, titik-titik = 0,55. NC1 = kontrol negatif."
+  - id: e-1120-f
+    phase: p4
+    when: "2026-11-20T05:52:00Z"
+    title: "Permintaan: tabel primer final, protokol RT-PCR, dasar mutagenesis"
+    summary: "Untuk V14, V18, dan V1, ditambah penjelasan dasar mutagenesis, paper rujukan, dan prinsip optimasi (juga ke panduan Google Docs). Sedang dikerjakan di thread TA."
+    status: BERJALAN
+    kind: thread
+  - id: e-1120-g
+    phase: p4
+    when: "2026-11-20T05:56:00Z"
+    title: "Permintaan logbook Juli–hari ini dengan skema dan tangkapan layar"
+    summary: "Halaman ini."
+    kind: thread
+
+gallery:
+  - file: flow_alur_umum.png
+    title: "Alur umum penelitian"
+    caption: "Diagram alir dari skripsi v4: Tahap 0 → optimasi → sintesis templat → sirkularisasi → bukti ortogonal."
+  - file: opt_scan.png
+    title: "Pemindaian desain (45 desain)"
+    caption: "Skor komposit menurut kombinasi ekson, spacer, dan panjang lengan homologi (rubrik v2). Garis putus-putus 0,70."
+  - file: filogeni_genotipe.png
+    title: "Genotipe D00329.1"
+    caption: "Pohon NJ (JC69), 100 bootstrap, terhadap referensi HBVdb genotipe A–H; D00329.1 berkelompok dengan genotipe B. Salinan referensi lokal; verifikasi BLAST/HBVdb daring masih perlu."
+  - file: insilico_pita.png
+    title: "Pita gel yang diprediksi"
+    caption: "Prediksi pola pita dari panjang konstruk (bukan gel sungguhan)."
+  - file: gc_profile.png
+    title: "Profil GC prekursor demo"
+    caption: "GC jendela 50 nt; pita hijau = rentang 35–70%. Data demo."
+  - file: ss_situs_keputusan.png
+    title: "Situs: struktur keputusan"
+    caption: "Tangkapan layar lokal docs/index.html."
+  - file: ss_design.png
+    title: "Situs: justifikasi desain"
+    caption: "Tangkapan layar lokal docs/DESIGN.html."
+
+key_numbers:
+  - {when: "2026-11-17", what: "Demo dasar (placeholder)", value: "0,62", verdict: "GO-BERSYARAT", status: "DEMO"}
+  - {when: "2026-11-17", what: "Optuna 24 trial (placeholder)", value: "0,7228", verdict: "GO", status: "DIGANTIKAN"}
+  - {when: "2026-11-17", what: "Dasar setelah redesain Gate 0 (placeholder)", value: "0,6922", verdict: "GO-BERSYARAT", status: "DEMO"}
+  - {when: "2026-11-18", what: "Optuna 40 trial (placeholder)", value: "0,7437", verdict: "GO", status: "DEMO"}
+  - {when: "2026-11-19", what: "TA v2, dasar sekuens simulasi", value: "0,599", verdict: "rubrik belum valid", status: "SIMULASI"}
+  - {when: "2026-11-20", what: "TA v3, terbaik V11 (sekuens nyata)", value: "0,544", verdict: "tak ada yang ≥ 0,70", status: "HASIL IN SILICO"}
+  - {when: "2026-11-20", what: "TA v4, terbaik V14", value: "0,8694", verdict: "GO", status: "HASIL IN SILICO"}

@@ -6,3 +6,6 @@
 - Shared hygiene constants between codon optimiser and Gate 0.
 - scripts/01-12 CLIs with parameter/version sidecars; Snakemake `gate0` rule.
 - Content single-source-of-truth layer (content/*.yaml) + generators (site, docx, deck).
+
+## Tidak dirilis — Logbook web
+- `content/timeline.yaml` + `tools/logbook.py` → `docs/logbook.html`, `docs/data/timeline.json` (linimasa, skema fase, galeri). Juli–25 Okt ditandai `[PERLU DIISI JEK]` (tidak ada sumber). Pemeriksaan kedaluwarsa di CI.
