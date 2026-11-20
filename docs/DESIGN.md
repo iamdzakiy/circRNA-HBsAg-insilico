@@ -11,8 +11,8 @@ penandaan sumber yang konsisten:
 
 ## 1. Mengapa satu IRES, dan mengapa CVB3
 
-Draf tugas akhir semula membandingkan lima varian IRES (CVB3, EMCV, poliovirus,
-HCV, dan satu kandidat hasil prioritisasi model). Pekerjaan ini mempersempit ke
+Lima varian IRES sempat dipertimbangkan (CVB3, EMCV, poliovirus, HCV, dan satu
+kandidat hasil prioritisasi model). Pipeline ini mempersempit pilihan ke
 **satu IRES, yaitu CVB3**, dengan alasan berikut.
 
 **[LITERATUR]** Wesselhoeft, Kowalski & Anderson (2018), *Engineering circular
@@ -28,23 +28,22 @@ Communications 9:2629:
   CVB3 tetap yang terbaik.
 
 Poin kedua adalah alasan metodologis terkuat: efikasi IRES selain CVB3
-**bergantung pada ORF yang mengikutinya**. Pada penelitian ini payload-nya baru
+**bergantung pada ORF yang mengikutinya**. Pada proyek ini payload-nya baru
 (ORF HBsAg), sehingga membandingkan lima IRES berarti membandingkan lima sistem
 yang masing-masing butuh optimasi spacer sendiri agar adil, pekerjaan yang jauh
-melampaui lingkup satu tugas akhir S1. Dengan memilih IRES yang paling kokoh
+melampaui lingkup satu proyek kecil. Dengan memilih IRES yang paling kokoh
 lintas konteks, variabel IRES dikeluarkan dari percobaan dan sumber daya
 dialihkan ke pertanyaan yang benar-benar baru, yaitu apakah payload HBsAg
 mempertahankan sirkularisasi dan translasi.
 
-**Konsekuensi yang harus dinyatakan di dokumen TA:** penelitian ini tidak lagi
-dapat mengklaim kebaruan berupa "perbandingan sistematis varian IRES". Kebaruan
-berpindah ke payload dan ke alur keputusan GO/NO-GO in silico. Perbandingan IRES
-sebaiknya dipindahkan ke bagian Saran/penelitian lanjutan.
+**Konsekuensinya:** proyek ini tidak membandingkan varian IRES secara sistematis.
+Kebaruannya ada di payload dan di alur keputusan GO/NO-GO in silico.
+Perbandingan IRES tetap terbuka sebagai pekerjaan lanjutan.
 
 ### Catatan penting tentang konteks prokariot
 
 **[LITERATUR]** IRES tidak berfungsi sebagai pemicu translasi pada ribosom
-prokariot. Bila validasi awal dilakukan di *E. coli* (seperti pada draf TA),
+prokariot. Bila validasi awal dilakukan di *E. coli*,
 IRES harus diperlakukan sebagai **konteks sekuens yang memengaruhi splicing dan
 stabilitas**, bukan sebagai elemen yang fungsi translasinya diukur. Pipeline ini
 konsisten dengan itu: metrik `ires_integrity` adalah **proksi struktural**
@@ -72,7 +71,7 @@ Alasan memilih S kecil:
 2. **Protein S berukuran kecil mampu merakit diri menjadi partikel subviral**
    tanpa protein M/L, sehingga satu ORF saja sudah cukup untuk antigen
    berbentuk partikel, bentuk yang lebih imunogenik daripada protein terlarut.
-3. **Anggaran panjang konstruk.** Draf TA membatasi konstruk ≤ 3,0 kb. Dengan
+3. **Anggaran panjang konstruk.** Pipeline membatasi konstruk ≤ 3,0 kb. Dengan
    IRES CVB3 (~0,6 kb), dua separuh intron + eksón (~0,5 kb), spacer dan lengan
    homologi (~0,1 kb), ORF 0,68 kb menyisakan margin; ORF L/M/S akan menghabiskan
    margin itu. Pipeline menegakkan batas ini sebagai gerbang keras
@@ -81,12 +80,11 @@ Alasan memilih S kecil:
    ketidakpastian prediksi epitop akan membuat kegagalan sulit ditafsirkan.
 
 **Genotipe: B** (dengan C sebagai alternatif yang didokumentasikan).
-**[LITERATUR]** Draf TA menyatakan genotipe B dan C dominan di Indonesia, dan
-mengarahkan pengambilan sekuens HBsAg dari genotipe dominan tersebut. Genotipe B
-dipilih sebagai desain utama. **Yang wajib Anda lakukan:** konfirmasi klaim
-dominansi genotipe ini dengan sitasi epidemiologi Indonesia yang dapat
-diperiksa, dan catat nomor aksesi sekuens yang dipakai di `config/parts.yaml`.
-Pipeline tidak memverifikasi klaim epidemiologi.
+Genotipe B dan C disebut dominan di Indonesia, sehingga sekuens HBsAg diambil dari
+genotipe tersebut dan genotipe B dipilih sebagai desain utama. Klaim dominansi
+ini belum diverifikasi pipeline, jadi periksa dengan sitasi epidemiologi
+Indonesia yang dapat diperiksa, dan catat nomor aksesi sekuens yang dipakai di
+`config/parts.yaml`.
 
 **Catatan antigenik:** determinan "a" HBsAg (sekitar residu 124–147) adalah
 epitop penetral utama dan terkonservasi antar-genotipe, sehingga pilihan
@@ -167,8 +165,8 @@ sehingga konstruk yang hanya baik pada salah satu suhu tidak lolos.
 
 ## 6. Mengapa LinearDesign tidak dipakai
 
-Prompt proyek menyebut "algoritma ala LinearDesign bila lisensi mengizinkan".
-Lisensi LinearDesign membatasi pemakaian komersial dan redistribusi serta
+Pendekatan ala LinearDesign menarik untuk optimasi kodon, tetapi lisensi
+LinearDesign membatasi pemakaian komersial dan redistribusi serta
 memerlukan persetujuan terpisah, sehingga ia **tidak dijadikan dependensi**
 agar repositori ini tetap dapat dirilis seluruhnya di bawah MIT. Penggantinya
 adalah optimizer kodon sendiri di `src/circhbsag/codon.py`: hill-climbing
@@ -193,7 +191,7 @@ diintegrasikan dan ditandai sebagai pekerjaan terbuka di bawah.
 
 ## 7. Keputusan tentang m6A
 
-Prompt meminta "keputusan penyisipan 1% m6A". Pipeline **memindai** semua situs
+Soal penyisipan m6A (misalnya 1%), pipeline **memindai** semua situs
 RRACH (konsensus m6A) dan melaporkan kerapatannya, lalu secara bawaan
 **menurunkan** jumlahnya lewat optimasi kodon.
 
@@ -264,15 +262,13 @@ mesin Anda, tabel ini menyebut lisensi, sedangkan versinya diambil saat runtime.
 
 ## Sumber yang disitasi di dokumen ini
 
-Semua sitasi di atas berasal dari berkas PDF yang ada di berkas proyek dan telah
-diperiksa langsung isinya:
+Sitasi di atas diperiksa langsung dari naskah aslinya:
 
 - Wesselhoeft RA, Kowalski PS, Anderson DG (2018). Engineering circular RNA for
   potent and stable translation in eukaryotic cells. *Nature Communications*
   9:2629. doi:10.1038/s41467-018-05096-6
 
-Pustaka lain yang tersedia di berkas proyek dan relevan untuk Bab II, tetapi
-tidak dipakai sebagai dasar keputusan desain di atas, antara lain: Chen dkk.
+Pustaka lain yang relevan, tetapi tidak dipakai sebagai dasar keputusan desain di atas, antara lain: Chen dkk.
 (2025) tentang sistem sirkularisasi tanpa scar (*Molecular Therapy Nucleic
 Acids*); Wang dkk. (2024) tentang sistem PIE kimerik yang ditingkatkan
 (*Theranostics* 14:5869); Meganck dkk. (2021) tentang rekayasa backsplicing

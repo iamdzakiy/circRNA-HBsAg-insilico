@@ -108,7 +108,7 @@ Keluaran: `results/demo/gate0.json`, `gate0.md`, dan `design_lock.json`.
 
 `content/` menjadi satu-satunya tempat identitas proyek, daftar pustaka,
 keputusan desain, tabel software, Assumption Register, dan Open Questions
-disimpan. `tools/build.py` menghasilkan situs multi-halaman, dokumen TA `.docx`,
+disimpan. `tools/build.py` menghasilkan situs multi-halaman, dokumen `.docx`,
 dan naskah dek dari sumber itu ditambah `design_lock.json`.
 
 Validator menolak konten yang menyitasi kunci referensi yang tidak ada, memakai

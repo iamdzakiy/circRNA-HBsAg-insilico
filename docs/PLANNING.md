@@ -103,7 +103,7 @@ bisa hidup berdampingan dengan aturan native tanpa mengubah lingkungan utama.
 | **Tidak dipakai: LinearDesign** | desain mRNA optimal | membatasi penggunaan komersial | — |
 | **Tidak dipakai: NUPACK** | termodinamika asam nukleat | akademik, melarang redistribusi | — |
 
-Dua baris terakhir penting untuk dokumen tugas akhir: `[LITERATUR]` LinearDesign
+Dua baris terakhir penting untuk dokumen proyek: `[LITERATUR]` LinearDesign
 melaporkan kenaikan titer antibodi hingga 128 kali dibanding pembanding
 optimasi kodon pada vaksin mRNA (Zhang et al. 2023), jadi menolaknya adalah
 pengorbanan nyata, bukan kelalaian. Alasannya lisensi, dan harus ditulis
@@ -169,7 +169,7 @@ langsung mengubah epitop yang divaksinkan.
 
 `[PERKIRAAN]` Implikasi desain: untuk sasaran "Indonesia" secara umum, satu
 konstruk tunggal tidak menutup seluruh kepulauan. Pilihan yang jujur ada tiga,
-dan ini keputusan jek, bukan keputusan pipeline:
+dan ini keputusan penulis proyek, bukan keputusan pipeline:
 
 1. **B3** sebagai sasaran utama, dengan cakupan dinyatakan terbatas pada paruh
    barat yang berpenduduk paling banyak;
@@ -207,7 +207,7 @@ sekuens dengan struktur. `[LITERATUR]` LAMAR (Zhou et al. 2025), model bahasa
 RNA yang dilatih pada ~15 juta sekuens dari 225 mamalia dan 1569 virus,
 melaporkan penyaringan in silico IRES baru yang menghasilkan IRES aktif tinggi
 pendorong translasi circRNA — inilah contoh paling dekat dengan "big data untuk
-mengoptimasi komponen vaksin circRNA" yang jek minta. `[PERKIRAAN]` Keduanya
+mengoptimasi komponen vaksin circRNA" yang menjadi tujuan proyek. `[PERKIRAAN]` Keduanya
 masuk sebagai **pembanding berlabel eksperimental**, bukan pengganti kriteria
 termodinamika, karena keduanya belum pernah divalidasi pada konstruk PIE-HBsAg.
 
@@ -292,10 +292,8 @@ yang masih nyaman di laptop. Yang tidak nyaman di laptop adalah pelatihan ulang
 model bahasa RNA; karena itu rencana ini hanya memakai model terlatih untuk
 inferensi, tidak melatih apa pun.
 
-**Catatan jujur tentang lingkungan kerja saya sekarang:** sesi ini tidak bisa
-menjangkau NCBI, EBI, maupun Ensembl — semuanya ditolak proxy. Jadi seluruh
-unduhan korpus di bab ini adalah `[RENCANA]` yang harus dijalankan di macOS
-jek, dan pipeline sengaja dibuat berhenti dengan galat bila berkasnya belum ada.
+**Catatan:** unduhan korpus di bab ini belum dijalankan; semuanya berstatus `[RENCANA]` untuk dijalankan di macOS.
+Pipeline sengaja dibuat berhenti dengan galat bila berkasnya belum ada.
 
 ---
 
@@ -349,7 +347,7 @@ kerja kurasi data, bukan komputasi.
    eksperimental. Bila ia bertentangan dengan termodinamika, yang dilaporkan
    adalah pertentangannya, bukan yang hasilnya lebih enak dibaca.
 5. Seluruh angka pada data placeholder berlabel `[DEMO]` dan tidak boleh masuk
-   dokumen tugas akhir sebagai temuan.
+   dokumen proyek sebagai temuan.
 
 ---
 

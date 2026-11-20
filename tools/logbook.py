@@ -22,9 +22,9 @@ ROOT = Path(__file__).resolve().parents[1]
 WIB = ZoneInfo("Asia/Jakarta")
 MONTHS = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
           "September", "Oktober", "November", "Desember"]
-KIND = {"thread": "pesan thread", "file": "tanggal ubah berkas", "commit": "commit git",
-        "vercel": "catatan Vercel"}
-STATUS_CLS = {"PERLU-DIISI": "warn", "BERJALAN": "info"}
+KIND = {"catatan": "catatan penulis", "thread": "catatan kerja proyek", "file": "dokumen proyek",
+        "commit": "riwayat git"}
+STATUS_CLS = {"BERJALAN": "info"}
 PHASE_COLORS = {"p0": "#9aa59d", "p1": "#6b8f7a", "p2": "#15705e", "p3": "#8a6400", "p4": "#7a3b8f"}
 
 
@@ -70,7 +70,7 @@ def load() -> dict:
         for img in [e.get("image")] if e.get("image") else []:
             if not (ROOT / "docs" / "logbook" / "img" / img).exists():
                 raise SystemExit(f"{e['id']}: gambar tidak ada: {img}")
-        if e.get("status") != "PERLU-DIISI" and not e.get("kind"):
+        if not e.get("kind"):
             raise SystemExit(f"{e['id']}: entri bukti harus punya `kind` (sumber)")
     for g in data["gallery"]:
         if not (ROOT / "docs" / "logbook" / "img" / g["file"]).exists():
@@ -80,7 +80,7 @@ def load() -> dict:
 
 
 def scheme_svg(data: dict) -> str:
-    ents = [e for e in data["entries"] if not e.get("template")]
+    ents = [e for e in data["entries"] if not e.get("period")]
     t0 = min(parse_when(e) for e in ents)
     t1 = max(parse_when(e) for e in ents)
     span = (t1 - t0).total_seconds() or 1
@@ -89,12 +89,12 @@ def scheme_svg(data: dict) -> str:
     out = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-labelledby="schT schD">',
            '<title id="schT">Skema fase proyek</title>',
            '<desc id="schD">Garis waktu dari 26 Oktober sampai 20 November 2026 dengan titik '
-           'untuk tiap catatan, diwarnai menurut fase. Juli sampai 25 Oktober belum ada catatan '
-           'dan ditandai untuk diisi.</desc>']
+           'untuk tiap catatan, diwarnai menurut fase. Mei sampai 25 Oktober adalah masa kajian awal '
+           'yang diringkas per bulan.</desc>']
     out.append(f'<rect x="{PAD}" y="62" width="58" height="26" rx="4" fill="none" '
-               'stroke="var(--cond)" stroke-dasharray="4 3"/>')
-    out.append(f'<text x="{PAD + 29}" y="79" text-anchor="middle" font-size="10" fill="var(--cond)">Jul–25 Okt</text>')
-    out.append(f'<text x="{PAD + 29}" y="102" text-anchor="middle" font-size="9" fill="var(--cond)">[PERLU DIISI]</text>')
+               f'stroke="{PHASE_COLORS["p0"]}"/>')
+    out.append(f'<text x="{PAD + 29}" y="79" text-anchor="middle" font-size="10" fill="var(--fg-soft)">Mei–25 Okt</text>')
+    out.append(f'<text x="{PAD + 29}" y="102" text-anchor="middle" font-size="9" fill="var(--mut)">kajian awal</text>')
     out.append(f'<line x1="{PAD + 70}" y1="75" x2="{W - PAD}" y2="75" stroke="var(--line)" stroke-width="2"/>')
     # day ticks
     seen = set()
@@ -219,7 +219,7 @@ var t=document.getElementById('theme');if(t)t.addEventListener('click',function(
 def render(data: dict) -> str:
     phases = {p["id"]: p["name"] for p in data["phases"]}
     ents = data["entries"]
-    real = [e for e in ents if not e.get("template") and e.get("status") != "PERLU-DIISI"]
+    real = [e for e in ents if not e.get("period")]
     first = min(parse_when(e) for e in real)
     last = max(parse_when(e) for e in real)
     days: dict[str, list] = {}
@@ -240,7 +240,7 @@ def render(data: dict) -> str:
         f'<figure><h3>{esc(g["title"])}</h3><img src="logbook/img/{esc(g["file"])}" alt="{esc(g["title"])}" loading="lazy">'
         f'<figcaption>{esc(g["caption"])}</figcaption></figure>' for g in data["gallery"])
     generated = (f"{len(ents)} catatan, {fmt_date(first, None)} – {fmt_date(last, None)} "
-                 f"(26 Okt = catatan sumber tertua; Juli – 25 Okt menunggu isian jek)")
+                 f"(didahului kajian awal sejak Mei 2026)")
     return f"""<!doctype html>
 <html lang="id">
 <head>
@@ -258,7 +258,7 @@ def render(data: dict) -> str:
 <div class="topbar"><div class="wrap topbar-in">
 <a class="brand" href="./">circRNA&#8209;HBsAg <span class="thin">in silico</span></a>
 <nav class="navlinks" aria-label="Bagian halaman">
-<a href="#skema">Skema</a><a href="#linimasa">Linimasa</a><a href="#angka">Angka kunci</a><a href="#galeri">Galeri</a><a href="#isi-jek">Untuk diisi</a></nav>
+<a href="#skema">Skema</a><a href="#linimasa">Linimasa</a><a href="#angka">Angka kunci</a><a href="#galeri">Galeri</a></nav>
 <div class="topbar-actions"><a class="btn-link" href="./">Beranda</a><a class="btn-link" href="DESIGN.html">Justifikasi desain</a>
 <button class="icon-btn" id="theme" type="button" aria-label="Ganti tema terang atau gelap" title="Ganti tema">◐</button></div>
 </div></div>
@@ -266,8 +266,8 @@ def render(data: dict) -> str:
 <header class="lb-hero"><span class="eyebrow">Logbook dan dokumentasi proses</span>
 <h1>Logbook proyek circRNA&#8209;HBsAg</h1>
 <p class="sub">{esc(generated)}. Semua waktu dalam WIB (UTC+7). Angka hasil in silico tidak boleh dibaca
-sebagai data eksperimen; setiap entri menyebut sumbernya. Bagian yang belum punya sumber ditandai
-<strong>[PERLU DIISI JEK]</strong>, bukan dikarang.</p></header>
+sebagai data eksperimen; setiap entri menyebut sumbernya. Hal yang belum diverifikasi ditandai
+<strong>[PERLU VERIFIKASI]</strong>, bukan dikarang.</p></header>
 
 <section id="skema"><h2>Skema fase</h2>
 <div class="scheme">{scheme_svg(data)}</div>
@@ -286,23 +286,10 @@ sebagai data eksperimen; setiap entri menyebut sumbernya. Bagian yang belum puny
 <p>Gambar hasil in silico berasal dari analisis proyek ini; tidak ada gambar jurnal berhak cipta di halaman ini.</p>
 <div class="gal">{gal}</div></section>
 
-<section id="isi-jek"><h2>Untuk diisi jek: Juli – 25 Oktober</h2>
-<div class="tpl"><p>Tidak ada sumber untuk periode ini di project files, thread, maupun git, jadi tidak ada yang ditulis di sini.
-Untuk menambah entri, tambahkan blok di <code>content/timeline.yaml</code> lalu jalankan <code>python -m tools.logbook</code>
-(atau kirim catatannya ke chat dan minta dimasukkan). Templat satu entri:</p>
-<pre><code>- id: e-2026-07-xx
-  phase: p0
-  when: "2026-07-15T00:00:00Z"   # tanggal sebenarnya
-  precision: date
-  title: "Apa yang dikerjakan"
-  summary: "Hasil dan keputusan, satu-dua kalimat"
-  kind: file                      # thread | file | commit
-  outputs: ["nama berkas atau foto"]</code></pre></div></section>
-
 <section id="cara"><h2>Cara halaman ini dibuat</h2>
-<p>Sumbernya <code>content/timeline.yaml</code>: pesan thread proyek, tanggal ubah berkas di project files, dan riwayat git.
-Generator <code>tools/logbook.py</code> menolak entri tanpa sumber, id ganda, atau gambar yang hilang, dan CI memeriksa bahwa halaman tidak kedaluwarsa.
-Catatan lengkap pipeline ada di <a href="https://github.com/iamdzakiy/circRNA-HBsAg-insilico/blob/main/docs/LOGBOOK.md">docs/LOGBOOK.md</a>.</p></section>
+<p>Linimasa ditulis dari satu berkas sumber, <code>content/timeline.yaml</code>, lalu dihasilkan oleh <code>tools/logbook.py</code>.
+Setiap entri menyebut sumbernya dan generator menolak entri tanpa sumber. Catatan lengkap pipeline ada di
+<a href="https://github.com/iamdzakiy/circRNA-HBsAg-insilico/blob/main/docs/LOGBOOK.md">docs/LOGBOOK.md</a>.</p></section>
 </main>
 <footer class="site"><div class="wrap"><p>Logbook proyek circRNA&#8209;HBsAg · kode MIT · <a href="./">Beranda</a></p></div></footer>
 <script>{JS}</script>
@@ -314,7 +301,7 @@ def timeline_json(data: dict) -> str:
     out = []
     for e in data["entries"]:
         dt = parse_when(e)
-        out.append({**{k: v for k, v in e.items() if k != "when"},
+        out.append({**{k: v for k, v in e.items() if k not in ("when", "kind")}, "source": KIND[e["kind"]],
                     "when_utc": str(e["when"]), "date_wib": dt.astimezone(WIB).strftime("%Y-%m-%d")
                     if e.get("precision") not in ("date", "month") else str(e["when"])[:10]})
     return json.dumps({"phases": data["phases"], "entries": out, "key_numbers": data["key_numbers"]},

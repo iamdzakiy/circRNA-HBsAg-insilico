@@ -5,7 +5,7 @@ steps:
   - {no: 1, step: "Ambil sekuens acuan", script: "scripts/01_fetch_sequences.py", snakemake: "-", input: "data/raw/accessions.tsv", output: "data/raw/<bagian>.fa, data/raw/provenance.tsv", note: "Aksesi kosong -> [PERLU VERIFIKASI], tidak ditebak"}
   - {no: 2, step: "Optimasi kodon ORF", script: "scripts/02_codon_optimize.py", snakemake: "codon_optimize (CLI codon)", input: "protein (parts.yaml: protein.file), data/reference/codon_usage_human.tsv", output: "<out>/orf_optimized.fa, <out>/codon.json", note: "CAI terhadap tabel kodon manusia [PERKIRAAN]"}
   - {no: 3, step: "Rakit prekursor dan lingkaran", script: "scripts/03_assemble_construct.py", snakemake: "(di dalam tahap0/gate0)", input: "parts.yaml + orf_optimized.fa", output: "<out>/tables/construct.fa, construct_features.tsv, precursor.gb", note: ""}
-  - {no: 4, step: "Gate 0 (9 uji) + kunci desain", script: "scripts/04_gate0_circularization_check.py", snakemake: "gate0 (CLI gate0; di luar rule all)", input: "parts.yaml + orf_optimized.fa", output: "<out>/reports/gate0.json, gate0.md, design_lock.json", note: "design_lock.json = sumber angka untuk situs/TA/deck"}
+  - {no: 4, step: "Gate 0 (9 uji) + kunci desain", script: "scripts/04_gate0_circularization_check.py", snakemake: "gate0 (CLI gate0; di luar rule all)", input: "parts.yaml + orf_optimized.fa", output: "<out>/reports/gate0.json, gate0.md, design_lock.json", note: "design_lock.json = sumber angka untuk situs dan dokumen"}
   - {no: 5, step: "Lipatan RNA", script: "scripts/05_fold_analysis.py", snakemake: "(di dalam tahap0)", input: "konstruk", output: "<out>/tables/fold_analysis.tsv", note: "ViennaRNA"}
   - {no: 6, step: "Integritas IRES", script: "scripts/06_ires_integrity.py", snakemake: "(di dalam tahap0)", input: "konstruk", output: "<out>/tables/ires_integrity.json", note: "Uji 6"}
   - {no: 7, step: "Pindai m6A RRACH", script: "scripts/07_m6a_rrach_scan.py", snakemake: "(di dalam tahap0)", input: "konstruk", output: "<out>/tables/m6a_rrach_sites.tsv", note: ""}
@@ -20,10 +20,10 @@ steps:
   - {no: 16, step: "Laporan Gate 0", script: "scripts/12_build_report.py", snakemake: "-", input: "reports/gate0.md + tiga tabel wajib", output: "<out>/reports/gate0_report.md", note: ""}
   - {no: 17, step: "Ringkasan satu halaman", script: "-", snakemake: "summary", input: "semua JSON", output: "<out>/SUMMARY.md", note: ""}
   - {no: 18, step: "Tabel lengkap (xlsx + CSV)", script: "scripts/13_export_workbook.py", snakemake: "workbook", input: "semua keluaran di atas", output: "<out>/tables/circhbsag_hasil_lengkap.xlsx, <out>/tables/csv/*.csv", note: "tidak menghitung angka baru"}
-# Rubrik v2 yang dipakai TA: SNAPSHOT dari ta-docx/insilico/optim/rubric2.py (20 Nov 2026).
+# Rubrik v2 yang dipakai kandidat V1–V18: SNAPSHOT dari salinan kerja terpisah (rubric2.py) (20 Nov 2026).
 # Belum ada di repo; bobot disalin apa adanya. Jangan dipakai sebagai hasil repo.
 rubric_v2_snapshot:
-  source: "ta-docx/insilico/optim/rubric2.py (thread TA), belum di-commit ke repo"
+  source: "rubric2.py pada salinan kerja terpisah, belum di-commit ke repo"
   go: 0.70
   conditional: 0.55
   weights:

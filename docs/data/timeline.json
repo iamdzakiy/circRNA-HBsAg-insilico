@@ -2,13 +2,13 @@
   "phases": [
     {
       "id": "p0",
-      "name": "Persiapan",
-      "span": "Juli – 25 Okt 2026",
-      "note": "Belum ada catatan di sumber yang bisa dibaca. Diisi jek."
+      "name": "Kajian awal",
+      "span": "Mei – 25 Okt 2026",
+      "note": "Pencarian sekuens dan kajian literatur."
     },
     {
       "id": "p1",
-      "name": "Perencanaan dan deck awal",
+      "name": "Perencanaan",
       "span": "26 Okt – 15 Nov 2026"
     },
     {
@@ -18,7 +18,7 @@
     },
     {
       "id": "p3",
-      "name": "Dokumen TA, SOP, protokol",
+      "name": "Dokumen protokol",
       "span": "16 – 18 Nov 2026"
     },
     {
@@ -29,178 +29,118 @@
   ],
   "entries": [
     {
+      "id": "e-p0-mei",
+      "phase": "p0",
+      "title": "Mei 2026: pencarian sekuens dan kajian literatur",
+      "summary": "Pekerjaan dimulai dengan mencari sekuens acuan dan menghubungkannya dengan kajian literatur.",
+      "precision": "month",
+      "period": true,
+      "source": "catatan penulis",
+      "when_utc": "2026-05-01T00:00:00Z",
+      "date_wib": "2026-05-01"
+    },
+    {
       "id": "e-p0-jul",
       "phase": "p0",
+      "title": "Juli 2026: pencarian sekuens dan kajian literatur berlanjut",
+      "summary": "Pencarian sekuens dan upaya menghubungkan hasil kajian literatur berlanjut.",
       "precision": "month",
-      "status": "PERLU-DIISI",
-      "title": "Juli 2026 — [PERLU DIISI JEK]",
-      "summary": "Belum ada sumber untuk bulan ini di project files, thread, maupun git. Isi: kegiatan, hasil, bukti (foto/berkas).",
-      "template": true,
+      "period": true,
+      "source": "catatan penulis",
       "when_utc": "2026-07-01T00:00:00Z",
       "date_wib": "2026-07-01"
     },
     {
-      "id": "e-p0-aug",
+      "id": "e-p0-lain",
       "phase": "p0",
+      "title": "Agustus – 25 Oktober 2026: kegiatan serupa pada bulan-bulan lain",
+      "summary": "Kegiatan yang sama berlanjut pada bulan-bulan berikutnya. Rincian per bulan belum dicatat.",
       "precision": "month",
-      "status": "PERLU-DIISI",
-      "title": "Agustus 2026 — [PERLU DIISI JEK]",
-      "summary": "Belum ada sumber. Isi: kegiatan, hasil, bukti.",
-      "template": true,
+      "period": true,
+      "source": "catatan penulis",
       "when_utc": "2026-08-01T00:00:00Z",
       "date_wib": "2026-08-01"
     },
     {
-      "id": "e-p0-sep",
-      "phase": "p0",
-      "precision": "month",
-      "status": "PERLU-DIISI",
-      "title": "September 2026 — [PERLU DIISI JEK]",
-      "summary": "Belum ada sumber. Isi: kegiatan, hasil, bukti.",
-      "template": true,
-      "when_utc": "2026-09-01T00:00:00Z",
-      "date_wib": "2026-09-01"
-    },
-    {
-      "id": "e-p0-okt",
-      "phase": "p0",
-      "precision": "month",
-      "status": "PERLU-DIISI",
-      "title": "1 – 25 Oktober 2026 — [PERLU DIISI JEK]",
-      "summary": "Belum ada sumber. Draf skripsi awal dan kumpulan PDF jurnal baru muncul di project files pada 26 Okt, tanggal itu hanya tanggal unggah, bukan tanggal penulisan.",
-      "template": true,
-      "when_utc": "2026-10-01T00:00:00Z",
-      "date_wib": "2026-10-01"
-    },
-    {
       "id": "e-1026-a",
       "phase": "p1",
-      "title": "Proyek dibuat; draf skripsi dan 11 PDF jurnal diunggah",
-      "summary": "Project files berisi draf TA awal dan kumpulan PDF literatur yang dipakai sebagai rujukan (tanggal ubah berkas 26 Okt 14:33–14:36 UTC, OMNIA.pdf 15:02).",
-      "kind": "file",
+      "title": "Kumpulan literatur dan rencana awal disusun",
+      "summary": "Rujukan jurnal (11 PDF) dan rencana awal proyek dikumpulkan sebagai dasar perancangan.",
+      "source": "dokumen proyek",
       "when_utc": "2026-10-26T14:33:00Z",
       "date_wib": "2026-10-26"
     },
     {
       "id": "e-1026-b",
       "phase": "p1",
-      "title": "Permintaan pertama: rencana teknis circRNA vaksin HBsAg",
-      "summary": "Dari draf skripsi, jek meminta rencana langkah demi langkah: in silico, perakitan (Golden Gate atau Gibson), optimasi IRES, dan optimasi teknis lain.",
-      "outputs": [
-        "Artifact: Rencana Teknis circRNA-HBsAg: In Silico sampai Perakitan dan QC",
-        "Artifact: Pitch Deck TA circRNA-HBsAg"
-      ],
-      "kind": "thread",
+      "title": "Rencana teknis circRNA vaksin HBsAg",
+      "summary": "Rencana langkah demi langkah: in silico, perakitan (Golden Gate atau Gibson), optimasi IRES, dan kendali mutu.",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-10-26T14:37:00Z",
       "date_wib": "2026-10-26"
     },
     {
       "id": "e-1026-c",
       "phase": "p1",
-      "title": "Pitch deck gaya jurnal, flowchart metode, parameter checkpoint",
-      "summary": "Meminta deck dari awal sampai akhir seperti OMNIA.pdf, flowchart metode dengan parameter checkpoint, standar kerja di Benchling/SnapGene, dan penjelasan apakah model AI perlu dilatih dulu.",
-      "kind": "thread",
+      "title": "Flowchart metode dan parameter checkpoint",
+      "summary": "Flowchart metode dengan parameter checkpoint, standar kerja di Benchling/SnapGene, dan pertimbangan apakah model AI perlu dilatih lebih dulu.",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-10-26T15:03:00Z",
       "date_wib": "2026-10-26"
     },
     {
-      "id": "e-1026-d",
-      "phase": "p1",
-      "title": "Umpan balik: deck diulang, diagram bergaya BioRender",
-      "summary": "Hasil pertama ditolak ('jelek sekali'). Arahannya: jangan meniru persis, hindari gaya generik AI, utamakan gambar dan diagram bergaya BioRender.",
-      "decisions": [
-        "Deck dibuat ulang dengan diagram sebagai isi utama tiap slide."
-      ],
-      "kind": "thread",
-      "when_utc": "2026-10-26T15:32:00Z",
-      "date_wib": "2026-10-26"
-    },
-    {
-      "id": "e-1107",
-      "phase": "p1",
-      "title": "Thread perencanaan pertama ditutup",
-      "summary": "Thread 'Rancang circRNA vaccine HBsAg' ditandai selesai (resolved_at 7 Nov 16:46 UTC). Tidak ada catatan lain antara 27 Okt dan 15 Nov di sumber yang bisa dibaca.",
-      "status": "PERLU-DIISI",
-      "note": "[PERLU DIISI JEK] kegiatan 27 Okt – 15 Nov bila ada.",
-      "kind": "thread",
-      "when_utc": "2026-11-07T16:46:00Z",
-      "date_wib": "2026-11-07"
-    },
-    {
       "id": "e-1116-f",
       "phase": "p2",
-      "precision": "date",
       "title": "Commit pertama repositori",
       "summary": "Pipeline in silico Tahap 0/1 untuk konstruk circRNA-HBsAg (PIE, IRES CVB3).",
+      "precision": "date",
       "commit": "b8ba286",
-      "kind": "commit",
+      "source": "riwayat git",
       "when_utc": "2026-11-16",
-      "date_wib": "2026-11-16"
-    },
-    {
-      "id": "e-1116-a",
-      "phase": "p2",
-      "title": "Ringkasan seminar menjadi prompt untuk tiga pekerjaan",
-      "summary": "jek menempelkan ringkasan sumber seminar (Chen/Yale, Arraystar, Szabo/Stanford, Giem). Tiga thread dimulai: deck Canva, draf TA sampai sebelum Bab Hasil, panduan produksi. Empat menit kemudian jek menjelaskan bahwa maksudnya hanya prompt, dan ketiga thread dihentikan.",
-      "kind": "thread",
-      "when_utc": "2026-11-16T15:54:00Z",
       "date_wib": "2026-11-16"
     },
     {
       "id": "e-1116-b",
       "phase": "p2",
-      "title": "Syarat proyek dikunci",
-      "summary": "Software wajib gratis, optimasi dibantu AI, website dan repo GitHub untuk proyek in silico, hanya satu IRES, dan kelayakan sirkularisasi HBsAg diprediksi in silico lebih dulu.",
+      "title": "Ketentuan desain proyek dikunci",
+      "summary": "Software wajib gratis, optimasi dibantu AI, repositori GitHub dan situs untuk proyek in silico, hanya satu IRES, dan kelayakan sirkularisasi HBsAg diprediksi in silico lebih dulu.",
       "decisions": [
         "Satu IRES saja",
         "Semua software gratis dengan lisensi tercatat",
         "Tahap 0 (GO/NO-GO) sebelum tahap lain"
       ],
-      "kind": "thread",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-16T16:01:00Z",
-      "date_wib": "2026-11-16"
-    },
-    {
-      "id": "e-1116-c",
-      "phase": "p2",
-      "title": "Prompt lengkap dijalankan; pipeline dimulai setelah satu kali dialihkan oleh pengaman sistem",
-      "summary": "Beberapa balasan antara 16:02 dan 16:09 UTC dialihkan otomatis ke model lain oleh pengaman sistem, dan thread pipeline sempat ditolak. Prompt lengkap dikirim ulang pada 16:06 dan thread pipeline, deck, dan TA berjalan.",
-      "kind": "thread",
-      "when_utc": "2026-11-16T16:06:00Z",
       "date_wib": "2026-11-16"
     },
     {
       "id": "e-1116-d",
       "phase": "p2",
-      "title": "Keputusan desain awal dan kebutuhan tiga FASTA",
-      "summary": "Sandbox tidak bisa mengunduh dari GenBank/Addgene (proxy hanya meloloskan GitHub dan PyPI). Thread meminta tiga sekuens dan mengambil keputusan sementara.",
+      "title": "Keputusan desain awal",
+      "summary": "Sekuens acuan harus disediakan dengan nomor aksesinya; sementara itu dipilih desain kerja.",
       "decisions": [
         "IRES = CVB3",
-        "ORF = S-HBsAg kecil 226 aa genotipe B"
+        "ORF = S-HBsAg kecil 226 aa, genotipe kerja B (sementara)"
       ],
-      "kind": "thread",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-16T16:16:00Z",
       "date_wib": "2026-11-16"
     },
     {
       "id": "e-1116-g",
       "phase": "p3",
-      "title": "Draf TA (abstrak, Bab I–III) dan tutorial produksi",
-      "summary": "Dua docx baru di project files; draf asli tidak disentuh.",
-      "outputs": [
-        "[TA] Skripsi_circRNA-HBsAg_ITB_v2_BabI-III.docx",
-        "Tutorial_Produksi_circRNA-HBsAg_in-silico_in-vitro_in-vivo.docx"
-      ],
-      "kind": "file",
+      "title": "Tutorial produksi circRNA-HBsAg",
+      "summary": "Tutorial yang menghubungkan tahap in silico, in vitro, dan in vivo disusun.",
+      "source": "dokumen proyek",
       "when_utc": "2026-11-16T19:35:00Z",
       "date_wib": "2026-11-17"
     },
     {
       "id": "e-1116-e",
       "phase": "p2",
-      "title": "'fake dulu aja': pipeline dijalankan dengan sekuens placeholder",
+      "title": "Pipeline diuji dengan sekuens placeholder",
       "summary": "Modul inti (ViennaRNA, RNAplfold, optimizer kodon, skor GO/NO-GO) dijalankan ujung ke ujung dengan sekuens acak berlabel DEMO.",
-      "kind": "thread",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-16T23:50:00Z",
       "date_wib": "2026-11-17"
     },
@@ -214,9 +154,9 @@
         "Uji 2 pada data demo": "FAIL (intron placeholder bukan intron grup I)"
       },
       "commit": "9f92380, 4d423fd, 1884cb4, b14be9f",
-      "kind": "commit",
       "image": "ss_gate0.png",
       "caption": "Halaman Gate 0 yang dihasilkan dari design_lock.json (tangkapan layar lokal, 20 Nov 2026).",
+      "source": "riwayat git",
       "when_utc": "2026-11-17",
       "date_wib": "2026-11-17"
     },
@@ -234,9 +174,9 @@
         "skor komposit": "0,6922 (GO-BERSYARAT)"
       },
       "commit": "5800f65, 8ac61eb",
-      "kind": "commit",
       "image": "dG_vs_arm_length.png",
       "caption": "ΔG dupleks lengan homologi terhadap panjang lengan, 55 °C; pita hijau = rentang target. Data demo (placeholder).",
+      "source": "riwayat git",
       "when_utc": "2026-11-17",
       "date_wib": "2026-11-17"
     },
@@ -244,11 +184,11 @@
       "id": "e-1117-a",
       "phase": "p2",
       "title": "Demo ujung ke ujung: GO-BERSYARAT 0,62",
-      "summary": "Sekuens placeholder, tanpa gerbang keras gagal. Angkanya tidak dipakai di dokumen TA karena tidak ada nukleotida asli.",
+      "summary": "Sekuens placeholder, tanpa gerbang keras gagal. Angkanya tidak dipakai sebagai hasil karena tidak ada nukleotida asli.",
       "result": {
         "skor komposit demo": "0,62 (GO-BERSYARAT)"
       },
-      "kind": "thread",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-17T00:02:00Z",
       "date_wib": "2026-11-17"
     },
@@ -263,81 +203,58 @@
         "trial": "24",
         "titik Pareto": "16"
       },
-      "kind": "thread",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-17T00:51:00Z",
       "date_wib": "2026-11-17"
     },
     {
       "id": "e-1117-c",
       "phase": "p2",
-      "title": "Perencanaan macOS, gratis, otomatis; logbook dan notebook ke GitHub",
-      "summary": "jek meminta rencana optimasi in silico yang komprehensif (macOS, anggaran terbatas, gratis, otomatis, skala big data) dan semua logbook dan notebook masuk GitHub dengan website yang bisa diakses. Persetujuan membuat repo diberikan 01:37.",
-      "kind": "thread",
+      "title": "Perencanaan optimasi in silico: gratis, otomatis, macOS",
+      "summary": "Rencana komprehensif yang berjalan di macOS, memakai alat gratis, otomatis, dan dapat diskalakan ke data besar. Semua logbook dan notebook dipublikasikan di GitHub.",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-17T01:33:00Z",
       "date_wib": "2026-11-17"
     },
     {
       "id": "e-1117-d",
       "phase": "p2",
-      "title": "Spesifikasi induk BLOK 1–12 dibagi ke tiga thread",
-      "summary": "Pipeline, repo, website: BLOK 2, 3 (Gate 0), 4, 8, 9, 12. TA, expected results, protokol: BLOK 5, 6, 7, 10. Deck: BLOK 11. Design lock dijaga konsisten lintas ketiganya.",
-      "kind": "thread",
+      "title": "Satu sumber tunggal angka (design lock)",
+      "summary": "Pipeline, repositori, dan situs memakai satu berkas kunci desain agar angka konsisten di semua keluaran.",
+      "decisions": [
+        "Angka dikunci di design_lock.json"
+      ],
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-17T01:39:00Z",
       "date_wib": "2026-11-17"
     },
     {
       "id": "e-1117-e",
       "phase": "p2",
-      "title": "Website dengan bahasa humanis dan UI/UX rapi; deploy ke Vercel",
-      "summary": "Permintaan membangun ulang situs dengan toggle tema, daftar isi, dan pemindai sekuens yang berjalan di peramban.",
-      "kind": "thread",
+      "title": "Situs dengan bahasa humanis dan antarmuka rapi",
+      "summary": "Situs dibangun ulang dengan toggle tema, daftar isi, dan pemindai sekuens yang berjalan di peramban.",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-17T01:46:00Z",
-      "date_wib": "2026-11-17"
-    },
-    {
-      "id": "e-1117-f",
-      "phase": "p2",
-      "title": "Repo GitHub diberikan; push dimulai",
-      "summary": "URL repositori dikonfirmasi jek dan pipeline di-push.",
-      "kind": "thread",
-      "when_utc": "2026-11-17T05:37:00Z",
       "date_wib": "2026-11-17"
     },
     {
       "id": "e-1117-g",
       "phase": "p2",
-      "title": "Website live di Vercel",
-      "summary": "Situs terbuka tanpa login di circrna-hbsag-insilico.vercel.app dengan halaman justifikasi desain. Deploy dikirim sebagai berkas, bukan lewat Git, sehingga push berikutnya belum otomatis ikut terdeploy.",
-      "link": "https://circrna-hbsag-insilico.vercel.app",
-      "kind": "thread",
+      "title": "Repositori GitHub dan situs publik dibuka",
+      "summary": "Pipeline, dokumentasi, dan halaman justifikasi desain dapat diakses publik.",
       "image": "ss_situs_beranda.png",
-      "caption": "Beranda situs (tangkapan layar lokal dari docs/index.html, 20 Nov 2026).",
+      "caption": "Beranda situs (tangkapan layar dari docs/index.html, 20 Nov 2026).",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-17T05:50:00Z",
       "date_wib": "2026-11-17"
     },
     {
       "id": "e-1117-h",
       "phase": "p3",
-      "title": "SOP in vitro, protokol in vivo, troubleshooting, TA BLOK 10 selesai",
-      "summary": "Empat dokumen BLOK 5, 6, 7, dan 10 masuk project files (SOP 14 tabel).",
-      "outputs": [
-        "SOP_in-vitro_circRNA-HBsAg_BLOK5.docx",
-        "Protokol_in-vivo_circRNA-HBsAg_BLOK6.docx",
-        "Hasil-Diharapkan_Troubleshooting_Interpretasi_BLOK7.docx",
-        "[TA] Skripsi_circRNA-HBsAg_ITB_BLOK10_BabI-III.docx"
-      ],
-      "kind": "thread",
+      "title": "SOP in vitro, protokol in vivo, dan panduan troubleshooting",
+      "summary": "SOP in vitro (14 tabel), protokol in vivo, serta hasil yang diharapkan dan interpretasinya disusun.",
+      "source": "dokumen proyek",
       "when_utc": "2026-11-17T05:50:00Z",
-      "date_wib": "2026-11-17"
-    },
-    {
-      "id": "e-1117-k",
-      "phase": "p2",
-      "title": "Deck 22 slide diperbarui; dibangun ulang mengikuti gaya contoh",
-      "summary": "Dua ilustrasi baru, penanda bagian, nomor halaman. Pada 23:58 UTC deck dibangun ulang penuh mengikuti gaya deck contoh jek (latar putih, aksen merah).",
-      "link": "https://www.canva.com/design/DAHbGz4z2_4/edit",
-      "kind": "thread",
-      "when_utc": "2026-11-17T11:34:00Z",
       "date_wib": "2026-11-17"
     },
     {
@@ -348,7 +265,7 @@
       "outputs": [
         "Protokol_Lengkap_in-vitro_circRNA-HBsAg_v1.docx"
       ],
-      "kind": "thread",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-18T11:44:00Z",
       "date_wib": "2026-11-18"
     },
@@ -363,118 +280,97 @@
         "titik Pareto": "24"
       },
       "commit": "3d987b6",
-      "kind": "commit",
+      "source": "riwayat git",
       "when_utc": "2026-11-18T12:17:00Z",
       "date_wib": "2026-11-18"
     },
     {
       "id": "e-1118-c",
       "phase": "p3",
-      "title": "Semua dokumen disinkronkan ke angka design lock terbaru",
-      "summary": "SOP, protokol in vivo, troubleshooting, TA Bab I–III, protokol in vitro, dan slide 9–10 deck memakai prekursor 1827 nt, lengan 20 nt, skor 0,6922 dan 0,7437.",
-      "kind": "thread",
+      "title": "Dokumen protokol disinkronkan ke angka design lock terbaru",
+      "summary": "SOP, protokol in vivo, troubleshooting, dan protokol in vitro memakai prekursor 1827 nt, lengan 20 nt, serta skor 0,6922 dan 0,7437.",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-18T12:21:00Z",
       "date_wib": "2026-11-18"
     },
     {
       "id": "e-1118-d",
       "phase": "p3",
-      "title": "Deck: 8 slide lampiran A1–A8 (flowchart in vitro dan konsep optimasi)",
-      "summary": "Atas permintaan jek (20:04 UTC): garis besar alur in vitro 10 tahap, rincian per tahap, konsep optimasi, bobot dan ambang kriteria, lima gerbang keras. Halaman 23–30; slide utama tetap 22.",
-      "kind": "thread",
+      "title": "Alur in vitro 10 tahap dan konsep optimasi didokumentasikan",
+      "summary": "Garis besar alur in vitro, rincian per tahap, konsep optimasi, bobot dan ambang kriteria, serta lima gerbang keras.",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-18T23:59:00Z",
       "date_wib": "2026-11-19"
     },
     {
       "id": "e-1119-a",
       "phase": "p4",
-      "title": "TA lengkap sesuai format contoh, gambar dari jurnal, in silico yang sesuai",
-      "summary": "jek meminta skripsi docx komprehensif yang merujuk jurnal (gambar open access), dan analisis in silico yang menghubungkan HBsAg dengan IRES.",
-      "kind": "thread",
+      "title": "Analisis in silico yang menghubungkan HBsAg dengan IRES",
+      "summary": "Analisis dirancang agar ORF HBsAg dan IRES dinilai bersama dalam satu konstruk.",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-19T13:36:00Z",
       "date_wib": "2026-11-19"
     },
     {
       "id": "e-1119-b",
       "phase": "p4",
-      "title": "TA v1, 96 halaman; analisis parsial dengan AF081 dan IRES AF169665.1",
-      "summary": "AF081 hanya fragmen 276 nt (92 aa, tanpa ATG). Lima pertanyaan terbuka: pakai fragmen atau ORF S penuh, intron/spacer/lengan belum ada, batas IRES, bagian kuning untuk jek, dan bobot skor yang beda dari kode repo.",
-      "outputs": [
-        "[TA] Skripsi_circRNA-HBsAg_ITB_Lengkap_v1.docx"
-      ],
-      "kind": "file",
+      "title": "Analisis parsial: fragmen AF081 tidak memadai",
+      "summary": "AF081 hanya fragmen 276 nt (92 aa, tanpa ATG), sehingga tidak cukup sebagai ORF. Analisis parsial memakai IRES AF169665.1. Pertanyaan terbuka: pakai fragmen atau ORF S penuh, intron/spacer/lengan belum ada, batas IRES, dan bobot skor yang berbeda dari kode repositori.",
+      "source": "dokumen proyek",
       "when_utc": "2026-11-19T13:52:00Z",
       "date_wib": "2026-11-19"
     },
     {
       "id": "e-1119-c",
       "phase": "p4",
-      "title": "Keputusan: ORF S penuh, istilah gerbang dibuang, tabel disederhanakan",
+      "title": "Keputusan: ORF S penuh 226 aa",
       "decisions": [
-        "ORF S penuh 226 aa",
-        "Istilah 'gate/gerbang' diganti tahap",
-        "Tabel tidak berbau AI"
+        "ORF S penuh 226 aa"
       ],
-      "summary": "Keputusan jek atas pertanyaan terbuka v1.",
-      "kind": "thread",
+      "summary": "Fragmen tidak dipakai; ORF S penuh dipilih untuk analisis.",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-19T14:01:00Z",
       "date_wib": "2026-11-19"
     },
     {
       "id": "e-1119-d",
       "phase": "p4",
-      "title": "TA v2, 83 halaman: kontrol negatif mengungkap rubrik tidak valid",
+      "title": "Kontrol negatif mengungkap rubrik tidak valid",
       "summary": "Skor konstruk dasar 0,599 dengan IRES utuh 94,7%, tetapi kontrol negatif 0,619, lebih tinggi daripada dasar. Ditulis sebagai temuan, bukan disembunyikan.",
       "result": {
         "skor dasar": "0,599",
         "kontrol negatif": "0,619",
         "IRES utuh": "94,7%"
       },
-      "outputs": [
-        "[TA] Skripsi_circRNA-HBsAg_ITB_Lengkap_v2.docx"
-      ],
-      "kind": "file",
+      "source": "dokumen proyek",
       "when_utc": "2026-11-19T14:49:00Z",
       "date_wib": "2026-11-19"
     },
     {
       "id": "e-1120-a",
       "phase": "p4",
-      "title": "Sekuens nyata masuk: HBV D00329.1 (subtipe adw) dan paper Shen 2025",
-      "summary": "ORF S 226 aa diekstrak dari D00329.1. Paper memakai desain CIRC (intron utuh tanpa lengan homologi), sehingga rancangan mungkin berpindah dari PIE ke CIRC. File suplemen sekuens plasmid dikirim jek pukul 02:07.",
+      "title": "Sekuens nyata pertama masuk dan desain CIRC dari Shen dkk. 2025",
+      "summary": "ORF S 226 aa diekstrak dari HBV D00329.1 (subtipe adw). Paper acuan memakai desain CIRC (intron utuh tanpa lengan homologi), sehingga rancangan mungkin berpindah dari PIE ke CIRC. Sekuens ini kemudian diganti (lihat entri 20 Nov berikutnya).",
       "decisions": [
         "Genotipe kerja B (sementara), subgenotipe menunggu verifikasi"
       ],
-      "kind": "thread",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-20T02:02:00Z",
-      "date_wib": "2026-11-20"
-    },
-    {
-      "id": "e-1120-b",
-      "phase": "p4",
-      "title": "Panduan konsep TA di Google Docs",
-      "summary": "Garis besar, pipeline beserta alasan, kontrol positif dan negatif, urgensi, next steps, 16 pertanyaan penguji. Semua skor di dalamnya berasal dari sekuens simulasi dan bagian yang menunggu data ditandai [MENUNGGU].",
-      "link": "https://docs.google.com/document/d/1M5HdAo04KA283aI4nGFNmsWSeXc5qewB296SNXegb20/edit",
-      "kind": "thread",
-      "when_utc": "2026-11-20T02:09:00Z",
       "date_wib": "2026-11-20"
     },
     {
       "id": "e-1120-c",
       "phase": "p4",
-      "title": "TA v3, 91 halaman: sekuens nyata, 13 kandidat, tak satu pun lolos 0,70",
+      "title": "13 kandidat dari sekuens nyata: tak satu pun lolos 0,70",
       "summary": "Intron, ekson, dan lengan dari Shen 2025; IRES AF169665.1; ORF S dari D00329.1. V11 terbaik di 0,544, V1 gagal pada situs BsmBI, dan kontrol negatif V10 (0,568) malah tertinggi sehingga rubrik dinyatakan belum valid.",
       "result": {
         "kandidat": "13 (V1–V13)",
         "terbaik": "V11, 0,544",
         "lolos 0,70": "0"
       },
-      "outputs": [
-        "[TA] Skripsi_circRNA-HBsAg_ITB_Lengkap_v3.docx"
-      ],
-      "kind": "file",
       "image": "insilico_konstruk.png",
       "caption": "Peta prekursor dan lingkaran V11 (1644 nt / 1376 nt). Hasil in silico dari sekuens nyata, bukan eksperimen.",
+      "source": "dokumen proyek",
       "when_utc": "2026-11-20T02:35:00Z",
       "date_wib": "2026-11-20"
     },
@@ -488,15 +384,15 @@
         "circHBsAg_V*_circRNA_CIRCULAR.gb",
         "circHBsAg_V*_templat_T7_LINEAR.gb"
       ],
-      "kind": "file",
+      "source": "dokumen proyek",
       "when_utc": "2026-11-20T04:56:00Z",
       "date_wib": "2026-11-20"
     },
     {
       "id": "e-1120-e",
       "phase": "p4",
-      "title": "TA v4: optimasi menghasilkan lima kandidat lolos ambang (V14–V18)",
-      "summary": "Memindai 45 desain (35 GO, 10 GO-BERSYARAT, 0 NO-GO), desain IRES terbelah tanpa bekas, mutagenesis kodon sinonim dengan CAI minimal 0,85. Ambang 0,70 tidak diturunkan. Rubrik lama diperbaiki setelah melihat hasil, dan itu ditulis terbuka di skripsi. Skor adalah prediksi yang dioptimasi terhadap rubrik yang sama dengan penilainya, bukan bukti sirkularisasi di lab.",
+      "title": "Optimasi menghasilkan lima kandidat lolos ambang (V14–V18)",
+      "summary": "Memindai 45 desain (35 GO, 10 GO-BERSYARAT, 0 NO-GO), desain IRES terbelah tanpa bekas, mutagenesis kodon sinonim dengan CAI minimal 0,85. Ambang 0,70 tidak diturunkan. Rubrik lama diperbaiki setelah melihat hasil. Skor adalah prediksi yang dioptimasi terhadap rubrik yang sama dengan penilainya, bukan bukti sirkularisasi di lab.",
       "decisions": [
         "Usulan lab: V14 utama, V18 versi tanpa bekas, V1 pembanding positif",
         "Genotipe D00329.1 = B (bootstrap 100%), B1/Bj [PERLU VERIFIKASI] karena BLAST NCBI dan HBVdb daring tidak terjangkau"
@@ -508,62 +404,50 @@
         "V17": "0,8031",
         "V18": "0,8196"
       },
-      "outputs": [
-        "[TA] Skripsi_circRNA-HBsAg_ITB_Lengkap_v4.docx"
-      ],
-      "kind": "file",
       "image": "opt_final.png",
       "caption": "Kontribusi tiap kriteria pada skor kandidat; garis putus-putus = ambang 0,70, titik-titik = 0,55. NC1 = kontrol negatif.",
+      "source": "dokumen proyek",
       "when_utc": "2026-11-20T05:40:00Z",
       "date_wib": "2026-11-20"
     },
     {
       "id": "e-1120-f",
       "phase": "p4",
-      "title": "Permintaan: tabel primer final, protokol RT-PCR, dasar mutagenesis",
-      "summary": "Untuk V14, V18, dan V1, ditambah penjelasan dasar mutagenesis, paper rujukan, dan prinsip optimasi (juga ke panduan Google Docs). Sedang dikerjakan di thread TA.",
+      "title": "Tabel primer final, protokol RT-PCR, dan dasar mutagenesis",
+      "summary": "Untuk V14, V18, dan V1, disertai penjelasan dasar mutagenesis, makalah rujukan, dan prinsip optimasi. Sedang dikerjakan.",
       "status": "BERJALAN",
-      "kind": "thread",
+      "source": "catatan kerja proyek",
       "when_utc": "2026-11-20T05:52:00Z",
-      "date_wib": "2026-11-20"
-    },
-    {
-      "id": "e-1120-g",
-      "phase": "p4",
-      "title": "Permintaan logbook Juli–hari ini dengan skema dan tangkapan layar",
-      "summary": "Halaman ini.",
-      "kind": "thread",
-      "when_utc": "2026-11-20T05:56:00Z",
       "date_wib": "2026-11-20"
     },
     {
       "id": "e-1120-h",
       "phase": "p4",
       "title": "Koreksi sekuens HBsAg: protein AAB59969.1, genom induk U95551.1",
-      "summary": "Jek mengganti ORF HBsAg dengan CDS 157..837 (226 aa) dari catatan GenBank. Terjemahannya cocok dengan protein AAB59969.1. Posisi 155–835 yang tertulis di TA bergeser 2 nt dan salah kerangka. Label D00329.1 sempat terpasang di repo, lalu dikoreksi karena protein berbeda di 20 posisi; aksesi genom induk kemudian dikonfirmasi jek sebagai U95551.1 (subtipe ayw, klon 2.2.15).",
+      "summary": "ORF HBsAg diganti dengan CDS 157..837 (226 aa) dari catatan GenBank U95551.1 (subtipe ayw, klon 2.2.15). Terjemahannya cocok dengan protein AAB59969.1. Koordinat 155–835 bergeser 2 nt dan salah kerangka. Label D00329.1 sempat terpasang di repositori lalu dikoreksi karena protein berbeda di 20 posisi.",
       "decisions": [
         "ORF S = AAB59969.1, CDS 157..837",
         "Genotipe D [PERLU VERIFIKASI] (ayw), menggantikan B yang berlaku untuk D00329.1",
-        "Entri 20 Nov di atas yang menyebut D00329.1 tetap sebagai catatan historis"
+        "Hasil V1–V18 sebelumnya dihitung dengan ORF D00329.1 dan sedang dihitung ulang"
       ],
       "outputs": [
         "data/reference/hbsag_S_protein.fa",
         "data/reference/hbsag_S_CDS_AAB59969.1.fa"
       ],
-      "kind": "commit",
+      "source": "riwayat git",
       "when_utc": "2026-11-20T06:36:00Z",
       "date_wib": "2026-11-20"
     },
     {
       "id": "e-1120-i",
       "phase": "p4",
-      "title": "Ekspor satu tabel lengkap per run (xlsx 29 sheet + CSV)",
-      "summary": "Permintaan jek: hasil in silico dalam sheets penuh, bukan langsung diagram. scripts/13_export_workbook.py meratakan semua JSON/TSV run (varian, uji, skor, primer, motif, kodon, sekuens) dan ikut Snakemake. Contoh dari run DEMO, angkanya placeholder.",
+      "title": "Ekspor satu tabel lengkap per run (xlsx + CSV)",
+      "summary": "scripts/13_export_workbook.py meratakan semua JSON/TSV satu run (varian, uji, skor, bobot, primer, motif, kodon, sekuens) menjadi satu berkas xlsx dan CSV per sheet, serta ikut Snakemake. Contoh dari run DEMO, angkanya placeholder.",
       "outputs": [
         "scripts/13_export_workbook.py",
         "results/<run>/tables/circhbsag_hasil_lengkap.xlsx"
       ],
-      "kind": "commit",
+      "source": "riwayat git",
       "when_utc": "2026-11-20T06:38:00Z",
       "date_wib": "2026-11-20"
     }
@@ -599,21 +483,21 @@
     },
     {
       "when": "2026-11-19",
-      "what": "TA v2, dasar sekuens simulasi",
+      "what": "Dasar sekuens simulasi, rubrik v1",
       "value": "0,599",
       "verdict": "rubrik belum valid",
       "status": "SIMULASI"
     },
     {
       "when": "2026-11-20",
-      "what": "TA v3, terbaik V11 (sekuens nyata)",
+      "what": "Terbaik V11 (ORF D00329.1, rubrik v1)",
       "value": "0,544",
       "verdict": "tak ada yang ≥ 0,70",
       "status": "HASIL IN SILICO"
     },
     {
       "when": "2026-11-20",
-      "what": "TA v4, terbaik V14",
+      "what": "Terbaik V14 (ORF D00329.1, rubrik v2; dihitung ulang)",
       "value": "0,8694",
       "verdict": "GO",
       "status": "HASIL IN SILICO"

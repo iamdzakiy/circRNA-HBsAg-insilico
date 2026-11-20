@@ -40,7 +40,7 @@ dilewati dan dicantumkan di sheet Ringkasan, tidak diisi angka karangan.
 ## 3. Mana hasil sungguhan, mana demo
 
 - **`results/demo/`** memakai sekuens acak (`config/parts.example.yaml`). Semua angkanya placeholder dan **tidak boleh dikutip**. Xlsx dari folder ini diberi label `[DEMO — SEKUENS PLACEHOLDER]` di sheet Ringkasan dan Sumber_dan_status.
-- **Angka di TA v3/v4** (V1–V18, kontrol positif dan negatif) dihitung dengan **rubrik v2** di salinan kerja thread TA (`ta-docx/insilico`), bukan oleh repo ini. Bobot v2 disalin sebagai snapshot di sheet **Rubrik_v2_TA**. Setelah rerun dengan protein AAB59969.1 (genom U95551.1) selesai, kode v2 dimasukkan ke repo agar satu skrip menghasilkan semua angka TA.
+- **Angka kandidat V1–V18 dan kontrol positif/negatif** dihitung dengan **rubrik v2** di salinan kerja terpisah, belum oleh repo ini. Bobot v2 disalin sebagai snapshot di sheet **Rubrik_v2**. Setelah perhitungan ulang dengan protein AAB59969.1 (genom U95551.1) selesai, kode v2 dimasukkan ke repo agar satu skrip menghasilkan semua angka.
 - Konfigurasi sungguhan `config/parts.yaml` (strict) menolak berjalan sampai IRES, intron, ekson, lengan, dan spacer disediakan di `data/reference/`.
 
 ## 4. Penilaian (rubrik v1 di repo) dan bobot
@@ -61,7 +61,7 @@ Satu gerbang keras yang gagal memaksa NO-GO tanpa memandang skor.
 **Status bobot: `[PERKIRAAN]`.** Bobot dan ambang adalah keputusan desain pipeline, **bukan nilai dari literatur**; rujukan hanya dipakai untuk ambang tertentu (mis. dsRNA ≈ 30 bp, `[LITERATUR]` dengan kutipan di `content/references.yaml`). Konsekuensinya diuji dengan **uji sensitivitas**: 200 undian bobot dengan variasi ±50%, hasilnya di sheet **Sensitivitas_bobot**. Pada run demo, keputusan berpindah antara GO dan GO-BERSYARAT, artinya keputusan sensitif terhadap pilihan bobot dan harus dilaporkan demikian.
 Rumus normalisasi tiap kriteria dan ambangnya ada di sheet **Bobot_dan_justifikasi** dan **Ambang_berlabel**.
 
-**Kontrol.** Rubrik v1 di repo tidak punya kontrol positif/negatif. Kontrol (PC1–PC3, NC1–NC5) hanya ada pada rubrik v2 TA. Temuan v1: kontrol negatif sempat skor lebih tinggi daripada konstruk dasar, sehingga rubrik dinyatakan belum valid dan diganti v2 (lihat Rubrik_v2_TA dan logbook 19–20 Nov).
+**Kontrol.** Rubrik v1 di repo tidak punya kontrol positif/negatif. Kontrol (PC1–PC3, NC1–NC5) hanya ada pada rubrik v2. Temuan v1: kontrol negatif sempat skor lebih tinggi daripada konstruk dasar, sehingga rubrik dinyatakan belum valid dan diganti v2 (lihat Rubrik_v2 dan logbook 19–20 Nov).
 
 ## 5. Menjalankan di macOS
 

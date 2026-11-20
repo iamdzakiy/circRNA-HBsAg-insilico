@@ -53,14 +53,14 @@ software:
     macos: "osx-arm64"
     used: true
   - name: python-docx
-    role: "Pembuatan dokumen TA .docx dari sumber tunggal"
+    role: "Pembuatan dokumen .docx dari sumber tunggal"
     version: terdeteksi-saat-jalan
     license: "MIT"
     url: "https://python-docx.readthedocs.io/"
     macos: "osx-arm64"
     used: true
   - name: python-pptx
-    role: "Pembuatan naskah dek .pptx untuk diimpor ke Canva"
+    role: "Pembuatan naskah dek .pptx untuk slide presentasi"
     version: terdeteksi-saat-jalan
     license: "MIT"
     url: "https://python-pptx.readthedocs.io/"

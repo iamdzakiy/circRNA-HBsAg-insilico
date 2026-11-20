@@ -79,7 +79,7 @@ lingkaran 1407 nt) semata agar dimensi alurnya sebanding.
 Karena itu angka yang keluar — skor komposit, MFE, aksesibilitas, CAI, jumlah
 situs m6A, presisi filter BSJ — **mengilustrasikan bahwa alur kerjanya berjalan,
 bukan sifat konstruk circRNA-HBsAg yang sebenarnya.** Angka itu tidak boleh
-dikutip di dokumen tugas akhir sebagai temuan. Setiap laporan yang dihasilkan
+dikutip di dokumen proyek sebagai temuan. Setiap laporan yang dihasilkan
 dari konfigurasi ini membawa label `[DEMO — SEKUENS PLACEHOLDER]` di kepala
 berkas, dan langkah `workflow` pada CI memastikan label itu benar-benar muncul.
 
@@ -245,7 +245,7 @@ dicatat di setiap laporan, dan CI memverifikasi bahwa data contoh dapat
 dibangkitkan ulang bit-per-bit. Jalankan `snakemake --dag | dot -Tsvg` untuk
 diagram alurnya.
 
-## Keterbatasan yang perlu dinyatakan di dokumen TA
+## Keterbatasan yang perlu dinyatakan di dokumen proyek
 
 - Semua keluaran adalah **prediksi** termodinamika dan heuristik sekuens, bukan
   pengukuran. Tidak satu pun menggantikan uji RNase R, RT-PCR divergen dengan

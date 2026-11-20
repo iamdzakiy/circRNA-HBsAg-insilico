@@ -13,11 +13,13 @@ def test_outputs_are_fresh():
     assert L.main(["--check"]) == 0
 
 
-def test_timeline_json_has_entries_and_placeholders():
-    d = json.loads((L.ROOT / "docs" / "data" / "timeline.json").read_text())
-    ents = d["entries"]
+def test_public_timeline_has_no_internal_markers():
+    raw = (L.ROOT / "docs" / "data" / "timeline.json").read_text() + (L.ROOT / "docs" / "logbook.html").read_text()
+    ents = json.loads((L.ROOT / "docs" / "data" / "timeline.json").read_text())["entries"]
     assert len(ents) > 10
-    assert any(e.get("status") == "PERLU-DIISI" for e in ents)
+    assert any(e.get("period") for e in ents)
+    for bad in ("PERLU DIISI", "thread", "Vercel", "Canva", "skripsi", "jek"):
+        assert bad.lower() not in raw.lower(), bad
 
 
 @pytest.mark.parametrize("mutate,msg", [
@@ -27,7 +29,7 @@ def test_timeline_json_has_entries_and_placeholders():
 ])
 def test_load_rejects_bad_entries(tmp_path, monkeypatch, mutate, msg):
     data = yaml.safe_load((L.ROOT / "content" / "timeline.yaml").read_text())
-    ev = next(e for e in data["entries"] if e.get("status") != "PERLU-DIISI")
+    ev = next(e for e in data["entries"] if not e.get("period"))
     data["entries"].remove(ev)
     data["entries"].insert(0, ev)
     mutate(data)

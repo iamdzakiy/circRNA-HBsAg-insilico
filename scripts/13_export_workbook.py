@@ -244,13 +244,13 @@ def main() -> int:
             ("Bagian sintetis (placeholder)", ", ".join(g0["provenance"].get("synthetic_parts", [])) or "tidak ada"),
             ("Boleh dikutip sebagai hasil ilmiah", g0["provenance"].get("results_may_be_reported_as_scientific")),
             ("Rubrik di berkas ini", "v1 (7 kriteria), dihitung oleh src/circhbsag/score.py"),
-            ("Rubrik yang dipakai angka di TA v3/v4", "v2 (8 kriteria), lihat sheet Rubrik_v2_TA (snapshot; belum di repo)"),
-            ("Kontrol positif/negatif", "tidak ada di rubrik v1 repo; kontrol PC1-3 dan NC1-5 ada pada rubrik v2 (TA)"),
+            ("Rubrik yang dipakai angka kandidat V1–V18", "v2 (8 kriteria), lihat sheet Rubrik_v2 (snapshot; belum di repo)"),
+            ("Kontrol positif/negatif", "tidak ada di rubrik v1 repo; kontrol PC1-3 dan NC1-5 ada pada rubrik v2"),
         ], columns=["item", "nilai"])
     pm = yaml.safe_load((ROOT / "content" / "pipeline_map.yaml").read_text())
     sheets["Peta_alur"] = pd.DataFrame(pm["steps"])
     v2 = pm["rubric_v2_snapshot"]
-    sheets["Rubrik_v2_TA"] = pd.DataFrame(
+    sheets["Rubrik_v2"] = pd.DataFrame(
         [("SUMBER", v2["source"], "SNAPSHOT, bukan keluaran run ini"), ("GO >=", v2["go"], ""), ("GO-BERSYARAT >=", v2["conditional"], "")]
         + [(f"bobot: {k}", v, "") for k, v in v2["weights"].items()]
         + [("gerbang keras tambahan", g, "") for g in v2["hard_gates_added_vs_v1"]]

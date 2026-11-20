@@ -48,7 +48,7 @@ assumptions:
     impact_if_wrong: "Situs progres tidak bisa diakses publik tanpa paket berbayar"
     verify: "Cek halaman penagihan GitHub dan status Pages setelah repo dibuat"
   - id: A10
-    assumption: "Kode, nama berkas, dan README ditulis dalam bahasa Inggris; dokumen TA dan laporan dalam bahasa Indonesia"
+    assumption: "Kode, nama berkas, dan README ditulis dalam bahasa Inggris; dokumen dan laporan dalam bahasa Indonesia"
     why: "Aturan bahasa BLOK 1"
     impact_if_wrong: "Repositori terbaca campur; penguji bisa menganggapnya tidak konsisten"
     verify: "Modul lama masih memuat docstring bahasa Indonesia; lihat Open Questions Q07"

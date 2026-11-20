@@ -163,7 +163,7 @@
     },
     {
       "id": "A10",
-      "assumption": "Kode, nama berkas, dan README ditulis dalam bahasa Inggris; dokumen TA dan laporan dalam bahasa Indonesia",
+      "assumption": "Kode, nama berkas, dan README ditulis dalam bahasa Inggris; dokumen dan laporan dalam bahasa Indonesia",
       "why": "Aturan bahasa BLOK 1",
       "impact_if_wrong": "Repositori terbaca campur; penguji bisa menganggapnya tidak konsisten",
       "verify": "Modul lama masih memuat docstring bahasa Indonesia; lihat Open Questions Q07"
@@ -285,7 +285,7 @@
     },
     {
       "name": "python-docx",
-      "role": "Pembuatan dokumen TA .docx dari sumber tunggal",
+      "role": "Pembuatan dokumen .docx dari sumber tunggal",
       "version": "1.2.0",
       "license": "MIT",
       "url": "https://python-docx.readthedocs.io/",
@@ -294,7 +294,7 @@
     },
     {
       "name": "python-pptx",
-      "role": "Pembuatan naskah dek .pptx untuk diimpor ke Canva",
+      "role": "Pembuatan naskah dek .pptx untuk slide presentasi",
       "version": "1.0.2",
       "license": "MIT",
       "url": "https://python-pptx.readthedocs.io/",
