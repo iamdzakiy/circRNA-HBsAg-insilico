@@ -535,6 +535,37 @@
       "kind": "thread",
       "when_utc": "2026-11-20T05:56:00Z",
       "date_wib": "2026-11-20"
+    },
+    {
+      "id": "e-1120-h",
+      "phase": "p4",
+      "title": "Koreksi sekuens HBsAg: protein AAB59969.1, genom induk U95551.1",
+      "summary": "Jek mengganti ORF HBsAg dengan CDS 157..837 (226 aa) dari catatan GenBank. Terjemahannya cocok dengan protein AAB59969.1. Posisi 155–835 yang tertulis di TA bergeser 2 nt dan salah kerangka. Label D00329.1 sempat terpasang di repo, lalu dikoreksi karena protein berbeda di 20 posisi; aksesi genom induk kemudian dikonfirmasi jek sebagai U95551.1 (subtipe ayw, klon 2.2.15).",
+      "decisions": [
+        "ORF S = AAB59969.1, CDS 157..837",
+        "Genotipe D [PERLU VERIFIKASI] (ayw), menggantikan B yang berlaku untuk D00329.1",
+        "Entri 20 Nov di atas yang menyebut D00329.1 tetap sebagai catatan historis"
+      ],
+      "outputs": [
+        "data/reference/hbsag_S_protein.fa",
+        "data/reference/hbsag_S_CDS_AAB59969.1.fa"
+      ],
+      "kind": "commit",
+      "when_utc": "2026-11-20T06:36:00Z",
+      "date_wib": "2026-11-20"
+    },
+    {
+      "id": "e-1120-i",
+      "phase": "p4",
+      "title": "Ekspor satu tabel lengkap per run (xlsx 29 sheet + CSV)",
+      "summary": "Permintaan jek: hasil in silico dalam sheets penuh, bukan langsung diagram. scripts/13_export_workbook.py meratakan semua JSON/TSV run (varian, uji, skor, primer, motif, kodon, sekuens) dan ikut Snakemake. Contoh dari run DEMO, angkanya placeholder.",
+      "outputs": [
+        "scripts/13_export_workbook.py",
+        "results/<run>/tables/circhbsag_hasil_lengkap.xlsx"
+      ],
+      "kind": "commit",
+      "when_utc": "2026-11-20T06:38:00Z",
+      "date_wib": "2026-11-20"
     }
   ],
   "key_numbers": [
