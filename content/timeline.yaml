@@ -168,7 +168,7 @@ entries:
   when: '2026-11-17'
   precision: date
   title: Gate 0 sembilan uji, sumber tunggal content/, dan Uji 2 sungguhan
-  summary: Sembilan uji Gate 0 dan design_lock.json (9f92380); content/ menjadi sumber tunggal untuk situs, docx, dan naskah dek (4d423fd); Uji 2 memakai Infernal 1.1.5 dan model Rfam RF00028 dengan kontrol
+  summary: Sembilan uji Gate 0 dan design_lock.json (9f92380); content/ menjadi sumber tunggal untuk situs, docx, dan naskah slide (4d423fd); Uji 2 memakai Infernal 1.1.5 dan model Rfam RF00028 dengan kontrol
     positif (1884cb4); label DEMO untuk keluaran placeholder (b14be9f).
   result:
     Uji 2 pada data demo: FAIL (intron placeholder bukan intron grup I)
