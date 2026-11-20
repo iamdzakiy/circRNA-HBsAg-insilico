@@ -16,9 +16,11 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from pathlib import Path
 
 import pandas as pd
+import yaml
 from _common import ROOT, out_dir, parser, sidecar
 
 from circhbsag import content
@@ -198,6 +200,60 @@ def main() -> int:
                                                 columns=["Alat", "Peran", "Versi", "Lisensi", "URL", "Status"])
     except Exception as e:  # content layer unavailable: say so, do not invent
         missing.append(f"content/ ({e.__class__.__name__})")
+
+
+    # ---- bobot, justifikasi, sensitivitas, peta alur, status sumber ------------------------
+    if g0:
+        src = (ROOT / "src" / "circhbsag" / "score.py").read_text()
+        lab = {}
+        for m_ in re.finditer(r'"(\w+)":\s*[-\d.]+,\s*#\s*(\[[A-Z]+\])?\s*(.*)', src):
+            lab[m_.group(1)] = (m_.group(2) or "[PERKIRAAN]", m_.group(3).strip())
+        wsrc = {}
+        blk = src[src.index("DEFAULT_WEIGHTS: dict"):src.index("DEFAULT_THRESHOLDS: dict")]
+        cur = ""
+        for ln in blk.splitlines():
+            t = ln.strip()
+            if t.startswith("#"):
+                cur = t.lstrip("# ").strip()
+            elif t.startswith('"'):
+                wsrc[t.split('"')[1]] = cur
+        sheets["Bobot_dan_justifikasi"] = pd.DataFrame([{
+            "kriteria": c["name"], "bobot": c["weight"], "label_bobot": "[PERKIRAAN] bobot = keputusan desain pipeline, BUKAN nilai literatur",
+            "alasan_mekanistik": wsrc.get(c["name"], ""), "rumus_dan_normalisasi": c["rationale"],
+            "subskor_run_ini": c["subscore"], "kontribusi": c["weighted"],
+        } for c in dec["criteria"]] + [{
+            "kriteria": "TOTAL", "bobot": round(sum(c["weight"] for c in dec["criteria"]), 4),
+            "label_bobot": "", "alasan_mekanistik": "komposit = jumlah bobot x subskor",
+            "rumus_dan_normalisasi": f"GO >= {dec['thresholds']['go']}; GO-BERSYARAT >= {dec['thresholds']['conditional']}; "
+                                     "satu gerbang keras gagal = NO-GO apa pun skornya",
+            "subskor_run_ini": "", "kontribusi": dec["composite_score"]}])
+        sheets["Ambang_berlabel"] = pd.DataFrame([
+            (k, v, lab.get(k, ("", ""))[0], lab.get(k, ("", ""))[1]) for k, v in sorted(dec["all_thresholds"].items())],
+            columns=["ambang", "nilai", "label", "keterangan"])
+        sheets["Ambang_berlabel"]["label"] = sheets["Ambang_berlabel"]["label"].replace("", "[PERKIRAAN]")
+        t0 = jload(find(res, "tahap0.json"))
+        if t0 and "sensitivity" in t0["results"]:
+            sv = t0["results"]["sensitivity"]
+            sheets["Sensitivitas_bobot"] = pd.DataFrame(
+                [(k, json.dumps(v) if isinstance(v, dict) else v) for k, v in sv.items()],
+                columns=["item", "nilai"])
+        sheets["Sumber_dan_status"] = pd.DataFrame([
+            ("Label data run", g0.get("data_label")),
+            ("Bagian sintetis (placeholder)", ", ".join(g0["provenance"].get("synthetic_parts", [])) or "tidak ada"),
+            ("Boleh dikutip sebagai hasil ilmiah", g0["provenance"].get("results_may_be_reported_as_scientific")),
+            ("Rubrik di berkas ini", "v1 (7 kriteria), dihitung oleh src/circhbsag/score.py"),
+            ("Rubrik yang dipakai angka di TA v3/v4", "v2 (8 kriteria), lihat sheet Rubrik_v2_TA (snapshot; belum di repo)"),
+            ("Kontrol positif/negatif", "tidak ada di rubrik v1 repo; kontrol PC1-3 dan NC1-5 ada pada rubrik v2 (TA)"),
+        ], columns=["item", "nilai"])
+    pm = yaml.safe_load((ROOT / "content" / "pipeline_map.yaml").read_text())
+    sheets["Peta_alur"] = pd.DataFrame(pm["steps"])
+    v2 = pm["rubric_v2_snapshot"]
+    sheets["Rubrik_v2_TA"] = pd.DataFrame(
+        [("SUMBER", v2["source"], "SNAPSHOT, bukan keluaran run ini"), ("GO >=", v2["go"], ""), ("GO-BERSYARAT >=", v2["conditional"], "")]
+        + [(f"bobot: {k}", v, "") for k, v in v2["weights"].items()]
+        + [("gerbang keras tambahan", g, "") for g in v2["hard_gates_added_vs_v1"]]
+        + [("alasan perubahan dari v1", v2["why_changed"], "")] + [("kontrol", c, "") for c in v2["controls"]],
+        columns=["item", "nilai", "catatan"])
 
     if missing:
         extra = pd.DataFrame([("Sumber tidak ditemukan (sheet dilewati)", ", ".join(missing))], columns=["Item", "Nilai"])
