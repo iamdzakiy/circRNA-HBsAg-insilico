@@ -21,7 +21,7 @@ protein:
   genotype: "D"  # [PERLU VERIFIKASI] ayw umumnya genotipe D; konfirmasi dengan HBVdb/BLAST
   note: >
     Protein S-HBsAg kecil (SHBs). Justifikasi pemilihan S (bukan L/M/S) dan
-    genotipe B ada di docs/DESIGN.md. Catat nomor aksesi, versi, dan tanggal
+    genotipe (D, [PERLU VERIFIKASI]) ada di docs/DESIGN.md. Catat nomor aksesi, versi, dan tanggal
     unduh pada notebooks/01_tahap0_go_nogo.ipynb.
 
 design:
