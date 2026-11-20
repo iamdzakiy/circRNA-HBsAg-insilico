@@ -1,0 +1,139 @@
+{
+ "composite": 0.7085,
+ "verdict": "GO",
+ "gates_failed": [],
+ "criteria": {
+  "splicing_competence": {
+   "weight": 0.25,
+   "subscore": 0.6381,
+   "raw": {
+    "e_base": 0.5828806333333333,
+    "e_total": 0.5828806333333333,
+    "source": "Fig. 6f Source Data (situs split IRES, tanpa bekas)"
+   }
+  },
+  "junction_accessibility": {
+   "weight": 0.15,
+   "subscore": 0.3992,
+   "raw": {
+    "bsj_worst": 0.3494,
+    "splice_site_ratio_vs_minimal": {
+     "splice5_site@37C": 0.086,
+     "splice3_site@37C": 0.43,
+     "intron_3half_IGS@37C": 0.622,
+     "splice5_site@55C": 0.114,
+     "splice3_site@55C": 1.049,
+     "intron_3half_IGS@55C": 0.623
+    }
+   }
+  },
+  "ires_integrity": {
+   "weight": 0.15,
+   "subscore": 1.0,
+   "raw": {
+    "identity_37C": 0.9379,
+    "identity_55C_informational": 0.9439
+   }
+  },
+  "dsrna_burden": {
+   "weight": 0.1,
+   "subscore": 1.0,
+   "raw": {
+    "longest_bp": 13
+   }
+  },
+  "start_codon_accessibility": {
+   "weight": 0.1,
+   "subscore": 0.6254,
+   "raw": {
+    "plfold": {
+     "37C": 0.226685,
+     "55C": 0.385734
+    },
+    "global": {
+     "37C": 0.38745,
+     "55C": 0.42435
+    }
+   }
+  },
+  "circle_stability": {
+   "weight": 0.1,
+   "subscore": 0.3859,
+   "raw": {
+    "z_mfe_per_nt": -2.97,
+    "z_diversity_per_nt": -1.66
+   }
+  },
+  "sequence_cleanliness": {
+   "weight": 0.1,
+   "subscore": 0.88,
+   "raw": {
+    "typeIIS": 0,
+    "gc_window_violations": 6,
+    "homopolymer": 5,
+    "gc": 0.5295
+   }
+  },
+  "motif_burden": {
+   "weight": 0.05,
+   "subscore": 1.0,
+   "raw": {
+    "m6a_per_100nt": 0.82
+   }
+  }
+ },
+ "gates": {
+  "no_internal_typeIIS": {
+   "passed": true,
+   "value": 0
+  },
+  "no_premature_T7_terminator": {
+   "passed": true,
+   "value": 0
+  },
+  "orf_intact_and_unique_start": {
+   "passed": true,
+   "value": null
+  },
+  "dsrna_below_hard_limit": {
+   "passed": true,
+   "value": 13
+  },
+  "circle_length_within_limit": {
+   "passed": true,
+   "value": 1341
+  },
+  "ires_sequence_identical_AF169665": {
+   "passed": true,
+   "value": true
+  },
+  "intron_identical_Ana_reference": {
+   "passed": true,
+   "value": true
+  },
+  "orf_translates_S_protein_no_internal_stop": {
+   "passed": true,
+   "value": true
+  },
+  "homology_arm_le_50nt": {
+   "passed": true,
+   "value": 0
+  },
+  "exon_base_efficiency_ge_25pct": {
+   "passed": true,
+   "value": 0.5828806333333333
+  }
+ },
+ "site": {
+  "paper": "406",
+  "af_pos": 325,
+  "paper_ctx": "AATAC",
+  "af_ctx": "AATAC",
+  "conserved": true,
+  "eff": 58.288063333333334
+ },
+ "orf": "ATGGAAAATATTACCAGCGGCTTCCTGGGCCCTCTGCTGGTGCTGCAGGCCGGCTTTTTCCTGCTGACAAGAATCCTGACCATCCCCCAGAGCCTGGATTCTTGGTGGACGAGCCTGAATTTTCTGGGCGGCACCACCGTGTGTCTGGGCCAGAATAGCCAGAGCCCTACAAGCAACCACAGCCCCACCTCTTGTCCCCCTACATGTCCCGGCTACAGATGGATGTGCCTGAGAAGATTCATCATTTTTCTGTTTATCCTGCTGCTGTGCCTGATTTTTCTGCTGGTGCTGCTGGATTATCAGGGCATGCTGCCTGTGTGCCCTCTGATCCCTGGCAGCTCTACCACCTCTACCGGCCCTTGTAGAACGTGTATGACCACCGCCCAGGGCACCTCTATGTACCCTAGCTGTTGTTGTACCAAGCCTTCTGACGGCAACTGTACCTGTATCCCTATCCCTAGCTCTTGGGCCTTTGGCAAATTTCTGTGGGAGTGGGCCTCTGCCAGATTCAGCTGGCTGTCTCTGCTGGTGCCTTTCGTGCAGTGGTTTGTGGGCCTGTCTCCCACAGTGTGGCTGAGCGTGATTTGGATGATGTGGTACTGGGGCCCCAGCCTGTACTCTATCCTGAGCCCTTTTCTGCCTCTGCTGCCTATCTTTTTCTGTCTGTGGGTGTATATCTGA",
+ "name": "SPLIT_406",
+ "circle_length": 1341,
+ "precursor_length": 1609
+}

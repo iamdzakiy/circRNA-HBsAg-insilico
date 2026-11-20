@@ -1,0 +1,176 @@
+{
+ "design": "3/2GCT|20|0",
+ "seed": 2,
+ "steps": 300,
+ "start": null,
+ "best_fast": 0.4337962995209695,
+ "best_info": {
+  "J": 0.4338,
+  "ident": 0.926,
+  "ds": 13,
+  "start_plfold": 0.209,
+  "start_unp": 0.62,
+  "z_mfe": -0.06,
+  "hard_ok": true,
+  "t2": 0
+ },
+ "orf": "ATGGAAAATATTACCAGCGGCTTTCTGGGTCCTCTGCTGGTGCTGCAGGCCGGCTTCTTCCTGCTGACAAGAATTCTGACCATCCCTCAGAGCCTGGATTCTTGGTGGACGAGCCTGAATTTTCTGGGCGGCACCACTGTGTGTCTGGGCCAGAATAGCCAGAGCCCGACATCAAACCACAGCCCTACCTCTTGTCCGCCTACATGTCCCGGGTACAGATGGATGTGCCTGAGAAGGTTCATCATTTTCCTGTTCATCCTGCTGCTGTGCCTCATATTTCTCCTGGTGCTGCTGGATTATCAGGGGATGCTGCCTGTGTGCCCTCTGATTCCTGGGAGCTCTACCACATCTACAGGCCCGTGTAGAACGTGCATGACGACAGCCCAAGGCACGAGTATGTACCCTAGCTGCTGTTGTACCAAACCTTCTGACGGGAACTGTACCTGCATCCCTATCCCTAGCTCTTGGGCCTTTGGGAAATTCCTGTGGGAGTGGGCCTCTGCCAGATTCAGCTGGCTGTCACTGTTGGTGCCTTTCGTGCAGTGGTTTGTGGGGCTGAGCCCCACTGTCTGGCTGAGCGTGATATGGATGATGTGGTACTGGGGACCCAGCCTGTACTCTATCCTGAGCCCTTTTCTGCCTTTGCTGCCTATCTTTTTTTGCTTGTGGGTGTATATATGA",
+ "nt_changed": 53,
+ "protein_ok": true,
+ "log": [
+  [
+   0,
+   0.4226,
+   {
+    "J": 0.4226,
+    "ident": 0.938,
+    "ds": 13,
+    "start_plfold": 0.227,
+    "start_unp": 0.43,
+    "z_mfe": 0.22,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   25,
+   0.4179,
+   {
+    "J": 0.4179,
+    "ident": 0.935,
+    "ds": 13,
+    "start_plfold": 0.228,
+    "start_unp": 0.38,
+    "z_mfe": 0.82,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   50,
+   0.4274,
+   {
+    "J": 0.4274,
+    "ident": 0.977,
+    "ds": 13,
+    "start_plfold": 0.228,
+    "start_unp": 0.48,
+    "z_mfe": -0.31,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   75,
+   0.432,
+   {
+    "J": 0.432,
+    "ident": 0.926,
+    "ds": 13,
+    "start_plfold": 0.205,
+    "start_unp": 0.62,
+    "z_mfe": 0.11,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   125,
+   0.4307,
+   {
+    "J": 0.4307,
+    "ident": 0.965,
+    "ds": 13,
+    "start_plfold": 0.218,
+    "start_unp": 0.57,
+    "z_mfe": 2.25,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   150,
+   0.4316,
+   {
+    "J": 0.4316,
+    "ident": 0.947,
+    "ds": 13,
+    "start_plfold": 0.206,
+    "start_unp": 0.67,
+    "z_mfe": 2.2,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   175,
+   0.4324,
+   {
+    "J": 0.4324,
+    "ident": 0.944,
+    "ds": 13,
+    "start_plfold": 0.207,
+    "start_unp": 0.76,
+    "z_mfe": 1.32,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   200,
+   0.4312,
+   {
+    "J": 0.4312,
+    "ident": 0.944,
+    "ds": 13,
+    "start_plfold": 0.207,
+    "start_unp": 0.67,
+    "z_mfe": 0.98,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   225,
+   0.4309,
+   {
+    "J": 0.4309,
+    "ident": 0.977,
+    "ds": 13,
+    "start_plfold": 0.206,
+    "start_unp": 0.67,
+    "z_mfe": 1.66,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   250,
+   0.4285,
+   {
+    "J": 0.4285,
+    "ident": 0.977,
+    "ds": 13,
+    "start_plfold": 0.207,
+    "start_unp": 0.57,
+    "z_mfe": 0.97,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ],
+  [
+   275,
+   0.4317,
+   {
+    "J": 0.4317,
+    "ident": 0.942,
+    "ds": 13,
+    "start_plfold": 0.207,
+    "start_unp": 0.67,
+    "z_mfe": 0.9,
+    "hard_ok": true,
+    "t2": 0
+   }
+  ]
+ ]
+}

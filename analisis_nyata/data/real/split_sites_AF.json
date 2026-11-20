@@ -1,0 +1,86 @@
+{
+ "110": {
+  "af_pos": 25,
+  "paper_ctx": "CTTAG",
+  "af_ctx": "CTTAG",
+  "conserved": true,
+  "eff": 43.49844
+ },
+ "403": {
+  "af_pos": 322,
+  "paper_ctx": "TCTAA",
+  "af_ctx": "TCTAA",
+  "conserved": true,
+  "eff": 83.60173333333333
+ },
+ "406": {
+  "af_pos": 325,
+  "paper_ctx": "AATAC",
+  "af_ctx": "AATAC",
+  "conserved": true,
+  "eff": 58.288063333333334
+ },
+ "436": {
+  "af_pos": 355,
+  "paper_ctx": "GCTAG",
+  "af_ctx": "GCTAG",
+  "conserved": true,
+  "eff": 74.05531666666667
+ },
+ "443": {
+  "af_pos": 362,
+  "paper_ctx": "GGTAG",
+  "af_ctx": "GGTAG",
+  "conserved": true,
+  "eff": 67.48233333333333
+ },
+ "468": {
+  "af_pos": 387,
+  "paper_ctx": "GCTAA",
+  "af_ctx": "GCTAA",
+  "conserved": true,
+  "eff": 63.76815666666666
+ },
+ "474": {
+  "af_pos": 393,
+  "paper_ctx": "CCTAA",
+  "af_ctx": "CCTAA",
+  "conserved": true,
+  "eff": 8.651353333333333
+ },
+ "517": {
+  "af_pos": 436,
+  "paper_ctx": "CGTAA",
+  "af_ctx": "CGTAA",
+  "conserved": true,
+  "eff": 47.87274
+ },
+ "617": {
+  "af_pos": 536,
+  "paper_ctx": "CATAT",
+  "af_ctx": "CATAT",
+  "conserved": true,
+  "eff": 33.422466666666665
+ },
+ "623": {
+  "af_pos": 542,
+  "paper_ctx": "GCTAT",
+  "af_ctx": "GCTAT",
+  "conserved": true,
+  "eff": 39.28272333333334
+ },
+ "655": {
+  "af_pos": 574,
+  "paper_ctx": "GCTAT",
+  "af_ctx": "GCAAT",
+  "conserved": false,
+  "eff": 70.42691666666667
+ },
+ "724": {
+  "af_pos": 643,
+  "paper_ctx": "GTTAA",
+  "af_ctx": "CTAGA",
+  "conserved": false,
+  "eff": 49.387123333333335
+ }
+}

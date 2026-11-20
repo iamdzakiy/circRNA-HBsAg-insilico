@@ -1,0 +1,120 @@
+{
+  "report_version": 1,
+  "generated_utc": "2026-11-20T06:39:48+00:00",
+  "circhbsag_version": "0.1.0",
+  "python": "3.13.18",
+  "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+  "seed": 20260101,
+  "provenance": {
+    "parts": {},
+    "synthetic_parts": []
+  },
+  "data_label": "[HASIL IN SILICO] — sekuens masukan disediakan pengguna",
+  "tool_licenses": {
+    "circhbsag": {
+      "version": "0.1.0",
+      "license": "MIT",
+      "role": "pipeline ini"
+    },
+    "ViennaRNA": {
+      "version": "2.8.0",
+      "license": "ViennaRNA License (gratis, non-komersial/akademik)",
+      "role": "RNAfold --circ, RNAplfold, partition function"
+    },
+    "primer3-py": {
+      "version": "2.4.0",
+      "license": "GPLv2",
+      "role": "desain primer divergen/BSJ, Tm, hairpin"
+    },
+    "biopython": {
+      "version": "1.88",
+      "license": "Biopython License (mirip MIT)",
+      "role": "utilitas sekuens dan I/O"
+    },
+    "optuna": {
+      "version": "5.1.0",
+      "license": "MIT",
+      "role": "optimasi multi-objektif NSGA-II"
+    },
+    "snakemake": {
+      "version": "tidak terpasang",
+      "license": "MIT",
+      "role": "orkestrasi alur kerja reprodusibel"
+    },
+    "numpy": {
+      "version": "2.5.3",
+      "license": "BSD-3-Clause",
+      "role": "numerik"
+    },
+    "pandas": {
+      "version": "3.0.5",
+      "license": "BSD-3-Clause",
+      "role": "tabel hasil"
+    },
+    "BLAST+": {
+      "version": "lihat `blastn -version`",
+      "license": "domain publik (NCBI)",
+      "role": "homologi off-target (opsional)"
+    },
+    "STAR": {
+      "version": "opsional",
+      "license": "MIT",
+      "role": "validasi silang BSJ (opsional)"
+    }
+  },
+  "results": {
+    "codon": {
+      "orf_dna": "ATGGAAAATATTACCAGCGGCTTCCTGGGCCCTCTGCTGGTGCTGCAGGCCGGCTTTTTCCTGCTGACAAGAATCCTGACCATCCCCCAGAGCCTGGATTCTTGGTGGACGAGCCTGAATTTTCTGGGCGGCACCACCGTGTGTCTGGGCCAGAATAGCCAGAGCCCTACAAGCAACCACAGCCCCACCTCTTGTCCCCCTACATGTCCCGGCTACAGATGGATGTGCCTGAGAAGATTCATCATTTTTCTGTTTATCCTGCTGCTGTGCCTGATTTTTCTGCTGGTGCTGCTGGATTATCAGGGCATGCTGCCTGTGTGCCCTCTGATCCCTGGCAGCTCTACCACCTCTACCGGCCCTTGTAGAACGTGTATGACCACCGCCCAGGGCACCTCTATGTACCCTAGCTGTTGTTGTACCAAGCCTTCTGACGGCAACTGTACCTGTATCCCTATCCCTAGCTCTTGGGCCTTTGGCAAATTTCTGTGGGAGTGGGCCTCTGCCAGATTCAGCTGGCTGTCTCTGCTGGTGCCTTTCGTGCAGTGGTTTGTGGGCCTGTCTCCCACAGTGTGGCTGAGCGTGATTTGGATGATGTGGTACTGGGGCCCCAGCCTGTACTCTATCCTGAGCCCTTTTCTGCCTCTGCTGCCTATCTTTTTCTGTCTGTGGGTGTATATCTGA",
+      "protein": "MENITSGFLGPLLVLQAGFFLLTRILTIPQSLDSWWTSLNFLGGTTVCLGQNSQSPTSNHSPTSCPPTCPGYRWMCLRRFIIFLFILLLCLIFLLVLLDYQGMLPVCPLIPGSSTTSTGPCRTCMTTAQGTSMYPSCCCTKPSDGNCTCIPIPSSWAFGKFLWEWASARFSWLSLLVPFVQWFVGLSPTVWLSVIWMMWYWGPSLYSILSPFLPLLPIFFCLWVYI",
+      "length_nt": 681,
+      "iterations": 20000,
+      "seed": 20260101,
+      "cost": {
+        "total": 0.06557529272810714,
+        "terms": {
+          "cai": 0.064768,
+          "gc": 0.000808,
+          "gc_window": 0.0,
+          "restriction": 0.0,
+          "avoid": 0.0,
+          "m6a": 0.0
+        },
+        "metrics": {
+          "cai": 0.9352,
+          "gc": 0.5492,
+          "gc_window_violations": 0,
+          "restriction_sites": 0,
+          "avoid_motifs": 0,
+          "m6a_sites": 0
+        }
+      },
+      "baseline_naive": {
+        "cai": 1.0,
+        "gc": 0.6432,
+        "gc_window_violations": 5,
+        "restriction_sites": 0,
+        "avoid_motifs": 0,
+        "m6a_sites": 7
+      },
+      "cost_history_len": 77,
+      "protein_provenance": {
+        "file": "data/real/S_protein_AAB59969.faa",
+        "header": "HBsAg_AAB59969.1",
+        "length_aa": 226,
+        "accession": "AAB59969.1",
+        "genotype": "[PERLU VERIFIKASI]",
+        "synthetic": false
+      },
+      "stats": {
+        "length_nt": 681,
+        "cai": 0.9352,
+        "gc": 0.5492,
+        "gc3": 0.6872,
+        "gc_min_window": 0.38,
+        "gc_max_window": 0.64,
+        "m6a_sites": 0,
+        "restriction": {}
+      }
+    }
+  }
+}

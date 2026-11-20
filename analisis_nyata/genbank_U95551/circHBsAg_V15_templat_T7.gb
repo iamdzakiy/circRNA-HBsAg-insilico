@@ -1,0 +1,103 @@
+LOCUS       circHBsAg_V15           1709 bp    DNA     linear   SYN 20-NOV-2026
+DEFINITION  Kandidat V15 circRNA HBsAg (S, U95551.1) dengan IRES CVB3
+            AF169665.1, desain CIRC (Shen dkk. 2025): templat IVT: promotor T7 +
+            prekursor. ekson 16/16 nt (BsmBI dibuang), lengan 19 nt, tanpa
+            spacer, AC30, ORF dimutasi sinonim.
+ACCESSION   circHBsAg_V15
+VERSION     circHBsAg_V15
+KEYWORDS    .
+SOURCE      synthetic construct
+  ORGANISM  synthetic construct
+            .
+COMMENT     In silico. Sekuens: Shen dkk. 2025 Nat Commun 16:7376 (Supplementary
+            Data 1), GenBank AF169665.1 dan U95551.1. Ini rancangan, belum diuji
+            di laboratorium. Letak IGS pada intron adalah perkiraan.
+FEATURES             Location/Qualifiers
+     source          1..1709
+                     /organism="synthetic construct"
+                     /mol_type="other DNA"
+                     /note="in silico design; linear DNA template"
+     promoter        1..17
+                     /label="promotor T7"
+                     /note="konsensus"
+     misc_feature    18..268
+                     /label="intron Ana (grup I) utuh"
+                     /note="Shen dkk. 2025 Supp Data 1"
+     misc_feature    269..284
+                     /label="ekson 3' (E2)"
+                     /note="Shen dkk. 2025"
+     misc_feature    285..303
+                     /label="lengan homologi 5'"
+                     /note="Shen dkk. 2025"
+     misc_feature    304..333
+                     /label="AC30 sebelum IRES"
+                     /note="Shen dkk. 2025"
+     misc_feature    334..993
+                     /label="IRES CVB3 AF169665.1"
+                     /note="GenBank AF169665.1"
+     CDS             994..1674
+                     /label="ORF protein S HBsAg (U95551.1, kodon dioptimasi)"
+                     /note="GenBank U95551.1 (protein S)"
+                     /codon_start=1
+                     /transl_table=1
+                     /product="HBsAg S protein (226 aa)"
+                     /translation="MENITSGFLGPLLVLQAGFFLLTRILTIPQSLDSWWTSLNFLGGT
+                     TVCLGQNSQSPTSNHSPTSCPPTCPGYRWMCLRRFIIFLFILLLCLIFLLVLLDYQGML
+                     PVCPLIPGSSTTSTGPCRTCMTTAQGTSMYPSCCCTKPSDGNCTCIPIPSSWAFGKFLW
+                     EWASARFSWLSLLVPFVQWFVGLSPTVWLSVIWMMWYWGPSLYSILSPFLPLLPIFFCL
+                     WVYI"
+     misc_feature    1675..1693
+                     /label="lengan homologi 3'"
+                     /note="Shen dkk. 2025"
+     misc_feature    1694..1709
+                     /label="ekson 5' (E1)"
+                     /note="Shen dkk. 2025"
+     misc_feature    18
+                     /label="awal transkripsi (+1 G)"
+                     /note="GG pertama intron"
+     primer_bind     882..901
+                     /label="Primer_konvergen_F (kontrol total RNA)"
+                     /note="TTGGCCATCCGGTGTCTAAC (5′→3′)"
+     primer_bind     complement(1094..1113)
+                     /label="Primer_konvergen_R (kontrol total RNA)"
+                     /note="ATTCAGGCTCGTCCACCAAG (5′→3′)"
+     primer_bind     1615..1634
+                     /label="Primer_BSJ_F (pengapit sambungan)"
+                     /note="ATCCTGAGCCCTTTTCTGCC (5′→3′)"
+     primer_bind     complement(285..304)
+                     /label="Primer_BSJ_R (pengapit sambungan)"
+                     /note="TCGGGTTCACTATACACGGC (5′→3′)"
+     primer_bind     complement(325..344)
+                     /label="Probe_RNaseH"
+                     /note="GGAGGGAATTGTGTGTTTTG (5′→3′)"
+ORIGIN
+        1 taatacgact cactatagga aataattgag ccttaaagaa gaaattcttt aagtggatgc
+       61 tctcaaactc agggaaacct aaatctagtt atagacaagg caatcctgag ccaagccgaa
+      121 gtagtaatta gtaagttaac aatagatgac ttacaactaa tcggaaggtg cagagactcg
+      181 acgggagcta ccctaacgtc aagacgaggg taaagagaga gtccaattct caaagccaat
+      241 aggcagtagc gaaagctgca agagaatgaa aatccgttga ccttgccgtg tatagtgaac
+      301 ccgacaaaaa aaaaaccaaa aaaacaaaac acacaattcc ctcccttctt tgaaacttag
+      361 aagcaagcaa gataagacgg tcgacaggcg acacagcaaa ccagctgtgt ctagaccaag
+      421 cacttctgtg accccggact gagtatcaat aggctgctcg cgcggctgaa ggagaaaccg
+      481 tccgttatcc ggccaactac ttcgagaaac ccagtaacat catggacgtt gcagagcgtt
+      541 tcgctcaaca cttcccccgt gtagatcagg tcgatgagtc accgctttcc ccacgggcga
+      601 ccgtggcggt ggctgcgttg gcggcctgcc tgtgggggca cccacaggac gctctaatac
+      661 agacatggtg cgaagagtct attgagctag ttggtagtcc tccggcccct gaatgcggct
+      721 aatcctaact gcggagcatg cacccacaag ccagtgggta gcgtgtcgta acgggcaact
+      781 ctgcagcgga accgactact ttgggtgacc gtgtttcttt ttattctctc attggctgct
+      841 tatggtgaca attgaggaat tgttaccata tagctattgg attggccatc cggtgtctaa
+      901 cagagcaatt gtttatctgt ttgtcggctt tgtgtctttg aacttcaaga attataaaac
+      961 tctcgacttc atactagagt taaactcaat aagatggaaa atattaccag cggcttcctg
+     1021 ggcccgctgc tggtgctgca ggccggcttt ttcctgctga caagaatcct gaccatcccc
+     1081 cagagcctgg attcttggtg gacgagcctg aattttctgg gcggcaccac cgtgtgtctg
+     1141 ggccagaata gccagagccc gacaagcaac cacagcccca cctcttgtcc gcctacatgt
+     1201 cccggctaca gatggatgtg cctgagaaga ttcatcattt ttctgtttat cctgctgctg
+     1261 tgcctgattt ttttgctggt gctgctggat tatcagggca tgctgcctgt gtgccctctg
+     1321 atccctggca gctctaccac ctctaccggc ccttgtagaa cgtgtatgac caccgcccag
+     1381 ggcaccagta tgtaccctag ctgttgttgt accaagcctt ctgacggcaa ctgtacctgt
+     1441 atccctatcc ctagctcttg ggcctttggc aaatttctgt gggagtgggc ctctgccaga
+     1501 ttcagctggc tttctctgct ggtgcctttc gtgcagtggt ttgtgggcct gtctcccaca
+     1561 gtgtggctga gcgtgatttg gatgatgtgg tactggggcc ccagcctgta ctctatcctg
+     1621 agcccttttc tgcctctgct gcctatcttt ttctgtttgt gggtgtatat ctgacgggtt
+     1681 cactatacac ggcgagaggc tacggactt
+//

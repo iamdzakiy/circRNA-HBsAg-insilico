@@ -56,6 +56,10 @@ def _design(seq: str, *, product_range: list[list[int]], target: tuple[int, int]
     return primer3.bindings.design_primers(seq_args, g)
 
 
+def _rc(x):
+    return x[::-1].translate(str.maketrans("ACGTacgt", "TGCAtgca"))
+
+
 def _pairs(res: dict, n: int) -> list[dict]:
     out = []
     for i in range(n):
@@ -106,9 +110,16 @@ def divergent_primers(asm, *, n: int = 5, flank: int = 150, min_product: int = 1
         p["left_start_in_circle"] = ((anti - flank + p["left_start"]) % nlen) + 1
         p["right_start_in_circle"] = ((anti - flank + p["right_start"]) % nlen) + 1
         p["expected_product_on_circle_nt"] = nlen - p["product_size"] + p["left_len"] + p["right_len"]
-        p["expected_product_on_linear"] = "tidak ada (primer menjauh)"
+        # left_seq/right_seq berorientasi KONVERGEN: produk pendek (product_size) ada pada lingkaran DAN pada
+        # prekursor linear (kontrol total RNA). Pasangan divergen sejati memakai komplemen terbalik keduanya
+        # (maju = rc(right_seq), mundur = rc(left_seq)) dengan produk panjang pada lingkaran saja.
+        p["convergent_product_nt"] = p["product_size"]
+        p["divergent_fwd_5to3"] = _rc(p["right_seq"])
+        p["divergent_rev_5to3"] = _rc(p["left_seq"])
+        p["expected_product_on_linear"] = (
+            f"{p['product_size']} nt (konvergen: ada pada linear); pasangan divergen sejati: tidak ada")
     return {
-        "strategy": "divergent (outward-facing) pada lingkaran",
+        "strategy": "konvergen (total RNA, kontrol) + versi divergen sejati bila urutan dibalik",
         "antipodal_position": anti,
         "window_length": len(window),
         "primer3_license": PRIMER3_LICENSE,

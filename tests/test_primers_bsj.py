@@ -25,7 +25,12 @@ def test_divergent_primers_are_found(asm):
         assert 55.0 <= p["left_tm"] <= 65.0
         assert 55.0 <= p["right_tm"] <= 65.0
         assert 1 <= p["left_start_in_circle"] <= len(asm.circle)
-        assert p["expected_product_on_linear"].startswith("tidak ada")
+        # left/right dari primer3 berorientasi konvergen (produk pendek juga ada pada linear);
+        # pasangan divergen sejati = komplemen terbalik keduanya.
+        assert p["convergent_product_nt"] == p["product_size"]
+        assert p["divergent_fwd_5to3"] == primers._rc(p["right_seq"])
+        assert p["divergent_rev_5to3"] == primers._rc(p["left_seq"])
+        assert "konvergen" in p["expected_product_on_linear"]
 
 
 def test_divergent_primers_sit_opposite_the_junction(asm):

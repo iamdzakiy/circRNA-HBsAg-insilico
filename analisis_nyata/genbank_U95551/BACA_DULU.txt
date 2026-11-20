@@ -1,0 +1,6 @@
+Berkas GenBank/FASTA kandidat circRNA HBsAg V1 sampai V18 (dibuat ulang untuk protein S dari U95551.1, CDS 157..837, AAB59969.1).
+Setiap kandidat punya dua berkas: *_templat_T7.gb (linear: promotor T7 sampai ekson 5') dan *_lingkaran.gb (circular: hasil splicing).
+Buka di SnapGene atau Benchling lewat Import. Terjemahan CDS setiap berkas sudah diperiksa identik dengan AAB59969.1.
+Label primer: "konvergen" = pasangan kontrol total RNA (produk dari lingkaran dan prekursor linear); "BSJ" = pasangan pengapit sambungan balik (khusus lingkaran).
+Letak IGS pada intron adalah perkiraan [PERKIRAAN]. Semua ini rancangan in silico, belum diuji di laboratorium.
+Berkas lama (berbasis D00329.1) dipindahkan ke genbank_lama_D00329/ dan tidak boleh dipakai.

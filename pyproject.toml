@@ -41,12 +41,15 @@ addopts = "-q"
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+# Skrip analisis_nyata/ dibawa apa adanya dari alur kerja analisis (dipertahankan agar angka bisa direproduksi).
+extend-exclude = ["analisis_nyata"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B"]
 ignore = ["E501"]
 
 [tool.ruff.lint.per-file-ignores]
+"src/circhbsag/rubric2.py" = ["E701", "E702", "E731", "E741", "B905"]
 # Notebook harus menyisipkan src/ ke sys.path sebelum mengimpor paket, sehingga
 # impor tingkat modul memang tidak di awal sel.
 "notebooks/*.ipynb" = ["E402", "I001"]

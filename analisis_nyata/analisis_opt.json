@@ -1,0 +1,1826 @@
+{
+ "controls": [
+  {
+   "name": "NC1_exon_1-1",
+   "composite": 0.5433,
+   "verdict": "NO-GO",
+   "gates_failed": [
+    "exon_base_efficiency_ge_25pct"
+   ],
+   "e_total": 0.1039
+  },
+  {
+   "name": "NC2_IRES_scrambled",
+   "composite": 0.4973,
+   "verdict": "NO-GO",
+   "gates_failed": [
+    "no_internal_typeIIS",
+    "orf_intact_and_unique_start",
+    "ires_sequence_identical_AF169665"
+   ],
+   "e_total": 0.3959
+  },
+  {
+   "name": "NC3_ORF_nonsense_codon50",
+   "composite": 0.6345,
+   "verdict": "NO-GO",
+   "gates_failed": [
+    "orf_translates_S_protein_no_internal_stop"
+   ],
+   "e_total": 0.3959
+  },
+  {
+   "name": "NC4_intron_scrambled",
+   "composite": 0.6051,
+   "verdict": "NO-GO",
+   "gates_failed": [
+    "no_internal_typeIIS",
+    "intron_identical_Ana_reference"
+   ],
+   "e_total": 0.3959
+  },
+  {
+   "name": "NC5_arm_100nt",
+   "composite": 0.7572,
+   "verdict": "NO-GO",
+   "gates_failed": [
+    "dsrna_below_hard_limit",
+    "homology_arm_le_50nt"
+   ],
+   "e_total": 0.99
+  },
+  {
+   "name": "PC1_V1_paper_CIRC-V1",
+   "composite": 0.7839,
+   "verdict": "NO-GO",
+   "gates_failed": [
+    "no_internal_typeIIS"
+   ],
+   "e_total": 0.8903
+  },
+  {
+   "name": "PC2_V1_BsmBI_free_exon",
+   "composite": 0.8179,
+   "verdict": "GO",
+   "gates_failed": [],
+   "e_total": 0.8903
+  },
+  {
+   "name": "PC3_16-16_spacer20_noarm",
+   "composite": 0.7918,
+   "verdict": "GO",
+   "gates_failed": [],
+   "e_total": 0.8903
+  },
+  {
+   "name": "V10_8-8",
+   "composite": 0.8496,
+   "verdict": "GO",
+   "gates_failed": [],
+   "e_total": 0.814
+  },
+  {
+   "name": "V11_3-2_min",
+   "composite": 0.6391,
+   "verdict": "GO-BERSYARAT",
+   "gates_failed": [],
+   "e_total": 0.3959
+  },
+  {
+   "name": "V12_3-2_spacer_arm19",
+   "composite": 0.8,
+   "verdict": "GO",
+   "gates_failed": [],
+   "e_total": 0.7313
+  }
+ ],
+ "scan": [
+  {
+   "name": "S_11-11_sp0_arm19",
+   "exon": "11-11",
+   "spacer": 0,
+   "arm": 19,
+   "composite": 0.845,
+   "verdict": "GO",
+   "e_total": 0.8516,
+   "circle": 1431,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7963,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.5431,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.9764
+   }
+  },
+  {
+   "name": "S_16-16_sp0_arm19",
+   "exon": "16-16",
+   "spacer": 0,
+   "arm": 19,
+   "composite": 0.8403,
+   "verdict": "GO",
+   "e_total": 0.8753,
+   "circle": 1441,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8031,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.8519,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.5566,
+    "sequence_cleanliness": 0.68,
+    "motif_burden": 0.978
+   }
+  },
+  {
+   "name": "S_11-11_sp20_arm19",
+   "exon": "11-11",
+   "spacer": 20,
+   "arm": 19,
+   "composite": 0.8266,
+   "verdict": "GO",
+   "e_total": 0.8694,
+   "circle": 1469,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.3547,
+    "sequence_cleanliness": 0.62,
+    "motif_burden": 0.9278
+   }
+  },
+  {
+   "name": "S_16-16_sp20_arm19",
+   "exon": "16-16",
+   "spacer": 20,
+   "arm": 19,
+   "composite": 0.8179,
+   "verdict": "GO",
+   "e_total": 0.8903,
+   "circle": 1479,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7195,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.3709,
+    "sequence_cleanliness": 0.68,
+    "motif_burden": 0.9296
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp20_arm19",
+   "exon": "3-2GCT",
+   "spacer": 20,
+   "arm": 19,
+   "composite": 0.8125,
+   "verdict": "GO",
+   "e_total": 0.7595,
+   "circle": 1452,
+   "sub": {
+    "splicing_competence": 0.9325,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.3769,
+    "sequence_cleanliness": 0.62,
+    "motif_burden": 0.9382
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp20_arm34",
+   "exon": "3-2GCT",
+   "spacer": 20,
+   "arm": 34,
+   "composite": 0.8115,
+   "verdict": "GO",
+   "e_total": 0.8252,
+   "circle": 1482,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6647,
+    "sequence_cleanliness": 0.7,
+    "motif_burden": 0.957
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp20_arm34",
+   "exon": "3-2CTT",
+   "spacer": 20,
+   "arm": 34,
+   "composite": 0.8108,
+   "verdict": "GO",
+   "e_total": 0.8047,
+   "circle": 1482,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6647,
+    "sequence_cleanliness": 0.7,
+    "motif_burden": 0.9436
+   }
+  },
+  {
+   "name": "S_11-11_sp20_arm34",
+   "exon": "11-11",
+   "spacer": 20,
+   "arm": 34,
+   "composite": 0.8073,
+   "verdict": "GO",
+   "e_total": 0.9051,
+   "circle": 1499,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6476,
+    "sequence_cleanliness": 0.68,
+    "motif_burden": 0.9464
+   }
+  },
+  {
+   "name": "S_11-11_sp0_arm34",
+   "exon": "11-11",
+   "spacer": 0,
+   "arm": 34,
+   "composite": 0.806,
+   "verdict": "GO",
+   "e_total": 0.9051,
+   "circle": 1461,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7963,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6599,
+    "sequence_cleanliness": 0.68,
+    "motif_burden": 0.9946
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp50_arm0",
+   "exon": "3-2GCT",
+   "spacer": 50,
+   "arm": 0,
+   "composite": 0.8058,
+   "verdict": "GO",
+   "e_total": 0.8243,
+   "circle": 1476,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6185,
+    "circle_stability": 0.1657,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8612
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp50_arm0",
+   "exon": "3-2CTT",
+   "spacer": 50,
+   "arm": 0,
+   "composite": 0.8051,
+   "verdict": "GO",
+   "e_total": 0.8037,
+   "circle": 1476,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6185,
+    "circle_stability": 0.1653,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8476
+   }
+  },
+  {
+   "name": "S_6-6_sp50_arm0",
+   "exon": "6-6",
+   "spacer": 50,
+   "arm": 0,
+   "composite": 0.8049,
+   "verdict": "GO",
+   "e_total": 0.8072,
+   "circle": 1483,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6196,
+    "circle_stability": 0.1609,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8494
+   }
+  },
+  {
+   "name": "S_11-11_sp20_arm0",
+   "exon": "11-11",
+   "spacer": 20,
+   "arm": 0,
+   "composite": 0.8043,
+   "verdict": "GO",
+   "e_total": 0.8694,
+   "circle": 1431,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8081,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6249,
+    "circle_stability": 0.1456,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.9204
+   }
+  },
+  {
+   "name": "S_6-6_sp20_arm19",
+   "exon": "6-6",
+   "spacer": 20,
+   "arm": 19,
+   "composite": 0.8036,
+   "verdict": "GO",
+   "e_total": 0.7361,
+   "circle": 1459,
+   "sub": {
+    "splicing_competence": 0.8935,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.3517,
+    "sequence_cleanliness": 0.66,
+    "motif_burden": 0.9258
+   }
+  },
+  {
+   "name": "S_11-11_sp50_arm0",
+   "exon": "11-11",
+   "spacer": 50,
+   "arm": 0,
+   "composite": 0.8034,
+   "verdict": "GO",
+   "e_total": 0.9046,
+   "circle": 1493,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8166,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.62,
+    "circle_stability": 0.163,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8518
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp50_arm19",
+   "exon": "3-2GCT",
+   "spacer": 50,
+   "arm": 19,
+   "composite": 0.8033,
+   "verdict": "GO",
+   "e_total": 0.8243,
+   "circle": 1514,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.1703,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8698
+   }
+  },
+  {
+   "name": "S_6-6_sp20_arm34",
+   "exon": "6-6",
+   "spacer": 20,
+   "arm": 34,
+   "composite": 0.8031,
+   "verdict": "GO",
+   "e_total": 0.8082,
+   "circle": 1489,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6466,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.9448
+   }
+  },
+  {
+   "name": "S_6-6_sp50_arm19",
+   "exon": "6-6",
+   "spacer": 50,
+   "arm": 19,
+   "composite": 0.8028,
+   "verdict": "GO",
+   "e_total": 0.8072,
+   "circle": 1521,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.1711,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8582
+   }
+  },
+  {
+   "name": "S_11-11_sp50_arm19",
+   "exon": "11-11",
+   "spacer": 50,
+   "arm": 19,
+   "composite": 0.8026,
+   "verdict": "GO",
+   "e_total": 0.9046,
+   "circle": 1531,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.168,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8604
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp50_arm19",
+   "exon": "3-2CTT",
+   "spacer": 50,
+   "arm": 19,
+   "composite": 0.8026,
+   "verdict": "GO",
+   "e_total": 0.8037,
+   "circle": 1514,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.1703,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8566
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp20_arm19",
+   "exon": "3-2CTT",
+   "spacer": 20,
+   "arm": 19,
+   "composite": 0.8,
+   "verdict": "GO",
+   "e_total": 0.7313,
+   "circle": 1452,
+   "sub": {
+    "splicing_competence": 0.8855,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.3769,
+    "sequence_cleanliness": 0.62,
+    "motif_burden": 0.9246
+   }
+  },
+  {
+   "name": "S_16-16_sp0_arm0",
+   "exon": "16-16",
+   "spacer": 0,
+   "arm": 0,
+   "composite": 0.794,
+   "verdict": "GO",
+   "e_total": 0.7533,
+   "circle": 1403,
+   "sub": {
+    "splicing_competence": 0.9222,
+    "junction_accessibility": 0.7205,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6208,
+    "circle_stability": 0.2802,
+    "sequence_cleanliness": 0.66,
+    "motif_burden": 0.9862
+   }
+  },
+  {
+   "name": "S_16-16_sp20_arm0",
+   "exon": "16-16",
+   "spacer": 20,
+   "arm": 0,
+   "composite": 0.7918,
+   "verdict": "GO",
+   "e_total": 0.8903,
+   "circle": 1441,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7205,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6194,
+    "circle_stability": 0.1571,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.9224
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp20_arm0",
+   "exon": "3-2GCT",
+   "spacer": 20,
+   "arm": 0,
+   "composite": 0.7911,
+   "verdict": "GO",
+   "e_total": 0.7595,
+   "circle": 1414,
+   "sub": {
+    "splicing_competence": 0.9325,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6188,
+    "circle_stability": 0.1521,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.9312
+   }
+  },
+  {
+   "name": "S_16-16_sp50_arm0",
+   "exon": "16-16",
+   "spacer": 50,
+   "arm": 0,
+   "composite": 0.7894,
+   "verdict": "GO",
+   "e_total": 0.9199,
+   "circle": 1503,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7216,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6215,
+    "circle_stability": 0.1629,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.854
+   }
+  },
+  {
+   "name": "S_16-16_sp20_arm34",
+   "exon": "16-16",
+   "spacer": 20,
+   "arm": 34,
+   "composite": 0.7883,
+   "verdict": "GO",
+   "e_total": 0.9203,
+   "circle": 1509,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7195,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6614,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.9482
+   }
+  },
+  {
+   "name": "S_16-16_sp50_arm19",
+   "exon": "16-16",
+   "spacer": 50,
+   "arm": 19,
+   "composite": 0.7867,
+   "verdict": "GO",
+   "e_total": 0.9199,
+   "circle": 1541,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7197,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.1722,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8626
+   }
+  },
+  {
+   "name": "S_6-6_sp20_arm0",
+   "exon": "6-6",
+   "spacer": 20,
+   "arm": 0,
+   "composite": 0.7806,
+   "verdict": "GO",
+   "e_total": 0.7361,
+   "circle": 1421,
+   "sub": {
+    "splicing_competence": 0.8935,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6196,
+    "circle_stability": 0.1503,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.9186
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp20_arm0",
+   "exon": "3-2CTT",
+   "spacer": 20,
+   "arm": 0,
+   "composite": 0.7789,
+   "verdict": "GO",
+   "e_total": 0.7313,
+   "circle": 1414,
+   "sub": {
+    "splicing_competence": 0.8855,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6188,
+    "circle_stability": 0.1548,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.9172
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp50_arm34",
+   "exon": "3-2GCT",
+   "spacer": 50,
+   "arm": 34,
+   "composite": 0.7773,
+   "verdict": "GO",
+   "e_total": 0.8252,
+   "circle": 1544,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.4566,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8892
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp50_arm34",
+   "exon": "3-2CTT",
+   "spacer": 50,
+   "arm": 34,
+   "composite": 0.7767,
+   "verdict": "GO",
+   "e_total": 0.8047,
+   "circle": 1544,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.4566,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8762
+   }
+  },
+  {
+   "name": "S_11-11_sp50_arm34",
+   "exon": "11-11",
+   "spacer": 50,
+   "arm": 34,
+   "composite": 0.7756,
+   "verdict": "GO",
+   "e_total": 0.9051,
+   "circle": 1561,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.444,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8796
+   }
+  },
+  {
+   "name": "S_6-6_sp50_arm34",
+   "exon": "6-6",
+   "spacer": 50,
+   "arm": 34,
+   "composite": 0.7744,
+   "verdict": "GO",
+   "e_total": 0.8082,
+   "circle": 1551,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.4333,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8776
+   }
+  },
+  {
+   "name": "S_11-11_sp0_arm0",
+   "exon": "11-11",
+   "spacer": 0,
+   "arm": 0,
+   "composite": 0.7735,
+   "verdict": "GO",
+   "e_total": 0.7064,
+   "circle": 1393,
+   "sub": {
+    "splicing_competence": 0.844,
+    "junction_accessibility": 0.756,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6359,
+    "circle_stability": 0.2429,
+    "sequence_cleanliness": 0.62,
+    "motif_burden": 0.9846
+   }
+  },
+  {
+   "name": "S_16-16_sp0_arm34",
+   "exon": "16-16",
+   "spacer": 0,
+   "arm": 34,
+   "composite": 0.7676,
+   "verdict": "GO",
+   "e_total": 0.9203,
+   "circle": 1471,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.6406,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.2963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6596,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.996
+   }
+  },
+  {
+   "name": "S_16-16_sp50_arm34",
+   "exon": "16-16",
+   "spacer": 50,
+   "arm": 34,
+   "composite": 0.7604,
+   "verdict": "GO",
+   "e_total": 0.9203,
+   "circle": 1571,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7197,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.4548,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.8818
+   }
+  },
+  {
+   "name": "S_6-6_sp0_arm19",
+   "exon": "6-6",
+   "spacer": 0,
+   "arm": 19,
+   "composite": 0.7536,
+   "verdict": "GO",
+   "e_total": 0.7001,
+   "circle": 1421,
+   "sub": {
+    "splicing_competence": 0.8335,
+    "junction_accessibility": 0.495,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.8889,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.5321,
+    "sequence_cleanliness": 0.68,
+    "motif_burden": 0.9748
+   }
+  },
+  {
+   "name": "S_6-6_sp0_arm34",
+   "exon": "6-6",
+   "spacer": 0,
+   "arm": 34,
+   "composite": 0.7492,
+   "verdict": "GO",
+   "e_total": 0.8082,
+   "circle": 1451,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.495,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.3333,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6586,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.9932
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp0_arm19",
+   "exon": "3-2GCT",
+   "spacer": 0,
+   "arm": 19,
+   "composite": 0.7354,
+   "verdict": "GO",
+   "e_total": 0.7268,
+   "circle": 1414,
+   "sub": {
+    "splicing_competence": 0.878,
+    "junction_accessibility": 0.2669,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.5405,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.9878
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp0_arm34",
+   "exon": "3-2GCT",
+   "spacer": 0,
+   "arm": 34,
+   "composite": 0.7287,
+   "verdict": "GO",
+   "e_total": 0.8252,
+   "circle": 1444,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.267,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6578,
+    "sequence_cleanliness": 0.7,
+    "motif_burden": 1.0
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp0_arm34",
+   "exon": "3-2CTT",
+   "spacer": 0,
+   "arm": 34,
+   "composite": 0.7287,
+   "verdict": "GO",
+   "e_total": 0.8047,
+   "circle": 1444,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.2673,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.4074,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.6578,
+    "sequence_cleanliness": 0.7,
+    "motif_burden": 1.0
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp0_arm19",
+   "exon": "3-2CTT",
+   "spacer": 0,
+   "arm": 19,
+   "composite": 0.7207,
+   "verdict": "GO",
+   "e_total": 0.6947,
+   "circle": 1414,
+   "sub": {
+    "splicing_competence": 0.8245,
+    "junction_accessibility": 0.2673,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.5269,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.9878
+   }
+  },
+  {
+   "name": "S_3-2GCT_sp0_arm0",
+   "exon": "3-2GCT",
+   "spacer": 0,
+   "arm": 0,
+   "composite": 0.6551,
+   "verdict": "GO-BERSYARAT",
+   "e_total": 0.4594,
+   "circle": 1376,
+   "sub": {
+    "splicing_competence": 0.4323,
+    "junction_accessibility": 0.6382,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.62,
+    "circle_stability": 0.2623,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.982
+   }
+  },
+  {
+   "name": "S_3-2CTT_sp0_arm0",
+   "exon": "3-2CTT",
+   "spacer": 0,
+   "arm": 0,
+   "composite": 0.6391,
+   "verdict": "GO-BERSYARAT",
+   "e_total": 0.3959,
+   "circle": 1376,
+   "sub": {
+    "splicing_competence": 0.3265,
+    "junction_accessibility": 0.7058,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.621,
+    "circle_stability": 0.2635,
+    "sequence_cleanliness": 0.64,
+    "motif_burden": 0.982
+   }
+  },
+  {
+   "name": "S_6-6_sp0_arm0",
+   "exon": "6-6",
+   "spacer": 0,
+   "arm": 0,
+   "composite": 0.5857,
+   "verdict": "GO-BERSYARAT",
+   "e_total": 0.4066,
+   "circle": 1383,
+   "sub": {
+    "splicing_competence": 0.3443,
+    "junction_accessibility": 0.2947,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6189,
+    "circle_stability": 0.2841,
+    "sequence_cleanliness": 0.66,
+    "motif_burden": 0.983
+   }
+  }
+ ],
+ "scan_marginal": {
+  "exon": {
+   "11-11": [
+    0.805,
+    0.773,
+    0.845,
+    9
+   ],
+   "16-16": [
+    0.793,
+    0.76,
+    0.84,
+    9
+   ],
+   "3-2CTT": [
+    0.763,
+    0.639,
+    0.811,
+    9
+   ],
+   "3-2GCT": [
+    0.769,
+    0.655,
+    0.812,
+    9
+   ],
+   "6-6": [
+    0.762,
+    0.586,
+    0.805,
+    9
+   ]
+  },
+  "spacer": {
+   "0": [
+    0.742,
+    0.586,
+    0.845,
+    15
+   ],
+   "20": [
+    0.802,
+    0.779,
+    0.827,
+    15
+   ],
+   "50": [
+    0.791,
+    0.76,
+    0.806,
+    15
+   ]
+  },
+  "arm": {
+   "0": [
+    0.76,
+    0.586,
+    0.806,
+    15
+   ],
+   "19": [
+    0.797,
+    0.721,
+    0.845,
+    15
+   ],
+   "34": [
+    0.778,
+    0.729,
+    0.811,
+    15
+   ]
+  }
+ },
+ "scan_counts": {
+  "GO": 42,
+  "GO-BERSYARAT": 3,
+  "NO-GO": 0
+ },
+ "final": [
+  {
+   "id": "V14",
+   "name": "SA_11-11_0_19_c85",
+   "composite": 0.8626,
+   "verdict": "GO",
+   "gates_failed": [],
+   "circle": 1431,
+   "precursor": 1699,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.7963,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.737,
+    "circle_stability": 0.632,
+    "sequence_cleanliness": 0.66,
+    "motif_burden": 0.8785
+   },
+   "e_total": 0.8516,
+   "composite_before_mutagenesis": 0.845,
+   "jitter": {
+    "p05": 0.834,
+    "median": 0.861,
+    "p95": 0.886,
+    "verdicts": {
+     "GO": 200
+    }
+   },
+   "leave_one_out": {
+    "splicing_competence": 0.817,
+    "junction_accessibility": 0.874,
+    "ires_integrity": 0.838,
+    "dsrna_burden": 0.851,
+    "start_codon_accessibility": 0.877,
+    "circle_stability": 0.888,
+    "sequence_cleanliness": 0.885,
+    "motif_burden": 0.862
+   },
+   "raw": {
+    "splicing_competence": {
+     "e_base": 0.7064,
+     "f5": 0.6977,
+     "f3": 0.7518,
+     "exon5_identity_modifier": 1.0,
+     "residual_factor_arm": 0.505,
+     "residual_factor_spacer": 1.0,
+     "e_total": 0.8516
+    },
+    "junction_accessibility": {
+     "bsj_worst": 0.4755,
+     "splice_site_ratio_vs_minimal": {
+      "splice5_site@37C": 11.392,
+      "splice3_site@37C": 1.215,
+      "intron_3half_IGS@37C": 0.622,
+      "splice5_site@55C": 1.371,
+      "splice3_site@55C": 1.113,
+      "intron_3half_IGS@55C": 0.623
+     }
+    },
+    "ires_integrity": {
+     "identity_37C": 0.9288,
+     "identity_55C_informational": 0.8864
+    },
+    "dsrna_burden": {
+     "longest_bp": 19
+    },
+    "start_codon_accessibility": {
+     "plfold": {
+      "37C": 0.188036,
+      "55C": 0.361032
+     },
+     "global": {
+      "37C": 0.57268,
+      "55C": 0.63798
+     }
+    },
+    "circle_stability": {
+     "z_mfe_per_nt": -6.28,
+     "z_diversity_per_nt": -1.58
+    },
+    "sequence_cleanliness": {
+     "typeIIS": 0,
+     "gc_window_violations": 7,
+     "homopolymer": 10,
+     "gc": 0.5178
+    },
+    "motif_burden": {
+     "m6a_per_100nt": 1.328
+    }
+   }
+  },
+  {
+   "id": "V15",
+   "name": "SA_16-16_0_19_c85",
+   "composite": 0.8508,
+   "verdict": "GO",
+   "gates_failed": [],
+   "circle": 1441,
+   "precursor": 1709,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.8031,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.8519,
+    "start_codon_accessibility": 0.7745,
+    "circle_stability": 0.5355,
+    "sequence_cleanliness": 0.68,
+    "motif_burden": 0.9225
+   },
+   "e_total": 0.8753,
+   "composite_before_mutagenesis": 0.8403,
+   "jitter": {
+    "p05": 0.821,
+    "median": 0.848,
+    "p95": 0.875,
+    "verdicts": {
+     "GO": 200
+    }
+   },
+   "leave_one_out": {
+    "splicing_competence": 0.801,
+    "junction_accessibility": 0.859,
+    "ires_integrity": 0.824,
+    "dsrna_burden": 0.851,
+    "start_codon_accessibility": 0.859,
+    "circle_stability": 0.886,
+    "sequence_cleanliness": 0.87,
+    "motif_burden": 0.847
+   },
+   "raw": {
+    "splicing_competence": {
+     "e_base": 0.7533,
+     "f5": 0.7432,
+     "f3": 0.7527,
+     "exon5_identity_modifier": 1.0,
+     "residual_factor_arm": 0.505,
+     "residual_factor_spacer": 1.0,
+     "e_total": 0.8753
+    },
+    "junction_accessibility": {
+     "bsj_worst": 0.4806,
+     "splice_site_ratio_vs_minimal": {
+      "splice5_site@37C": 4.907,
+      "splice3_site@37C": 0.892,
+      "intron_3half_IGS@37C": 0.622,
+      "splice5_site@55C": 7.619,
+      "splice3_site@55C": 0.794,
+      "intron_3half_IGS@55C": 0.623
+     }
+    },
+    "ires_integrity": {
+     "identity_37C": 0.9515,
+     "identity_55C_informational": 0.9409
+    },
+    "dsrna_burden": {
+     "longest_bp": 22
+    },
+    "start_codon_accessibility": {
+     "plfold": {
+      "37C": 0.233399,
+      "55C": 0.387424
+     },
+     "global": {
+      "37C": 0.54055,
+      "55C": 0.63646
+     }
+    },
+    "circle_stability": {
+     "z_mfe_per_nt": -5.36,
+     "z_diversity_per_nt": -1.07
+    },
+    "sequence_cleanliness": {
+     "typeIIS": 0,
+     "gc_window_violations": 6,
+     "homopolymer": 10,
+     "gc": 0.5219
+    },
+    "motif_burden": {
+     "m6a_per_100nt": 1.11
+    }
+   }
+  },
+  {
+   "id": "V16",
+   "name": "SA_3-2GCT_20_19_c85",
+   "composite": 0.823,
+   "verdict": "GO",
+   "gates_failed": [],
+   "circle": 1452,
+   "precursor": 1720,
+   "sub": {
+    "splicing_competence": 0.9325,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 0.963,
+    "start_codon_accessibility": 0.7745,
+    "circle_stability": 0.356,
+    "sequence_cleanliness": 0.62,
+    "motif_burden": 0.8831
+   },
+   "e_total": 0.7595,
+   "composite_before_mutagenesis": 0.8125,
+   "jitter": {
+    "p05": 0.788,
+    "median": 0.82,
+    "p95": 0.851,
+    "verdicts": {
+     "GO": 200
+    }
+   },
+   "leave_one_out": {
+    "splicing_competence": 0.786,
+    "junction_accessibility": 0.822,
+    "ires_integrity": 0.792,
+    "dsrna_burden": 0.807,
+    "start_codon_accessibility": 0.828,
+    "circle_stability": 0.875,
+    "sequence_cleanliness": 0.846,
+    "motif_burden": 0.82
+   },
+   "raw": {
+    "splicing_competence": {
+     "e_base": 0.4594,
+     "f5": 0.7353,
+     "f3": 0.3999,
+     "exon5_identity_modifier": 1.16,
+     "residual_factor_arm": 0.505,
+     "residual_factor_spacer": 0.445,
+     "e_total": 0.7595
+    },
+    "junction_accessibility": {
+     "bsj_worst": 0.9998,
+     "splice_site_ratio_vs_minimal": {
+      "splice5_site@37C": 2.225,
+      "splice3_site@37C": 1.429,
+      "intron_3half_IGS@37C": 0.622,
+      "splice5_site@55C": 3.297,
+      "splice3_site@55C": 2.115,
+      "intron_3half_IGS@55C": 0.623
+     }
+    },
+    "ires_integrity": {
+     "identity_37C": 0.9515,
+     "identity_55C_informational": 0.9409
+    },
+    "dsrna_burden": {
+     "longest_bp": 19
+    },
+    "start_codon_accessibility": {
+     "plfold": {
+      "37C": 0.233399,
+      "55C": 0.387424
+     },
+     "global": {
+      "37C": 0.54055,
+      "55C": 0.63646
+     }
+    },
+    "circle_stability": {
+     "z_mfe_per_nt": -3.14,
+     "z_diversity_per_nt": -1.13
+    },
+    "sequence_cleanliness": {
+     "typeIIS": 0,
+     "gc_window_violations": 9,
+     "homopolymer": 10,
+     "gc": 0.5117
+    },
+    "motif_burden": {
+     "m6a_per_100nt": 1.309
+    }
+   }
+  },
+  {
+   "id": "V17",
+   "name": "SA_3-2GCT_20_0_c85",
+   "composite": 0.7891,
+   "verdict": "GO",
+   "gates_failed": [],
+   "circle": 1414,
+   "precursor": 1682,
+   "sub": {
+    "splicing_competence": 0.9325,
+    "junction_accessibility": 0.8289,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.7931,
+    "circle_stability": 0.0141,
+    "sequence_cleanliness": 0.6,
+    "motif_burden": 0.818
+   },
+   "e_total": 0.7595,
+   "composite_before_mutagenesis": 0.7911,
+   "jitter": {
+    "p05": 0.739,
+    "median": 0.786,
+    "p95": 0.829,
+    "verdicts": {
+     "GO": 200
+    }
+   },
+   "leave_one_out": {
+    "splicing_competence": 0.741,
+    "junction_accessibility": 0.782,
+    "ires_integrity": 0.752,
+    "dsrna_burden": 0.766,
+    "start_codon_accessibility": 0.789,
+    "circle_stability": 0.875,
+    "sequence_cleanliness": 0.81,
+    "motif_burden": 0.788
+   },
+   "raw": {
+    "splicing_competence": {
+     "e_base": 0.4594,
+     "f5": 0.7353,
+     "f3": 0.3999,
+     "exon5_identity_modifier": 1.16,
+     "residual_factor_arm": 1.0,
+     "residual_factor_spacer": 0.445,
+     "e_total": 0.7595
+    },
+    "junction_accessibility": {
+     "bsj_worst": 0.825,
+     "splice_site_ratio_vs_minimal": {
+      "splice5_site@37C": 2.008,
+      "splice3_site@37C": 1.477,
+      "intron_3half_IGS@37C": 0.622,
+      "splice5_site@55C": 2.967,
+      "splice3_site@55C": 2.151,
+      "intron_3half_IGS@55C": 0.623
+     }
+    },
+    "ires_integrity": {
+     "identity_37C": 0.9258,
+     "identity_55C_informational": 0.8242
+    },
+    "dsrna_burden": {
+     "longest_bp": 13
+    },
+    "start_codon_accessibility": {
+     "plfold": {
+      "37C": 0.209323,
+      "55C": 0.36049
+     },
+     "global": {
+      "37C": 0.60028,
+      "55C": 0.64363
+     }
+    },
+    "circle_stability": {
+     "z_mfe_per_nt": -0.06,
+     "z_diversity_per_nt": -0.1
+    },
+    "sequence_cleanliness": {
+     "typeIIS": 0,
+     "gc_window_violations": 11,
+     "homopolymer": 10,
+     "gc": 0.5057
+    },
+    "motif_burden": {
+     "m6a_per_100nt": 1.627
+    }
+   }
+  },
+  {
+   "id": "V18",
+   "name": "SPLIT_403_sa_c85",
+   "composite": 0.8224,
+   "verdict": "GO",
+   "gates_failed": [],
+   "circle": 1341,
+   "precursor": 1609,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.3854,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.7228,
+    "circle_stability": 0.5076,
+    "sequence_cleanliness": 0.92,
+    "motif_burden": 0.9912
+   },
+   "e_total": 0.8360173333333333,
+   "composite_before_mutagenesis": 0.8018,
+   "jitter": {
+    "p05": 0.774,
+    "median": 0.819,
+    "p95": 0.858,
+    "verdicts": {
+     "GO": 200
+    }
+   },
+   "leave_one_out": {
+    "splicing_competence": 0.763,
+    "junction_accessibility": 0.9,
+    "ires_integrity": 0.791,
+    "dsrna_burden": 0.803,
+    "start_codon_accessibility": 0.833,
+    "circle_stability": 0.857,
+    "sequence_cleanliness": 0.812,
+    "motif_burden": 0.814
+   },
+   "raw": {
+    "splicing_competence": {
+     "e_base": 0.8360173333333333,
+     "e_total": 0.8360173333333333,
+     "source": "Fig. 6f Source Data (situs split IRES, tanpa bekas)"
+    },
+    "junction_accessibility": {
+     "bsj_worst": 0.3391,
+     "splice_site_ratio_vs_minimal": {
+      "splice5_site@37C": 0.0,
+      "splice3_site@37C": 0.712,
+      "intron_3half_IGS@37C": 0.622,
+      "splice5_site@55C": 0.0,
+      "splice3_site@55C": 1.315,
+      "intron_3half_IGS@55C": 0.623
+     }
+    },
+    "ires_integrity": {
+     "identity_37C": 0.9652,
+     "identity_55C_informational": 0.9561
+    },
+    "dsrna_burden": {
+     "longest_bp": 13
+    },
+    "start_codon_accessibility": {
+     "plfold": {
+      "37C": 0.233399,
+      "55C": 0.387424
+     },
+     "global": {
+      "37C": 0.48375,
+      "55C": 0.54722
+     }
+    },
+    "circle_stability": {
+     "z_mfe_per_nt": -4.9,
+     "z_diversity_per_nt": -1.19
+    },
+    "sequence_cleanliness": {
+     "typeIIS": 0,
+     "gc_window_violations": 4,
+     "homopolymer": 5,
+     "gc": 0.528
+    },
+    "motif_burden": {
+     "m6a_per_100nt": 1.044
+    }
+   }
+  }
+ ],
+ "split": [
+  {
+   "site": 403,
+   "af_pos": 322,
+   "ctx": "TCTAA",
+   "eff": 83.6,
+   "composite": 0.8018,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.3914,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6254,
+    "circle_stability": 0.3859,
+    "sequence_cleanliness": 0.92,
+    "motif_burden": 1.0
+   },
+   "ires37": 0.9379
+  },
+  {
+   "site": 406,
+   "af_pos": 325,
+   "ctx": "AATAC",
+   "eff": 58.3,
+   "composite": 0.7085,
+   "sub": {
+    "splicing_competence": 0.6381,
+    "junction_accessibility": 0.3992,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6254,
+    "circle_stability": 0.3859,
+    "sequence_cleanliness": 0.88,
+    "motif_burden": 1.0
+   },
+   "ires37": 0.9379
+  },
+  {
+   "site": 436,
+   "af_pos": 355,
+   "ctx": "GCTAG",
+   "eff": 74.1,
+   "composite": 0.7494,
+   "sub": {
+    "splicing_competence": 0.9009,
+    "junction_accessibility": 0.2338,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6254,
+    "circle_stability": 0.3859,
+    "sequence_cleanliness": 0.88,
+    "motif_burden": 1.0
+   },
+   "ires37": 0.9379
+  },
+  {
+   "site": 443,
+   "af_pos": 362,
+   "ctx": "GGTAG",
+   "eff": 67.5,
+   "composite": 0.7129,
+   "sub": {
+    "splicing_competence": 0.7914,
+    "junction_accessibility": 0.1593,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6254,
+    "circle_stability": 0.3859,
+    "sequence_cleanliness": 0.9,
+    "motif_burden": 1.0
+   },
+   "ires37": 0.9379
+  },
+  {
+   "site": 468,
+   "af_pos": 387,
+   "ctx": "GCTAA",
+   "eff": 63.8,
+   "composite": 0.7615,
+   "sub": {
+    "splicing_competence": 0.7295,
+    "junction_accessibility": 0.6,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.6254,
+    "circle_stability": 0.3859,
+    "sequence_cleanliness": 0.88,
+    "motif_burden": 1.0
+   },
+   "ires37": 0.9379
+  },
+  {
+   "site": "403 (ORF termutasi)",
+   "composite": 0.8224,
+   "sub": {
+    "splicing_competence": 1.0,
+    "junction_accessibility": 0.3854,
+    "ires_integrity": 1.0,
+    "dsrna_burden": 1.0,
+    "start_codon_accessibility": 0.7228,
+    "circle_stability": 0.5076,
+    "sequence_cleanliness": 0.92,
+    "motif_burden": 0.9912
+   },
+   "ires37": 0.9652
+  }
+ ],
+ "unconstrained": [],
+ "orf_stats": {
+  "ORF_awal": {
+   "cai": 0.935,
+   "gc": 0.549,
+   "nt": 0,
+   "codons": 0
+  },
+  "V14": {
+   "cai": 0.862,
+   "gc": 0.539,
+   "nt": 42,
+   "codons": 38
+  },
+  "V15": {
+   "cai": 0.906,
+   "gc": 0.548,
+   "nt": 8,
+   "codons": 7
+  },
+  "V16": {
+   "cai": 0.906,
+   "gc": 0.548,
+   "nt": 8,
+   "codons": 7
+  },
+  "V17": {
+   "cai": 0.853,
+   "gc": 0.539,
+   "nt": 53,
+   "codons": 48
+  },
+  "V18": {
+   "cai": 0.873,
+   "gc": 0.546,
+   "nt": 35,
+   "codons": 31
+  }
+ },
+ "orf_stats_unconstrained": {},
+ "sa": [
+  {
+   "file": "sa/11-11_0_19_s2.json",
+   "design": "11/11|0|19",
+   "J0": 0.4637,
+   "J": 0.4823,
+   "info0": {
+    "J": 0.4637,
+    "ident": 0.938,
+    "ds": 19,
+    "start_plfold": 0.227,
+    "start_unp": 0.43,
+    "z_mfe": -4.67,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "info": {
+    "J": 0.4823,
+    "ident": 0.929,
+    "ds": 19,
+    "start_plfold": 0.188,
+    "start_unp": 0.57,
+    "z_mfe": -6.28,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "nt": 42,
+   "prot": true,
+   "steps": 300
+  },
+  {
+   "file": "sa/16-16_0_19_s2.json",
+   "design": "16/16|0|19",
+   "J0": 0.458,
+   "J": 0.4764,
+   "info0": {
+    "J": 0.458,
+    "ident": 0.938,
+    "ds": 22,
+    "start_plfold": 0.227,
+    "start_unp": 0.43,
+    "z_mfe": -4.83,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "info": {
+    "J": 0.4764,
+    "ident": 0.952,
+    "ds": 22,
+    "start_plfold": 0.233,
+    "start_unp": 0.57,
+    "z_mfe": -5.36,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "nt": 8,
+   "prot": true,
+   "steps": 300
+  },
+  {
+   "file": "sa/3-2GCT_20_0_s2.json",
+   "design": "3/2GCT|20|0",
+   "J0": 0.4226,
+   "J": 0.4338,
+   "info0": {
+    "J": 0.4226,
+    "ident": 0.938,
+    "ds": 13,
+    "start_plfold": 0.227,
+    "start_unp": 0.43,
+    "z_mfe": 0.22,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "info": {
+    "J": 0.4338,
+    "ident": 0.926,
+    "ds": 13,
+    "start_plfold": 0.209,
+    "start_unp": 0.62,
+    "z_mfe": -0.06,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "nt": 53,
+   "prot": true,
+   "steps": 300
+  },
+  {
+   "file": "sa/3-2GCT_20_19_s2.json",
+   "design": "3/2GCT|20|19",
+   "J0": 0.443,
+   "J": 0.4613,
+   "info0": {
+    "J": 0.443,
+    "ident": 0.938,
+    "ds": 19,
+    "start_plfold": 0.227,
+    "start_unp": 0.43,
+    "z_mfe": -2.61,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "info": {
+    "J": 0.4613,
+    "ident": 0.952,
+    "ds": 19,
+    "start_plfold": 0.233,
+    "start_unp": 0.57,
+    "z_mfe": -3.14,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "nt": 8,
+   "prot": true,
+   "steps": 300
+  },
+  {
+   "file": "sa/split_403_s2.json",
+   "design": "split:403",
+   "J0": 0.4831,
+   "J": 0.5032,
+   "info0": {
+    "J": 0.4831,
+    "ident": 0.938,
+    "ds": 13,
+    "start_plfold": 0.227,
+    "start_unp": 0.43,
+    "z_mfe": -2.97,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "info": {
+    "J": 0.5032,
+    "ident": 0.965,
+    "ds": 13,
+    "start_plfold": 0.233,
+    "start_unp": 0.48,
+    "z_mfe": -4.9,
+    "hard_ok": true,
+    "t2": 0
+   },
+   "nt": 35,
+   "prot": true,
+   "steps": 300
+  }
+ ],
+ "ablation": []
+}

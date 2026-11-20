@@ -42,6 +42,17 @@ CIRCLE_ORDER = ["E2", "spacer5", "IRES", "ORF", "spacer3", "E1"]
 
 REQUIRED_PARTS = ["intron_3half", "E2", "IRES", "ORF", "E1", "intron_5half"]
 
+# Tata letak CIRC (Shen dkk. 2025): satu intron Ana utuh di ujung 5' prekursor,
+# lalu ekson 3' (E2), spacer, lengan homologi (HA5), AC30, muatan, lengan
+# homologi (HA3), spacer, ekson 5' (E1). Dipakai bila 'intron_5half' tidak ada.
+PRECURSOR_ORDER_CIRC = [
+    "T7_promoter", "gg_leader", "intron_3half", "E2", "spacer5", "HA5", "AC30",
+    "IRES", "ORF", "UTR3", "HA3", "spacer3", "E1", "T7_terminator",
+]
+CIRCLE_ORDER_CIRC = ["E2", "spacer5", "HA5", "AC30", "IRES", "ORF", "UTR3", "HA3", "spacer3", "E1"]
+REQUIRED_PARTS_CIRC = ["intron_3half", "E2", "IRES", "ORF", "E1"]
+
+
 
 @dataclass
 class Part:
@@ -101,8 +112,10 @@ def build(parts: dict[str, Part | str], *, strict: bool = True) -> Assembly:
     for k, v in parts.items():
         norm[k] = v if isinstance(v, Part) else Part(name=k, seq=v)
 
+    circ = "intron_5half" not in norm or not norm["intron_5half"].seq
+    req = REQUIRED_PARTS_CIRC if circ else REQUIRED_PARTS
     if strict:
-        missing = [p for p in REQUIRED_PARTS if p not in norm or not norm[p].seq]
+        missing = [p for p in req if p not in norm or not norm[p].seq]
         if missing:
             raise SequenceError(
                 "bagian konstruk belum tersedia: "
@@ -110,8 +123,8 @@ def build(parts: dict[str, Part | str], *, strict: bool = True) -> Assembly:
                 + ". Sediakan sekuens terverifikasi di config/parts.yaml."
             )
 
-    precursor, pcoords = _concat(norm, PRECURSOR_ORDER)
-    circle, ccoords = _concat(norm, CIRCLE_ORDER)
+    precursor, pcoords = _concat(norm, PRECURSOR_ORDER_CIRC if circ else PRECURSOR_ORDER)
+    circle, ccoords = _concat(norm, CIRCLE_ORDER_CIRC if circ else CIRCLE_ORDER)
     bsj = ccoords["E1"][1] if "E1" in ccoords else len(circle)
     return Assembly(
         precursor=precursor,

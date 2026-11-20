@@ -1,0 +1,137 @@
+{
+ "composite": 0.4973,
+ "verdict": "NO-GO",
+ "gates_failed": [
+  "no_internal_typeIIS",
+  "orf_intact_and_unique_start",
+  "ires_sequence_identical_AF169665"
+ ],
+ "criteria": {
+  "splicing_competence": {
+   "weight": 0.25,
+   "subscore": 0.3265,
+   "raw": {
+    "e_base": 0.3959,
+    "f5": 0.7353,
+    "f3": 0.3999,
+    "exon5_identity_modifier": 1.0,
+    "residual_factor_arm": 1.0,
+    "residual_factor_spacer": 1.0,
+    "e_total": 0.3959
+   }
+  },
+  "junction_accessibility": {
+   "weight": 0.15,
+   "subscore": 0.7058,
+   "raw": {
+    "bsj_worst": 0.9525,
+    "splice_site_ratio_vs_minimal": {
+     "splice5_site@37C": 0.422,
+     "splice3_site@37C": 1.649,
+     "intron_3half_IGS@37C": 0.622,
+     "splice5_site@55C": 0.608,
+     "splice3_site@55C": 2.141,
+     "intron_3half_IGS@55C": 0.623
+    }
+   }
+  },
+  "ires_integrity": {
+   "weight": 0.15,
+   "subscore": 0.3105,
+   "raw": {
+    "identity_37C": 0.7621,
+    "identity_55C_informational": 0.7242
+   }
+  },
+  "dsrna_burden": {
+   "weight": 0.1,
+   "subscore": 1.0,
+   "raw": {
+    "longest_bp": 11
+   }
+  },
+  "start_codon_accessibility": {
+   "weight": 0.1,
+   "subscore": 0.6829,
+   "raw": {
+    "plfold": {
+     "37C": 0.134932,
+     "55C": 0.272938
+    },
+    "global": {
+     "37C": 0.59909,
+     "55C": 0.6892
+    }
+   }
+  },
+  "circle_stability": {
+   "weight": 0.1,
+   "subscore": 0.0908,
+   "raw": {
+    "z_mfe_per_nt": 0.98,
+    "z_diversity_per_nt": -1.09
+   }
+  },
+  "sequence_cleanliness": {
+   "weight": 0.1,
+   "subscore": 0.36,
+   "raw": {
+    "typeIIS": 2,
+    "gc_window_violations": 2,
+    "homopolymer": 10,
+    "gc": 0.5211
+   }
+  },
+  "motif_burden": {
+   "weight": 0.05,
+   "subscore": 0.9966,
+   "raw": {
+    "m6a_per_100nt": 1.017
+   }
+  }
+ },
+ "gates": {
+  "no_internal_typeIIS": {
+   "passed": false,
+   "value": 2
+  },
+  "no_premature_T7_terminator": {
+   "passed": true,
+   "value": 0
+  },
+  "orf_intact_and_unique_start": {
+   "passed": false,
+   "value": null
+  },
+  "dsrna_below_hard_limit": {
+   "passed": true,
+   "value": 11
+  },
+  "circle_length_within_limit": {
+   "passed": true,
+   "value": 1376
+  },
+  "ires_sequence_identical_AF169665": {
+   "passed": false,
+   "value": false
+  },
+  "intron_identical_Ana_reference": {
+   "passed": true,
+   "value": true
+  },
+  "orf_translates_S_protein_no_internal_stop": {
+   "passed": true,
+   "value": true
+  },
+  "homology_arm_le_50nt": {
+   "passed": true,
+   "value": 0
+  },
+  "exon_base_efficiency_ge_25pct": {
+   "passed": true,
+   "value": 0.3959
+  }
+ },
+ "name": "NC2_IRES_scrambled",
+ "circle_length": 1376
+}

@@ -1,0 +1,141 @@
+{
+ "composite": 0.8108,
+ "verdict": "GO",
+ "gates_failed": [],
+ "criteria": {
+  "splicing_competence": {
+   "weight": 0.25,
+   "subscore": 1.0,
+   "raw": {
+    "e_base": 0.3959,
+    "f5": 0.7353,
+    "f3": 0.3999,
+    "exon5_identity_modifier": 1.0,
+    "residual_factor_arm": 0.323,
+    "residual_factor_spacer": 0.445,
+    "e_total": 0.8047
+   }
+  },
+  "junction_accessibility": {
+   "weight": 0.15,
+   "subscore": 0.8289,
+   "raw": {
+    "bsj_worst": 0.9993,
+    "splice_site_ratio_vs_minimal": {
+     "splice5_site@37C": 2.55,
+     "splice3_site@37C": 1.645,
+     "intron_3half_IGS@37C": 0.622,
+     "splice5_site@55C": 3.23,
+     "splice3_site@55C": 2.145,
+     "intron_3half_IGS@55C": 0.623
+    }
+   }
+  },
+  "ires_integrity": {
+   "weight": 0.15,
+   "subscore": 1.0,
+   "raw": {
+    "identity_37C": 0.9379,
+    "identity_55C_informational": 0.9652
+   }
+  },
+  "dsrna_burden": {
+   "weight": 0.1,
+   "subscore": 0.4074,
+   "raw": {
+    "longest_bp": 34
+   }
+  },
+  "start_codon_accessibility": {
+   "weight": 0.1,
+   "subscore": 0.621,
+   "raw": {
+    "plfold": {
+     "37C": 0.226685,
+     "55C": 0.385734
+    },
+    "global": {
+     "37C": 0.38258,
+     "55C": 0.41665
+    }
+   }
+  },
+  "circle_stability": {
+   "weight": 0.1,
+   "subscore": 0.6647,
+   "raw": {
+    "z_mfe_per_nt": -6.09,
+    "z_diversity_per_nt": -1.98
+   }
+  },
+  "sequence_cleanliness": {
+   "weight": 0.1,
+   "subscore": 0.7,
+   "raw": {
+    "typeIIS": 0,
+    "gc_window_violations": 5,
+    "homopolymer": 10,
+    "gc": 0.5162
+   }
+  },
+  "motif_burden": {
+   "weight": 0.05,
+   "subscore": 0.9436,
+   "raw": {
+    "m6a_per_100nt": 1.282
+   }
+  }
+ },
+ "gates": {
+  "no_internal_typeIIS": {
+   "passed": true,
+   "value": 0
+  },
+  "no_premature_T7_terminator": {
+   "passed": true,
+   "value": 0
+  },
+  "orf_intact_and_unique_start": {
+   "passed": true,
+   "value": null
+  },
+  "dsrna_below_hard_limit": {
+   "passed": true,
+   "value": 34
+  },
+  "circle_length_within_limit": {
+   "passed": true,
+   "value": 1482
+  },
+  "ires_sequence_identical_AF169665": {
+   "passed": true,
+   "value": true
+  },
+  "intron_identical_Ana_reference": {
+   "passed": true,
+   "value": true
+  },
+  "orf_translates_S_protein_no_internal_stop": {
+   "passed": true,
+   "value": true
+  },
+  "homology_arm_le_50nt": {
+   "passed": true,
+   "value": 34
+  },
+  "exon_base_efficiency_ge_25pct": {
+   "passed": true,
+   "value": 0.3959
+  }
+ },
+ "name": "S_3-2CTT_sp20_arm34",
+ "design": {
+  "e5": "CTT",
+  "e3": "AA",
+  "sp5": "AAAAACAAAAAACAAAAAAA",
+  "sp3": "AAAAAACAAAAAACAAAA",
+  "arm": 34,
+  "ac30": true
+ },
+ "circle_length": 1482
+}

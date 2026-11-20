@@ -1,0 +1,53 @@
+provenance_policy: strict
+design:
+  ires_choice: CVB3 AF169665.1
+  note: IRES CVB3 versi paper (741 nt) sebagai pembanding
+protein:
+  file: data/real/S_protein_AAB59969.faa
+  accession: AAB59969.1
+  genotype: '[PERLU VERIFIKASI]'
+parts:
+  T7_promoter:
+    inline: TAATACGACTCACTATA
+    source: Promotor T7 konsensus (literatur)
+  intron_3half:
+    inline: GGAAATAATTGAGCCTTAAAGAAGAAATTCTTTAAGTGGATGCTCTCAAACTCAGGGAAACCTAAATCTAGTTATAGACAAGGCAATCCTGAGCCAAGCCGAAGTAGTAATTAGTAAGTTAACAATAGATGACTTACAACTAATCGGAAGGTGCAGAGACTCGACGGGAGCTACCCTAACGTCAAGACGAGGGTAAAGAGAGAGTCCAATTCTCAAAGCCAATAGGCAGTAGCGAAAGCTGCAAGAGAATG
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 2 (CIRC-V1)
+    role: intron Ana utuh 251 nt (grup I)
+    features:
+      IGS:
+      - 33
+      - 40
+    note: '[PERKIRAAN] letak IGS dari komplementaritas terhadap ujung 3'' ekson 5'' (CUU); bukan anotasi paper'
+  E2:
+    inline: AAAATCCGTTGACCTT
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 2
+    role: ekson 3' (sisi 3' sambungan balik)
+  spacer5:
+    inline: AAAAACAAAAAACAAAAAAA
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 2 (spacer)
+  HA5:
+    inline: GCCGTGTATAGTGAACCCG
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 2 (lengan homologi)
+    role: lengan homologi 5' (dalam lingkaran)
+  HA3:
+    inline: CGGGTTCACTATACACGGC
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 2 (lengan homologi)
+    role: lengan homologi 3' (komplementer HA5)
+  AC30:
+    inline: ACAAAAAAAAAACCAAAAAAACAAAACACA
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 2 (AC30 sebelum IRES)
+  IRES:
+    inline: TTAAAACAGCCTGTGGGTTGATCCCACCCACAGGCCCATTGGGCGCTAGCACTCTGGTATCACGGTACCTTTGTGCGCCTGTTTTATACCCCCTCCCCCAACTGTAACTTAGAAGTAACACACACCGATCAACAGTCAGCGTGGCACACCAGCCACGTTTTGATCAAGCACTTCTGTTACCCCGGACTGAGTATCAATAGACTGCTCACGCGGTTGAAGGAGAAAGCGTTCGTTATCCGGCCAACTACTTCGAAAAACCTAGTAACACCGTGGAAGTTGCAGAGTGTTTCGCTCAGCACTACCCCAGTGTAGATCAGGTCGATGAGTCACCGCATTCCCCACGGGCGACCGTGGCGGTGGCTGCGTTGGCGGCCTGCCCATGGGGAAACCCATGGGACGCTCTAATACAGACATGGTGCGAAGAGTCTATTGAGCTAGTTGGTAGTCCTCCGGCCCCTGAATGCGGCTAATCCTAACTGCGGAGCACACACCCTCAAGCCAGAGGGCAGTGTGTCGTAACGGGCAACTCTGCAGCGGAACCGACTACTTTGGGTGTCCGTGTTTCATTTTATTCCTATACTGGCTGCTTATGGTGACAATTGAGAGATCGTTACCATATAGCTATTGGATTGGCCATCCGGTGACTAATAGAGCTATTATATATCCCTTTGTTGGGTTTATACCACTTAGCTTGAAAGAGGTTAAAACATTACAATTCATTGTTAAGTTGAATACAGCAAA
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 4&5 (CVB3 IRES, 741 nt)
+    role: IRES CVB3 versi paper
+  ORF:
+    inline: ATGTAA
+    note: Dipasang pada saat berjalan dari hasil optimasi kodon protein S U95551.1 (AAB59969.1)
+  spacer3:
+    inline: AAAAAACAAAAAACAAAA
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 2 (spacer)
+  E1:
+    inline: GAGACGCTACGGACTT
+    source: Shen dkk. 2025, Nat Commun 16:7376, Supplementary Data 1 (MOESM3), lembar Figure 2
+    role: ekson 5' (sisi 5' sambungan balik)
