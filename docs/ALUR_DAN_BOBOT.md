@@ -31,6 +31,12 @@ Di luar `rule all` (karena lama atau bergantung keputusan): `gate0` (sembilan uj
 
 Setiap JSON memuat label data, seed, versi alat, dan waktu UTC. Xlsx tidak menghitung angka baru, hanya meratakan berkas di atas.
 
+**Sheet bergantung langkah opsional.** `snakemake` biasa menghasilkan 26 sheet (teruji di clone bersih, ±2,5 menit di Linux).
+Sheet `Varian_Optuna` baru ada setelah `snakemake --cores 4 results/demo/optimization.json ...` (langkah `optimize`);
+`Iterasi_redesain` setelah `python -m circhbsag.cli redesign`; `Lipatan`, `m6A_RRACH`, `Fitur_konstruk`, `Sekuens`, `IRES_integritas`, `dsRNA`
+setelah skrip 03, 05, 06, 07, 08. Jalankan ulang `python scripts/13_export_workbook.py --results <out>` untuk memasukkannya. Sheet yang sumbernya belum ada
+dilewati dan dicantumkan di sheet Ringkasan, tidak diisi angka karangan.
+
 ## 3. Mana hasil sungguhan, mana demo
 
 - **`results/demo/`** memakai sekuens acak (`config/parts.example.yaml`). Semua angkanya placeholder dan **tidak boleh dikutip**. Xlsx dari folder ini diberi label `[DEMO — SEKUENS PLACEHOLDER]` di sheet Ringkasan dan Sumber_dan_status.
@@ -75,7 +81,7 @@ snakemake --cores 4 --config parts=config/parts.example.yaml outdir=results/demo
 open results/demo/tables/circhbsag_hasil_lengkap.xlsx
 ```
 
-Dependensi non-pip: **tidak ada** untuk jalur demo. ViennaRNA, primer3-py, openpyxl, dan Snakemake semua dipasang oleh `pip`.
+Dependensi non-pip: **tidak ada** untuk jalur demo (teruji di Linux; di macOS belum teruji). ViennaRNA, primer3-py, openpyxl, dan Snakemake semua dipasang oleh `pip`.
 Opsional: `blastn` (BLAST+, `brew install blast`) untuk off-target; NetMHCpan (unduh lokal, lisensi akademik) untuk skrip 09.
 
 Masalah umum:
