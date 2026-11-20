@@ -87,8 +87,10 @@ Laporan akan berlabel `[HASIL IN SILICO]`, bukan `[DEMO — SEKUENS PLACEHOLDER]
 | `hbsag_S_protein.fa` | protein S-HBsAg 226 aa | protein_id AAB59969.1 `[LITERATUR]` |
 | `hbsag_S_CDS_AAB59969.1.fa` | CDS 681 nt (226 kodon + stop), posisi `157..837` pada catatan induk | disalin jek dari catatan GenBank; terjemahannya sama persis dengan terjemahan di catatan itu |
 
-**Aksesi genom induk `[PERLU VERIFIKASI]`:** jek menyebut D00329.1, tetapi protein ini berbeda di 20 posisi dari protein D00329.1,
-jadi label D00329.1 tidak dipakai sampai jek mengonfirmasi aksesi yang benar.
-**Koordinat:** CDS di catatan itu `157..837`, bukan 155–835 (bergeser 2 nt, salah kerangka).
-**Genotipe:** B menurut pohon filogeni lokal pada D00329.1, jadi genotipe untuk protein ini juga `[PERLU VERIFIKASI]`.
+**Genom induk:** U95551.1 (HBV subtipe ayw, 3182 bp, klon 2.2.15; aksesi dari jek). Sebelumnya sempat tertulis D00329.1; label itu salah
+karena protein AAB59969.1 berbeda di 20 posisi dari protein D00329.1.
+**Koordinat:** CDS pada catatan induk `157..837`, bukan 155–835 (bergeser 2 nt, salah kerangka). Aksesi dan koordinat
+`[PERLU VERIFIKASI]` terhadap catatan GenBank lengkap karena GenBank tidak terjangkau dari lingkungan kerja.
+**Genotipe:** subtipe ayw umumnya genotipe D `[PERLU VERIFIKASI]` (HBVdb/BLAST). Pohon lokal yang menempatkan D00329.1 pada genotipe B
+tidak berlaku untuk protein ini.
 Bagian lain (IRES CVB3, intron, ekson) masih harus disediakan, jadi `config/parts.yaml` (strict) belum bisa berjalan penuh.
