@@ -58,18 +58,20 @@ def main() -> int:
     sheets: dict[str, pd.DataFrame] = {}
     missing: list[str] = []
 
-    g0 = jload(find(res, "gate0.json"))
+    g0 = jload(find(res, "gate0.json")) or jload(find(res, "tahap0.json"))
     if g0:
         r = g0["results"]
-        dec, g = r["decision"], r["gate0"]
+        dec, g = r["decision"], r.get("gate0")
         sheets["Ringkasan"] = pd.DataFrame([
             ("Label data", g0.get("data_label")),
-            ("Gate 0", g["decision"]), ("Ringkasan hitung", json.dumps(g["counts"])),
+            ("Gate 0", g["decision"] if g else "belum dijalankan (python -m circhbsag.cli gate0 ...)"),
+            ("Ringkasan hitung", json.dumps(g["counts"]) if g else ""),
             ("Keputusan komposit", dec["verdict"]), ("Skor komposit", dec["composite_score"]),
             ("Seed", g0.get("seed")), ("Dibuat (UTC)", g0.get("generated_utc")),
             ("Versi circhbsag", g0.get("circhbsag_version")),
             ("Catatan", content.PROJECTION_LABEL),
         ], columns=["Item", "Nilai"])
+        g = g or {"tests": [], "construct": {"precursor_coords": {}, "circle_coords": {}}}
         sheets["Gate0_uji"] = pd.DataFrame([{
             "id": t["id"], "uji": t["name"], "verdict": t["verdict"], "ambang": t["threshold"],
             "label_ambang": t["threshold_label"], "alasan_ambang": t["threshold_rationale"],
@@ -94,7 +96,7 @@ def main() -> int:
             + [(k, v[0], v[1], "lingkaran") for k, v in g["construct"]["circle_coords"].items()],
             columns=["bagian", "mulai", "akhir", "cakupan"])
     else:
-        missing.append("gate0.json")
+        missing.append("gate0.json / tahap0.json")
 
     its = jload(find(res, "gate0_iterations.json"))
     if its:

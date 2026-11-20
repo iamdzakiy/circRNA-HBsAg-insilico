@@ -193,12 +193,20 @@ rule workbook:
     input:
         tahap0=OUT / "tahap0.json",
         codon=OUT / "codon.json",
+        codon_fa=OUT / "orf_optimized.fa",
         primers=OUT / "primers.json",
         bsj=OUT / "bsj_simulation.json",
         offtarget=OUT / "offtarget_report.json",
     output:
         OUT / "tables" / "circhbsag_hasil_lengkap.xlsx",
+    params:
+        parts=PARTS,
     shell:
+        # Gate 0 dijalankan di sini supaya sheet uji/skor/bobot terisi. Kode keluar 2
+        # (FAIL-PINDAH-JALUR) tidak dibuang: peringatan dicetak dan vonisnya tampil di
+        # sheet Ringkasan; rule `gate0` tetap bisa dijalankan sendiri untuk menghentikan alur.
+        "({PY} gate0 --parts {params.parts} --orf-fasta {input.codon_fa} --out {OUT}/reports "
+        "--temperatures {TEMPS} --seed {SEED} || echo 'PERINGATAN: Gate 0 keluar dengan kode '$?' (lihat sheet Ringkasan)') && "
         "python3 scripts/13_export_workbook.py --results {OUT}"
 
 
