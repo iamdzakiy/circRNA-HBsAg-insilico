@@ -84,10 +84,11 @@ Laporan akan berlabel `[HASIL IN SILICO]`, bukan `[DEMO — SEKUENS PLACEHOLDER]
 
 | Berkas | Isi | Asal |
 |---|---|---|
-| `hbsag_S_protein.fa` | protein S-HBsAg 226 aa | GenBank D00329.1, CDS `157..837`, protein_id AAB59969.1 `[LITERATUR]` |
-| `hbsag_S_CDS_D00329.1.fa` | CDS 681 nt (226 kodon + stop) | disalin jek dari catatan GenBank; terjemahannya sama persis dengan terjemahan yang tercantum di catatan itu |
+| `hbsag_S_protein.fa` | protein S-HBsAg 226 aa | protein_id AAB59969.1 `[LITERATUR]` |
+| `hbsag_S_CDS_AAB59969.1.fa` | CDS 681 nt (226 kodon + stop), posisi `157..837` pada catatan induk | disalin jek dari catatan GenBank; terjemahannya sama persis dengan terjemahan di catatan itu |
 
-**Koordinat:** catatan GenBank menyebut CDS di posisi **157..837**, bukan 155–835. Potongan 155–835 bergeser dua nukleotida
-(mulai `acatgg…`, bukan `atggag…`) sehingga terjemahannya salah kerangka. Gunakan 157..837.
-**Genotipe:** B menurut pohon filogeni lokal (bootstrap 100%), subgenotipe `[PERLU VERIFIKASI]` (BLAST/HBVdb daring belum terjangkau).
+**Aksesi genom induk `[PERLU VERIFIKASI]`:** jek menyebut D00329.1, tetapi protein ini berbeda di 20 posisi dari protein D00329.1,
+jadi label D00329.1 tidak dipakai sampai jek mengonfirmasi aksesi yang benar.
+**Koordinat:** CDS di catatan itu `157..837`, bukan 155–835 (bergeser 2 nt, salah kerangka).
+**Genotipe:** B menurut pohon filogeni lokal pada D00329.1, jadi genotipe untuk protein ini juga `[PERLU VERIFIKASI]`.
 Bagian lain (IRES CVB3, intron, ekson) masih harus disediakan, jadi `config/parts.yaml` (strict) belum bisa berjalan penuh.

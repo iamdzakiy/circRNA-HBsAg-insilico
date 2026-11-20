@@ -17,7 +17,7 @@ provenance_policy: strict
 
 protein:
   file: data/reference/hbsag_S_protein.fa
-  accession: "D00329.1"              # CDS 157..837; protein_id AAB59969.1 (GenBank, disalin jek)
+  accession: "AAB59969.1"           # protein_id; genom induk [PERLU VERIFIKASI] (D00329.1 belum terkonfirmasi)
   genotype: "B"
   note: >
     Protein S-HBsAg kecil (SHBs). Justifikasi pemilihan S (bukan L/M/S) dan
