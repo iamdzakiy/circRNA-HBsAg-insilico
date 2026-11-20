@@ -51,7 +51,11 @@ snakemake --cores 4 --config parts=config/parts.example.yaml outdir=results/demo
 cat results/demo/SUMMARY.md
 open results/demo/tahap0.html         # laporan lengkap, HTML mandiri
 
-# 4. Tes
+# 4. Satu berkas tabel lengkap (semua varian, uji, skor, primer, motif, kodon, sekuens)
+#    results/demo/tables/circhbsag_hasil_lengkap.xlsx  (+ csv/ per sheet untuk Google Sheets)
+python scripts/13_export_workbook.py --results results/demo   # otomatis ikut `snakemake`
+
+# 5. Tes
 pytest -q                              # 109 tes
 ```
 

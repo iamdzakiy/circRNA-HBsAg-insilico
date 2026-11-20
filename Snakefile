@@ -47,6 +47,7 @@ rule all:
         OUT / "offtarget_report.json",
         OUT / "licenses.json",
         OUT / "SUMMARY.md",
+        OUT / "tables" / "circhbsag_hasil_lengkap.xlsx",
 
 
 rule licenses:
@@ -181,6 +182,24 @@ rule optimize:
     shell:
         "{PY} optimize --parts {input.parts} --out {OUT} "
         "--n-trials {params.trials} --codon-iterations {params.citer} --seed {SEED}"
+
+
+rule workbook:
+    """Satu berkas xlsx berisi SEMUA tabel run (varian, uji, skor, primer, motif, kodon, sekuens).
+
+    Salinan CSV per sheet ada di tables/csv/ untuk impor ke Google Sheets. Tidak ada
+    angka baru: hanya meratakan JSON/TSV yang sudah ditulis langkah lain.
+    """
+    input:
+        tahap0=OUT / "tahap0.json",
+        codon=OUT / "codon.json",
+        primers=OUT / "primers.json",
+        bsj=OUT / "bsj_simulation.json",
+        offtarget=OUT / "offtarget_report.json",
+    output:
+        OUT / "tables" / "circhbsag_hasil_lengkap.xlsx",
+    shell:
+        "python3 scripts/13_export_workbook.py --results {OUT}"
 
 
 rule summary:

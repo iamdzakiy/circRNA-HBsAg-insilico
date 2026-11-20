@@ -30,3 +30,5 @@ data/reference/*.fasta
 
 # OS
 .DS_Store
+!data/reference/hbsag_S_protein.fa
+!data/reference/hbsag_S_CDS_D00329.1.fa

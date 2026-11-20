@@ -18,7 +18,7 @@ def test_every_script_has_help():
     for p in sorted((REPO / "scripts").glob("[0-9][0-9]_*.py")):
         r = run(p.name, "--help")
         assert r.returncode == 0, p.name
-    assert len(list((REPO / "scripts").glob("[0-9][0-9]_*.py"))) == 12
+    assert len(list((REPO / "scripts").glob("[0-9][0-9]_*.py"))) == 13
 
 
 def test_epitope_script_refuses_to_invent_predictions(tmp_path):
@@ -53,3 +53,26 @@ def test_downstream_script_explains_missing_gate0(tmp_path):
     r = run("06_ires_integrity.py", "--results", str(tmp_path))
     assert r.returncode != 0
     assert "04_gate0_circularization_check.py" in (r.stderr + r.stdout)
+
+
+def test_workbook_export_flattens_existing_results_and_skips_missing(tmp_path):
+    import shutil
+
+    import pytest
+
+    src = REPO / "results" / "demo"
+    if not (src / "gate0.json").exists():
+        pytest.skip("butuh results/demo")
+    for f in ("gate0.json", "gate0_iterations.json", "optimization.json", "codon.json", "primers.json"):
+        if (src / f).exists():
+            shutil.copy(src / f, tmp_path / f)
+    r = run("13_export_workbook.py", "--results", str(tmp_path))
+    assert r.returncode == 0, r.stderr
+    import pandas as pd
+
+    sheets = pd.read_excel(tmp_path / "tables" / "circhbsag_hasil_lengkap.xlsx", sheet_name=None)
+    assert {"Ringkasan", "Gate0_uji", "Varian_Optuna", "Primer_pasangan"} <= set(sheets)
+    assert len(sheets["Gate0_uji"]) == 9
+    # missing sources are reported, never invented
+    assert "bsj_simulation.json" in " ".join(sheets["Ringkasan"]["Nilai"].astype(str))
+    assert (tmp_path / "tables" / "csv" / "Varian_Optuna.csv").exists()
